@@ -1,70 +1,84 @@
 import React from 'react';
-import { ShieldCheck, Info, FileText } from 'lucide-react';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { motion } from 'framer-motion';
+import { ShieldCheck, Info, FileText, ArrowRight } from 'lucide-react';
+
+const PROTOCOLS = [
+    {
+        id: '01',
+        title: 'NON-RETURNABLE PROTOCOL',
+        icon: <ShieldCheck className="w-8 h-8 text-svz-red" />,
+        body: 'Medications cannot be returned once they have exited the custodial chain. Storage conditions (thermal, humidity) can no longer be verified, making redistribution a clinical risk.'
+    },
+    {
+        id: '02',
+        title: 'DISPENSING ERROR AUDIT',
+        icon: <Info className="w-8 h-8 text-svz-red" />,
+        body: 'In cases of verified dispensing errors or damaged seals, a full credit node or replacement will be initiated. Notifications must be committed within 24 hours of delivery.'
+    },
+    {
+        id: '03',
+        title: 'CANCELLATION NODES',
+        icon: <FileText className="w-8 h-8 text-svz-red" />,
+        body: 'Prescription orders cannot be cancelled once the verification sequence has been finalized by a licensed pharmacist. Professional dispense time is non-recoverable.'
+    }
+];
 
 export default function RefundPolicy() {
   return (
-    <div className="pt-24 min-h-screen font-sans bg-brand-surgical pb-24">
-      <section className="py-20 container mx-auto px-6 text-center max-w-4xl">
-        <AnimatedHeading level={1} className="display-sm mb-6 uppercase tracking-wider">
-          Prescription Refund Policy
-        </AnimatedHeading>
-        <div className="h-1 w-20 bg-brand-teal mx-auto mb-8"></div>
-        <p className="text-brand-slate leading-relaxed mb-6">
-          In accordance with the Pharmacy Council of Nigeria (PCN) guidelines, we maintain a strict policy regarding the return of medications to ensure clinical safety and integrity.
-        </p>
+    <div className="bg-white min-h-screen pt-40">
+      
+      {/* High-Impact Heading */}
+      <section className="px-6 md:px-12 mb-20 lg:mb-40">
+         <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
+            <h1 className="display-svz uppercase">CARE<br />PROTOCOLS</h1>
+            <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Custodial Chain and Refund Specification</p>
+         </div>
       </section>
 
-      <section className="container mx-auto px-6 max-w-3xl">
-        <div className="bg-white p-10 rounded-2xl border border-border space-y-10 shadow-sm leading-relaxed">
-          
-          <div className="space-y-4">
-            <h2 className="flex items-center text-lg font-bold uppercase tracking-tighter text-brand-obsidian">
-              <ShieldCheck className="text-brand-teal mr-3" />
-              1. Non-Returnable Medications
-            </h2>
-            <p className="text-sm text-brand-slate">
-              To protect public health, medications cannot be returned once they have left the pharmacy premises. Storage conditions (temperature, humidity, etc.) for medications can no longer be guaranteed once they are out of our custodial chain, making them unsafe for redistribution.
-            </p>
-          </div>
+      {/* Protocol Nodes */}
+      <section className="px-6 md:px-12 pb-40">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+            <div className="lg:col-span-8 space-y-24">
+                {PROTOCOLS.map((p) => (
+                    <div key={p.id} className="space-y-8 group">
+                        <div className="flex items-center gap-6">
+                            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Protocol {p.id}</span>
+                            <div className="h-px bg-black/10 flex-1" />
+                        </div>
+                        <h2 className="text-4xl font-black uppercase tracking-tighter leading-none group-hover:text-svz-red transition-colors duration-500">{p.title}</h2>
+                        <p className="text-xl md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase max-w-4xl">
+                           {p.body}
+                        </p>
+                    </div>
+                ))}
+            </div>
 
-          <div className="space-y-4">
-            <h2 className="flex items-center text-lg font-bold uppercase tracking-tighter text-brand-obsidian">
-              <Info className="text-brand-teal mr-3" />
-              2. Dispensing Errors & Damages
-            </h2>
-            <p className="text-sm text-brand-slate">
-              If we accidentally dispense the wrong medication, dosage, or if the product arrives damaged (e.g., broken seal), we will provide a full refund or replacement. In such cases, customers must notify us within 24 hours of delivery.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="flex items-center text-lg font-bold uppercase tracking-tighter text-brand-obsidian">
-              <FileText className="text-brand-teal mr-3" />
-              3. Cancellation Policy
-            </h2>
-            <p className="text-sm text-brand-slate">
-              Orders for prescription medicines cannot be cancelled once a licensed pharmacist has verified and dispensed the order. This is because materials and professional time involved in manual dispensing are non-recoverable.
-            </p>
-          </div>
-
-          <div className="p-6 bg-brand-teal/5 rounded-xl border border-brand-teal/10 mt-12">
-            <p className="text-xs font-medium text-brand-deep italic">
-              "Your safety is our priority. By adhering to these policies, we guarantee that every medicine reaching a customer is in its original, safe, and effective state." 
-              <br />— Superintendent Pharmacist, Savincliff.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-            <p className="text-[10px] uppercase font-bold text-brand-slate tracking-[0.2em] mb-4">Regulatory Compliance</p>
-            <div className="inline-flex items-center bg-white px-6 py-3 rounded-full border border-border text-xs font-bold gap-4 opacity-70">
-              <span>PCN COMPLIANT</span>
-              <div className="h-4 w-px bg-border"></div>
-              <span>NDPA PROTECTED</span>
+            <div className="lg:col-span-4 bg-black text-white p-12 lg:p-20 space-y-12 relative overflow-hidden">
+                <div className="relative z-10 space-y-8">
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red">Pharmacist Audit</p>
+                    <p className="text-[13px] font-bold uppercase leading-relaxed tracking-widest text-white/50 italic">
+                        "Clinical safety is our priority. By adhering to these protocols, we guarantee that every medication reaching a patient is in its original, safe, and effective state."
+                    </p>
+                    <div className="flex flex-col">
+                        <span className="text-[11px] font-black tracking-widest uppercase">Superintendent Pharmacist</span>
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/30">SAVINCLIFF CLINICAL / 2026</span>
+                    </div>
+                </div>
+                {/* Decoration */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-svz-red/20 blur-[60px] rounded-full" />
             </div>
         </div>
       </section>
+
+      {/* Regulatory Strip */}
+      <section className="bg-black text-white py-32 px-6 md:px-12 text-center pointer-events-none select-none overflow-hidden">
+          <div className="max-w-[1800px] mx-auto opacity-10 flex flex-wrap justify-center gap-12 md:gap-24">
+             {['PCN COMPLIANT', 'NAFDAC VERIFIED', 'GPP STANDARDS', 'NDPA PROTECTED'].map(node => (
+                 <span key={node} className="display-svz text-white">{node}</span>
+             ))}
+          </div>
+      </section>
+
     </div>
   );
 }

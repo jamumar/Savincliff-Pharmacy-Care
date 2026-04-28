@@ -1,148 +1,146 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/AuthContext';
-import apiClient from '@/api/apiClient';
+// import apiClient from '@/api/apiClient'; // Backend disconnected for prototype
 import { toast } from '@/components/ui/use-toast';
-import { User, Mail, Shield, Save, Key, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Activity, ShieldCheck } from 'lucide-react';
 
 export default function SettingsPage() {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: user?.username || '',
     email: user?.email || '',
-    current_password: '',
-    new_password: '',
-    confirm_password: ''
+    phone_number: user?.phone_number || '',
+    address: user?.address || ''
   });
+
+  useEffect(() => {
+    if (user) {
+      setForm({
+        username: user.username || '',
+        email: user.email || '',
+        phone_number: user.phone_number || '',
+        address: user.address || ''
+      });
+    }
+  }, [user]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      // In a real app, we'd have a PATCH /auth/me/ endpoint
-      await apiClient.patch('auth/me/', {
+    
+    // Mock update — save to local state
+    setTimeout(() => {
+      const updatedUser = {
+        ...user,
         username: form.username,
-        email: form.email
-      });
+        phone_number: form.phone_number,
+        address: form.address
+      };
+      login(updatedUser, localStorage.getItem('token'), localStorage.getItem('refresh'));
+      
       toast({
-        title: "Profile Updated",
-        description: "Your changes have been saved successfully.",
+        title: "SYNC COMPLETE",
+        description: "Patient identity parameters successfully committed to the clinical node.",
       });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Update Failed",
-        description: error.response?.data?.detail || "Could not update profile.",
-      });
-    } finally {
       setLoading(false);
-    }
+    }, 600);
   };
 
   return (
-    <div className="space-y-10 max-w-4xl">
-      <div className="underline-offset-8">
-        <h1 className="font-serif text-3xl font-light">Account Settings</h1>
-        <p className="text-black/40 text-xs mt-2 uppercase tracking-widest">Manage your profile and security preferences</p>
+    <div className="space-y-20">
+      
+      {/* High-Impact Heading */}
+      <div className="border-b border-black/5 pb-12">
+        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">IDENTITY<br />SPECIFICATION</h1>
+        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30 mt-4 underline underline-offset-8">Audit and modify biometric contact parameters / Ref: {user?.id || '0000'}</p>
       </div>
 
-      <div className="grid gap-10">
-        {/* Profile Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white border border-black/5 p-8 md:p-10 shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-8">
-             <User className="w-5 h-5 text-[#1B6E8C]" />
-             <h3 className="text-xs uppercase tracking-[0.2em] font-bold">Personal Information</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          
+          {/* Form Area */}
+          <div className="lg:col-span-8">
+            <form onSubmit={handleUpdateProfile} className="space-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div className="space-y-4">
+                        <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Legal Identifier</label>
+                        <input 
+                          type="text" 
+                          value={form.username}
+                          onChange={(e) => setForm({...form, username: e.target.value})}
+                          placeholder="FULL NAME SPEC" 
+                          className="w-full bg-transparent border-b border-black/10 py-4 text-[13px] font-bold tracking-widest focus:outline-none focus:border-black uppercase transition-colors" 
+                        />
+                    </div>
+                    <div className="space-y-4">
+                        <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30">Primary Email [Static]</label>
+                        <input 
+                          type="email" 
+                          value={form.email}
+                          disabled 
+                          className="w-full bg-transparent border-b border-black/5 py-4 text-[13px] font-bold tracking-widest text-black/20 uppercase cursor-not-allowed" 
+                        />
+                    </div>
+                </div>
+
+                <div className="space-y-4">
+                    <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Communication Node</label>
+                    <input 
+                      type="tel" 
+                      value={form.phone_number}
+                      onChange={(e) => setForm({...form, phone_number: e.target.value})}
+                      placeholder="+234 XXX XXX XXXX" 
+                      className="w-full bg-transparent border-b border-black/10 py-4 text-[13px] font-bold tracking-widest focus:outline-none focus:border-black uppercase transition-colors" 
+                    />
+                </div>
+
+                <div className="space-y-4">
+                    <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Fulfillment Address</label>
+                    <textarea 
+                      value={form.address}
+                      onChange={(e) => setForm({...form, address: e.target.value})}
+                      placeholder="ENTER FULL DELIVERY SPECIFICATION..." 
+                      rows={4} 
+                      className="w-full bg-transparent border-b border-black/10 py-4 text-[13px] font-bold tracking-widest focus:outline-none focus:border-black uppercase transition-colors resize-none" 
+                    />
+                </div>
+
+                <div className="pt-8">
+                    <button 
+                       disabled={loading}
+                       className="flex items-center gap-8 bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700 disabled:opacity-50"
+                    >
+                       {loading ? 'Committing Changes...' : 'Commit Specification'} <ArrowRight className="w-4 h-4" />
+                    </button>
+                </div>
+            </form>
           </div>
 
-          <form onSubmit={handleUpdateProfile} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest text-black/40">Full Name</label>
-                <input 
-                  type="text" 
-                  value={form.username}
-                  onChange={(e) => setForm({...form, username: e.target.value})}
-                  className="w-full bg-black/[0.02] border border-black/5 px-4 py-3 text-sm focus:outline-none focus:border-[#1B6E8C] transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest text-black/40">Email Address</label>
-                <input 
-                  type="email" 
-                  value={form.email}
-                  disabled
-                  className="w-full bg-black/[0.04] border border-black/5 px-4 py-3 text-sm text-black/30 cursor-not-allowed"
-                />
-                <p className="text-[9px] text-amber-600 font-medium">Contact support to change your verified email.</p>
-              </div>
-            </div>
+          {/* Metadata Sidebar */}
+          <div className="lg:col-span-4 space-y-12">
+             <div className="p-12 bg-[#FAFAFA] border border-black/5 space-y-8">
+                <div className="flex items-center gap-4 text-svz-red">
+                   <Activity className="w-6 h-6" />
+                   <p className="text-[11px] font-black uppercase tracking-widest">Health Sync Active</p>
+                </div>
+                <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-black/40">
+                    Your identity profile is synchronized across all Savincliff clinical nodes. Any modifications may affect fulfillment speed and prescription verification audits.
+                </p>
+             </div>
 
-            <button 
-              disabled={loading}
-              className="bg-[#0A0A0A] text-white px-8 py-3.5 text-[10px] uppercase tracking-widest font-bold flex items-center gap-3 hover:bg-[#1B6E8C] transition-all disabled:opacity-50"
-            >
-              <Save className="w-3.5 h-3.5" /> {loading ? 'Saving...' : 'Save Changes'}
-            </button>
-          </form>
-        </motion.div>
-
-        {/* Security Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="bg-white border border-black/5 p-8 md:p-10 shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-8">
-             <Shield className="w-5 h-5 text-[#1B6E8C]" />
-             <h3 className="text-xs uppercase tracking-[0.2em] font-bold">Security & Password</h3>
-          </div>
-
-          <div className="space-y-6 max-w-md">
-             <p className="text-xs text-black/50 leading-relaxed">Ensure your medical account remains secure by using a strong, unique password.</p>
-             
-             <div className="space-y-4">
-                <button className="w-full flex items-center justify-between p-4 border border-black/5 hover:bg-black/5 transition-colors group">
-                    <div className="flex items-center gap-3">
-                        <Key className="w-4 h-4 text-black/30" />
-                        <span className="text-[11px] uppercase tracking-widest">Update Password</span>
-                    </div>
-                    <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
-                </button>
-                <button className="w-full flex items-center justify-between p-4 border border-black/5 hover:bg-black/5 transition-colors group">
-                    <div className="flex items-center gap-3">
-                        <Shield className="w-4 h-4 text-black/30" />
-                        <span className="text-[11px] uppercase tracking-widest">Two-Factor Authentication</span>
-                    </div>
-                    <span className="text-[9px] uppercase tracking-widest bg-amber-50 text-amber-700 px-2 py-1">Recommended</span>
-                </button>
+             <div className="p-12 border border-black/5 space-y-8">
+                <div className="flex items-center gap-4 text-black">
+                   <ShieldCheck className="w-6 h-6" />
+                   <p className="text-[11px] font-black uppercase tracking-widest">Security Protocol</p>
+                </div>
+                <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-black/40">
+                    Authentication is managed via a zero-trust model. For password reset or biometric adjustments, please initiate a ticket via clinical support.
+                </p>
+                <button className="text-[10px] font-black uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-svz-red hover:border-svz-red transition-all">Audit Security Log</button>
              </div>
           </div>
-        </motion.div>
 
-        {/* Danger Zone */}
-        <div className="pt-10 flex items-center justify-between border-t border-black/5">
-            <div>
-                <h4 className="text-sm font-bold text-red-600">Deactivate Account</h4>
-                <p className="text-xs text-black/40 mt-1">This will permanently remove your medical history and orders.</p>
-            </div>
-            <button className="text-[10px] uppercase font-bold tracking-widest text-red-600 border border-red-100 px-6 py-3 hover:bg-red-50 transition-colors">Request Deletion</button>
-        </div>
       </div>
     </div>
   );
-}
-
-function ArrowRight({ className }) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-        </svg>
-    )
 }

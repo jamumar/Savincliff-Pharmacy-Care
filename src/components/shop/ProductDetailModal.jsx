@@ -1,54 +1,26 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, Plus, Minus, AlertCircle, CheckCircle, Tag } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus, ArrowUpRight } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
-import apiClient from '@/api/apiClient';
 import { toast } from '@/components/ui/use-toast';
+
+const easeQuint = [0.16, 1, 0.3, 1];
 
 export default function ProductDetailModal({ product, onClose }) {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [rxUploaded, setRxUploaded] = useState(false);
 
   if (!product) return null;
 
   const handleAdd = () => {
     add(product, qty);
     setAdded(true);
+    toast({
+       title: "NODE COMMITTED",
+       description: `Identity hash sync: ${product.name} locked into fulfillment queue.`
+    });
     setTimeout(() => setAdded(false), 2000);
-  };
-
-  const handleRxUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    setUploading(true);
-    const formData = new FormData();
-    formData.append('image', file);
-    // Note: In a real flow, we might want to link this to a temporary order ID or just a user's record
-    
-    try {
-      await apiClient.post('prescriptions/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setRxUploaded(true);
-      toast({
-        title: "Prescription Uploaded",
-        description: "Our staff will verify it shortly with your order.",
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Upload Failed",
-        description: "Could not upload prescription. Please try again.",
-      });
-    } finally {
-      setUploading(false);
-    }
   };
 
   return (
@@ -58,143 +30,108 @@ export default function ProductDetailModal({ product, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center sm:p-0"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          initial={{ opacity: 0, scale: 0.95, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.94, y: 20 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+          exit={{ opacity: 0, scale: 0.95, y: 100 }}
+          transition={{ duration: 0.8, ease: easeQuint }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto relative shadow-2xl"
+          className="bg-white w-full h-full max-w-[100%] lg:max-w-none overflow-y-auto relative grid grid-cols-1 lg:grid-cols-12"
         >
-          {/* Close */}
+          {/* Close Button / SVZ Style */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-black/5 transition-colors"
+            className="absolute top-12 right-12 z-50 w-16 h-16 bg-black text-white flex items-center justify-center hover:bg-svz-red transition-all duration-700 group shadow-2xl"
           >
-            <X className="w-4 h-4" />
+            <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
           </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Image */}
-            <motion.div
-              initial={{ x: -30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="aspect-square md:aspect-auto bg-black/4 overflow-hidden"
-            >
-              <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
-            </motion.div>
+          {/* Left Panel: High Res Project Image (7 cols) */}
+          <div className="lg:col-span-7 bg-[#FAFAFA] relative overflow-hidden h-[60vh] lg:h-full">
+             <motion.img 
+                initial={{ scale: 1.1, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: easeQuint }}
+                src={product.img} 
+                alt={product.name} 
+                className="w-full h-full object-cover grayscale transition-all duration-1000 hover:grayscale-0" 
+             />
+             <div className="absolute bottom-20 left-[5vw]">
+                <p className="text-[12px] font-black tracking-[0.4em] uppercase text-black/10">Protocol Ref: SYN/00{product.id}X</p>
+             </div>
+          </div>
 
-            {/* Details */}
-            <motion.div
-              initial={{ x: 30, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.6 }}
-              className="p-8 md:p-10 flex flex-col"
-            >
-              {product.badge && (
-                <span className="self-start text-[9px] tracking-[0.25em] uppercase bg-[#1B6E8C]/10 text-[#1B6E8C] px-2.5 py-1.5 mb-4">
-                  {product.badge}
-                </span>
-              )}
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#1B6E8C]">{product.brand}</p>
-              <h2 className="font-serif text-3xl md:text-4xl font-light mt-2 leading-tight">{product.name}</h2>
-              <p className="text-sm text-black/40 mt-1">{product.unit}</p>
-
-              <p className="text-base text-black/60 leading-relaxed mt-6">{product.desc}</p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {product.tags.map(t => (
-                  <span key={t} className="flex items-center gap-1 text-[10px] tracking-wide uppercase border border-black/12 px-2.5 py-1.5 text-black/50">
-                    <Tag className="w-2.5 h-2.5" /> {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-black/8">
-                <span className="font-serif text-4xl font-light">₦{product.price.toLocaleString()}</span>
-                <p className="text-[11px] text-black/35 mt-1">per {product.unit}</p>
-              </div>
-
-              {product.isRxRequired ? (
-                <div className="mt-6 bg-amber-50 border border-amber-200 p-5">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-amber-800">Prescription Required</p>
-                      <p className="text-xs text-amber-600 mt-1 leading-relaxed">
-                        This is a regulated medication. Nigeria law requires a valid prescription for purchase.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-5">
-                    {rxUploaded ? (
-                      <div className="flex items-center gap-2 text-emerald-600 text-xs font-medium bg-emerald-50 p-3 rounded border border-emerald-100">
-                        <CheckCircle className="w-4 h-4" /> Prescription verified for this session
-                      </div>
-                    ) : (
-                      <div className="relative">
-                        <input 
-                          type="file" 
-                          id="rx-upload" 
-                          className="hidden" 
-                          accept="image/*"
-                          onChange={handleRxUpload}
-                          disabled={uploading}
-                        />
-                        <label 
-                          htmlFor="rx-upload"
-                          className="w-full flex items-center justify-center gap-3 py-3 border-2 border-dashed border-amber-200 text-amber-700 text-[10px] tracking-widest uppercase hover:bg-amber-100/50 transition-all cursor-pointer disabled:opacity-50"
-                        >
-                          {uploading ? "Uploading..." : "Upload Prescription"}
-                        </label>
-                      </div>
-                    )}
-                  </div>
+          {/* Right Panel: Clinical Spec (5 cols) */}
+          <div className="lg:col-span-5 px-[5vw] py-20 lg:py-0 flex flex-col justify-center bg-white">
+             <div className="space-y-16">
+                <div>
+                   <motion.p 
+                     initial={{ opacity: 0, x: -20 }}
+                     animate={{ opacity: 1, x: 0 }}
+                     transition={{ delay: 0.3, duration: 0.8 }}
+                     className="text-[11px] font-black tracking-[0.4em] uppercase text-svz-red mb-6"
+                   >
+                     {product.brand} / Clinical Node
+                   </motion.p>
+                   <motion.h2 
+                     initial={{ opacity: 0, y: 40 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     transition={{ delay: 0.4, duration: 1, ease: easeQuint }}
+                     className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-12"
+                   >
+                      {product.name}
+                   </motion.h2>
+                   <div className="flex flex-wrap items-center gap-6">
+                      <span className="text-[11px] font-black tracking-widest uppercase bg-black text-white px-5 py-2">{product.category}</span>
+                      <span className="text-[11px] font-black tracking-widest uppercase border border-black/10 px-5 py-2">Audit Verified</span>
+                   </div>
                 </div>
-              ) : null}
 
-              {product.inStock ? (
-                <div className="mt-6 space-y-4">
-                  {/* Qty */}
-                  <div className="flex items-center gap-4">
-                    <span className="text-[11px] tracking-[0.2em] uppercase text-black/40">Quantity</span>
-                    <div className="flex items-center gap-0 border border-black/15">
-                      <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-9 h-9 flex items-center justify-center hover:bg-black/5 transition-colors">
-                        <Minus className="w-3.5 h-3.5" />
-                      </button>
-                      <span className="w-10 text-center text-sm font-medium">{qty}</span>
-                      <button onClick={() => setQty(q => q + 1)} className="w-9 h-9 flex items-center justify-center hover:bg-black/5 transition-colors">
-                        <Plus className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={handleAdd}
-                    className={`w-full flex items-center justify-center gap-3 py-4 text-[11px] tracking-[0.2em] uppercase transition-all duration-500 ${
-                      added ? 'bg-emerald-600 text-white' : 'bg-[#0A0A0A] text-white hover:bg-[#1B6E8C]'
-                    }`}
-                  >
-                    {added ? (
-                      <><CheckCircle className="w-4 h-4" /> Added to Cart</>
-                    ) : (
-                      <><ShoppingCart className="w-4 h-4" /> Add to Cart — ₦{(product.price * qty).toLocaleString()}</>
-                    )}
-                  </motion.button>
+                <div className="space-y-8 max-w-lg">
+                   <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20">Audit specification</p>
+                   <p className="text-xl md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase">
+                      {product.description || "Primary medical formulation verified through the Savincliff Clinical Node. Total source integrity."}
+                   </p>
                 </div>
-              ) : (
-                <div className="mt-6 py-4 border border-black/10 text-center text-sm text-black/40">Out of Stock</div>
-              )}
 
-              <div className="mt-6 flex items-center gap-2 text-[11px] text-black/35">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> PCN verified · Genuine medication
-              </div>
-            </motion.div>
+                <div className="pt-16 border-t border-black/10">
+                   <div className="flex items-end justify-between mb-16">
+                      <div>
+                         <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20 mb-4">Node Price / Unit</p>
+                         <p className="text-5xl font-black tracking-tighter">₦{product.price.toLocaleString()}</p>
+                      </div>
+                      
+                      <div className="flex items-center border border-black/10 px-2">
+                         <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-16 h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                           <Minus className="w-5 h-5" />
+                         </button>
+                         <span className="w-16 text-center text-[16px] font-black">{qty}</span>
+                         <button onClick={() => setQty(q => q + 1)} className="w-16 h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                           <Plus className="w-5 h-5" />
+                         </button>
+                      </div>
+                   </div>
+
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-black">
+                       <button 
+                          onClick={handleAdd}
+                          disabled={added}
+                          className="flex items-center justify-center gap-8 py-10 text-[12px] font-black uppercase tracking-[0.3em] bg-black text-white hover:bg-svz-red transition-all duration-700 disabled:bg-svz-red"
+                       >
+                          <ShoppingBag className="w-5 h-5" /> {added ? 'SNC ACTIVE' : 'Initiate Node'}
+                       </button>
+                       <button className="flex items-center justify-center gap-8 py-10 text-[12px] font-black uppercase tracking-[0.3em] bg-white text-black hover:bg-black hover:text-white transition-all duration-700 border-l border-black">
+                          Clinical Doc <ArrowUpRight className="w-5 h-5" />
+                       </button>
+                   </div>
+                </div>
+                
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/10">
+                   Synchronized Archive / 102.33.1.04
+                </p>
+             </div>
           </div>
         </motion.div>
       </motion.div>

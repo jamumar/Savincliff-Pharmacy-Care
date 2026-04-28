@@ -1,122 +1,126 @@
 import React from 'react';
-import { ShieldCheck, Award, Zap, Heart } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, ShieldCheck, Activity, Zap } from 'lucide-react';
+
+const easeQuint = [0.16, 1, 0.3, 1];
 
 export default function About() {
   return (
-    <div className="pt-24 min-h-screen font-sans">
-      {/* Hero Section */}
-      <section className="bg-brand-surgical py-20 border-b border-border">
-        <div className="container mx-auto px-6 text-center max-w-4xl">
-          <AnimatedHeading level={1} className="display-md mb-6">
-            Your Health, Our Heart. Quality Care Delivered to Your Door.
-          </AnimatedHeading>
-          <div className="h-1 w-20 bg-brand-teal mx-auto mb-8"></div>
-          <p className="text-xl text-brand-slate leading-relaxed">
-            At Savincliff Pharmacy, we believe that every Nigerian deserves access to genuine, affordable, and high-quality healthcare.
-          </p>
+    <div className="bg-white min-h-screen">
+      
+      {/* Narrative Hero */}
+      <section className="bg-black text-white section-padding flex flex-col justify-center relative overflow-hidden">
+        <div className="grid-container relative z-10 w-full pt-12 md:pt-20">
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: easeQuint }}
+            >
+                <p className="label-svz mb-12">Clinical Origins / Registry 2026</p>
+                <h1 className="display-svz">
+                    BEYOND<br />
+                    DISPENSE
+                </h1>
+            </motion.div>
+            
+            <div className="mt-24 max-w-4xl">
+                <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 1 }}
+                    className="text-xl md:text-3xl text-white/50 leading-tight tracking-tight uppercase font-medium"
+                >
+                    Savincliff is an architectural project in pharmaceutical certainty. We dismantle traditional healthcare models to rebuild them on the foundations of medical precision and zero-trust verification.
+                </motion.p>
+            </div>
+        </div>
+        {/* Parallax Decoration */}
+        <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-svz-red/5 blur-[200px] -mr-[10vw] -mt-[10vw] rounded-full" />
+      </section>
+
+      {/* Story Section | High Fidelity Split */}
+      <section className="section-padding bg-white">
+        <div className="grid-container grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+            <div className="space-y-16">
+                <h2 className="sub-display-svz">THE<br />MANIFEST</h2>
+                <div className="space-y-10 max-w-xl">
+                    <p className="text-xl md:text-2xl text-black font-black leading-none tracking-tighter uppercase">
+                        Originating in the FCT node of Abuja, Savincliff emerged from a singular clinical requirement.
+                    </p>
+                    <p className="text-[12px] font-black tracking-[0.4em] text-black/40 uppercase leading-relaxed border-l-4 border-svz-red pl-8">
+                        Traditional pharmacy models prioritized volume over verification. We inverted the sequence. Every prescription processed at Savincliff is a project of precision—audited by architects of health and delivered through a secured custodial chain.
+                    </p>
+                </div>
+            </div>
+            
+            <div className="relative aspect-[4/5] overflow-hidden bg-black svz-image-reveal shadow-2xl">
+                <img 
+                    src="/images/pharmacist.png" 
+                    alt="Clinical Lead" 
+                    className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-all duration-1000"
+                />
+            </div>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-24 container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 className="display-sm mb-6 text-brand-obsidian uppercase tracking-wider">Our Story</h2>
-          <p className="text-brand-slate leading-relaxed mb-6">
-            What started as a vision to bridge the gap between local health needs and modern pharmaceutical innovation has grown into a trusted digital health partner for families across the nation.
-          </p>
-          <p className="text-brand-slate leading-relaxed">
-            We are more than just a store; we are a dedicated healthcare provider committed to the well-being of every patient we serve, from our physical hub in Gwarinpa, Abuja, to our nationwide digital reach.
-          </p>
-        </div>
-        <div className="bg-brand-teal/5 p-12 rounded-2xl border border-brand-teal/10">
-          <div className="grid grid-cols-2 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-serif text-brand-teal mb-2">100%</div>
-              <div className="text-xs uppercase tracking-widest text-brand-slate">Genuine Medicines</div>
+      {/* Philosophy Grid | Industrial Layout */}
+      <section className="bg-black text-white section-padding px-6 md:px-0">
+        <div className="grid-container">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10">
+                {[
+                   { i: <ShieldCheck className="w-10 h-10 text-svz-red" />, t: 'VERIFICATION', d: 'WE OPERATE UNDER A ZERO-TRUST MODEL. EVERY UNIT OF MEDICATION IS AUDITED THROUGH PRIMARY SOURCE MANIFESTS BEFORE COMMITTING TO THE QUEUE.' },
+                   { i: <Activity className="w-10 h-10 text-svz-red" />, t: 'PRECISION', d: 'HUMAN ERROR IS ARCHITECTURALLY ELIMINATED. LICENSED PHARMACISTS OVERSEE ALL THERAPEUTIC SYNERGIES FOR TOTAL CLINICAL ALIGNMENT.' },
+                   { i: <Zap className="w-10 h-10 text-svz-red" />, t: 'ACCESS', d: 'MEDICAL ESSENTIALS ARE A HUMAN RIGHT. WE HAVE OPTIMIZED OUR DISPATCH NODES TO ENSURE REACH ACROSS THE PAN-AFRICAN FRONTIER.' }
+                ].map((node, i) => (
+                    <motion.div 
+                        key={node.t}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.2, duration: 1, ease: easeQuint }}
+                        className="p-16 border-b md:border-b-0 md:border-r border-white/10 last:border-r-0 hover:bg-white/5 transition-colors duration-700"
+                    >
+                        <div className="mb-12">{node.i}</div>
+                        <h3 className="text-4xl font-black uppercase tracking-tighter mb-8 group-hover:text-svz-red">{node.t}</h3>
+                        <p className="text-[11px] font-black tracking-[0.25em] uppercase text-white/30 leading-relaxed">
+                           {node.d}
+                        </p>
+                    </motion.div>
+                ))}
             </div>
-            <div>
-              <div className="text-4xl font-serif text-brand-teal mb-2">PCN</div>
-              <div className="text-xs uppercase tracking-widest text-brand-slate">Licensed Site</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Trust Savincliff */}
-      <section className="bg-brand-obsidian text-white py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="display-sm mb-16 text-center text-white tracking-widest uppercase">Why Trust Savincliff?</h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="space-y-6 text-center">
-              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-8">
-                <ShieldCheck size={32} />
-              </div>
-              <h3 className="text-xl font-medium">100% Genuine Medicines</h3>
-              <p className="text-white/60 leading-relaxed">
-                We source directly from licensed manufacturers and authorized importers to ensure that every pill, syrup, and supplement we sell is authentic.
-              </p>
-            </div>
-            <div className="space-y-6 text-center">
-              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-8">
-                <Award size={32} />
-              </div>
-              <h3 className="text-xl font-medium">Expert Oversight</h3>
-              <p className="text-white/60 leading-relaxed">
-                Our operations are guided by a licensed Superintendent Pharmacist, ensuring every prescription is verified and medically sound.
-              </p>
-            </div>
-            <div className="space-y-6 text-center">
-              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-8">
-                <Zap size={32} />
-              </div>
-              <h3 className="text-xl font-medium">Healthcare at Your Speed</h3>
-              <p className="text-white/60 leading-relaxed">
-                Logistics system optimized for fast, temperature-controlled delivery right to your doorstep. Because time is everything.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Mission & Values */}
-      <section className="py-24 container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-20 text-center">
-            <h2 className="display-sm mb-6 text-brand-obsidian uppercase tracking-wider">Our Mission</h2>
-            <p className="text-xl text-brand-slate leading-relaxed">
-              To empower Nigerians to live healthier lives by providing a seamless, transparent, and digital-first pharmacy experience that never compromises on ethical standards.
-            </p>
+      {/* Compliance / Regulatory Strip */}
+      <section className="py-40 bg-white border-b border-black/5 overflow-hidden">
+          <div className="animate-marquee whitespace-nowrap">
+             {Array(8).fill("").map((_, i) => (
+                <span key={i} className="text-[10vw] font-black uppercase tracking-[-0.05em] text-black/5 mx-24">
+                   PCN LICENSED NODE / NAFDAC PRIMARY SOURCE / VERIFIED CLINICAL CERTAINTY / 
+                </span>
+             ))}
           </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 border border-border rounded-xl">
-              <h3 className="font-bold text-brand-teal mb-4 uppercase tracking-widest">Integrity</h3>
-              <p className="text-sm text-brand-slate">We are open about our sources and pricing. What you see is what you get.</p>
+      {/* High-Fidelity CTA */}
+      <section className="section-padding bg-white">
+        <div className="grid-container">
+            <div className="bg-black text-white p-20 lg:p-40 relative overflow-hidden group">
+                <div className="relative z-10 space-y-16">
+                    <h2 className="sub-display-svz">EXPERIENCE<br />THE PRECISION</h2>
+                    <div className="flex flex-col md:flex-row gap-8">
+                        <button className="bg-white text-black px-16 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red hover:text-white transition-all duration-700">Explore Inventory</button>
+                        <button className="border border-white/20 px-16 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center gap-6 group/btn">
+                            Consult Pharmacist <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-2 group-hover/btn:-translate-y-2 transition-transform" />
+                        </button>
+                    </div>
+                </div>
+                {/* Visual Flair */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-svz-red/5 blur-[200px] rounded-full group-hover:bg-svz-red/10 transition-all duration-1000" />
             </div>
-            <div className="p-8 border border-border rounded-xl">
-              <h3 className="font-bold text-brand-teal mb-4 uppercase tracking-widest">Excellence</h3>
-              <p className="text-sm text-brand-slate">We uphold the highest standards set by the Pharmacy Council of Nigeria (PCN).</p>
-            </div>
-            <div className="p-8 border border-border rounded-xl">
-              <h3 className="font-bold text-brand-teal mb-4 uppercase tracking-widest">Compassion</h3>
-              <p className="text-sm text-brand-slate">We treat every customer not just as a patient, but as family.</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Regulatory Badge */}
-      <section className="py-16 bg-brand-teal/5 border-t border-border text-center">
-        <div className="container mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-brand-slate mb-6">Registered Online Pharmacy - 2026</p>
-          <div className="flex justify-center items-center gap-12 grayscale opacity-60">
-             <div className="font-bold text-2xl tracking-tighter">ROPSE EMBLEM</div>
-             <div className="font-bold text-2xl tracking-tighter">PCN LOGO</div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

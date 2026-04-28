@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import apiClient from '@/api/apiClient';
+// import apiClient from '@/api/apiClient'; // Backend disconnected for prototype
 
 const AuthContext = createContext(null);
 
@@ -10,31 +10,23 @@ export function AuthProvider({ children }) {
   const [authError, setAuthError] = useState(null);
 
   useEffect(() => {
-    async function initAuth() {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setIsLoadingAuth(false);
-        setIsLoadingPublicSettings(false);
-        return;
-      }
-
+    // Mock auth: restore user from localStorage if present
+    const storedUser = localStorage.getItem('mock_user');
+    if (storedUser) {
       try {
-        const response = await apiClient.get('auth/me/');
-        setUser(response.data);
-      } catch (error) {
-        console.error('Auth check failed:', error);
-        localStorage.removeItem('token');
-        setAuthError(error);
-      } finally {
-        setIsLoadingAuth(false);
-        setIsLoadingPublicSettings(false);
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        localStorage.removeItem('mock_user');
       }
     }
-    initAuth();
+    setIsLoadingAuth(false);
+    setIsLoadingPublicSettings(false);
   }, []);
 
   const login = (userData, accessToken, refreshToken) => {
-    localStorage.setItem('token', accessToken);
+    // Store mock user data locally
+    localStorage.setItem('mock_user', JSON.stringify(userData));
+    if (accessToken) localStorage.setItem('token', accessToken);
     if (refreshToken) localStorage.setItem('refresh', refreshToken);
     setUser(userData);
   };
@@ -42,6 +34,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh');
+    localStorage.removeItem('mock_user');
     setUser(null);
   };
   const navigateToLogin = () => window.location.href = '/register';

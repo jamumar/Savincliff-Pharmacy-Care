@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
+import { X, Minus, Plus, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/lib/CartContext';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export default function CartSidebar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md"
           />
 
           {/* Drawer */}
@@ -25,74 +25,68 @@ export default function CartSidebar() {
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 bottom-0 z-[70] w-full max-w-md bg-white flex flex-col shadow-2xl"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed top-0 right-0 bottom-0 z-[110] w-full max-w-xl bg-white flex flex-col shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-black/8">
-              <div className="flex items-center gap-3">
-                <ShoppingBag className="w-5 h-5" />
-                <span className="font-serif text-xl font-light">Your Cart</span>
-                {count > 0 && (
-                  <span className="bg-[#1B6E8C] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center">
-                    {count}
-                  </span>
-                )}
+            <div className="flex items-center justify-between px-10 py-8 border-b border-black/10">
+              <div className="flex items-center gap-4">
+                <span className="text-[12px] font-black uppercase tracking-[0.4em]">BASKET / {count} ITEM</span>
               </div>
-              <button onClick={() => setOpen(false)} className="w-9 h-9 flex items-center justify-center hover:bg-black/5 rounded-full transition-colors">
-                <X className="w-4 h-4" />
+              <button onClick={() => setOpen(false)} className="w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-700 group">
+                <X className="w-5 h-5 group-hover:rotate-90 transition-transform" />
               </button>
             </div>
 
             {/* Items */}
-            <div className="flex-1 overflow-y-auto px-6 py-4">
+            <div className="flex-1 overflow-y-auto px-10 py-12 space-y-0">
               {items.length === 0 ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-col items-center justify-center h-full text-center"
-                >
-                  <ShoppingBag className="w-14 h-14 text-black/15 mb-4" strokeWidth={1} />
-                  <p className="font-serif text-2xl font-light text-black/40">Cart is empty</p>
-                  <p className="text-sm text-black/30 mt-2">Add products to get started.</p>
+                <div className="flex flex-col items-center justify-center h-full text-center space-y-8">
+                  <ShoppingBag className="w-16 h-16 text-black/10" strokeWidth={1} />
+                  <div className="space-y-4">
+                     <h3 className="text-4xl font-black uppercase tracking-tighter opacity-10">Historical Null</h3>
+                     <p className="text-[11px] font-bold uppercase tracking-widest text-black/30">Your clinical queue is currently empty.</p>
+                  </div>
                   <button
                     onClick={() => setOpen(false)}
-                    className="mt-6 text-[11px] tracking-[0.2em] uppercase border-b border-black/25 pb-1 hover:text-[#1B6E8C] hover:border-[#1B6E8C] transition-colors"
+                    className="px-12 py-6 border border-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
                   >
-                    Browse Shop
+                    Enter Inventory
                   </button>
-                </motion.div>
+                </div>
               ) : (
                 <AnimatePresence>
                   {items.map((item) => (
                     <motion.div
                       key={item.id}
-                      initial={{ opacity: 0, x: 30 }}
+                      initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -30, height: 0, marginBottom: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex gap-4 py-4 border-b border-black/6"
+                      exit={{ opacity: 0, x: 20 }}
+                      className="flex gap-8 py-10 border-b border-black/10 group animate-reveal"
                     >
-                      <div className="w-16 h-16 bg-black/5 overflow-hidden flex-shrink-0">
-                        <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="w-24 h-24 bg-[#FAFAFA] border border-black/5 overflow-hidden flex-shrink-0 relative">
+                        <img src={item.img} alt={item.name} className="w-full h-full object-cover grayscale transition-all group-hover:grayscale-0" />
+                        <div className="absolute inset-0 border border-white/10 group-hover:border-transparent transition-all" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm leading-tight truncate">{item.name}</p>
-                        <p className="text-[11px] text-black/40 mt-0.5">{item.brand} · {item.unit}</p>
-                        <div className="flex items-center justify-between mt-2">
-                          <div className="flex items-center gap-2 border border-black/15">
-                            <button onClick={() => update(item.id, item.qty - 1)} className="w-7 h-7 flex items-center justify-center hover:bg-black/5 transition-colors">
+                      <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
+                        <div>
+                           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red mb-1">{item.brand}</p>
+                           <h4 className="text-xl font-black uppercase tracking-tighter truncate">{item.name}</h4>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-0 border border-black/10">
+                            <button onClick={() => update(item.id, item.qty - 1)} className="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                               <Minus className="w-3 h-3" />
                             </button>
-                            <span className="text-sm w-6 text-center">{item.qty}</span>
-                            <button onClick={() => update(item.id, item.qty + 1)} className="w-7 h-7 flex items-center justify-center hover:bg-black/5 transition-colors">
+                            <span className="text-[12px] font-black w-10 text-center">{item.qty}</span>
+                            <button onClick={() => update(item.id, item.qty + 1)} className="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                               <Plus className="w-3 h-3" />
                             </button>
                           </div>
-                          <span className="font-medium text-sm">₦{(item.price * item.qty).toLocaleString()}</span>
+                          <span className="text-xl font-black tracking-tighter">₦{(item.price * item.qty).toLocaleString()}</span>
                         </div>
                       </div>
-                      <button onClick={() => remove(item.id)} className="text-black/25 hover:text-red-500 transition-colors self-start mt-1">
+                      <button onClick={() => remove(item.id)} className="text-black/20 hover:text-svz-red transition-all self-start pt-2">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </motion.div>
@@ -103,24 +97,26 @@ export default function CartSidebar() {
 
             {/* Footer */}
             {items.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="px-6 py-6 border-t border-black/8 space-y-4"
-              >
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-black/50">Subtotal</span>
-                  <span className="font-serif text-2xl font-light">₦{total.toLocaleString()}</span>
+              <div className="px-10 py-12 border-t border-black/10 space-y-12 bg-[#FAFAFA]">
+                <div className="flex justify-between items-end">
+                   <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30 mb-2">Total Audit</p>
+                      <p className="text-5xl font-black tracking-tighter">₦{total.toLocaleString()}</p>
+                   </div>
+                   <div className="text-right hidden md:block">
+                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-svz-red">Clinical Requirement</p>
+                      <p className="text-[11px] font-bold uppercase tracking-widest text-black/40">Audit Pending Rx Verification</p>
+                   </div>
                 </div>
-                <p className="text-[11px] text-black/35">Prescription items require valid Rx upload before dispensing.</p>
+                
                 <Link
                   to="/checkout"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-3 w-full bg-[#0A0A0A] text-white py-4 text-[11px] tracking-[0.2em] uppercase hover:bg-[#1B6E8C] transition-colors duration-500"
+                  className="flex items-center justify-center gap-8 w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700 group shadow-2xl"
                 >
-                  Proceed to Checkout <ArrowRight className="w-4 h-4" />
+                  Initiate Checkout <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
-              </motion.div>
+              </div>
             )}
           </motion.div>
         </>

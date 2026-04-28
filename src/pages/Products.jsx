@@ -2,104 +2,94 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Thermometer, Clipboard, PackageSearch, ArrowUpRight } from 'lucide-react';
-import PageHero from '@/components/shared/PageHero';
-import SectionLabel from '@/components/shared/SectionLabel';
-import ProductCategoryCarousel from '@/components/products/ProductCategoryCarousel';
-import BrandsMarquee from '@/components/products/BrandsMarquee';
 
 const assurances = [
-  { icon: ShieldCheck,    title: 'Genuine Medications',   text: 'Sourced from verified, licensed suppliers only.' },
-  { icon: Thermometer,    title: 'Cold-Chain Storage',    text: 'Temperature-controlled for potency and safety.' },
-  { icon: Clipboard,      title: 'Verified Suppliers',    text: 'Audit trails on every pharmaceutical partner.' },
-  { icon: PackageSearch,  title: 'Expiry Monitoring',     text: 'Continuous batch-level tracking and rotation.' },
+    { id: '01', title: 'SOURCE AUDIT', text: 'Total clinical verification of primary supply chains. We only interface with licensed manufacturers.' },
+    { id: '02', title: 'THERMAL NODE', text: 'Continuous temperature monitoring. Potency is maintained through strict thermal protocols.' },
+    { id: '03', title: 'BATCH TRACE', text: 'Real-time audit trails for every pharmaceutical unit. Quality is a non-negotiable metric.' },
+    { id: '04', title: 'LIFESPAN MGMT', text: 'Aggressive expiry monitoring protocols. Our inventory is a live clinical dataset.' },
 ];
 
 export default function Products() {
   return (
-    <>
-      <PageHero
-        number="03"
-        label="Products & Brands"
-        title="A pharmacy stocked with intention."
-        subtitle="Pharmaceutical and healthcare essentials sourced from trusted manufacturers and licensed distributors."
-      />
-
-      {/* Intro */}
-      <section className="bg-[#FAFAFA] py-24 md:py-32">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-5">
-            <SectionLabel number="01" label="Our Pharmacy" />
-            <h2 className="font-serif display-md mt-6 font-light">
-              Comprehensive.<br /><em className="not-italic text-[#1B6E8C]">Carefully curated.</em>
-            </h2>
-          </div>
-          <div className="md:col-span-7 flex items-end">
-            <p className="text-lg md:text-xl text-[#0A0A0A]/55 leading-relaxed">
-              From prescription-only essentials to daily wellness companions — all sourced through verified channels and dispensed with clinical precision.
-            </p>
-          </div>
-        </div>
+    <div className="bg-white min-h-screen pt-40">
+      
+      {/* High-Impact Heading */}
+      <section className="px-6 md:px-12 mb-20 lg:mb-40">
+         <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
+            <h1 className="display-svz uppercase">STANDARDS</h1>
+            <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS / VERIFIED 2026</p>
+         </div>
       </section>
 
-      <ProductCategoryCarousel />
-      <BrandsMarquee />
-
-      {/* Quality Assurance */}
-      <section className="bg-[#FAFAFA] py-32 md:py-40">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10">
-          <SectionLabel number="02" label="Quality Assurance" />
-          <h2 className="font-serif display-md mt-6 mb-16 font-light max-w-3xl">
-            Every product passes through{' '}
-            <em className="not-italic text-[#1B6E8C]">four layers of scrutiny</em>.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 border-t border-l border-[#0A0A0A]/10">
-            {assurances.map((a, i) => {
-              const Icon = a.icon;
-              return (
+      {/* Assurance Grid */}
+      <section className="px-6 md:px-12 pb-40">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-black/10">
+            {assurances.map((a, i) => (
                 <motion.div
-                  key={a.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="group p-10 border-r border-b border-[#0A0A0A]/10 hover:bg-[#0A0A0A] hover:text-white transition-colors duration-500"
+                    key={a.id}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.8 }}
+                    className="p-16 border-b md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[400px]"
                 >
-                  <div className="flex items-center justify-between mb-12">
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-[#0A0A0A]/35 group-hover:text-[#1B6E8C]">0{i + 1}</span>
-                    <Icon className="w-5 h-5 group-hover:text-[#1B6E8C] transition-colors" strokeWidth={1.25} />
-                  </div>
-                  <h3 className="font-serif text-2xl font-light">{a.title}</h3>
-                  <p className="text-sm text-[#0A0A0A]/55 group-hover:text-white/65 mt-3 leading-relaxed">{a.text}</p>
+                    <div>
+                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group-hover:text-white/20 mb-8">{a.id} / AUDIT</p>
+                        <h3 className="text-3xl font-black uppercase tracking-tighter mb-6">{a.title}</h3>
+                        <p className="text-[11px] font-bold text-black/40 group-hover:text-white/40 tracking-widest uppercase leading-relaxed">
+                           {a.text}
+                        </p>
+                    </div>
+                    <ArrowUpRight className="w-6 h-6 self-end opacity-0 group-hover:opacity-100 transition-opacity text-svz-red" />
                 </motion.div>
-              );
-            })}
-          </div>
+            ))}
         </div>
       </section>
 
-      {/* Special Orders */}
-      <section className="bg-[#0A0A0A] text-white py-32 md:py-40">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
-          <div className="md:col-span-7">
-            <SectionLabel number="03" label="Special Orders" variant="light" />
-            <h2 className="font-serif display-md mt-6 font-light">
-              Can't find what you need?<br />
-              <em className="not-italic text-[#1B6E8C]">We'll source it.</em>
-            </h2>
-          </div>
-          <div className="md:col-span-5">
-            <p className="text-white/55 leading-relaxed">
-              Leverage our extensive supplier network to source specialist medications. Request an order and we'll contact you swiftly.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 mt-8 text-[11px] tracking-[0.2em] uppercase border-b border-white/25 pb-2 hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-colors"
-            >
-              Request a Special Order <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
+      {/* Hero Visual Node */}
+      <section className="bg-black text-white py-40 px-6 md:px-12 overflow-hidden relative">
+         <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+            <div>
+               <h2 className="sub-display-svz mb-12">CLINICAL<br />INTEGRITY</h2>
+               <div className="space-y-8 max-w-xl">
+                  <p className="text-xl text-white font-medium leading-tight tracking-tight uppercase">
+                      Integrity is not a value; it's a specification. Every medication at Savincliff is subjected to a four-layer clinical audit before entering our inventory node.
+                  </p>
+                  <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed">
+                      We dismantle the complexity of pharmaceutical verification to ensure that your health is anchored by primary-source certainty.
+                  </p>
+               </div>
+            </div>
+            
+            <div className="relative aspect-square overflow-hidden bg-white/5">
+                <img 
+                    src="https://images.unsplash.com/photo-1579152276532-535c21af3bb5?w=1000&q=80" 
+                    alt="Clinical Integrity" 
+                    className="w-full h-full object-cover grayscale opacity-30 hover:opacity-100 transition-opacity duration-1000"
+                />
+                <div className="absolute inset-0 border-[40px] border-black/80 pointer-events-none" />
+            </div>
+         </div>
+         {/* Decoration */}
+         <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-svz-red/5 blur-[150px] rounded-full" />
       </section>
-    </>
+
+      {/* Special Sourcing CTA */}
+      <section className="py-40 px-6 md:px-12 bg-white text-center">
+         <div className="max-w-[1800px] mx-auto">
+            <h2 className="display-svz text-black/10 hover:text-black transition-colors duration-1000 cursor-default uppercase">SPECIAL<br />PROCUREMENT</h2>
+            <div className="mt-20 max-w-2xl mx-auto space-y-12">
+               <p className="text-[11px] font-black uppercase tracking-[0.4em] text-black">
+                  Can't identify your requirement in our primary catalogue?
+               </p>
+               <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700">
+                   Request Sourcing Node
+               </button>
+            </div>
+         </div>
+      </section>
+
+    </div>
   );
 }

@@ -1,116 +1,136 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Mail, Phone, MapPin, Instagram, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
+import Logo from '@/components/brand/Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-16 pb-8">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-white tracking-widest uppercase">Savincliff</h2>
-            <p className="text-white/60 text-sm leading-relaxed">
-              Genuine medicines and wellness products delivered to your door. Your trusted digital health partner in Nigeria.
+    <footer className="bg-black text-white pt-[20vh] pb-12 border-t border-[#1A1A1A]">
+      <div className="grid-container">
+        
+        {/* Massive Primary CTA */}
+        <div className="mb-40 group">
+            <h2 className="text-[14vw] md:text-[12vw] font-black leading-[0.8] tracking-[-0.05em] uppercase opacity-5 group-hover:opacity-100 transition-all duration-1000 cursor-default">
+                STAY<br />
+                C<i className="not-italic">O</i>NNECTED
+            </h2>
+            <div className="h-0.5 w-full bg-white/5 mt-12 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-1000" />
+        </div>
+
+        {/* 4-Column Grid Structure */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 lg:gap-24 mb-32">
+          
+          {/* Node 01: Identification */}
+          <div className="space-y-12">
+            <Logo variant="light" />
+            <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-white/30 leading-relaxed max-w-[280px]">
+              Savincliff Pharmacy. Architectural precision in clinical fulfillment. Primary source pharmaceutical nodes.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-[#1B6E8C] transition-colors"><Instagram size={20} /></a>
-              <a href="#" className="hover:text-[#1B6E8C] transition-colors"><Facebook size={20} /></a>
-              <a href="#" className="hover:text-[#1B6E8C] transition-colors"><Twitter size={20} /></a>
+            <div className="flex gap-8">
+              <a href="#" className="text-white/30 hover:text-svz-red transition-all duration-500"><Instagram size={18} /></a>
+              <a href="#" className="text-white/30 hover:text-svz-red transition-all duration-500"><Twitter size={18} /></a>
+              <a href="#" className="text-white/30 hover:text-svz-red transition-all duration-500"><Linkedin size={18} /></a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-medium mb-6">Quick Links</h3>
-            <ul className="space-y-4 text-sm text-white/60">
-              <li><Link to="/shop" className="hover:text-white transition-colors">Shop All Products</Link></li>
-              <li><Link to="/wholesale" className="hover:text-white transition-colors">Upload Prescription</Link></li>
-              <li><Link to="/services" className="hover:text-white transition-colors">Our Services</Link></li>
-              <li><Link to="/products" className="hover:text-white transition-colors">Quality Assurance</Link></li>
+          {/* Node 02: Inventory Access */}
+          <div className="space-y-10">
+            <h3 className="text-[11px] font-black tracking-[0.5em] uppercase text-svz-red">INVENTORY</h3>
+            <ul className="space-y-5">
+              {['Inventory Node', 'Rx Terminal', 'Clinical Spec', 'Bulk Audit'].map(item => (
+                <li key={item}>
+                    <Link 
+                       to="/shop" 
+                       className="text-[11px] font-black tracking-[0.3em] uppercase text-white/40 hover:text-white transition-all duration-500 flex items-center justify-between group/link"
+                    >
+                        {item} <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover/link:opacity-100 group-hover/link:translate-x-2 transition-all" />
+                    </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Support */}
-          <div>
-            <h3 className="text-lg font-medium mb-6">Support</h3>
-            <ul className="space-y-4 text-sm text-white/60">
-              <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-              <li><Link to="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link></li>
-              <li><Link to="/compliance" className="hover:text-white transition-colors">Regulatory Compliance</Link></li>
+          {/* Node 03: Protocol Documentation */}
+          <div className="space-y-10">
+            <h3 className="text-[11px] font-black tracking-[0.5em] uppercase text-svz-red">PROTOCOL</h3>
+            <ul className="space-y-5">
+              {['Identity Hub', 'Care Terms', 'Registry', 'Audit Log'].map(item => (
+                <li key={item}>
+                    <Link to="/about" className="text-[11px] font-black tracking-[0.3em] uppercase text-white/40 hover:text-white transition-all duration-500">
+                        {item}
+                    </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-medium">Get in Touch</h3>
-            <div className="space-y-4 text-sm text-white/60">
-              <div className="flex items-center space-x-3">
-                <MapPin size={18} className="text-[#1B6E8C]" />
-                <span>Gwarinpa, Abuja, Nigeria</span>
+          {/* Node 04: Biometric Node */}
+          <div className="space-y-10">
+            <h3 className="text-[11px] font-black tracking-[0.5em] uppercase text-svz-red">LOCATION</h3>
+            <div className="space-y-8">
+              <div className="flex gap-6">
+                <MapPin size={18} className="text-white/10 shrink-0" />
+                <span className="text-[11px] font-bold tracking-widest uppercase text-white/40 leading-relaxed">
+                   Divib Plaza, 7th Avenue,<br />Gwarinpa, Abuja / FCT
+                </span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-[#1B6E8C]" />
-                <span>+92 325 1206427</span>
+              <div className="flex items-center gap-6">
+                <Phone size={18} className="text-white/10 shrink-0" />
+                <span className="text-[11px] font-bold tracking-widest uppercase text-white/40">+234 (0) 923 251 2064</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-[#1B6E8C]" />
-                <span>info@savincliffpharmacy.com</span>
+              <div className="flex items-center gap-6">
+                <Mail size={18} className="text-white/10 shrink-0" />
+                <span className="text-[11px] font-bold tracking-widest uppercase text-white/40">node@savincliff.com</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="border-t border-white/10 pt-8 mb-8">
-          <div className="flex flex-col items-center space-y-8">
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
-              {/* Replacing with placeholder text/icons until images are available */}
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Regulatory Partner</span>
-                <span className="font-bold text-sm tracking-tighter">PCN REGISTERED</span>
+        {/* Regulatory & Identity Strip */}
+        <div className="border-t border-[#1A1A1A] pt-16 flex flex-col md:flex-row justify-between items-center gap-12">
+           <div className="flex gap-16 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 grayscale opacity-20 hover:opacity-100 transition-opacity duration-1000">
+              <div className="flex flex-col min-w-max">
+                 <span className="text-[10px] font-black tracking-widest text-white/50 mb-1">REGISTRY</span>
+                 <span className="text-[12px] font-black tracking-tighter uppercase">PCN LICENSED</span>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Approved By</span>
-                <span className="font-bold text-sm tracking-tighter">NAFDAC VERIFIED</span>
+              <div className="flex flex-col min-w-max">
+                 <span className="text-[10px] font-black tracking-widest text-white/50 mb-1">SPECIFICATION</span>
+                 <span className="text-[12px] font-black tracking-tighter uppercase">NAFDAC VERIFIED</span>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest text-white/40 mb-1">2026 Compliance</span>
-                <span className="font-bold text-sm tracking-tighter">ROPSE EMBLEM</span>
+              <div className="flex flex-col min-w-max">
+                 <span className="text-[10px] font-black tracking-widest text-white/50 mb-1">SECURITY</span>
+                 <span className="text-[12px] font-black tracking-tighter uppercase">SSL ENCRYPTED</span>
               </div>
-            </div>
+           </div>
 
-            <div className="flex flex-wrap justify-center items-center gap-4 opacity-50">
-              <span className="text-xs uppercase tracking-widest">Paystack</span>
-              <span className="text-xs uppercase tracking-widest">Visa</span>
-              <span className="text-xs uppercase tracking-widest">Mastercard</span>
-              <span className="text-xs uppercase tracking-widest">Verve</span>
-              <div className="h-4 w-px bg-white/20 mx-2"></div>
-              <span className="text-xs uppercase tracking-widest">NDPA Compliant</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="text-center text-white/40 text-[10px] uppercase tracking-[0.2em]">
-          &copy; {currentYear} Savincliff Pharmacy. All Rights Reserved.
+           <div className="text-center md:text-right space-y-2">
+              <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/10">
+                 PHARMACEUTICAL ARCHIVE © {currentYear} SAVINCLIFF CLINICAL
+              </p>
+              <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/5">
+                 Synchronized at Node 04 / 23:59:59
+              </p>
+           </div>
         </div>
       </div>
 
-      {/* Floating WhatsApp Button */}
+      {/* Persistent Terminal Access node */}
       <a 
-        href="https://wa.me/923251206427?text=Hello%20Savincliff%2C%20I%20have%20an%20inquiry"
+        href="https://wa.me/923251206427"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center space-x-2"
-        title="Chat with a Pharmacist"
+        className="fixed bottom-12 right-12 z-[90] flex items-center gap-8 group"
       >
-        <span className="text-xs font-bold pl-2 hidden md:inline">Chat with a Pharmacist</span>
-        <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M17.472 14.382c-.029.128-1.298 1.236-1.397 1.348-.383.415-.838.441-1.391.166-.339-.169-1.478-.611-2.822-1.784-1.045-.913-1.751-2.04-1.956-2.392-.204-.352-.023-.543.15-.719.156-.16.34-.373.51-.559.18-.184.243-.314.364-.524.122-.21.061-.393-.031-.571-.091-.178-.813-1.958-1.114-2.684-.293-.708-.592-.613-.813-.624-.209-.011-.448-.014-.687-.014-.239 0-.626.09-.952.448-.327.359-1.246 1.221-1.246 2.978 0 1.757 1.278 3.456 1.459 3.702.181.245 2.516 3.844 6.095 5.391.851.368 1.516.587 2.035.753.854.27 1.63.232 2.242.141.683-.101 2.095-.856 2.39-1.683.295-.827.295-1.537.207-1.683-.089-.147-.328-.236-.595-.369zM12 21C7.029 21 3 16.971 3 12S7.029 3 12 3s9 4.029 9 9-4.029 9-9 9m0-18C6.477 3 2 7.477 2 13c0 1.846.501 3.576 1.375 5.067L2.062 21.938l4.026-1.309C7.54 21.493 9.204 22 11 22c6.075 0 11-4.925 11-11S17.075 2 11 2z"/></svg>
+        <div className="hidden md:flex flex-col items-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-12 group-hover:translate-x-0">
+            <span className="text-[9px] font-black uppercase tracking-[0.4em] bg-svz-red text-white p-2 mb-2">Clinical Support Node</span>
+            <span className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">Syn Now</span>
+        </div>
+        <div className="w-20 h-20 bg-white text-black flex items-center justify-center hover:bg-svz-red hover:text-white transition-all duration-700 shadow-2xl relative">
+           <Phone className="w-6 h-6 group-hover:scale-125 transition-transform" />
+           <div className="absolute inset-0 border border-white/20 group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000" />
+        </div>
       </a>
     </footer>
   );

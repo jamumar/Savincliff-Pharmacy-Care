@@ -28,6 +28,7 @@ import AccountOverview from '@/pages/account/AccountOverview';
 import OrdersPage from '@/pages/account/OrdersPage';
 import PrescriptionsPage from '@/pages/account/PrescriptionsPage';
 import SettingsPage from '@/pages/account/SettingsPage';
+import WishlistPage from '@/pages/account/WishlistPage';
 
 const AuthenticatedApp = () => {
   const { user, isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -67,7 +68,7 @@ const AuthenticatedApp = () => {
             <Route index element={<AccountOverview />} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="prescriptions" element={<PrescriptionsPage />} />
-            <Route path="wishlist" element={<div className="p-10 bg-white border border-black/5 text-center text-sm font-serif italic text-black/40">Wishlist coming soon...</div>} />
+            <Route path="wishlist" element={<WishlistPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
 

@@ -1,93 +1,120 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PageHero from '@/components/shared/PageHero';
-import SectionLabel from '@/components/shared/SectionLabel';
-import ServiceAccordion from '@/components/services/ServiceAccordion';
+import { ShieldCheck, Activity, Zap, ClipboardList, Package, Truck } from 'lucide-react';
 
-const chronicConditions = ['Hypertension management', 'Diabetes care plans', 'Asthma & respiratory support', 'Long-term condition coaching'];
+const SERVICES = [
+    { 
+        id: '01', 
+        name: 'Clinical Dispensing', 
+        desc: 'Precision handling of all pharmaceutical requirements. Every dose is verified through primary clinical audits before fulfillment.',
+        icon: <Package className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    },
+    { 
+        id: '02', 
+        name: 'Rx Verification', 
+        desc: 'Advanced regulatory portal for prescription authentication. We link patients directly to our licensed clinical oversight team.',
+        icon: <ClipboardList className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    },
+    { 
+        id: '03', 
+        name: 'Chronic Care Node', 
+        desc: 'Integrated management plans for hypertension, diabetes, and respiratory conditions. Long-term health, redefined.',
+        icon: <Activity className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    },
+    { 
+        id: '04', 
+        name: 'Wholesale Ops', 
+        desc: 'Industrial-grade pharmaceutical supply chain for hospitals and clinics. Total compliance, total transparency.',
+        icon: <ShieldCheck className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    },
+    { 
+        id: '05', 
+        name: 'Rapid Logistics', 
+        desc: 'Temperature-controlled fulfillment network delivering medical essentials within 4 hours in Abuja and 48 hours nationwide.',
+        icon: <Truck className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    },
+    { 
+        id: '06', 
+        name: 'Clinical Advisory', 
+        desc: 'Direct consultation node allowing patients to interact with licensed pharmacists for medication synergy and dosage guidance.',
+        icon: <Zap className="w-12 h-12 text-svz-red" strokeWidth={1} />
+    }
+];
 
 export default function Services() {
   return (
-    <>
-      <PageHero
-        number="04"
-        label="Services"
-        title="Clinical services designed around you."
-        subtitle="From prescription dispensing to long-term wellness — meeting you exactly where your health is."
-      />
+    <div className="bg-white min-h-screen pt-40">
+      
+      {/* High-Impact Heading */}
+      <section className="px-6 md:px-12 mb-20 lg:mb-40">
+         <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
+            <h1 className="display-svz uppercase">CAPABILITIES</h1>
+            <p className="text-[11px] font-bold tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
+         </div>
+      </section>
 
-      {/* Intro visual */}
-      <section className="bg-[#FAFAFA] py-24 md:py-32">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-10 items-end">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="md:col-span-6 aspect-[4/3] overflow-hidden bg-[#0A0A0A]/5"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80"
-              alt="Health monitoring"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          <div className="md:col-span-6 md:pl-6">
-            <SectionLabel number="01" label="Service Portfolio" />
-            <h2 className="font-serif display-md mt-6 font-light">
-              A portfolio that{' '}
-              <em className="not-italic text-[#1B6E8C]">spans a lifetime</em> of care.
-            </h2>
-            <p className="mt-6 text-base md:text-lg text-[#0A0A0A]/55 leading-relaxed">
-              Explore the full spectrum of clinical and wellness services at Savincliff — every service delivered by registered, empathetic professionals.
+      {/* Grid Services */}
+      <section className="px-6 md:px-12 pb-40">
+        <div className="max-w-[1800px] mx-auto border border-black/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {SERVICES.map((s, i) => (
+                    <motion.div 
+                        key={s.id}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.8 }}
+                        className="p-16 border-b md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[500px]"
+                    >
+                        <div>
+                            <div className="mb-12">{s.icon}</div>
+                            <h3 className="text-4xl font-black uppercase tracking-tighter mb-8 leading-none">{s.name}</h3>
+                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-black/40 group-hover:text-white/40 leading-relaxed max-w-xs">{s.desc}</p>
+                        </div>
+                        <div className="mt-12 flex justify-between items-end">
+                            <span className="text-4xl font-black opacity-10 group-hover:opacity-30 transition-opacity select-none">{s.id}</span>
+                            <div className="w-1.5 h-1.5 bg-svz-red rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* Highlight Section */}
+      <section className="bg-black text-white py-40 px-6 md:px-12 overflow-hidden relative">
+         <div className="max-w-[1200px] mx-auto text-center relative z-10">
+            <h2 className="sub-display-svz mb-12">PRECISION<br />LOGISTICS</h2>
+            <p className="text-lg md:text-2xl text-white/40 max-w-3xl mx-auto leading-tight tracking-tight uppercase font-medium mb-16">
+                Our logistics node is a project of efficiency. Temperature-controlled transit environments, real-time clinical tracking, and total audit trails for every delivery.
             </p>
-          </div>
-        </div>
+            <div className="relative aspect-video max-w-5xl mx-auto overflow-hidden bg-white/5">
+                <img 
+                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80" 
+                   alt="Logistics Node" 
+                   className="w-full h-full object-cover grayscale opacity-40 hover:opacity-80 transition-all duration-1000"
+                />
+            </div>
+         </div>
+         {/* Decoration */}
+         <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] bg-svz-red/5 blur-[150px] rounded-full" />
       </section>
 
-      {/* Accordion */}
-      <section className="bg-[#FAFAFA] pb-32 md:pb-40">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10">
-          <ServiceAccordion />
-        </div>
-      </section>
-
-      {/* Chronic Care */}
-      <section className="bg-[#0A0A0A] text-white py-32 md:py-40">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-6 md:pr-10">
-            <SectionLabel number="02" label="Chronic Care Hub" variant="light" />
-            <h2 className="font-serif display-md mt-6 font-light">
-              Living better,{' '}
-              <em className="not-italic text-[#1B6E8C]">longer</em>, together.
+      {/* Corporate Inquiries */}
+      <section className="py-40 text-center px-6 md:px-12 bg-white">
+         <div className="max-w-[1800px] mx-auto">
+            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-svz-red mb-8">Wholesale & Institutional</p>
+            <h2 className="display-svz text-black/10 group hover:text-black transition-colors duration-1000 cursor-default">
+               ENTERPRISE<br />HEALTH
             </h2>
-            <p className="mt-6 text-white/55 leading-relaxed">
-              Our chronic care program supports patients managing hypertension, diabetes, asthma and long-term conditions — combining medication management, monitoring, and wellness products into an integrated plan.
-            </p>
-            <ul className="mt-8 space-y-0 border-t border-white/10">
-              {chronicConditions.map((t, i) => (
-                <li key={i} className="flex items-center gap-5 py-4 border-b border-white/10">
-                  <span className="text-xs text-[#1B6E8C] tracking-wider shrink-0">0{i + 1}</span>
-                  <span className="text-white/80">{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="md:col-span-6 aspect-[4/3] overflow-hidden bg-white/5"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=900&q=80"
-              alt="Chronic care"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-        </div>
+            <div className="mt-20">
+                <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-500">
+                    Initiate Partnership
+                </button>
+            </div>
+         </div>
       </section>
-    </>
+
+    </div>
   );
 }

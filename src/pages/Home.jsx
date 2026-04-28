@@ -1,167 +1,299 @@
-import React from 'react';
-import { ShoppingBag, Upload, ArrowRight, ShieldCheck, Zap, Activity } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
-const TRENDING_CATEGORIES = [
-  { 
-    name: 'Malaria & Fever Care', 
-    products: 'Amatem Softgel, Lonart', 
-    icon: <Activity className="text-brand-teal" size={24} />,
-    description: 'Fast-acting relief from malaria and high fever.'
-  },
-  { 
-    name: 'Reproductive Health', 
-    products: 'Sayana Press, Ovulation kits', 
-    icon: <Zap className="text-brand-teal" size={24} />,
-    description: 'Care for family planning and prenatal health.'
-  },
-  { 
-    name: 'Vitamins & Immunity', 
-    products: 'Zinc, Vitamin C 1000mg', 
-    icon: <ShieldCheck className="text-brand-teal" size={24} />,
-    description: 'Boost your defenses against seasonal illnesses.'
-  },
-  { 
-    name: 'Heart & BP Support', 
-    products: 'Omron BP Monitors, Heart Aspirin', 
-    icon: <Activity className="text-brand-teal" size={24} />,
-    description: 'Comprehensive chronic care management.'
-  }
+const ease = [0.16, 1, 0.3, 1];
+
+/* ─── Mock project data ─── */
+const PROJECTS = [
+  { id: '01', title: 'NEUROGEN AXON',   cat: 'Verified Clinical',  img: '/images/product2.png' },
+  { id: '02', title: 'SPECTRUM DROPS',   cat: 'Ophthalmic Node',    img: '/images/product1.png' },
+  { id: '03', title: 'AURUM REGEN',      cat: 'Topical Protocol',   img: '/images/product3.png' },
+  { id: '04', title: 'CLINICAL HQ',      cat: 'Architecture',       img: '/images/hq.png' },
 ];
 
+/* ═══════════════════════════════════════════════════════
+   SECTION 1 — HERO  (black bg, geometric shapes, mixed type)
+   ═══════════════════════════════════════════════════════ */
+function HeroSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const dotY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
+  return (
+    <section ref={ref} className="relative h-[100vh] bg-black overflow-hidden flex flex-col items-center justify-center">
+
+      {/* ── Abstract geometric shapes (dark grey on black) ── */}
+      <motion.div style={{ y: y1 }} className="absolute top-[10%] left-[2%] w-[15vw] h-[40vh] bg-white/[0.04] rounded-[4px]" />
+      <motion.div style={{ y: y2 }} className="absolute top-[25%] left-[8%] w-[8vw] h-[25vh] bg-white/[0.06]" />
+      <div className="absolute top-[5%] right-[5%] w-[12vw] h-[12vw] rounded-full border border-white/[0.06]" />
+      <motion.div style={{ y: y1 }} className="absolute bottom-[15%] left-[15%] w-[20vw] h-[3px] bg-white/[0.06] -rotate-[25deg]" />
+      <motion.div style={{ y: y2 }} className="absolute bottom-[25%] left-[25%] w-[15vw] h-[3px] bg-white/[0.06] rotate-[15deg]" />
+      <div className="absolute bottom-[8%] right-[3%] w-[6vw] h-[20vh] bg-white/[0.04]" />
+      <div className="absolute top-[20%] right-[8%] w-[5vw] h-[14vw] bg-white/[0.03]" />
+      {/* Large dark circle */}
+      <div className="absolute bottom-[-5%] right-[15%] w-[35vw] h-[35vw] rounded-full bg-white/[0.03]" />
+      {/* Small red rectangle */}
+      <motion.div style={{ y: y2 }} className="absolute bottom-[12%] right-[5%] w-[4vw] h-[8vh] bg-svz-red/80" />
+
+      {/* ── Floating red dot ── */}
+      <motion.div
+        style={{ y: dotY }}
+        className="absolute top-[52%] left-[46%] z-10 animate-float-dot"
+      >
+        <div className="w-[3vw] h-[3vw] min-w-[28px] min-h-[28px] rounded-full bg-svz-red shadow-[0_0_40px_rgba(251,44,44,0.4)]" />
+      </motion.div>
+
+      {/* ── Subtitle ── */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease }}
+        className="relative z-20 text-[11px] font-bold tracking-[0.5em] uppercase text-white/50 mb-10"
+      >
+        Savincliff Pharmacy · Est. 2024
+      </motion.p>
+
+      {/* ── Main headline — mixed typography ── */}
+      <div className="relative z-20 text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.4, ease }}
+          className="text-white"
+        >
+          <span className="block text-[5vw] md:text-[3.2vw]">
+            <span className="font-serif-italic font-normal text-white/60">delivering</span>
+            {'  '}
+            <span className="font-black uppercase tracking-[-0.03em] text-[8vw] md:text-[6vw] leading-[0.9]">
+              CLINICAL CARE
+            </span>
+            {'  '}
+            <span className="font-serif-italic font-normal text-white/60 text-[4vw] md:text-[2.8vw]">for the</span>
+          </span>
+          <span className="block font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[7vw] leading-[0.85] mt-2">
+            PATIENTS OF TOM
+            <span className="text-svz-red">O</span>
+            RROW
+          </span>
+        </motion.h1>
+      </div>
+
+      {/* ── "Enter our world" CTA at bottom ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1 }}
+        className="absolute bottom-12 z-20 flex flex-col items-center gap-3"
+      >
+        <Link to="/shop" className="text-[11px] font-bold tracking-[0.4em] uppercase text-white/50 hover:text-white transition-colors flex items-center gap-3">
+          Enter Our World <ArrowDown className="w-4 h-4 animate-bounce" />
+        </Link>
+      </motion.div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 2 — "WE ARE" massive typography on scroll
+   ═══════════════════════════════════════════════════════ */
+function WeAreSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.4 });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0.1, 0.5], [0.85, 1]);
+
+  return (
+    <section ref={ref} className="relative h-[120vh] flex items-center justify-center overflow-hidden bg-[#e8e8e8]">
+      {/* Floating red dot */}
+      <motion.div
+        style={{ opacity: bgOpacity }}
+        className="absolute bottom-[15%] left-[5%] animate-float-dot"
+      >
+        <div className="w-[2.5vw] h-[2.5vw] min-w-[20px] min-h-[20px] rounded-full bg-svz-red/80 shadow-[0_0_30px_rgba(251,44,44,0.3)]" />
+      </motion.div>
+
+      <motion.div style={{ scale, opacity: bgOpacity }} className="text-center px-6">
+        <h2 className="text-[18vw] md:text-[16vw] font-black leading-[0.8] tracking-[-0.05em] uppercase text-black">
+          WE
+          <span className="font-serif-italic font-normal text-[16vw] md:text-[14vw] mx-[1vw]">A</span>
+          RE
+        </h2>
+      </motion.div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 3 — Services manifesto (justified text, red keywords)
+   ═══════════════════════════════════════════════════════ */
+function ManifestoSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section ref={ref} className="relative bg-black text-white min-h-screen flex items-center">
+
+      {/* Floating project thumbnail on left */}
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, ease }}
+        className="absolute left-[3vw] top-[50%] -translate-y-1/2 hidden lg:block"
+      >
+        <div className="w-[14vw] relative overflow-hidden svz-image-reveal">
+          <p className="text-[9px] font-black tracking-[0.4em] uppercase text-white/30 mb-3">Featured Protocol</p>
+          <img src="/images/lab.png" alt="Lab" className="w-full aspect-[3/4] object-cover grayscale opacity-40 hover:opacity-80 transition-all duration-1000" />
+        </div>
+      </motion.div>
+
+      <div className="max-w-[750px] mx-auto px-8 lg:ml-[25vw] lg:mr-[8vw] py-[15vh]">
+        <motion.p
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease }}
+          className="text-[clamp(18px,2.5vw,32px)] font-bold uppercase leading-[1.6] tracking-[0.08em] text-justify-inter"
+        >
+          We are a clinical pharmacy where science meets precision.{' '}
+          <span className="text-svz-red">Verification</span> is our compass, ensuring every medication is authenticated at the source.{' '}
+          We infuse every <span className="text-svz-red">prescription</span> with purpose, crafting therapeutic protocols that protect across every interaction.{' '}
+          <span className="text-svz-red">Quality</span> is our foundation, maintaining the highest pharmaceutical standards in every formulation we dispense.{' '}
+          Through full-spectrum <span className="text-svz-red">clinical care</span>, we transform prescriptions into verified health outcomes.{' '}
+          Our <span className="text-svz-red">logistics network</span> ensures temperature-controlled integrity from source to patient.{' '}
+          We foster lasting <span className="text-svz-red">wellbeing</span>, empowering patients to access, understand, and thrive at every step.
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 4 — Selected projects grid
+   ═══════════════════════════════════════════════════════ */
+function ProjectsSection() {
+  return (
+    <section className="bg-black text-white py-[15vh]">
+      <div className="grid-container">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20 border-b border-white/10 pb-10">
+          <h2 className="sub-display-svz">SELECTED<br/>INVENTORY</h2>
+          <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/30 mb-2">Clinical Manifest / 2026</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[2px]">
+          {PROJECTS.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: i * 0.15, duration: 1, ease }}
+            >
+              <Link to="/shop" className="group block relative aspect-[16/10] overflow-hidden bg-[#111] cursor-pointer">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                />
+                {/* Hover overlay with text */}
+                <div className="absolute inset-0 z-10 p-10 md:p-14 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[10px] font-black tracking-[0.4em] uppercase text-white/30 group-hover:text-svz-red transition-colors duration-500">{p.cat}</span>
+                    <span className="text-[10px] font-black tracking-[0.4em] uppercase text-white/0 group-hover:text-white/50 transition-all duration-700">{p.id}</span>
+                  </div>
+                  <div className="flex justify-between items-end">
+                    <h3 className="text-3xl md:text-5xl font-black uppercase tracking-[-0.03em] leading-none translate-y-4 group-hover:translate-y-0 transition-all duration-700">{p.title}</h3>
+                    <div className="w-14 h-14 bg-white/0 group-hover:bg-white flex items-center justify-center transition-all duration-500 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0">
+                      <ArrowUpRight className="w-6 h-6 text-black" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-20 text-center">
+          <Link to="/shop" className="group inline-flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.4em] text-white/60 hover:text-white border-b border-white/20 hover:border-white pb-3 transition-all duration-500">
+            View All Inventory <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 5 — Marquee ticker
+   ═══════════════════════════════════════════════════════ */
+function MarqueeSection() {
+  return (
+    <section className="py-20 bg-white overflow-hidden select-none pointer-events-none border-y border-black/5">
+      <div className="animate-marquee whitespace-nowrap">
+        {Array(6).fill('').map((_, i) => (
+          <span key={i} className="text-[12vw] font-black uppercase tracking-[-0.04em] text-black/[0.04] mx-8">
+            SAVINCLIFF PHARMACY ·  CLINICAL PRECISION ·  PRIMARY SOURCE ·  
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION 6 — Final CTA
+   ═══════════════════════════════════════════════════════ */
+function CTASection() {
+  return (
+    <section className="bg-black text-white py-[20vh] relative overflow-hidden">
+      <div className="grid-container text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease }}
+          className="space-y-12"
+        >
+          <p className="text-[11px] font-black tracking-[0.5em] uppercase text-svz-red">Ready to begin?</p>
+          <h2 className="text-[8vw] md:text-[6vw] font-black uppercase tracking-[-0.04em] leading-[0.85]">
+            LET'S BUILD<br />
+            <span className="font-serif-italic font-normal text-[7vw] md:text-[5vw] text-white/40">something</span>{' '}
+            VITAL
+          </h2>
+          <div className="flex flex-col md:flex-row justify-center gap-6 pt-8">
+            <Link to="/shop" className="bg-white text-black px-14 py-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-svz-red hover:text-white transition-all duration-700">
+              Explore Inventory
+            </Link>
+            <Link to="/contact" className="border border-white/20 px-14 py-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4">
+              Discovery Call <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative red glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-svz-red/5 blur-[200px] rounded-full pointer-events-none" />
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   PAGE EXPORT
+   ═══════════════════════════════════════════════════════ */
 export default function Home() {
   return (
-    <div className="font-sans overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-brand-surgical pt-20">
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-700">
-            <div className="inline-flex items-center space-x-2 bg-brand-teal/10 px-4 py-1 rounded-full text-brand-teal text-xs font-bold uppercase tracking-widest">
-              <span className="w-2 h-2 bg-brand-teal rounded-full animate-pulse"></span>
-              <span>Your Trusted Online pharmacy in Nigeria</span>
-            </div>
-            <AnimatedHeading level={1} className="display-md text-brand-obsidian leading-[1.1]">
-              Quality Care <br/>
-              <span className="text-brand-teal italic font-serif">Delivered</span> to <br/>
-              Your Door.
-            </AnimatedHeading>
-            <p className="text-lg text-brand-slate max-w-md leading-relaxed">
-              Genuine medicines, verified by pharmacists, and delivered with speed. Bridgining the gap in Nigerian healthcare.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link 
-                to="/shop" 
-                className="bg-brand-obsidian text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center hover:bg-brand-teal transition-all group"
-              >
-                Shop All Products
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-              </Link>
-              <Link 
-                to="/wholesale" 
-                className="border border-brand-obsidian text-brand-obsidian px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center hover:bg-brand-obsidian hover:text-white transition-all"
-              >
-                Upload Prescription
-                <Upload className="ml-2" size={16} />
-              </Link>
-            </div>
-          </div>
-          
-          <div className="relative group">
-            <div className="absolute inset-0 bg-brand-teal/20 blur-[120px] rounded-full group-hover:bg-brand-teal/30 transition-all duration-1000"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1547489432-cf93fa6c71ee?w=800&q=80" 
-              alt="Pharmacist Checking Medicines" 
-              className="relative z-10 rounded-3xl shadow-2xl transform group-hover:-rotate-1 transition-transform duration-700"
-            />
-            {/* Trust badge overlay */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl z-20 border border-border hidden md:block animate-bounce-slow">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-brand-teal/10 rounded-full flex items-center justify-center text-brand-teal">
-                  <ShieldCheck size={24} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-slate">NAFDAC Reg</p>
-                  <p className="text-sm font-bold text-brand-obsidian">100% Genuine</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trending Categories Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-brand-teal">Most Searched & Trending</h2>
-            <AnimatedHeading level={2} className="display-sm text-brand-obsidian">Health Essentials for 2026</AnimatedHeading>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TRENDING_CATEGORIES.map((cat, idx) => (
-              <Link 
-                key={idx}
-                to={`/shop?category=${cat.name.split(' ')[0].toLowerCase()}`}
-                className="p-8 rounded-2xl border border-border hover:border-brand-teal hover:shadow-xl transition-all group bg-brand-surgical/30"
-              >
-                <div className="mb-6 p-4 bg-white rounded-xl shadow-sm inline-block group-hover:scale-110 transition-transform">
-                  {cat.icon}
-                </div>
-                <h3 className="font-bold text-brand-obsidian mb-2 tracking-tight">{cat.name}</h3>
-                <p className="text-xs text-brand-slate mb-4 line-clamp-1">{cat.products}</p>
-                <p className="text-xs text-brand-slate leading-relaxed mb-6 italic">{cat.description}</p>
-                <div className="text-brand-teal text-[10px] font-bold uppercase tracking-widest flex items-center">
-                  Shop Now <ArrowRight size={12} className="ml-1" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Row */}
-      <section className="py-24 border-y border-border bg-brand-surgical/20">
-        <div className="container mx-auto px-6 grid md:grid-cols-3 gap-16 text-center">
-          <div className="space-y-4">
-             <div className="text-4xl font-serif text-brand-obsidian">01</div>
-             <h3 className="font-bold text-sm uppercase tracking-[0.2em]">Verified Source</h3>
-             <p className="text-sm text-brand-slate leading-relaxed px-4">All medicines are 100% genuine and sourced directly from NAFDAC-approved importers.</p>
-          </div>
-          <div className="space-y-4">
-             <div className="text-4xl font-serif text-brand-obsidian">02</div>
-             <h3 className="font-bold text-sm uppercase tracking-[0.2em]">Fast Delivery</h3>
-             <p className="text-sm text-brand-slate leading-relaxed px-4">Same-day delivery in Abuja and 24-48 hour nationwide shipping for all health essentials.</p>
-          </div>
-          <div className="space-y-4">
-             <div className="text-4xl font-serif text-brand-obsidian">03</div>
-             <h3 className="font-bold text-sm uppercase tracking-[0.2em]">Expert Advice</h3>
-             <p className="text-sm text-brand-slate leading-relaxed px-4">Chat with our licensed pharmacists directly via WhatsApp for clinical guidance.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 container mx-auto px-6">
-        <div className="bg-brand-obsidian rounded-[3rem] p-16 text-center text-white relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl mx-auto space-y-8">
-            <h2 className="display-sm">Need Help with your Prescription?</h2>
-            <p className="text-white/60 text-lg">
-              Our clinical team is ready to verify your medication and advise on dosage. Professional care is just a click away.
-            </p>
-            <div className="flex justify-center gap-4 pt-4">
-              <Link to="/wholesale" className="bg-brand-teal text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-transform">
-                Upload Now
-              </Link>
-              <a href="https://wa.me/923251206427" className="bg-white/10 text-white border border-white/20 px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-white hover:text-brand-obsidian transition-all">
-                Talk to a Pharmacist
-              </a>
-            </div>
-          </div>
-          {/* Background circle decoration */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-brand-teal/10 blur-[100px] rounded-full"></div>
-        </div>
-      </section>
+    <div className="bg-black min-h-screen">
+      <HeroSection />
+      <WeAreSection />
+      <ManifestoSection />
+      <ProjectsSection />
+      <MarqueeSection />
+      <CTASection />
     </div>
   );
 }

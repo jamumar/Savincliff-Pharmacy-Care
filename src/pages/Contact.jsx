@@ -1,117 +1,114 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, Clock, ShieldCheck } from 'lucide-react';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+
+const easeQuint = [0.16, 1, 0.3, 1];
 
 export default function Contact() {
   return (
-    <div className="pt-24 min-h-screen bg-brand-surgical pb-20">
-      <section className="py-20 container mx-auto px-6 text-center">
-        <AnimatedHeading level={1} className="display-sm mb-6 uppercase tracking-wider">
-          Contact Savincliff Pharmacy
-        </AnimatedHeading>
-        <p className="text-brand-slate text-lg max-w-2xl mx-auto">
-          Need health advice or have an inquiry about your order? Our clinical team is ready to assist you.
-        </p>
+    <div className="bg-white min-h-screen pt-40">
+      
+      {/* High-Impact Heading */}
+      <section className="px-6 md:px-12 mb-20 lg:mb-40">
+         <div className="max-w-[1800px] mx-auto border-b border-black pb-12 overflow-hidden">
+            <motion.h1 
+               initial={{ y: 100 }}
+               animate={{ y: 0 }}
+               transition={{ duration: 1, ease: easeQuint }}
+               className="display-svz"
+            >
+               ESTABLISH<br />SYNC
+            </motion.h1>
+            <p className="text-[11px] font-black tracking-[0.4em] uppercase text-black/40 mt-8">Primary Communications Node / FCT Abuja</p>
+         </div>
       </section>
 
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16">
-        {/* Contact Info */}
-        <div className="space-y-12">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
-              <MapPin className="text-brand-teal mb-4" />
-              <h3 className="font-bold text-brand-obsidian uppercase tracking-widest text-xs mb-2">Abuja Hub</h3>
-              <p className="text-sm text-brand-slate leading-relaxed">
-                Gwarinpa Estate,<br />
-                Abuja, Nigeria
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl border border-border shadow-sm">
-              <Clock className="text-brand-teal mb-4" />
-              <h3 className="font-bold text-brand-obsidian uppercase tracking-widest text-xs mb-2">Opening Hours</h3>
-              <p className="text-sm text-brand-slate leading-relaxed">
-                Mon - Sat: 8am - 9pm<br />
-                Sunday: 10am - 6pm
-              </p>
-            </div>
-          </div>
+      {/* Contact Grid | Industrial Layout */}
+      <section className="px-6 md:px-12 pb-40">
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+            
+            {/* Left: Contact Specs */}
+            <div className="lg:col-span-4 space-y-24">
+                <div className="space-y-12">
+                   <div className="space-y-4">
+                      <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Node 01 / Physical</p>
+                      <h3 className="text-2xl font-black uppercase tracking-tighter">CLINICAL HQ</h3>
+                      <p className="text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
+                         Divib Plaza, 7th Avenue,<br />Gwarinpa, Abuja / FCT
+                      </p>
+                   </div>
+                   <div className="space-y-4">
+                      <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Node 02 / Digital</p>
+                      <h3 className="text-2xl font-black uppercase tracking-tighter">DIRECT SYNC</h3>
+                      <p className="text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
+                         node@savincliff.com<br />
+                         +234 (0) 923 251 2064
+                      </p>
+                   </div>
+                   <div className="space-y-4">
+                      <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Node 03 / Support</p>
+                      <h3 className="text-2xl font-black uppercase tracking-tighter">PATIENT DESK</h3>
+                      <p className="text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
+                         Live Terminal Available<br />
+                         09:00 — 18:00 WAT
+                      </p>
+                   </div>
+                </div>
 
-          <div className="space-y-6">
-            <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl border border-border">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-full flex items-center justify-center text-brand-teal">
-                <Phone size={20} />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase font-bold text-brand-slate tracking-widest">Call or WhatsApp</p>
-                <p className="text-xl font-serif text-brand-obsidian">+92 325 1206427</p>
-              </div>
+                <div className="aspect-square bg-black p-1 bg-white border border-black/10 svz-image-reveal">
+                    <img 
+                       src="/images/hq.png" 
+                       alt="HQ Internal" 
+                       className="w-full h-full object-cover grayscale opacity-50 hover:opacity-100 duration-1000"
+                    />
+                </div>
             </div>
-            <div className="flex items-center space-x-4 p-6 bg-white rounded-2xl border border-border">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-full flex items-center justify-center text-brand-teal">
-                <Mail size={20} />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase font-bold text-brand-slate tracking-widest">Email Support</p>
-                <p className="text-xl font-serif text-brand-obsidian underline text-xs">info@savincliffpharmacy.com</p>
-              </div>
-            </div>
-          </div>
 
-          <div className="p-8 bg-brand-obsidian text-white rounded-2xl relative overflow-hidden">
-             <div className="relative z-10">
-                <ShieldCheck className="text-brand-teal mb-4" size={32} />
-                <h3 className="text-xl font-medium mb-4">Chat with a Pharmacist</h3>
-                <p className="text-white/60 text-sm mb-6 leading-relaxed">
-                  Get professional medical advice and order medications directly via WhatsApp.
-                </p>
-                <a 
-                  href="https://wa.me/923251206427?text=Hello%20Savincliff%2C%20I%20have%20an%20inquiry"
-                  className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform"
-                >
-                  Start Chat
-                </a>
-             </div>
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-teal/20 blur-[100px] rounded-full"></div>
-          </div>
+            {/* Right: Inquiry Terminal */}
+            <div className="lg:col-span-8 bg-[#FAFAFA] p-12 md:p-24 space-y-20 border border-black/5">
+                <div className="space-y-8">
+                   <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">INQUIRY<br />MANIFEST</h2>
+                   <p className="text-[11px] font-black tracking-[0.3em] uppercase text-black/30 max-w-xl">
+                      Submit your clinical requirements through the secured channel below. A licensed pharmacist will audit and synchronize within 60 minutes.
+                   </p>
+                </div>
+
+                <form className="space-y-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        <div className="space-y-4 relative group">
+                            <label className="text-[10px] font-black tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Patient Handle</label>
+                            <input placeholder="ENTER FULL NAME" className="w-full bg-transparent border-b border-black/10 py-6 text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all" />
+                        </div>
+                        <div className="space-y-4 relative group">
+                            <label className="text-[10px] font-black tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Digital Node</label>
+                            <input placeholder="EMAIL@NODE.COM" className="w-full bg-transparent border-b border-black/10 py-6 text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all" />
+                        </div>
+                    </div>
+                    
+                    <div className="space-y-4 relative group">
+                        <label className="text-[10px] font-black tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Clinical Protocol / Message</label>
+                        <textarea rows={4} placeholder="STATE YOUR REQUIREMENT" className="w-full bg-transparent border-b border-black/10 py-6 text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all resize-none" />
+                    </div>
+
+                    <button type="button" className="group flex items-center justify-between w-full bg-black text-white px-12 py-10 text-[14px] font-black uppercase tracking-[0.4em] hover:bg-svz-red transition-all duration-700">
+                        COMMIT PROTOCOL <ArrowRight className="w-6 h-6 group-hover:translate-x-4 transition-transform" />
+                    </button>
+                </form>
+            </div>
         </div>
+      </section>
 
-        {/* Form or Map Placeholder */}
-        <div className="bg-white p-10 rounded-2xl border border-border shadow-xl">
-          <h3 className="text-2xl font-serif text-brand-obsidian mb-8">Send Us a Message</h3>
-          <form className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold text-brand-slate tracking-widest pl-1">Full Name</label>
-                <input type="text" className="w-full bg-brand-surgical border border-border px-4 py-3 rounded-lg outline-none focus:border-brand-teal transition-colors" placeholder="John Doe" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold text-brand-slate tracking-widest pl-1">Phone Number</label>
-                <input type="tel" className="w-full bg-brand-surgical border border-border px-4 py-3 rounded-lg outline-none focus:border-brand-teal transition-colors" placeholder="+234..." />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase font-bold text-brand-slate tracking-widest pl-1">Email Address</label>
-              <input type="email" className="w-full bg-brand-surgical border border-border px-4 py-3 rounded-lg outline-none focus:border-brand-teal transition-colors" placeholder="john@example.com" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase font-bold text-brand-slate tracking-widest pl-1">How can we help?</label>
-              <select className="w-full bg-brand-surgical border border-border px-4 py-3 rounded-lg outline-none focus:border-brand-teal transition-colors">
-                <option>General Inquiry</option>
-                <option>Order Status</option>
-                <option>Product Question</option>
-                <option>Prescription Help</option>
-              </select>
-            </div>
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase font-bold text-brand-slate tracking-widest pl-1">Message</label>
-              <textarea className="w-full bg-brand-surgical border border-border px-4 py-4 rounded-lg outline-none focus:border-brand-teal transition-colors h-32" placeholder="Tell us more about your needs..."></textarea>
-            </div>
-            <button className="w-full bg-brand-teal text-white py-4 rounded-lg font-bold uppercase tracking-widest text-sm hover:bg-brand-deep transition-colors">
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
+      {/* Map Strip / Decorative */}
+      <section className="bg-black py-24 overflow-hidden select-none pointer-events-none">
+          <div className="animate-marquee whitespace-nowrap">
+             {Array(8).fill("").map((_, i) => (
+                <span key={i} className="text-[12vw] font-black uppercase tracking-[-0.05em] text-white/5 mx-24">
+                   ESTABLISH SYNC / ABUJA NODE / FCT / GWARINPA / 09.04.12 / 
+                </span>
+             ))}
+          </div>
+      </section>
+
     </div>
   );
 }
