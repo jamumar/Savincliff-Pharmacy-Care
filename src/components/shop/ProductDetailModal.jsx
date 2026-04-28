@@ -30,26 +30,26 @@ export default function ProductDetailModal({ product, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center sm:p-0"
+        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-end md:items-center justify-center"
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 100 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 100 }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.8, ease: easeQuint }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white w-full h-full max-w-[100%] lg:max-w-none overflow-y-auto relative grid grid-cols-1 lg:grid-cols-12"
+          className="bg-white w-full h-[92vh] md:h-[90vh] lg:h-auto lg:max-h-[90vh] overflow-y-auto relative grid grid-cols-1 lg:grid-cols-12 rounded-t-2xl md:rounded-none"
         >
-          {/* Close Button / SVZ Style */}
+          {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-12 right-12 z-50 w-16 h-16 bg-black text-white flex items-center justify-center hover:bg-svz-red transition-all duration-700 group shadow-2xl"
+            className="absolute top-4 right-4 md:top-12 md:right-12 z-50 w-10 h-10 md:w-16 md:h-16 bg-black text-white flex items-center justify-center hover:bg-svz-red transition-all duration-700 group shadow-2xl"
           >
-            <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
+            <X className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-90 transition-transform" />
           </button>
 
-          {/* Left Panel: High Res Project Image (7 cols) */}
-          <div className="lg:col-span-7 bg-[#FAFAFA] relative overflow-hidden h-[60vh] lg:h-full">
+          {/* Left Panel: Image */}
+          <div className="lg:col-span-7 bg-[#FAFAFA] relative overflow-hidden h-[35vh] md:h-[50vh] lg:h-full">
              <motion.img 
                 initial={{ scale: 1.1, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -58,20 +58,20 @@ export default function ProductDetailModal({ product, onClose }) {
                 alt={product.name} 
                 className="w-full h-full object-cover grayscale transition-all duration-1000 hover:grayscale-0" 
              />
-             <div className="absolute bottom-20 left-[5vw]">
-                <p className="text-[12px] font-black tracking-[0.4em] uppercase text-black/10">Protocol Ref: SYN/00{product.id}X</p>
+             <div className="absolute bottom-4 left-4 md:bottom-20 md:left-[5vw]">
+                <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/10">Protocol Ref: SYN/00{product.id}X</p>
              </div>
           </div>
 
-          {/* Right Panel: Clinical Spec (5 cols) */}
-          <div className="lg:col-span-5 px-[5vw] py-20 lg:py-0 flex flex-col justify-center bg-white">
-             <div className="space-y-16">
+          {/* Right Panel: Clinical Spec */}
+          <div className="lg:col-span-5 px-5 md:px-[5vw] py-8 md:py-20 lg:py-0 flex flex-col justify-center bg-white">
+             <div className="space-y-8 md:space-y-16">
                 <div>
                    <motion.p 
                      initial={{ opacity: 0, x: -20 }}
                      animate={{ opacity: 1, x: 0 }}
                      transition={{ delay: 0.3, duration: 0.8 }}
-                     className="text-[11px] font-black tracking-[0.4em] uppercase text-svz-red mb-6"
+                     className="text-[10px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red mb-3 md:mb-6"
                    >
                      {product.brand} / Clinical Node
                    </motion.p>
@@ -79,56 +79,56 @@ export default function ProductDetailModal({ product, onClose }) {
                      initial={{ opacity: 0, y: 40 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 0.4, duration: 1, ease: easeQuint }}
-                     className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-12"
+                     className="text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-6 md:mb-12"
                    >
                       {product.name}
                    </motion.h2>
-                   <div className="flex flex-wrap items-center gap-6">
-                      <span className="text-[11px] font-black tracking-widest uppercase bg-black text-white px-5 py-2">{product.category}</span>
-                      <span className="text-[11px] font-black tracking-widest uppercase border border-black/10 px-5 py-2">Audit Verified</span>
+                   <div className="flex flex-wrap items-center gap-3 md:gap-6">
+                      <span className="text-[10px] md:text-[11px] font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 md:px-5 md:py-2">{product.category}</span>
+                      <span className="text-[10px] md:text-[11px] font-black tracking-widest uppercase border border-black/10 px-3 py-1.5 md:px-5 md:py-2">Audit Verified</span>
                    </div>
                 </div>
 
-                <div className="space-y-8 max-w-lg">
-                   <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20">Audit specification</p>
-                   <p className="text-xl md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase">
+                <div className="space-y-4 md:space-y-8 max-w-lg">
+                   <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20">Audit specification</p>
+                   <p className="text-base md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase">
                       {product.description || "Primary medical formulation verified through the Savincliff Clinical Node. Total source integrity."}
                    </p>
                 </div>
 
-                <div className="pt-16 border-t border-black/10">
-                   <div className="flex items-end justify-between mb-16">
+                <div className="pt-6 md:pt-16 border-t border-black/10">
+                   <div className="flex items-end justify-between mb-8 md:mb-16">
                       <div>
-                         <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20 mb-4">Node Price / Unit</p>
-                         <p className="text-5xl font-black tracking-tighter">₦{product.price.toLocaleString()}</p>
+                         <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 mb-2 md:mb-4">Node Price / Unit</p>
+                         <p className="text-3xl md:text-5xl font-black tracking-tighter">₦{product.price.toLocaleString()}</p>
                       </div>
                       
-                      <div className="flex items-center border border-black/10 px-2">
-                         <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-16 h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
-                           <Minus className="w-5 h-5" />
+                      <div className="flex items-center border border-black/10 px-1 md:px-2">
+                         <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                           <Minus className="w-4 h-4 md:w-5 md:h-5" />
                          </button>
-                         <span className="w-16 text-center text-[16px] font-black">{qty}</span>
-                         <button onClick={() => setQty(q => q + 1)} className="w-16 h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
-                           <Plus className="w-5 h-5" />
+                         <span className="w-10 md:w-16 text-center text-sm md:text-[16px] font-black">{qty}</span>
+                         <button onClick={() => setQty(q => q + 1)} className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
+                           <Plus className="w-4 h-4 md:w-5 md:h-5" />
                          </button>
                       </div>
                    </div>
 
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-black">
+                   <div className="grid grid-cols-2 gap-0 border border-black">
                        <button 
                           onClick={handleAdd}
                           disabled={added}
-                          className="flex items-center justify-center gap-8 py-10 text-[12px] font-black uppercase tracking-[0.3em] bg-black text-white hover:bg-svz-red transition-all duration-700 disabled:bg-svz-red"
+                          className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-black text-white hover:bg-svz-red transition-all duration-700 disabled:bg-svz-red"
                        >
-                          <ShoppingBag className="w-5 h-5" /> {added ? 'SNC ACTIVE' : 'Initiate Node'}
+                          <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" /> {added ? 'ACTIVE' : 'Add Node'}
                        </button>
-                       <button className="flex items-center justify-center gap-8 py-10 text-[12px] font-black uppercase tracking-[0.3em] bg-white text-black hover:bg-black hover:text-white transition-all duration-700 border-l border-black">
-                          Clinical Doc <ArrowUpRight className="w-5 h-5" />
+                       <button className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-white text-black hover:bg-black hover:text-white transition-all duration-700 border-l border-black">
+                          Clinical Doc <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
                        </button>
                    </div>
                 </div>
                 
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/10">
+                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/10">
                    Synchronized Archive / 102.33.1.04
                 </p>
              </div>

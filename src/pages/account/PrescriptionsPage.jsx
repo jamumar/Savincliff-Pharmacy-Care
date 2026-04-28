@@ -33,12 +33,12 @@ export default function PrescriptionsPage() {
   const prescriptions = MOCK_PRESCRIPTIONS; // Using mock data
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10 md:space-y-20">
       
       {/* High-Impact Heading */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-black/5 pb-12">
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">CLINICAL<br />DOCUMENTS</h1>
-        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive / Ref: {prescriptions.length}</p>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black/5 pb-8 md:pb-12">
+        <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">CLINICAL<br />DOCUMENTS</h1>
+        <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive / Ref: {prescriptions.length}</p>
       </div>
 
       <div className="grid gap-0 border border-black/5">
@@ -48,7 +48,7 @@ export default function PrescriptionsPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: i * 0.05 }}
-              className="p-12 border-b border-black/5 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col md:flex-row justify-between items-start md:items-center gap-12"
+              className="p-6 md:p-12 border-b border-black/5 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-12"
             >
               <div className="flex items-center gap-8">
                 <div className="w-16 h-16 border border-black/10 group-hover:border-white/20 flex items-center justify-center bg-[#FAFAFA] group-hover:bg-white/10 transition-colors">
@@ -63,7 +63,7 @@ export default function PrescriptionsPage() {
                         {rx.status}
                       </span>
                    </div>
-                   <h3 className="text-2xl font-black uppercase tracking-tighter">CLINICAL SPECIFICATION 0{rx.id}</h3>
+                   <h3 className="text-lg md:text-2xl font-black uppercase tracking-tighter">CLINICAL SPECIFICATION 0{rx.id}</h3>
                    <p className="text-[11px] font-bold tracking-widest uppercase opacity-40 mt-2">COMMITTED {new Date(rx.uploaded_at).toLocaleDateString()}</p>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function PrescriptionsPage() {
       </div>
 
       {/* Upload Action Node */}
-      <div className="bg-black text-white p-12 lg:p-20 relative overflow-hidden group">
+      <div className="bg-black text-white p-6 md:p-12 lg:p-20 relative overflow-hidden group">
          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
             <div>
                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Add Document</h2>

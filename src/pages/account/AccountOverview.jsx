@@ -24,21 +24,21 @@ export default function AccountOverview() {
   ];
 
   return (
-    <div className="space-y-40">
+    <div className="space-y-12 md:space-y-40">
       
       {/* High-Impact Heading */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-black pb-16">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black pb-8 md:pb-16">
         <motion.div
            initial={{ opacity: 0, y: 40 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 1, ease: easeQuint }}
         >
-           <p className="label-svz mb-8">Patient Identity / FCT Node</p>
-           <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+           <p className="label-svz mb-4 md:mb-8">Patient Identity / FCT Node</p>
+           <h1 className="text-3xl md:text-8xl font-black uppercase tracking-tighter leading-none">
              Welcome back,<br />{user?.username || 'NODE 01'}
            </h1>
         </motion.div>
-        <div className="flex items-center gap-6 text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group hover:text-svz-red transition-all cursor-default">
+        <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group hover:text-svz-red transition-all cursor-default">
             <Activity className="w-5 h-5 transition-transform group-hover:scale-125" /> Biometric Identity Verified
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function AccountOverview() {
              initial={{ opacity: 0 }}
              animate={{ opacity: 1 }}
              transition={{ delay: i * 0.1, duration: 1 }}
-             className="p-16 border-b md:border-b-0 md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[320px]"
+             className="p-6 md:p-16 border-b md:border-b-0 md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[160px] md:min-h-[320px]"
            >
              <div className="flex justify-between items-start">
                 <div className="space-y-2">
@@ -60,18 +60,18 @@ export default function AccountOverview() {
                 </div>
                 <stat.icon className="w-6 h-6 opacity-10 group-hover:opacity-100 group-hover:text-svz-red transition-all duration-700" strokeWidth={1} />
              </div>
-             <p className="text-8xl font-black tracking-[-0.05em] self-end leading-none group-hover:translate-x-4 transition-transform duration-1000">{stat.count}</p>
+             <p className="text-5xl md:text-8xl font-black tracking-[-0.05em] self-end leading-none group-hover:translate-x-4 transition-transform duration-1000">{stat.count}</p>
            </motion.div>
         ))}
       </div>
 
       {/* Narrative Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-24 items-start">
          {/* Recent Audits */}
          <div className="lg:col-span-7 space-y-16">
             <div className="flex items-center justify-between">
                <h3 className="text-[11px] font-black uppercase tracking-[0.5em] text-black/30">Clinical History</h3>
-               <div className="flex-1 h-px bg-black/10 mx-12" />
+               <div className="flex-1 h-px bg-black/10 mx-4 md:mx-12" />
             </div>
             
             <div className="space-y-0 border-t border-black/10">
@@ -79,7 +79,7 @@ export default function AccountOverview() {
                     <Link key={order.id} to="/account/orders" className="flex items-center justify-between py-12 border-b border-black/10 hover:bg-[#FAFAFA] transition-all px-6 -mx-6 group relative overflow-hidden">
                         <div className="relative z-10">
                             <p className="text-[10px] font-black uppercase tracking-widest text-black/20 mb-2">Ref: SN-00{order.id}</p>
-                            <h4 className="text-2xl font-black uppercase tracking-tighter group-hover:translate-x-4 transition-all duration-700">Audit Sync 0{order.id}</h4>
+                            <h4 className="text-lg md:text-2xl font-black uppercase tracking-tighter group-hover:translate-x-4 transition-all duration-700">Audit Sync 0{order.id}</h4>
                         </div>
                         <div className="relative z-10 text-right flex items-center gap-10">
                             <div>
@@ -102,16 +102,16 @@ export default function AccountOverview() {
          </div>
 
          {/* Promo Grid Cell */}
-         <div className="lg:col-span-5 bg-black text-white p-12 lg:p-24 relative overflow-hidden group min-h-[600px] flex flex-col justify-center shadow-2xl">
+         <div className="lg:col-span-5 bg-black text-white p-8 md:p-12 lg:p-24 relative overflow-hidden group min-h-[350px] md:min-h-[600px] flex flex-col justify-center shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-svz-red/10 blur-[150px] rounded-full group-hover:bg-svz-red/20 transition-all duration-1000 origin-center scale-150" />
             
             <div className="relative z-10 space-y-16">
                <p className="label-svz">Enterprise Node</p>
-               <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">ACCELERATED<br />VERIFICATION</h2>
-               <p className="text-[12px] font-black uppercase leading-relaxed tracking-widest text-white/30 max-w-sm">
+               <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">ACCELERATED<br />VERIFICATION</h2>
+               <p className="text-[10px] md:text-[12px] font-black uppercase leading-relaxed tracking-widest text-white/30 max-w-sm">
                    Bypass standard clinical queues and unlock industrial-grade pharmaceutical oversight. Total precision at every node.
                </p>
-               <button className="bg-white text-black px-16 py-8 text-[12px] font-black uppercase tracking-[0.4em] hover:bg-svz-red hover:text-white transition-all duration-700 shadow-2xl">Enter Node</button>
+               <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-svz-red hover:text-white transition-all duration-700 shadow-2xl">Enter Node</button>
             </div>
             
             <div className="absolute bottom-12 right-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/5 group-hover:text-white/10 transition-colors">

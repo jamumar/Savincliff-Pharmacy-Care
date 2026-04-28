@@ -21,6 +21,11 @@ export default function Navbar() {
   const { user, logout } = useAuth();
   const [profileOpen, setProfileOpen] = useState(false);
 
+  // Pages with dark hero backgrounds where white text is needed initially
+  const isDarkHero = location.pathname === '/' || location.pathname === '/register';
+  // Use dark text when scrolled OR when the page has a light background
+  const useDark = scrolled || !isDarkHero;
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     fn();
@@ -39,12 +44,14 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-[80] transition-all duration-700 ${
           scrolled 
             ? 'bg-white border-b border-black/10 py-5' 
-            : 'bg-transparent border-b border-transparent py-10'
+            : isDarkHero 
+              ? 'bg-transparent border-b border-transparent py-10'
+              : 'bg-white/80 backdrop-blur-md border-b border-black/5 py-5'
         }`}
       >
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link to="/">
-             <Logo variant={scrolled ? 'dark' : 'light'} />
+             <Logo variant={useDark ? 'dark' : 'light'} />
           </Link>
 
           {/* Desktop Nav */}
@@ -56,7 +63,7 @@ export default function Navbar() {
                   key={item.path}
                   to={item.path}
                   className={`text-[10px] font-black tracking-[0.4em] uppercase transition-all duration-500 hover-red-line pb-1 ${
-                    scrolled
+                    useDark
                       ? active ? 'text-svz-red' : 'text-black hover:text-svz-red'
                       : active ? 'text-svz-red' : 'text-white/80 hover:text-white'
                   }`}
@@ -67,17 +74,18 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-5 md:gap-10">
             {/* Account Node */}
             {user ? (
                 <div className="relative">
                   <button
                     onClick={() => setProfileOpen(!profileOpen)}
-                    className={`flex items-center gap-4 text-[9px] font-black tracking-[0.3em] uppercase transition-all duration-500 ${
-                       scrolled ? 'text-black' : 'text-white'
+                    className={`flex items-center gap-2 md:gap-4 shrink-0 text-[9px] font-black tracking-[0.3em] uppercase transition-all duration-500 ${
+                       useDark ? 'text-black' : 'text-white'
                     }`}
                   >
-                    <span>{user.username || 'NODE 01'}</span>
+                    <div className="w-1.5 h-1.5 bg-svz-red" />
+                    <span className="hidden sm:inline-block">{user.username || 'NODE 01'}</span>
                     <ChevronDown className={`w-3 h-3 transition-transform duration-700 ${profileOpen ? 'rotate-180' : ''}`} />
                   </button>
 
@@ -101,7 +109,7 @@ export default function Navbar() {
                 <Link
                     to="/register"
                     className={`text-[10px] font-black tracking-[0.4em] uppercase transition-all duration-500 ${
-                       scrolled ? 'text-black hover:text-svz-red' : 'text-white hover:text-svz-red'
+                       useDark ? 'text-black hover:text-svz-red' : 'text-white hover:text-svz-red'
                     }`}
                 >
                     Registry
@@ -112,7 +120,7 @@ export default function Navbar() {
             <button
                onClick={() => setCartOpen(true)}
                className={`text-[10px] font-black tracking-[0.4em] uppercase transition-all duration-500 group flex items-center gap-2 ${
-                  scrolled ? 'text-black hover:text-svz-red' : 'text-white hover:text-svz-red'
+                  useDark ? 'text-black hover:text-svz-red' : 'text-white hover:text-svz-red'
                }`}
             >
                Order <span className="text-svz-red group-hover:text-black">[{count}]</span>
@@ -122,7 +130,7 @@ export default function Navbar() {
             <Link
               to="/wholesale"
               className={`hidden md:flex items-center gap-4 text-[10px] font-black tracking-[0.3em] uppercase px-8 py-4 transition-all duration-700 ${
-                scrolled 
+                useDark 
                     ? 'bg-black text-white hover:bg-svz-red' 
                     : 'bg-white text-black hover:bg-svz-red hover:text-white'
               }`}
@@ -133,7 +141,7 @@ export default function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setOpen(!open)}
-              className={`lg:hidden transition-colors ${scrolled || open ? 'text-black' : 'text-white'}`}
+              className={`lg:hidden shrink-0 transition-colors ${useDark || open ? 'text-black' : 'text-white'}`}
             >
               {open ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
@@ -149,16 +157,16 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[70] bg-white text-black flex flex-col justify-between p-12 md:p-24"
+            className="fixed inset-0 z-[75] bg-white text-black flex flex-col justify-between p-6 md:p-24"
           >
-            <div className="mt-32 space-y-12">
+            <div className="mt-24 md:mt-32 space-y-8 md:space-y-12">
                <p className="label-svz text-black/20">Clinical Navigation</p>
-               <div className="flex flex-col gap-8">
+               <div className="flex flex-col gap-4 md:gap-8">
                   {NAV.map((item) => (
                     <Link
                       key={item.path}
                       to={item.path}
-                      className="text-6xl md:text-8xl font-black uppercase tracking-tighter hover:text-svz-red transition-all duration-700 leading-none"
+                      className="text-[10vw] md:text-8xl font-black uppercase tracking-tighter hover:text-svz-red transition-all duration-700 leading-none"
                     >
                       {item.label.split(' / ')[0]}
                     </Link>
@@ -166,12 +174,12 @@ export default function Navbar() {
                </div>
             </div>
             
-            <div className="flex flex-col md:flex-row justify-between items-end gap-12 border-t border-black/10 pt-12">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-12 border-t border-black/10 pt-6 md:pt-12">
                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30 mb-2">Registry Access</p>
-                  <Link to="/register" className="text-3xl font-black uppercase tracking-tighter hover:text-svz-red transition-all">Patient Session</Link>
+                  <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/30 mb-2">Registry Access</p>
+                  <Link to="/register" className="text-xl md:text-3xl font-black uppercase tracking-tighter hover:text-svz-red transition-all">Patient Session</Link>
                </div>
-               <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/10">Savincliff Pharmacy © 2026</p>
+               <p className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/10">Savincliff Pharmacy © 2026</p>
             </div>
           </motion.div>
         )}

@@ -48,20 +48,20 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10 md:space-y-20">
       
       {/* High-Impact Heading */}
-      <div className="border-b border-black/5 pb-12">
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">IDENTITY<br />SPECIFICATION</h1>
-        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30 mt-4 underline underline-offset-8">Audit and modify biometric contact parameters / Ref: {user?.id || '0000'}</p>
+      <div className="border-b border-black/5 pb-8 md:pb-12">
+        <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">IDENTITY<br />SPECIFICATION</h1>
+        <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 mt-3 md:mt-4 underline underline-offset-8">Audit and modify biometric contact parameters / Ref: {user?.id || '0000'}</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20">
           
           {/* Form Area */}
           <div className="lg:col-span-8">
-            <form onSubmit={handleUpdateProfile} className="space-y-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <form onSubmit={handleUpdateProfile} className="space-y-8 md:space-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     <div className="space-y-4">
                         <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Legal Identifier</label>
                         <input 

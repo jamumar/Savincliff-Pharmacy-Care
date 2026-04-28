@@ -143,9 +143,9 @@ export default function OrdersPage() {
   const orders = MOCK_ORDERS; // Using mock data
 
   return (
-    <div className="space-y-20">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-black/5 pb-12">
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">ORDER<br />ARCHIVE</h1>
+    <div className="space-y-10 md:space-y-20">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black/5 pb-8 md:pb-12">
+        <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">ORDER<br />ARCHIVE</h1>
         <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30">{orders.length} TOTAL NODES RECORDED</p>
       </div>
 
@@ -157,21 +157,21 @@ export default function OrdersPage() {
               animate={{ opacity: 1 }}
               transition={{ delay: i * 0.05 }}
               onClick={() => setSelectedOrder(order)}
-              className="p-12 border-b border-black/5 hover:bg-black hover:text-white transition-all duration-700 cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-12"
+              className="p-6 md:p-12 border-b border-black/5 hover:bg-black hover:text-white transition-all duration-700 cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-12"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-6">
                     <span className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">NODE 0{order.id}</span>
                     <span className="text-[11px] font-black uppercase tracking-widest bg-black/5 group-hover:bg-white/10 px-3 py-1 transition-colors">{order.status}</span>
                 </div>
-                <h3 className="text-4xl font-black uppercase tracking-tighter leading-none">AUDIT REF: {order.idempotency_key?.slice(0,8)}</h3>
+                <h3 className="text-xl md:text-4xl font-black uppercase tracking-tighter leading-none">AUDIT REF: {order.idempotency_key?.slice(0,8)}</h3>
                 <p className="text-[11px] font-bold tracking-widest uppercase opacity-40">COMMITTED {new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
               </div>
 
-              <div className="text-left md:text-right flex items-center gap-12">
+              <div className="text-left md:text-right flex items-center gap-6 md:gap-12">
                 <div>
                    <p className="text-[10px] font-black tracking-[0.4em] uppercase opacity-30 group-hover:opacity-60 mb-2">Commit Value</p>
-                   <p className="text-4xl font-black tracking-tighter">₦{parseFloat(order.total_price).toLocaleString()}</p>
+                   <p className="text-2xl md:text-4xl font-black tracking-tighter">₦{parseFloat(order.total_price).toLocaleString()}</p>
                 </div>
                 <ArrowUpRight className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500" />
               </div>

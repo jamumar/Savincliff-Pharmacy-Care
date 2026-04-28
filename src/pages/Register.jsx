@@ -102,10 +102,10 @@ export default function Register() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 1 }}
-        className="flex-1 flex flex-col justify-center px-6 md:px-24 bg-black min-h-screen"
+        className="flex-1 flex flex-col justify-center px-6 md:px-24 bg-black min-h-screen py-24 md:py-0"
       >
         <div className="max-w-md w-full">
-          <Link to="/" className="inline-flex items-center gap-4 text-[10px] font-black tracking-[0.3em] uppercase text-white/30 hover:text-white transition-colors mb-20">
+          <Link to="/" className="inline-flex items-center gap-4 text-[10px] font-black tracking-[0.3em] uppercase text-white/30 hover:text-white transition-colors mb-10 md:mb-20">
              <ArrowLeft className="w-4 h-4" /> Exit to Root
           </Link>
 
