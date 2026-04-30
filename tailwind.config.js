@@ -13,7 +13,7 @@ export default {
     extend: {
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
-        sans:  ['Inter', '-apple-system', 'sans-serif'],
+        sans:  ['Gotham', 'Inter', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
