@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Activity, Zap, ClipboardList, Package, Truck } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
     { 
@@ -42,8 +46,78 @@ const SERVICES = [
 ];
 
 export default function Services() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".media");
+
+      // Initial stack (only first visible)
+      gsap.set(cards, {
+        y: 100,
+        z: -200,
+        scale: 0.9,
+        opacity: 0,
+        rotate: (i) => gsap.utils.random(-10, 10),
+        transformOrigin: "center center",
+      });
+
+      // First card visible
+      gsap.set(cards[0], {
+        y: 0,
+        z: 0,
+        scale: 1,
+        opacity: 1,
+        rotate: 0,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${cards.length * 800}`, // 👈 each card gets scroll space
+          scrub: 1.2,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+
+        const prev = cards[i - 1];
+
+        // Bring current card in
+        tl.to(card, {
+          y: 0,
+          z: 0,
+          scale: 1,
+          opacity: 1,
+          rotate: 0,
+          ease: "power3.out",
+          duration: 0.6,
+        });
+
+        // Push previous card back
+        tl.to(prev, {
+          y: -80,
+          z: -150,
+          scale: 0.85,
+          opacity: 0.3,
+          ease: "power2.out",
+          duration: 0.6,
+        }, "<");
+
+        // 👇 HOLD (this is what makes it readable)
+        tl.to({}, { duration: 0.5 });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="bg-white min-h-screen pt-40">
+    <div className="bg-white min-h-screen pt-40 overflow-x-hidden">
       
       {/* High-Impact Heading */}
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
@@ -53,31 +127,25 @@ export default function Services() {
          </div>
       </section>
 
-      {/* Grid Services */}
-      <section className="px-6 md:px-12 pb-40">
-        <div className="max-w-[1800px] mx-auto border border-black/10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {SERVICES.map((s, i) => (
-                    <motion.div 
-                        key={s.id}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.8 }}
-                        className="p-16 border-b md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[500px]"
-                    >
-                        <div>
-                            <div className="mb-12">{s.icon}</div>
-                            <h3 className="text-4xl font-black uppercase tracking-tighter mb-8 leading-none">{s.name}</h3>
-                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-black/40 group-hover:text-white/40 leading-relaxed max-w-xs">{s.desc}</p>
-                        </div>
-                        <div className="mt-12 flex justify-between items-end">
-                            <span className="text-4xl font-black opacity-10 group-hover:opacity-30 transition-opacity select-none">{s.id}</span>
-                            <div className="w-1.5 h-1.5 bg-svz-red rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
+      {/* Animated Services Section */}
+      <section ref={sectionRef} className="relative h-screen flex items-center justify-center bg-black overflow-hidden" style={{ perspective: "1000px" }}>
+        <div className="relative w-full max-w-4xl h-[600px] flex items-center justify-center">
+            {SERVICES.map((s, i) => (
+                <div 
+                    key={s.id}
+                    className="media absolute w-full max-w-lg md:max-w-2xl bg-white text-black p-8 md:p-16 border border-black/10 shadow-2xl flex flex-col justify-between min-h-[450px]"
+                >
+                    <div>
+                        <div className="mb-12">{s.icon}</div>
+                        <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-none">{s.name}</h3>
+                        <p className="text-[11px] md:text-[13px] font-bold tracking-[0.2em] uppercase text-black/60 leading-relaxed max-w-md">{s.desc}</p>
+                    </div>
+                    <div className="mt-12 flex justify-between items-end">
+                        <span className="text-4xl md:text-6xl font-black opacity-10 select-none tracking-tighter">{s.id}</span>
+                        <div className="w-2 h-2 bg-svz-red rounded-full" />
+                    </div>
+                </div>
+            ))}
         </div>
       </section>
 
