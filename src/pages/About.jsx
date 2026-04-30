@@ -1,47 +1,181 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import Lenis from '@studio-freight/lenis';
+
+gsap.registerPlugin(ScrollTrigger);
 import { ArrowUpRight, ShieldCheck, Activity, Zap } from 'lucide-react';
+import AnimatedText from '@/components/ui/AnimatedText';
+import ScrollMarquee from '@/components/ui/ScrollMarquee';
 
 const easeQuint = [0.16, 1, 0.3, 1];
 
+const NARRATIVE_WORDS = [
+  { text: "We" }, { text: "are" }, { text: "a" }, { text: "boutique" }, { text: "studio" },
+  { text: "built" }, { text: "on" }, { text: "thoughtful" }, { text: "design" }, { text: "and" },
+  { text: "honest" }, { text: "collaboration." }, 
+  { text: "We" }, { text: "shape" }, { text: "ideas" },
+  { text: "with" }, { text: "artistry" }, { text: "and" }, { text: "care" }, { text: "then" },
+  { text: "move" }, { text: "with" },
+  { text: "purpose", red: true }, { text: "and", red: true }, { text: "intent", red: true },
+  { text: "through" }, { text: "every" }, { text: "phase." },
+  { break: true },
+  { text: "Each" }, { text: "step" }, { text: "aligns" }, { text: "vision" }, { text: "with" },
+  { text: "action—crafting" }, { text: "work" }, { text: "with" }, { text: "genuine" }, { text: "passion" },
+  { text: "that" }, { text: "leads" }, { text: "to" },
+  { text: "unparalleled", red: true }, { text: "success.", red: true }
+];
+
+const PinnedScrollReveal = () => {
+  const sectionRef = useRef(null);
+  const paragraphRef = useRef(null);
+  
+  useEffect(() => {
+    // -------------------------------
+    // LENIS (smooth scrolling)
+    // -------------------------------
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      lerp: 0.08,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // -------------------------------
+    // GSAP ANIMATION
+    // -------------------------------
+    const ctx = gsap.context(() => {
+      const words = paragraphRef.current.querySelectorAll(".word");
+
+      gsap.set(words, {
+        x: window.innerWidth,
+        force3D: true,
+        willChange: "transform",
+      });
+
+      gsap.to(words, {
+        x: 0,
+        ease: "power3.out",
+        stagger: {
+          each: 0.02,
+          from: "start",
+        },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom+=4500 top",
+
+          scrub: 1.5,
+          pin: true,
+          anticipatePin: 1,
+
+          invalidateOnRefresh: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => {
+      ctx.revert();
+      lenis.destroy();
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden section-padding">
+      <div className="grid-container relative z-10 w-full flex flex-col items-center">
+         <div className="max-w-4xl text-center container">
+           <p ref={paragraphRef} className="paragraph text-xl md:text-[28px] lg:text-[34px] text-white leading-[1.4] tracking-widest font-sans uppercase flex flex-wrap justify-center items-center">
+              {NARRATIVE_WORDS.map((w, i) => {
+                if (w.break) {
+                  return <div key={i} className="w-full h-2 md:h-6" />;
+                }
+                return (
+                  <span key={i} className={`word inline-block px-[0.12em] py-[0.1em] ${w.red ? 'text-[#FF4049]' : 'text-white'}`}>
+                    {w.text}
+                  </span>
+                );
+              })}
+           </p>
+         </div>
+      </div>
+    </section>
+  );
+};
+
 export default function About() {
+  
+  // Animation config for infinite back-and-forth glide (7s total loop)
+  const getTransition = (delay) => ({
+    duration: 3.5, // 3.5s forward, 3.5s reverse = 7s loop exactly like Lottie
+    repeat: Infinity,
+    repeatType: "reverse",
+    ease: "easeInOut",
+    delay: delay
+  });
+
   return (
     <div className="bg-white min-h-screen">
       
-      {/* Narrative Hero */}
-      <section className="bg-black text-white section-padding flex flex-col justify-center relative overflow-hidden">
-        <div className="grid-container relative z-10 w-full pt-8 md:pt-20">
-            <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: easeQuint }}
+      {/* Native Auto-Playing Typography Hero */}
+      <section className="bg-black text-[#8B0000] min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]">
+        <div className="w-full flex flex-col justify-center space-y-2">
+            <motion.h1 
+              initial={{ x: "-5vw" }}
+              animate={{ x: "60vw" }} 
+              transition={getTransition(0)}
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
             >
-                <p className="label-svz mb-6 md:mb-12">Clinical Origins / Registry 2026</p>
-                <h1 className="text-[12vw] md:text-[8vw] font-black uppercase tracking-tighter leading-none">
-                    BEYOND<br />
-                    DISPENSE
-                </h1>
-            </motion.div>
-            
-            <div className="mt-10 md:mt-24 max-w-4xl">
-                <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 1 }}
-                    className="text-base md:text-3xl text-white/50 leading-tight tracking-tight uppercase font-medium"
-                >
-                    Savincliff is an architectural project in pharmaceutical certainty. We dismantle traditional healthcare models to rebuild them on the foundations of medical precision and zero-trust verification.
-                </motion.p>
-            </div>
+               Legacy
+            </motion.h1>
+            <motion.h1 
+              initial={{ x: "10vw" }}
+              animate={{ x: "40vw" }} 
+              transition={getTransition(0.3)}
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+            >
+               Innovation
+            </motion.h1>
+            <motion.h1 
+              initial={{ x: "-15vw" }}
+              animate={{ x: "50vw" }} 
+              transition={getTransition(0.6)}
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+            >
+               Human
+            </motion.h1>
+            <motion.h1 
+              initial={{ x: "20vw" }}
+              animate={{ x: "70vw" }} 
+              transition={getTransition(0.9)}
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+            >
+               Freedom
+            </motion.h1>
         </div>
-        <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-svz-red/5 blur-[200px] -mr-[10vw] -mt-[10vw] rounded-full" />
+        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase">
+            Constant Motion
+        </div>
       </section>
+
+      {/* Pinned Scroll Scrub Reveal */}
+      <PinnedScrollReveal />
 
       {/* Story Section */}
       <section className="section-padding bg-white">
         <div className="grid-container grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-32 items-center">
             <div className="space-y-8 md:space-y-16">
-                <h2 className="text-[10vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none">THE<br />MANIFEST</h2>
+                <h2 className="text-[10vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none flex flex-col items-start">
+                  <AnimatedText text="THE" splitBy="word" />
+                  <AnimatedText text="MANIFEST" splitBy="char" delay={0.1} />
+                </h2>
                 <div className="space-y-6 md:space-y-10 max-w-xl">
                     <p className="text-lg md:text-2xl text-black font-black leading-none tracking-tighter uppercase">
                         Originating in the FCT node of Abuja, Savincliff emerged from a singular clinical requirement.
@@ -92,13 +226,11 @@ export default function About() {
 
       {/* Compliance Strip */}
       <section className="py-20 md:py-40 bg-white border-b border-black/5 overflow-hidden">
-          <div className="animate-marquee whitespace-nowrap">
-             {Array(8).fill("").map((_, i) => (
-                <span key={i} className="text-[15vw] md:text-[10vw] font-black uppercase tracking-[-0.05em] text-black/5 mx-8 md:mx-24">
-                   PCN LICENSED NODE / NAFDAC PRIMARY SOURCE / VERIFIED CLINICAL CERTAINTY / 
-                </span>
-             ))}
-          </div>
+          <ScrollMarquee baseVelocity={1.5}>
+             <span className="text-[15vw] md:text-[10vw] font-black uppercase tracking-[-0.05em] text-black/5 mx-8 md:mx-24">
+                PCN LICENSED NODE / NAFDAC PRIMARY SOURCE / VERIFIED CLINICAL CERTAINTY / 
+             </span>
+          </ScrollMarquee>
       </section>
 
       {/* High-Fidelity CTA */}

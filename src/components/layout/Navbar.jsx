@@ -7,6 +7,7 @@ import { useCart } from '@/lib/CartContext';
 import { useAuth } from '@/lib/AuthContext';
 
 const NAV = [
+  { label: 'ABOUT', path: '/about' },
   { label: 'EXPLORE', path: '/shop' },
   { label: 'SERVICES', path: '/services' },
   { label: 'QA / NODES', path: '/products' },

@@ -79,18 +79,22 @@ const AuthenticatedApp = () => {
   );
 };
 
+import { ReactLenis } from '@studio-freight/react-lenis';
+
 function App() {
   return (
-    <div className="relative w-full min-h-screen overflow-x-hidden font-sans text-foreground bg-background">
-      <AuthProvider>
-        <QueryClientProvider client={queryClientInstance}>
-          <Router>
-            <AuthenticatedApp />
-          </Router>
-          <Toaster />
-        </QueryClientProvider>
-      </AuthProvider>
-    </div>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: false }}>
+      <div className="relative w-full min-h-screen overflow-x-hidden font-sans text-foreground bg-background">
+        <AuthProvider>
+          <QueryClientProvider client={queryClientInstance}>
+            <Router>
+              <AuthenticatedApp />
+            </Router>
+            <Toaster />
+          </QueryClientProvider>
+        </AuthProvider>
+      </div>
+    </ReactLenis>
   );
 }
 

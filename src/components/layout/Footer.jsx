@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Instagram, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Logo from '@/components/brand/Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  // Parallax constraints: move between -40px and +40px based on cursor
+  const x = useTransform(smoothX, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-40, 40]);
+  const y = useTransform(smoothY, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-40, 40]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
-    <footer className="bg-black text-white pt-[10vh] md:pt-[20vh] pb-8 md:pb-12 border-t border-[#1A1A1A]">
-      <div className="grid-container">
+    <footer className="bg-black text-white pt-[10vh] md:pt-[20vh] pb-8 md:pb-12 border-t border-[#1A1A1A] relative overflow-hidden">
+      
+      {/* Massive Parallax 'V' */}
+      <div className="absolute bottom-[-15vw] left-0 right-0 flex justify-center pointer-events-none select-none z-0">
+         <motion.div 
+            style={{ x, y }} 
+            className="text-[60vw] md:text-[40vw] font-black leading-none tracking-tighter text-white/[0.03]"
+         >
+           V
+         </motion.div>
+      </div>
+
+      <div className="grid-container relative z-10">
         
         {/* Massive Primary CTA */}
         <div className="mb-16 md:mb-40 group">

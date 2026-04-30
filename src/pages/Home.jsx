@@ -2,6 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import AnimatedText from '@/components/ui/AnimatedText';
+import ScrollMarquee from '@/components/ui/ScrollMarquee';
+import InteractiveGallery3D from '@/components/ui/InteractiveGallery3D';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -49,30 +52,18 @@ function HeroSection() {
       </motion.p>
 
       {/* ── Main headline — mixed typography ── */}
-      <div className="relative z-20 text-center w-full max-w-[95vw]">
-        <motion.h1
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.4, ease }}
-          className="text-white"
-        >
-          <span className="block">
-            <span className="font-serif-italic font-normal text-white/60 text-[5vw] md:text-[3.2vw]">delivering</span>
-            {'  '}
-            <span className="font-black uppercase tracking-[-0.03em] text-[10vw] md:text-[6vw] leading-[0.9]">
-              CLINICAL CARE
-            </span>
-          </span>
-          <span className="block">
-            <span className="font-serif-italic font-normal text-white/60 text-[5vw] md:text-[2.8vw]">for the </span>
-            <span className="font-black uppercase tracking-[-0.04em] text-[10vw] md:text-[7vw] leading-[0.85]">
-              PATIENTS OF
-            </span>
-          </span>
-          <span className="block font-black uppercase tracking-[-0.04em] text-[13vw] md:text-[7vw] leading-[0.85] mt-1">
-            TOM<span className="text-svz-red">O</span>RROW
-          </span>
-        </motion.h1>
+      <div className="relative z-20 text-center w-full max-w-[95vw] text-white flex flex-col items-center">
+        <span className="block mb-2 md:mb-4">
+          <AnimatedText text="delivering" splitBy="char" className="font-serif-italic font-normal text-white/60 text-[5vw] md:text-[3.2vw]" />
+          <AnimatedText text=" CLINICAL CARE" splitBy="word" className="font-black uppercase tracking-[-0.03em] text-[10vw] md:text-[6vw] leading-[0.9]" />
+        </span>
+        <span className="block mb-2 md:mb-4">
+          <AnimatedText text="for the " splitBy="char" delay={0.2} className="font-serif-italic font-normal text-white/60 text-[5vw] md:text-[2.8vw]" />
+          <AnimatedText text=" PATIENTS OF" splitBy="word" delay={0.2} className="font-black uppercase tracking-[-0.04em] text-[10vw] md:text-[7vw] leading-[0.85]" />
+        </span>
+        <span className="block font-black uppercase tracking-[-0.04em] text-[13vw] md:text-[7vw] leading-[0.85] mt-1">
+           <AnimatedText text="TOMORROW" splitBy="char" delay={0.4} />
+        </span>
       </div>
 
       {/* ── "Enter our world" CTA ── */}
@@ -166,54 +157,7 @@ function ManifestoSection() {
    SECTION 4 — Selected projects grid
    ═══════════════════════════════════════════════════════ */
 function ProjectsSection() {
-  return (
-    <section className="bg-black text-white py-[10vh] md:py-[15vh]">
-      <div className="grid-container">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8 mb-12 md:mb-20 border-b border-white/10 pb-8 md:pb-10">
-          <h2 className="sub-display-svz">SELECTED<br/>INVENTORY</h2>
-          <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-white/30 mb-2">Clinical Manifest / 2026</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[2px]">
-          {PROJECTS.map((p, i) => (
-            <motion.div
-              key={p.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: i * 0.15, duration: 1, ease }}
-            >
-              <Link to="/shop" className="group block relative aspect-[16/10] overflow-hidden bg-[#111] cursor-pointer">
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)]"
-                />
-                <div className="absolute inset-0 z-10 p-6 md:p-14 flex flex-col justify-between">
-                  <div className="flex justify-between items-start">
-                    <span className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-white/30 group-hover:text-svz-red transition-colors duration-500">{p.cat}</span>
-                    <span className="text-[9px] md:text-[10px] font-black tracking-[0.3em] uppercase text-white/0 group-hover:text-white/50 transition-all duration-700">{p.id}</span>
-                  </div>
-                  <div className="flex justify-between items-end">
-                    <h3 className="text-2xl md:text-5xl font-black uppercase tracking-[-0.03em] leading-none translate-y-4 group-hover:translate-y-0 transition-all duration-700">{p.title}</h3>
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-white/0 group-hover:bg-white flex items-center justify-center transition-all duration-500 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0">
-                      <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-black" />
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-12 md:mt-20 text-center">
-          <Link to="/shop" className="group inline-flex items-center gap-4 md:gap-6 text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-white/60 hover:text-white border-b border-white/20 hover:border-white pb-3 transition-all duration-500">
-            View All Inventory <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
+  return <InteractiveGallery3D />;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -222,13 +166,11 @@ function ProjectsSection() {
 function MarqueeSection() {
   return (
     <section className="py-12 md:py-20 bg-white overflow-hidden select-none pointer-events-none border-y border-black/5">
-      <div className="animate-marquee whitespace-nowrap">
-        {Array(6).fill('').map((_, i) => (
-          <span key={i} className="text-[15vw] md:text-[12vw] font-black uppercase tracking-[-0.04em] text-black/[0.04] mx-4 md:mx-8">
-            SAVINCLIFF PHARMACY ·  CLINICAL PRECISION ·  PRIMARY SOURCE ·  
-          </span>
-        ))}
-      </div>
+      <ScrollMarquee baseVelocity={-2}>
+        <span className="text-[15vw] md:text-[12vw] font-black uppercase tracking-[-0.04em] text-black/[0.04] mx-4 md:mx-8">
+          SAVINCLIFF PHARMACY · CLINICAL PRECISION · PRIMARY SOURCE ·
+        </span>
+      </ScrollMarquee>
     </section>
   );
 }
