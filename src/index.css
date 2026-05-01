@@ -160,3 +160,166 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Nav Dark BG */
+.navigation__dark-bg {
+  transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+[data-navigation-status="active"] .navigation__dark-bg {
+  opacity: 0.15;
+  visibility: visible;
+}
+
+/* Show/Hide content */
+.centered-nav__content {
+  transition: grid-template-rows 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+  grid-template-rows: 0fr;
+}
+[data-navigation-status="active"] .centered-nav__content {
+  grid-template-rows: 1fr;
+}
+
+/* Nav content animation (menu items) */
+[data-navigation-item] {
+  transition: all 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+  opacity: 0;
+  transform: translate(0px, 2em);
+}
+[data-navigation-status="active"] [data-navigation-item] {
+  opacity: 1;
+  transform: translate(0px, 0em);
+}
+
+/* Link underline */
+.hamburger-nav__a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.hamburger-nav__a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.2;
+  transition-delay: inherit;
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(.65, 0, 0, 1);
+  transform-origin: left;
+}
+[data-navigation-status="active"] .hamburger-nav__a::after {
+  transform: scaleX(1);
+}
+.hamburger-nav__a:hover::after {
+  opacity: 0.4;
+}
+
+/* Link text slide */
+.hamburger-nav__p {
+  transition: transform 0.6s cubic-bezier(.65, 0, 0, 1);
+  transform: translate(0px, 150%);
+  transition-delay: inherit;
+  margin: 0;
+}
+[data-navigation-status="active"] .hamburger-nav__p {
+  transform: translate(0px, 0%);
+}
+
+/* Active Link underline */
+.hamburger-nav__a[aria-current]::after {
+  opacity: 1;
+}
+
+/* Hamburger Button animation */
+.centered-nav__toggle .centered-nav__toggle-bar {
+  transition: transform 0.6s cubic-bezier(.65, 0, 0, 1);
+  transform: translateY(-0.25em) rotate(0.001deg);
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  margin: 4px 0;
+}
+.centered-nav__toggle:hover .centered-nav__toggle-bar {
+  transform: translateY(0.25em) rotate(0.001deg);
+}
+.centered-nav__toggle .centered-nav__toggle-bar:nth-child(2) {
+  transform: translateY(0.15em) rotate(0.001deg);
+}
+.centered-nav__toggle:hover .centered-nav__toggle-bar:nth-child(2) {
+  transform: translateY(-0.15em) rotate(0.001deg);
+}
+[data-navigation-status="active"] .centered-nav__toggle .centered-nav__toggle-bar {
+  transform: translateY(0em) rotate(45deg);
+}
+[data-navigation-status="active"] .centered-nav__toggle .centered-nav__toggle-bar:nth-child(2) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* CTA Banner marquee */
+@keyframes translateX {
+  to {
+    transform: translateX(-100%);
+  }
+}
+[data-css-marquee-list] {
+  animation: translateX 20s linear infinite;
+  animation-play-state: paused;
+  display: flex;
+}
+[data-navigation-status="active"] [data-css-marquee-list] {
+  animation-play-state: running;
+}
+[data-navigation-status="active"] .centered-nav__banner:hover [data-css-marquee-list] {
+  animation-play-state: paused;
+}
+
+/* Menu toggle button*/
+.menu-button:hover .menu-button-icon{transform: rotate(90deg); }
+
+/* Menu Large Links */
+.menu-link-heading { 
+  text-shadow: 0px 1em 0px currentColor; 
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+}
+.menu-link:hover .menu-link-heading { 
+  transform: translate(0px, -1em);
+  color: #FB2C2C;
+  transition-delay: 0.1s; 
+}
+.menu-link-bg {
+  transform: scale(0, 1);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.menu-link:hover .menu-link-bg { 
+  transform: scale(1,1); 
+}
+
+/* Menu Smaller Links */
+.text-link {
+  position: relative;
+  display: inline-block;
+}
+.text-link::after{
+  content: '';
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  width:100%;
+  height:1px;
+  background: currentColor;
+  transform-origin: right center;
+  transform: scale(0,1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-link:hover::after{
+  transform-origin: left center;
+  transform: scale(1,1);	
+}

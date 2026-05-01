@@ -66,7 +66,7 @@ export default function Products() {
                 <img 
                     src="https://images.unsplash.com/photo-1579152276532-535c21af3bb5?w=1000&q=80" 
                     alt="Clinical Integrity" 
-                    className="w-full h-full object-cover grayscale opacity-30 hover:opacity-100 transition-opacity duration-1000"
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-1000"
                 />
                 <div className="absolute inset-0 border-[40px] border-black/80 pointer-events-none" />
             </div>

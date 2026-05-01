@@ -192,7 +192,7 @@ export default function About() {
                     loop 
                     muted 
                     playsInline
-                    className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-all duration-1000"
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000"
                 >
                     <source src="/animations/whatsapp_2.mp4" type="video/mp4" />
                 </video>

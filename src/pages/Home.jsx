@@ -128,7 +128,7 @@ function ManifestoSection() {
       >
         <div className="w-[14vw] relative overflow-hidden svz-image-reveal">
           <p className="text-[9px] font-black tracking-[0.4em] uppercase text-white/30 mb-3">Featured Protocol</p>
-          <img src="/images/lab.png" alt="Lab" className="w-full aspect-[3/4] object-cover grayscale opacity-40 hover:opacity-80 transition-all duration-1000" />
+          <img src="/images/lab.png" alt="Lab" className="w-full aspect-[3/4] object-cover opacity-80 hover:opacity-100 transition-all duration-1000" />
         </div>
       </motion.div>
 

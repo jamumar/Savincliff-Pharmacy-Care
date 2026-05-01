@@ -160,7 +160,7 @@ export default function Services() {
                 <img 
                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80" 
                    alt="Logistics Node" 
-                   className="w-full h-full object-cover grayscale opacity-40 hover:opacity-80 transition-all duration-1000"
+                   className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000"
                 />
             </div>
          </div>
