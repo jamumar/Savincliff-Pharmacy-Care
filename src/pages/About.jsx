@@ -187,16 +187,23 @@ export default function About() {
             </div>
             
             <div className="relative aspect-[4/5] overflow-hidden bg-black svz-image-reveal shadow-2xl">
-                <img 
-                    src="/images/pharmacist.png" 
-                    alt="Clinical Lead" 
+                <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
                     className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-all duration-1000"
-                />
+                >
+                    <source src="/animations/whatsapp_2.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                <div className="absolute top-6 left-6 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase border border-white/20 p-2">
+                    CLINICAL MANIFEST v2.0
+                </div>
             </div>
         </div>
       </section>
 
-      {/* Philosophy Grid */}
       <section className="bg-black text-white section-padding px-5 md:px-0">
         <div className="grid-container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10">

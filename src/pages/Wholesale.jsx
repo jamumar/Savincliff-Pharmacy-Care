@@ -63,9 +63,26 @@ export default function Wholesale() {
 
       {/* Uploader Terminal */}
       <section className="px-6 md:px-12 pb-40 bg-black text-white py-40 overflow-hidden relative">
-         <div className="max-w-[1000px] mx-auto text-center relative z-10 space-y-12">
-            <h2 className="sub-display-svz mb-12">COMMISSION<br />UPLOAD</h2>
-            <div className="bg-white text-black p-4 lg:p-20 border border-white/10 group">
+         <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+            <div className="space-y-12">
+                <h2 className="sub-display-svz">COMMISSION<br />UPLOAD</h2>
+                <p className="text-[11px] md:text-[13px] font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed max-w-md">
+                    Our uploader terminal utilizes end-to-end clinical encryption. Your medical data is processed through a high-fidelity verification node before dispatch.
+                </p>
+                <div className="aspect-video bg-white/5 border border-white/10 overflow-hidden relative group rounded-lg shadow-inner">
+                    <video 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-1000"
+                    >
+                        <source src="/animations/whatsapp_3.mp4" type="video/mp4" />
+                    </video>
+                    <div className="absolute bottom-4 left-4 text-[9px] font-black tracking-[0.4em] text-white/30 uppercase">Node Activity Monitor</div>
+                </div>
+            </div>
+            <div className="bg-white text-black p-4 lg:p-20 border border-white/10 shadow-2xl">
                 <RxUploader />
             </div>
          </div>

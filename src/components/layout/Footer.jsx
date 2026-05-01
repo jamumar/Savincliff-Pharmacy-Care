@@ -209,16 +209,25 @@ export default function Footer() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black pointer-events-none z-[5]" />
       </section>
 
-      {/* WhatsApp FAB */}
+      {/* WhatsApp FAB with Dribbble Animation */}
       <a 
         href="https://wa.me/923251206427"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] flex items-center gap-4 group"
       >
-        <div className="w-14 h-14 md:w-16 md:h-16 bg-white text-black flex items-center justify-center hover:bg-svz-red hover:text-white transition-all duration-700 shadow-2xl relative">
-           <Phone className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-125 transition-transform" />
-           <div className="absolute inset-0 border border-white/20 group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000" />
+        <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-svz-red transition-all duration-700 shadow-2xl relative border border-white/10">
+           <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+           >
+              <source src="/animations/whatsapp_1.mp4" type="video/mp4" />
+           </video>
+           <div className="absolute inset-0 bg-svz-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+           <div className="absolute inset-0 border-2 border-white/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000" />
         </div>
       </a>
     </footer>
