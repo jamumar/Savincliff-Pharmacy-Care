@@ -108,7 +108,7 @@ export default function SettingsPage() {
                 <div className="pt-8">
                     <button 
                        disabled={loading}
-                       className="flex items-center gap-8 bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700 disabled:opacity-50"
+                       className="flex items-center gap-8 bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700 disabled:opacity-50"
                     >
                        {loading ? 'Committing Changes...' : 'Commit Specification'} <ArrowRight className="w-4 h-4" />
                     </button>
@@ -119,7 +119,7 @@ export default function SettingsPage() {
           {/* Metadata Sidebar */}
           <div className="lg:col-span-4 space-y-12">
              <div className="p-12 bg-[#FAFAFA] border border-black/5 space-y-8">
-                <div className="flex items-center gap-4 text-svz-red">
+                <div className="flex items-center gap-4 text-brand-teal">
                    <Activity className="w-6 h-6" />
                    <p className="text-[11px] font-black uppercase tracking-widest">Health Sync Active</p>
                 </div>
@@ -136,7 +136,7 @@ export default function SettingsPage() {
                 <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-black/40">
                     Authentication is managed via a zero-trust model. For password reset or biometric adjustments, please initiate a ticket via clinical support.
                 </p>
-                <button className="text-[10px] font-black uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-svz-red hover:border-svz-red transition-all">Audit Security Log</button>
+                <button className="text-[10px] font-black uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-brand-teal hover:border-brand-teal transition-all">Audit Security Log</button>
              </div>
           </div>
 

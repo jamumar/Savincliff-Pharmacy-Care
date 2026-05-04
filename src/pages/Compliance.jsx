@@ -75,7 +75,7 @@ export default function Compliance() {
       {/* Certification Grid */}
       <section className="bg-black text-white py-40 px-6 md:px-12">
          <div className="max-w-[1800px] mx-auto">
-            <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red mb-12">Verification Systems</p>
+            <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Verification Systems</p>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 border border-white/10">
                 {badges.map((b, i) => (
                     <motion.div
@@ -87,7 +87,7 @@ export default function Compliance() {
                         className="p-12 border-b md:border-r border-white/10 hover:bg-white/5 transition-all duration-700 min-h-[350px] flex flex-col justify-between"
                     >
                         <div>
-                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red mb-8">{b.id} / NODE</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal mb-8">{b.id} / NODE</p>
                             <h3 className="text-2xl font-black uppercase tracking-tighter mb-6">{b.title}</h3>
                             <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 leading-relaxed">{b.body}</p>
                         </div>
@@ -113,7 +113,7 @@ export default function Compliance() {
                 <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-0 border border-black/10">
                     {commitments.map((c, i) => (
                         <div key={i} className="p-10 border-b border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 flex items-center justify-between group">
-                            <span className="text-[11px] font-black uppercase tracking-widest group-hover:text-svz-red transition-colors">0{i + 1} / {c}</span>
+                            <span className="text-[11px] font-black uppercase tracking-widest group-hover:text-brand-teal transition-colors">0{i + 1} / {c}</span>
                             <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                     ))}

@@ -31,14 +31,14 @@ export default function Contact() {
             <div className="lg:col-span-4 space-y-12 md:space-y-24">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 md:gap-12">
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red">Node 01 / Physical</p>
+                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 01 / Physical</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">CLINICAL HQ</h3>
                       <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
                          Divib Plaza, 7th Avenue,<br />Gwarinpa, Abuja / FCT
                       </p>
                    </div>
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red">Node 02 / Digital</p>
+                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 02 / Digital</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">DIRECT SYNC</h3>
                       <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
                          node@savincliff.com<br />
@@ -46,7 +46,7 @@ export default function Contact() {
                       </p>
                    </div>
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red">Node 03 / Support</p>
+                      <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 03 / Support</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">PATIENT DESK</h3>
                       <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
                          Live Terminal Available<br />
@@ -77,20 +77,20 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
                         <div className="space-y-3 md:space-y-4 relative group">
                             <label className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Patient Handle</label>
-                            <input placeholder="ENTER FULL NAME" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all" />
+                            <input placeholder="ENTER FULL NAME" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all" />
                         </div>
                         <div className="space-y-3 md:space-y-4 relative group">
                             <label className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Digital Node</label>
-                            <input placeholder="EMAIL@NODE.COM" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all" />
+                            <input placeholder="EMAIL@NODE.COM" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all" />
                         </div>
                     </div>
                     
                     <div className="space-y-3 md:space-y-4 relative group">
                         <label className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Clinical Protocol / Message</label>
-                        <textarea rows={4} placeholder="STATE YOUR REQUIREMENT" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-svz-red transition-all resize-none" />
+                        <textarea rows={4} placeholder="STATE YOUR REQUIREMENT" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all resize-none" />
                     </div>
 
-                    <button type="button" className="group flex items-center justify-between w-full bg-black text-white px-6 md:px-12 py-6 md:py-10 text-[11px] md:text-[14px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-svz-red transition-all duration-700">
+                    <button type="button" className="group flex items-center justify-between w-full bg-black text-white px-6 md:px-12 py-6 md:py-10 text-[11px] md:text-[14px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-brand-teal transition-all duration-700">
                         COMMIT PROTOCOL <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-4 transition-transform" />
                     </button>
                 </form>

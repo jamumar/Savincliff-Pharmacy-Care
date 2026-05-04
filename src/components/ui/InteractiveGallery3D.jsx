@@ -81,7 +81,7 @@ export default function InteractiveGallery3D() {
               <img 
                 src={img} 
                 alt={`Gallery Index ${i}`} 
-                className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-1000 ease-out" 
+                className="absolute inset-0 w-full h-full object-cover opacity-60 hover:opacity-100 transition-all duration-1000 ease-out" 
               />
             </motion.div>
           );

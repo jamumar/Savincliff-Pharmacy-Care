@@ -40,7 +40,7 @@ export default function Shop() {
             </motion.h1>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-8">
                <p className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">Clinical Manifest / Synchronized 2026</p>
-               <span className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red sm:px-4 sm:border-l border-svz-red">Total: {MOCK_PRODUCTS.length} NODES</span>
+               <span className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal sm:px-4 sm:border-l border-brand-teal">Total: {MOCK_PRODUCTS.length} NODES</span>
             </div>
          </div>
       </section>
@@ -63,7 +63,7 @@ export default function Shop() {
                           <img 
                               src={p.img} 
                               alt={p.name} 
-                              className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
+                              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700" />
                       </div>
@@ -72,7 +72,7 @@ export default function Shop() {
                       <div className="relative z-10 w-full p-6 md:p-12 flex flex-col justify-between h-full">
                           <div className="flex justify-between items-start">
                              <div className="space-y-2 md:space-y-4">
-                                <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 group-hover:text-svz-red transition-all duration-500">Node 0{p.id}</p>
+                                <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
                                 <h3 className="text-lg md:text-2xl font-black uppercase tracking-tighter leading-none group-hover:translate-x-2 md:group-hover:translate-x-4 transition-all duration-700">{p.name}</h3>
                              </div>
                              <span className="text-[8px] md:text-[9px] font-black tracking-[0.3em] uppercase text-black/30 opacity-0 group-hover:opacity-100 transition-all duration-700 border-b border-black hidden sm:inline">View Spec</span>
@@ -81,13 +81,13 @@ export default function Shop() {
                           <div className="flex justify-between items-end">
                               <div className="space-y-1">
                                  <p className="text-[8px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">{p.brand}</p>
-                                 <p className="text-xl md:text-3xl font-black tracking-tighter transition-all duration-700 group-hover:text-svz-red">₦{p.price.toLocaleString()}</p>
+                                 <p className="text-xl md:text-3xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
                               </div>
                               
                               <button 
                                  onClick={(e) => { e.stopPropagation(); add(p); }}
                                  className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center transition-all duration-700 ${
-                                    isAdded(p.id) ? 'bg-svz-red text-white' : 'bg-black text-white group-hover:bg-svz-red'
+                                    isAdded(p.id) ? 'bg-brand-teal text-white' : 'bg-black text-white group-hover:bg-brand-teal'
                                  }`}
                               >
                                  {isAdded(p.id) ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <Plus className="w-4 h-4 md:w-5 md:h-5" />}

@@ -16,15 +16,19 @@ const NAV = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLightBg, setIsLightBg] = useState(false);
   const location = useLocation();
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHero = location.pathname === '/' || location.pathname === '/register';
-  const useDark = scrolled || !isDarkHero;
+  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/about';
+  const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
+    const fn = () => {
+      setScrolled(window.scrollY > 50);
+      setIsLightBg(window.scrollY > 800);
+    };
     fn();
     window.addEventListener('scroll', fn);
     return () => window.removeEventListener('scroll', fn);
@@ -33,6 +37,8 @@ export default function Navbar() {
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
@@ -85,7 +91,7 @@ export default function Navbar() {
                     >
                       <Link 
                         to={item.path} 
-                        className="block py-6 text-2xl font-bold uppercase tracking-widest hover:text-svz-red transition-colors"
+                        className={`block py-6 text-2xl font-bold uppercase tracking-widest transition-colors ${isActive(item.path) ? 'text-[#1B6E8C]' : 'hover:text-[#1B6E8C]'}`}
                         onClick={() => setOpen(false)}
                       >
                         {item.label}
@@ -101,14 +107,14 @@ export default function Navbar() {
                     {user ? (
                       <button 
                         onClick={() => { logout(); setOpen(false); }} 
-                        className="w-full py-6 text-sm font-bold uppercase tracking-[0.3em] text-white/50 hover:text-svz-red"
+                        className="w-full py-6 text-sm font-bold uppercase tracking-[0.3em] text-white/50 hover:text-[#1B6E8C]"
                       >
                         EXIT SESSION ({user.username})
                       </button>
                     ) : (
                       <Link 
                         to="/register" 
-                        className="block py-6 text-sm font-bold uppercase tracking-[0.3em] text-white/50 hover:text-svz-red"
+                        className="block py-6 text-sm font-bold uppercase tracking-[0.3em] text-white/50 hover:text-[#1B6E8C]"
                         onClick={() => setOpen(false)}
                       >
                         PATIENT REGISTRY
@@ -119,7 +125,7 @@ export default function Navbar() {
               </div>
 
               {/* Marquee Banner */}
-              <div className="bg-svz-red text-black py-4 uppercase text-[10px] font-black tracking-[0.3em] overflow-hidden whitespace-nowrap">
+              <div className="bg-[#1B6E8C] text-white py-4 uppercase text-[10px] font-black tracking-[0.3em] overflow-hidden whitespace-nowrap">
                 <div className="animate-marquee inline-block">
                   {[...Array(10)].map((_, i) => (
                     <span key={i} className="mx-8">DISCOVERY CALL &rarr;</span>
@@ -132,53 +138,76 @@ export default function Navbar() {
       </div>
 
       {/* Desktop Navbar */}
-      <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-500 ${useDark || scrolled ? 'bg-white text-black border-b border-black/10 py-5' : 'bg-transparent text-white border-b border-transparent py-8'}`}>
+      <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-6' : 'py-10'}`}>
         <div className="max-w-[1800px] mx-auto px-12 flex items-center justify-between">
           <Link to="/">
              <Logo variant={useDark ? 'dark' : 'light'} />
           </Link>
 
-          {/* Desktop Center Links */}
-          <div className="flex-1 flex justify-center gap-16 xl:gap-24">
-             <div className="flex flex-col gap-2.5">
-               <div className="text-[9px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                 [ COMPANY ]
-               </div>
-               <Link to="/about" className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> ABOUT</Link>
-               <Link to="/shop" className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> EXPLORE</Link>
-             </div>
-             
-             <div className="flex flex-col gap-2.5">
-               <div className="text-[9px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                 [ CLINICAL ]
-               </div>
-               <Link to="/services" className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> SERVICES</Link>
-               <Link to="/products" className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> QA / NODES</Link>
-             </div>
+          {/* Desktop Center Links - Hidden on Scroll */}
+          <AnimatePresence>
+            {!scrolled && (
+              <motion.div 
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex-1 flex justify-center gap-20 xl:gap-32"
+              >
+                 <div className="flex flex-col gap-4">
+                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                     [ COMPANY ]
+                   </div>
+                   <Link to="/about" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-2 h-2 rounded-full ${isActive('/about') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> ABOUT
+                   </Link>
+                   <Link to="/shop" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-2 h-2 rounded-full ${isActive('/shop') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> EXPLORE
+                   </Link>
+                 </div>
+                 
+                 <div className="flex flex-col gap-4">
+                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                     [ CLINICAL ]
+                   </div>
+                   <Link to="/services" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-2 h-2 rounded-full ${isActive('/services') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> SERVICES
+                   </Link>
+                   <Link to="/products" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-2 h-2 rounded-full ${isActive('/products') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> QA / NODES
+                   </Link>
+                 </div>
 
-             <div className="flex flex-col gap-2.5">
-               <div className="text-[9px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                 [ PORTAL ]
-               </div>
-               <Link to="/wholesale" className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> RX TERMINAL</Link>
-               <button onClick={() => setCartOpen(true)} className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-svz-red flex items-center gap-2 text-left"><div className="w-1.5 h-1.5 rounded-full bg-svz-red" /> ORDER [{count}]</button>
-             </div>
-          </div>
+                 <div className="flex flex-col gap-4">
+                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                     [ PORTAL ]
+                   </div>
+                   <Link to="/wholesale" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-2 h-2 rounded-full ${isActive('/wholesale') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> RX TERMINAL
+                   </Link>
+                   <button onClick={() => setCartOpen(true)} className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3 text-left`}>
+                     <div className="w-2 h-2 rounded-full bg-transparent group-hover:bg-[#1B6E8C] border border-[#1B6E8C]/20" /> ORDER [{count}]
+                   </button>
+                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
           
-          {/* Right Side Buttons */}
-          <div className="flex items-center gap-6">
+          {/* Right Side Buttons - Always visible but adaptive */}
+          <div className="flex items-center gap-8">
              {user ? (
-               <button onClick={logout} className={`px-8 py-3.5 text-[9px] font-black uppercase tracking-[0.3em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
+               <button onClick={logout} className={`px-12 py-6 text-[16px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
                   EXIT SESSION
                </button>
              ) : (
-               <Link to="/register" className={`px-8 py-3.5 text-[9px] font-black uppercase tracking-[0.3em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
+               <Link to="/register" className={`px-12 py-6 text-[16px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
                   DISCOVERY CALL
                </Link>
              )}
           </div>
         </div>
       </nav>
+
     </>
   );
 }

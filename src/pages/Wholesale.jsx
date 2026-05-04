@@ -8,19 +8,19 @@ const STEPS = [
         id: '01', 
         name: 'VISUAL CAPTURE', 
         desc: 'Place prescription on a clinical-white surface. Ensure all medical identifiers (Hospital, MD, Dosage) are legible.',
-        icon: <Camera className="w-8 h-8 text-svz-red" strokeWidth={1} />
+        icon: <Camera className="w-8 h-8 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '02', 
         name: 'NODE TRANSMIT', 
         desc: 'Commit JPEG/PNG or PDF to the clinical portal. Our verification team receives an immediate audit notification.',
-        icon: <FileUp className="w-8 h-8 text-svz-red" strokeWidth={1} />
+        icon: <FileUp className="w-8 h-8 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '03', 
         name: 'CLINICAL DISPATCH', 
         desc: 'Upon validation, medication is synchronized for fast, thermal-controlled logistics to your biometric address.',
-        icon: <Truck className="w-8 h-8 text-svz-red" strokeWidth={1} />
+        icon: <Truck className="w-8 h-8 text-brand-teal" strokeWidth={1} />
     }
 ];
 
@@ -87,7 +87,7 @@ export default function Wholesale() {
             </div>
          </div>
          {/* Decoration */}
-         <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-svz-red/5 blur-[150px] -mr-20 -mt-20 rounded-full" />
+         <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-brand-teal/5 blur-[150px] -mr-20 -mt-20 rounded-full" />
       </section>
 
       {/* Policy Audit */}
@@ -95,7 +95,7 @@ export default function Wholesale() {
          <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24">
              <div className="lg:col-span-4">
                  <h2 className="text-4xl font-black uppercase tracking-tighter mb-12">CLINICAL<br />SPEC</h2>
-                 <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-svz-red">Operational Protocols</p>
+                 <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-brand-teal">Operational Protocols</p>
              </div>
              <div className="lg:col-span-8 flex flex-col justify-center space-y-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -115,10 +115,10 @@ export default function Wholesale() {
                 
                 <div className="pt-12 border-t border-black/10 flex flex-col md:flex-row items-center justify-between gap-12">
                    <div className="flex items-center gap-4 text-black/40">
-                      <ShieldCheck className="w-8 h-8 text-svz-red" />
+                      <ShieldCheck className="w-8 h-8 text-brand-teal" />
                       <p className="text-[10px] font-black uppercase tracking-[0.2em]">Zero-Trust Verification Active</p>
                    </div>
-                   <a href="https://wa.me/923251206427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 bg-black text-white px-12 py-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-svz-red duration-500">
+                   <a href="https://wa.me/923251206427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 bg-black text-white px-12 py-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-500">
                       Initiate WhatsApp Node <ArrowRight className="w-4 h-4" />
                    </a>
                 </div>

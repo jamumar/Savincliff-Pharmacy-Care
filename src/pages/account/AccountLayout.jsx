@@ -96,12 +96,12 @@ export default function AccountLayout() {
                 })}
             </nav>
 
-            <div className="hidden lg:block bg-svz-red/5 p-12 space-y-6">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red">Clinical Support</p>
+            <div className="hidden lg:block bg-brand-teal/5 p-12 space-y-6">
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Support</p>
                 <p className="text-[11px] font-bold text-black/60 uppercase leading-tight tracking-widest">
                     Emergency prescription assistance node active 24/7.
                 </p>
-                <Link to="/contact" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.2em] border-b border-black pb-2 hover:text-svz-red hover:border-svz-red transition-all">
+                <Link to="/contact" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.2em] border-b border-black pb-2 hover:text-brand-teal hover:border-brand-teal transition-all">
                     Initiate Contact <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
             </div>

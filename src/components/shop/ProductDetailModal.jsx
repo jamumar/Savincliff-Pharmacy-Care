@@ -43,7 +43,7 @@ export default function ProductDetailModal({ product, onClose }) {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 md:top-12 md:right-12 z-50 w-10 h-10 md:w-16 md:h-16 bg-black text-white flex items-center justify-center hover:bg-svz-red transition-all duration-700 group shadow-2xl"
+            className="absolute top-4 right-4 md:top-12 md:right-12 z-50 w-10 h-10 md:w-16 md:h-16 bg-black text-white flex items-center justify-center hover:bg-brand-teal transition-all duration-700 group shadow-2xl"
           >
             <X className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-90 transition-transform" />
           </button>
@@ -71,7 +71,7 @@ export default function ProductDetailModal({ product, onClose }) {
                      initial={{ opacity: 0, x: -20 }}
                      animate={{ opacity: 1, x: 0 }}
                      transition={{ delay: 0.3, duration: 0.8 }}
-                     className="text-[10px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-svz-red mb-3 md:mb-6"
+                     className="text-[10px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal mb-3 md:mb-6"
                    >
                      {product.brand} / Clinical Node
                    </motion.p>
@@ -118,7 +118,7 @@ export default function ProductDetailModal({ product, onClose }) {
                        <button 
                           onClick={handleAdd}
                           disabled={added}
-                          className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-black text-white hover:bg-svz-red transition-all duration-700 disabled:bg-svz-red"
+                          className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-black text-white hover:bg-brand-teal transition-all duration-700 disabled:bg-brand-teal"
                        >
                           <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" /> {added ? 'ACTIVE' : 'Add Node'}
                        </button>

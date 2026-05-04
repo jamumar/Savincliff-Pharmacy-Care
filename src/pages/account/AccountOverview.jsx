@@ -38,7 +38,7 @@ export default function AccountOverview() {
              Welcome back,<br />{user?.username || 'NODE 01'}
            </h1>
         </motion.div>
-        <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group hover:text-svz-red transition-all cursor-default">
+        <div className="hidden md:flex items-center gap-6 text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group hover:text-brand-teal transition-all cursor-default">
             <Activity className="w-5 h-5 transition-transform group-hover:scale-125" /> Biometric Identity Verified
         </div>
       </div>
@@ -55,10 +55,10 @@ export default function AccountOverview() {
            >
              <div className="flex justify-between items-start">
                 <div className="space-y-2">
-                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 group-hover:text-svz-red transition-all duration-500">{stat.id} / AUDIT</p>
+                   <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20 group-hover:text-brand-teal transition-all duration-500">{stat.id} / AUDIT</p>
                    <p className="text-[11px] font-black uppercase tracking-[0.4em]">{stat.label}</p>
                 </div>
-                <stat.icon className="w-6 h-6 opacity-10 group-hover:opacity-100 group-hover:text-svz-red transition-all duration-700" strokeWidth={1} />
+                <stat.icon className="w-6 h-6 opacity-10 group-hover:opacity-100 group-hover:text-brand-teal transition-all duration-700" strokeWidth={1} />
              </div>
              <p className="text-5xl md:text-8xl font-black tracking-[-0.05em] self-end leading-none group-hover:translate-x-4 transition-transform duration-1000">{stat.count}</p>
            </motion.div>
@@ -84,7 +84,7 @@ export default function AccountOverview() {
                         <div className="relative z-10 text-right flex items-center gap-10">
                             <div>
                                 <p className="text-2xl font-black tracking-tighter">₦{parseFloat(order.total_price).toLocaleString()}</p>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-svz-red mt-1">{order.status}</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-brand-teal mt-1">{order.status}</p>
                             </div>
                             <div className="w-12 h-12 bg-black text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 duration-700">
                                <ArrowRight className="w-4 h-4" />
@@ -95,7 +95,7 @@ export default function AccountOverview() {
             </div>
             
             <div className="pt-8">
-               <Link to="/account/orders" className="group inline-flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.4em] border-b border-black pb-4 hover:text-svz-red hover:border-svz-red transition-all duration-700">
+               <Link to="/account/orders" className="group inline-flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.4em] border-b border-black pb-4 hover:text-brand-teal hover:border-brand-teal transition-all duration-700">
                   Full Manifest Archive <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                </Link>
             </div>
@@ -103,7 +103,7 @@ export default function AccountOverview() {
 
          {/* Promo Grid Cell */}
          <div className="lg:col-span-5 bg-black text-white p-8 md:p-12 lg:p-24 relative overflow-hidden group min-h-[350px] md:min-h-[600px] flex flex-col justify-center shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-svz-red/10 blur-[150px] rounded-full group-hover:bg-svz-red/20 transition-all duration-1000 origin-center scale-150" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-teal/10 blur-[150px] rounded-full group-hover:bg-brand-teal/20 transition-all duration-1000 origin-center scale-150" />
             
             <div className="relative z-10 space-y-16">
                <p className="label-svz">Enterprise Node</p>
@@ -111,7 +111,7 @@ export default function AccountOverview() {
                <p className="text-[10px] md:text-[12px] font-black uppercase leading-relaxed tracking-widest text-white/30 max-w-sm">
                    Bypass standard clinical queues and unlock industrial-grade pharmaceutical oversight. Total precision at every node.
                </p>
-               <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-svz-red hover:text-white transition-all duration-700 shadow-2xl">Enter Node</button>
+               <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-brand-teal hover:text-white transition-all duration-700 shadow-2xl">Enter Node</button>
             </div>
             
             <div className="absolute bottom-12 right-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/5 group-hover:text-white/10 transition-colors">

@@ -71,14 +71,14 @@ function OrderDetailsModal({ order, onClose }) {
         >
           <button
             onClick={onClose}
-            className="absolute top-8 right-8 z-20 w-12 h-12 bg-black text-white flex items-center justify-center hover:bg-svz-red transition-all duration-500"
+            className="absolute top-8 right-8 z-20 w-12 h-12 bg-black text-white flex items-center justify-center hover:bg-brand-teal transition-all duration-500"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="lg:col-span-5 bg-[#FAFAFA] p-12 lg:p-16 space-y-16 flex flex-col justify-center">
              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red mb-4">Transaction Audit</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Transaction Audit</p>
                 <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-none">ORDER<br />NODE 0{order.id}</h2>
                 <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-black/30 mt-6 flex items-center gap-2">
                    <Activity className="w-4 h-4" /> STATUS: {order.status}
@@ -125,7 +125,7 @@ function OrderDetailsModal({ order, onClose }) {
              
              {order.notes && (
                <div className="p-12 bg-black text-white space-y-4">
-                  <p className="text-[9px] font-black uppercase tracking-[0.4em] text-svz-red">Clinical Notes</p>
+                  <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Notes</p>
                   <p className="text-[13px] font-bold uppercase tracking-widest leading-relaxed text-white/50">
                      "{order.notes}"
                   </p>
@@ -161,7 +161,7 @@ export default function OrdersPage() {
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-6">
-                    <span className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">NODE 0{order.id}</span>
+                    <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">NODE 0{order.id}</span>
                     <span className="text-[11px] font-black uppercase tracking-widest bg-black/5 group-hover:bg-white/10 px-3 py-1 transition-colors">{order.status}</span>
                 </div>
                 <h3 className="text-xl md:text-4xl font-black uppercase tracking-tighter leading-none">AUDIT REF: {order.idempotency_key?.slice(0,8)}</h3>

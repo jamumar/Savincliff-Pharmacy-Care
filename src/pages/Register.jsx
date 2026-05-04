@@ -79,7 +79,7 @@ export default function Register() {
         <Logo variant="light" />
         
         <div className="relative z-10">
-           <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red mb-12">Portal Authentication / Node 04</p>
+           <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Portal Authentication / Node 04</p>
            <h1 className="display-svz">
              THE<br />
              ACCESS
@@ -94,7 +94,7 @@ export default function Register() {
         <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
            Savincliff Clinical © 2026
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-svz-red/5 blur-[150px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-brand-teal/5 blur-[150px] rounded-full" />
       </motion.div>
 
       {/* Right panel — Minimalist Form */}
@@ -112,7 +112,7 @@ export default function Register() {
           <AnimatePresence mode="wait">
              {done ? (
                 <motion.div key="done" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center space-y-8">
-                   <div className="w-20 h-20 bg-svz-red text-white flex items-center justify-center mx-auto">
+                   <div className="w-20 h-20 bg-brand-teal text-white flex items-center justify-center mx-auto">
                       <CheckCircle className="w-10 h-10" strokeWidth={1} />
                    </div>
                    <h2 className="text-4xl font-black uppercase tracking-tighter">NODE ACCESSED</h2>
@@ -128,7 +128,7 @@ export default function Register() {
                             className={`pb-4 text-[11px] font-black uppercase tracking-[0.4em] transition-all relative ${mode === m ? 'text-white' : 'text-white/20'}`}
                          >
                             {m === 'signin' ? 'Session' : 'Registry'}
-                            {mode === m && <motion.div layoutId="auth-line" className="absolute bottom-0 left-0 right-0 h-0.5 bg-svz-red" />}
+                            {mode === m && <motion.div layoutId="auth-line" className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-teal" />}
                          </button>
                       ))}
                    </div>
@@ -156,7 +156,7 @@ export default function Register() {
                                value={form.name} 
                                onChange={e => set('name', e.target.value)}
                                placeholder="ENTER FULL SPEC"
-                               className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-svz-red uppercase transition-colors" 
+                               className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                             />
                          </div>
                       )}
@@ -168,7 +168,7 @@ export default function Register() {
                             value={form.email} 
                             onChange={e => set('email', e.target.value)}
                             placeholder="IDENTITY@NODE.COM"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-svz-red uppercase transition-colors" 
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                          />
                       </div>
 
@@ -179,14 +179,14 @@ export default function Register() {
                             value={form.password} 
                             onChange={e => set('password', e.target.value)}
                             placeholder="SECRET KEY"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-svz-red uppercase transition-colors" 
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                          />
                       </div>
 
                       <button 
                          type="submit" 
                          disabled={loading}
-                         className="w-full bg-white text-black py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red hover:text-white transition-all duration-700 flex items-center justify-center gap-6"
+                         className="w-full bg-white text-black py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700 flex items-center justify-center gap-6"
                       >
                          {loading ? 'Processing Node...' : mode === 'signin' ? 'Initiate Session' : 'Registry Entry'} <ArrowRight className="w-4 h-4" />
                       </button>

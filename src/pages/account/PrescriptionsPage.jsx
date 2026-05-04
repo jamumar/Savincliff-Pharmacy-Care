@@ -56,7 +56,7 @@ export default function PrescriptionsPage() {
                 </div>
                 <div>
                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">NODE {rx.id}</span>
+                      <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">NODE {rx.id}</span>
                       <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border ${
                         rx.status === 'APPROVED' ? 'border-emerald-500/30 text-emerald-500' : 'border-black/10 text-black/40 group-hover:text-white/40'
                       }`}>
@@ -77,11 +77,11 @@ export default function PrescriptionsPage() {
                   
                   {rx.pharmacist_note && (
                     <div className="relative group/note">
-                       <button className="w-12 h-12 flex items-center justify-center border border-black/10 group-hover:border-white/20 hover:bg-svz-red transition-all">
+                       <button className="w-12 h-12 flex items-center justify-center border border-black/10 group-hover:border-white/20 hover:bg-brand-teal transition-all">
                           <AlertCircle className="w-5 h-5" />
                        </button>
                        <div className="absolute bottom-full right-0 mb-6 w-80 bg-black text-white p-8 opacity-0 group-hover/note:opacity-100 transition-all pointer-events-none shadow-2xl z-50 border border-white/10 translate-y-4 group-hover/note:translate-y-0 text-left">
-                          <p className="text-[9px] font-black uppercase tracking-[0.4em] text-svz-red mb-4">Clinical Response</p>
+                          <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Clinical Response</p>
                           <p className="text-[13px] font-bold uppercase tracking-widest leading-relaxed text-white/50">
                              "{rx.pharmacist_note}"
                           </p>
@@ -100,11 +100,11 @@ export default function PrescriptionsPage() {
                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Add Document</h2>
                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/40">Initiate new clinical verification sequence</p>
             </div>
-            <Link to="/wholesale" className="bg-white text-black px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red hover:text-white transition-all duration-700">
+            <Link to="/wholesale" className="bg-white text-black px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">
                 Begin Upload
             </Link>
          </div>
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-svz-red/10 blur-[100px] rounded-full group-hover:bg-svz-red/20 transition-all duration-1000" />
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-teal/10 blur-[100px] rounded-full group-hover:bg-brand-teal/20 transition-all duration-1000" />
       </div>
     </div>
   );

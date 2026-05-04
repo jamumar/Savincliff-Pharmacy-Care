@@ -70,7 +70,7 @@ export default function CartSidebar() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
                         <div>
-                           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red mb-1">{item.brand}</p>
+                           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal mb-1">{item.brand}</p>
                            <h4 className="text-xl font-black uppercase tracking-tighter truncate">{item.name}</h4>
                         </div>
                         <div className="flex items-center justify-between">
@@ -86,7 +86,7 @@ export default function CartSidebar() {
                           <span className="text-xl font-black tracking-tighter">₦{(item.price * item.qty).toLocaleString()}</span>
                         </div>
                       </div>
-                      <button onClick={() => remove(item.id)} className="text-black/20 hover:text-svz-red transition-all self-start pt-2">
+                      <button onClick={() => remove(item.id)} className="text-black/20 hover:text-brand-teal transition-all self-start pt-2">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </motion.div>
@@ -104,7 +104,7 @@ export default function CartSidebar() {
                       <p className="text-5xl font-black tracking-tighter">₦{total.toLocaleString()}</p>
                    </div>
                    <div className="text-right hidden md:block">
-                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-svz-red">Clinical Requirement</p>
+                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Requirement</p>
                       <p className="text-[11px] font-bold uppercase tracking-widest text-black/40">Audit Pending Rx Verification</p>
                    </div>
                 </div>
@@ -112,7 +112,7 @@ export default function CartSidebar() {
                 <Link
                   to="/checkout"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-8 w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700 group shadow-2xl"
+                  className="flex items-center justify-center gap-8 w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700 group shadow-2xl"
                 >
                   Initiate Checkout <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>

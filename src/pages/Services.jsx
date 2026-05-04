@@ -11,37 +11,37 @@ const SERVICES = [
         id: '01', 
         name: 'Clinical Dispensing', 
         desc: 'Precision handling of all pharmaceutical requirements. Every dose is verified through primary clinical audits before fulfillment.',
-        icon: <Package className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <Package className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '02', 
         name: 'Rx Verification', 
         desc: 'Advanced regulatory portal for prescription authentication. We link patients directly to our licensed clinical oversight team.',
-        icon: <ClipboardList className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <ClipboardList className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '03', 
         name: 'Chronic Care Node', 
         desc: 'Integrated management plans for hypertension, diabetes, and respiratory conditions. Long-term health, redefined.',
-        icon: <Activity className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <Activity className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '04', 
         name: 'Wholesale Ops', 
         desc: 'Industrial-grade pharmaceutical supply chain for hospitals and clinics. Total compliance, total transparency.',
-        icon: <ShieldCheck className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <ShieldCheck className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '05', 
         name: 'Rapid Logistics', 
         desc: 'Temperature-controlled fulfillment network delivering medical essentials within 4 hours in Abuja and 48 hours nationwide.',
-        icon: <Truck className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <Truck className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     },
     { 
         id: '06', 
         name: 'Clinical Advisory', 
         desc: 'Direct consultation node allowing patients to interact with licensed pharmacists for medication synergy and dosage guidance.',
-        icon: <Zap className="w-12 h-12 text-svz-red" strokeWidth={1} />
+        icon: <Zap className="w-12 h-12 text-brand-teal" strokeWidth={1} />
     }
 ];
 
@@ -142,7 +142,7 @@ export default function Services() {
                     </div>
                     <div className="mt-12 flex justify-between items-end">
                         <span className="text-4xl md:text-6xl font-black opacity-10 select-none tracking-tighter">{s.id}</span>
-                        <div className="w-2 h-2 bg-svz-red rounded-full" />
+                        <div className="w-2 h-2 bg-brand-teal rounded-full" />
                     </div>
                 </div>
             ))}
@@ -165,18 +165,18 @@ export default function Services() {
             </div>
          </div>
          {/* Decoration */}
-         <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] bg-svz-red/5 blur-[150px] rounded-full" />
+         <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] bg-brand-teal/5 blur-[150px] rounded-full" />
       </section>
 
       {/* Corporate Inquiries */}
       <section className="py-40 text-center px-6 md:px-12 bg-white">
          <div className="max-w-[1800px] mx-auto">
-            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-svz-red mb-8">Wholesale & Institutional</p>
+            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-teal mb-8">Wholesale & Institutional</p>
             <h2 className="display-svz text-black/10 group hover:text-black transition-colors duration-1000 cursor-default">
                ENTERPRISE<br />HEALTH
             </h2>
             <div className="mt-20">
-                <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-500">
+                <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-500">
                     Initiate Partnership
                 </button>
             </div>

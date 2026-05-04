@@ -164,7 +164,7 @@ export default function Footer() {
                                 <Link 
                                     key={link.name} 
                                     to={link.path}
-                                    className="text-[12px] font-black tracking-[0.2em] uppercase hover:text-svz-red transition-all duration-500 hover:translate-x-2"
+                                    className="text-[12px] font-black tracking-[0.2em] uppercase hover:text-brand-teal transition-all duration-500 hover:translate-x-2"
                                 >
                                     {link.name}
                                 </Link>
@@ -216,7 +216,7 @@ export default function Footer() {
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] flex items-center gap-4 group"
       >
-        <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-svz-red transition-all duration-700 shadow-2xl relative border border-white/10">
+        <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-brand-teal transition-all duration-700 shadow-2xl relative border border-white/10">
            <video 
               autoPlay 
               loop 
@@ -226,7 +226,7 @@ export default function Footer() {
            >
               <source src="/animations/whatsapp_1.mp4" type="video/mp4" />
            </video>
-           <div className="absolute inset-0 bg-svz-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+           <div className="absolute inset-0 bg-brand-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
            <div className="absolute inset-0 border-2 border-white/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000" />
         </div>
       </a>

@@ -41,7 +41,7 @@ export default function Products() {
                            {a.text}
                         </p>
                     </div>
-                    <ArrowUpRight className="w-6 h-6 self-end opacity-0 group-hover:opacity-100 transition-opacity text-svz-red" />
+                    <ArrowUpRight className="w-6 h-6 self-end opacity-0 group-hover:opacity-100 transition-opacity text-brand-teal" />
                 </motion.div>
             ))}
         </div>
@@ -72,7 +72,7 @@ export default function Products() {
             </div>
          </div>
          {/* Decoration */}
-         <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-svz-red/5 blur-[150px] rounded-full" />
+         <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-brand-teal/5 blur-[150px] rounded-full" />
       </section>
 
       {/* Special Sourcing CTA */}
@@ -83,7 +83,7 @@ export default function Products() {
                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-black">
                   Can't identify your requirement in our primary catalogue?
                </p>
-               <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red transition-all duration-700">
+               <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700">
                    Request Sourcing Node
                </button>
             </div>

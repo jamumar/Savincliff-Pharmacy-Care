@@ -6,19 +6,19 @@ const PROTOCOLS = [
     {
         id: '01',
         title: 'NON-RETURNABLE PROTOCOL',
-        icon: <ShieldCheck className="w-8 h-8 text-svz-red" />,
+        icon: <ShieldCheck className="w-8 h-8 text-brand-teal" />,
         body: 'Medications cannot be returned once they have exited the custodial chain. Storage conditions (thermal, humidity) can no longer be verified, making redistribution a clinical risk.'
     },
     {
         id: '02',
         title: 'DISPENSING ERROR AUDIT',
-        icon: <Info className="w-8 h-8 text-svz-red" />,
+        icon: <Info className="w-8 h-8 text-brand-teal" />,
         body: 'In cases of verified dispensing errors or damaged seals, a full credit node or replacement will be initiated. Notifications must be committed within 24 hours of delivery.'
     },
     {
         id: '03',
         title: 'CANCELLATION NODES',
-        icon: <FileText className="w-8 h-8 text-svz-red" />,
+        icon: <FileText className="w-8 h-8 text-brand-teal" />,
         body: 'Prescription orders cannot be cancelled once the verification sequence has been finalized by a licensed pharmacist. Professional dispense time is non-recoverable.'
     }
 ];
@@ -42,10 +42,10 @@ export default function RefundPolicy() {
                 {PROTOCOLS.map((p) => (
                     <div key={p.id} className="space-y-8 group">
                         <div className="flex items-center gap-6">
-                            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Protocol {p.id}</span>
+                            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">Protocol {p.id}</span>
                             <div className="h-px bg-black/10 flex-1" />
                         </div>
-                        <h2 className="text-4xl font-black uppercase tracking-tighter leading-none group-hover:text-svz-red transition-colors duration-500">{p.title}</h2>
+                        <h2 className="text-4xl font-black uppercase tracking-tighter leading-none group-hover:text-brand-teal transition-colors duration-500">{p.title}</h2>
                         <p className="text-xl md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase max-w-4xl">
                            {p.body}
                         </p>
@@ -55,7 +55,7 @@ export default function RefundPolicy() {
 
             <div className="lg:col-span-4 bg-black text-white p-12 lg:p-20 space-y-12 relative overflow-hidden">
                 <div className="relative z-10 space-y-8">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-svz-red">Pharmacist Audit</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal">Pharmacist Audit</p>
                     <p className="text-[13px] font-bold uppercase leading-relaxed tracking-widest text-white/50 italic">
                         "Clinical safety is our priority. By adhering to these protocols, we guarantee that every medication reaching a patient is in its original, safe, and effective state."
                     </p>
@@ -65,7 +65,7 @@ export default function RefundPolicy() {
                     </div>
                 </div>
                 {/* Decoration */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-svz-red/20 blur-[60px] rounded-full" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-brand-teal/20 blur-[60px] rounded-full" />
             </div>
         </div>
       </section>

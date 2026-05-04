@@ -18,10 +18,10 @@ export default function RxUploader() {
 
   return (
     <div className="bg-white p-8 md:p-12 lg:p-20 shadow-2xl relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1 bg-svz-red" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-brand-teal" />
       
       <div className="flex items-center gap-4 text-[10px] font-black tracking-[0.4em] uppercase mb-12 text-black">
-        <Lock className="w-4 h-4 text-svz-red" />
+        <Lock className="w-4 h-4 text-brand-teal" />
         <span>Secure Clinical Terminal / End-to-End Encryption</span>
       </div>
 
@@ -33,7 +33,7 @@ export default function RxUploader() {
             animate={{ opacity: 1, scale: 1 }}
             className="py-16 text-center space-y-12"
           >
-            <div className="w-24 h-24 bg-svz-red text-white flex items-center justify-center mx-auto">
+            <div className="w-24 h-24 bg-brand-teal text-white flex items-center justify-center mx-auto">
                 <CheckCircle className="w-12 h-12" strokeWidth={1} />
             </div>
             <div className="space-y-4">
@@ -65,10 +65,10 @@ export default function RxUploader() {
               onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleFile(e.dataTransfer.files?.[0]); }}
               onClick={() => inputRef.current?.click()}
               className={`relative border-2 border-dashed p-16 md:p-24 text-center cursor-pointer transition-all duration-700 flex flex-col items-center justify-center space-y-8 ${
-                isDragging ? 'bg-black text-white border-svz-red' : file ? 'bg-black text-white border-white/20' : 'bg-transparent border-black/10 hover:border-black'
+                isDragging ? 'bg-black text-white border-brand-teal' : file ? 'bg-black text-white border-white/20' : 'bg-transparent border-black/10 hover:border-black'
               }`}
             >
-              <div className={`w-20 h-20 flex items-center justify-center transition-all ${file ? 'bg-svz-red text-white' : 'bg-black text-white'}`}>
+              <div className={`w-20 h-20 flex items-center justify-center transition-all ${file ? 'bg-brand-teal text-white' : 'bg-black text-white'}`}>
                 {file ? <CheckCircle className="w-8 h-8" /> : <Upload className="w-8 h-8" />}
               </div>
               <div>
@@ -126,7 +126,7 @@ export default function RxUploader() {
             <button
               type="submit"
               disabled={!file}
-              className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-6 hover:bg-svz-red transition-all duration-700 disabled:opacity-20"
+              className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-6 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20"
             >
               Initiate Process Node <ArrowRight className="w-4 h-4" />
             </button>

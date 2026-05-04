@@ -61,7 +61,7 @@ export default function Checkout() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center p-6">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-2xl w-full text-center space-y-12">
-          <div className="w-24 h-24 bg-svz-red text-white flex items-center justify-center mx-auto">
+          <div className="w-24 h-24 bg-brand-teal text-white flex items-center justify-center mx-auto">
             <CheckCircle className="w-12 h-12" strokeWidth={1} />
           </div>
           <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function Checkout() {
              </p>
           </div>
           <div className="pt-8 flex flex-col md:flex-row justify-center gap-6">
-             <Link to="/shop" className="bg-black text-white px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-svz-red duration-700">Continue Inventory</Link>
+             <Link to="/shop" className="bg-black text-white px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-700">Continue Inventory</Link>
              <Link to="/account/orders" className="border border-black text-black px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white duration-700">Audit Status</Link>
           </div>
         </motion.div>
@@ -95,7 +95,7 @@ export default function Checkout() {
         <div className="flex gap-4 mb-24 overflow-x-auto pb-4">
            {STEPS.map((s, i) => (
                <div key={s} className="flex-1 min-w-[120px] relative">
-                   <div className={`h-1 w-full transition-all duration-1000 ${i <= step ? 'bg-svz-red' : 'bg-black/10'}`} />
+                   <div className={`h-1 w-full transition-all duration-1000 ${i <= step ? 'bg-brand-teal' : 'bg-black/10'}`} />
                    <p className={`mt-4 text-[10px] font-black tracking-[0.4em] transition-colors ${i === step ? 'text-black' : 'text-black/20'}`}>
                       {i + 1} / {s}
                    </p>
@@ -128,7 +128,7 @@ export default function Checkout() {
                                 </div>
                             ))}
                          </div>
-                         <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-svz-red transition-all duration-700">
+                         <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700">
                              Next Sequence / IDENTITY <ArrowRight className="w-5 h-5" />
                          </button>
                       </motion.div>
@@ -140,7 +140,7 @@ export default function Checkout() {
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             {DELIVERY_OPTIONS.map(opt => (
                                 <button key={opt.id} onClick={() => setDelivery(opt.id)} className={`p-10 border text-left flex flex-col justify-between min-h-[160px] transition-all duration-500 ${delivery === opt.id ? 'bg-black text-white border-black' : 'border-black/10 hover:border-black'}`}>
-                                   <opt.icon className={`w-8 h-8 ${delivery === opt.id ? 'text-svz-red' : 'text-black/20'}`} />
+                                   <opt.icon className={`w-8 h-8 ${delivery === opt.id ? 'text-brand-teal' : 'text-black/20'}`} />
                                    <div>
                                       <p className="text-[12px] font-black uppercase tracking-[0.2em]">{opt.label}</p>
                                       <p className={`text-[9px] font-bold mt-2 uppercase tracking-widest ${delivery === opt.id ? 'text-white/40' : 'text-black/30'}`}>{opt.desc}</p>
@@ -170,7 +170,7 @@ export default function Checkout() {
 
                          <div className="flex gap-8">
                             <button onClick={() => setStep(0)} className="w-32 border border-black text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
-                            <button onClick={() => setStep(2)} disabled={!form.name || !form.phone || (delivery === 'delivery' && !form.address)} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-svz-red transition-all duration-700 disabled:opacity-20">
+                            <button onClick={() => setStep(2)} disabled={!form.name || !form.phone || (delivery === 'delivery' && !form.address)} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20">
                                Final Confirmation <ArrowRight className="w-5 h-5" />
                             </button>
                          </div>
@@ -182,7 +182,7 @@ export default function Checkout() {
                          <h2 className="text-3xl font-black uppercase tracking-tighter">FINAL COMMIT</h2>
                          <div className="space-y-12">
                             <div className="p-12 bg-[#FAFAFA] border border-black/5 space-y-8">
-                               <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red">Protocol Acknowledgement</p>
+                               <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">Protocol Acknowledgement</p>
                                <p className="text-[12px] font-black uppercase leading-relaxed tracking-widest text-black/40">
                                   By committing this order, you acknowledge that a licensed pharmacist must verify all clinical specifications before fulfillment node activation.
                                </p>
@@ -202,7 +202,7 @@ export default function Checkout() {
 
                          <div className="flex gap-8">
                             <button onClick={() => setStep(1)} className="w-32 border border-black text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
-                            <button onClick={placeOrder} disabled={isSubmitting} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-svz-red transition-all duration-1000">
+                            <button onClick={placeOrder} disabled={isSubmitting} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-1000">
                                {isSubmitting ? 'COMMITTING...' : 'COMMIT ORDER'} <CheckCircle className="w-5 h-5" />
                             </button>
                          </div>
@@ -214,7 +214,7 @@ export default function Checkout() {
             {/* Sidebar Summary */}
             <div className="lg:col-span-5">
                <div className="bg-black text-white p-12 lg:p-16 sticky top-40 shadow-2xl">
-                  <p className="text-[10px] font-black tracking-[0.4em] uppercase text-svz-red mb-12">Audit Summary</p>
+                  <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Audit Summary</p>
                   <div className="space-y-8 mb-12">
                      <div className="flex justify-between items-end">
                         <span className="text-[11px] font-bold uppercase tracking-widest text-white/40">Basket Subtotal</span>
@@ -226,7 +226,7 @@ export default function Checkout() {
                      </div>
                      <div className="h-px bg-white/10" />
                      <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-svz-red">Total Audit</span>
+                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-brand-teal">Total Audit</span>
                         <span className="text-4xl font-black tracking-tighter">₦{grandTotal.toLocaleString()}</span>
                      </div>
                   </div>
