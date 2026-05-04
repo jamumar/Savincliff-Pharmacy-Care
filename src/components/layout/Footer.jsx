@@ -4,40 +4,11 @@ import gsap from 'gsap';
 import { Phone } from 'lucide-react';
 
 const MEDIA_ITEMS = [
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef850a62a31513d92321de_image%2035.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef958c378e00c0014110d5_image%2036.png",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef958c7b7ec20bd88c8645_image%2037.png",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a628bb_image%2034.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a628b2_image%2033.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a628ac_image%2032.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a628a6_image%2031.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62882_image%2023.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6287c_image%2026.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62863_image%2022.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6285d_image%2024.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62857_image%2020.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a628a0_image%20(5).avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6289a_image%20(3).avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62894_image%20(2).avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6288e_image%2029.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62888_image%2027.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6284b_image%2021.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62851_image%2025.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62876_image%2018.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a62870_image%2019.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef84427f795f4095a6286a_image%2028.avif",
-  "https://cdn.prod.website-files.com/67f19f0a1b1647af446c1b4f_image%201927.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef781e69ec119c5f8d5e6f_image%2021.png",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef781eac27cc874d7fc949_image%2029.png",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef9203a9f072797de1f6d3_image%2030.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef9203a9f072797de1f6d0_image%2033.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef924284274f8f2fed36f6_image%20(7).avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ef9242d764533fe40057df_image%20(6).avif",
-  "https://cdn.prod.website-files.com/67f1887f9d7d740e4b844ac1_honeyreal.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67f0c6471a5aa0111ee9fab9_gum.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67f04ff0a776916481ca3bf3_pizz.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67f19f0a222cbff5699a013a_image%201928.avif",
-  "https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67f19f0a2c16f4095e902831_image%201929.avif"
+  '/logo.svg',
+  '/favicon.png',
+  '/logo_full.png',
+  '/logo_alt.svg',
+  '/faviconwhite.png'
 ];
 
 export default function Footer() {

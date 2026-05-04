@@ -5,7 +5,7 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import AnimatedText from '@/components/ui/AnimatedText';
 import ScrollMarquee from '@/components/ui/ScrollMarquee';
-import InteractiveGallery3D from '@/components/ui/InteractiveGallery3D';
+import InteractiveLogoHero from '@/components/ui/InteractiveLogoHero';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -178,7 +178,7 @@ export default function Home() {
       <HeroSection />
       <WeAreSection />
       <ManifestoSection />
-      <InteractiveGallery3D />
+      <InteractiveLogoHero />
       
       {/* Marquee Section */}
       <section className="py-20 bg-white overflow-hidden border-y border-black/5">
