@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import AnimatedText from '@/components/ui/AnimatedText';
 import ScrollMarquee from '@/components/ui/ScrollMarquee';
-import InteractiveLogoHero from '@/components/ui/InteractiveLogoHero';
+
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -22,14 +22,37 @@ function HeroSection() {
   const yText = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  // Mouse Parallax for Background
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 30, stiffness: 100 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const bgX = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
+  const bgY = useTransform(smoothY, [-0.5, 0.5], [-20, 20]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
   return (
     <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
       
       {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-40"
+      <motion.div 
+        className="absolute inset-[-5%] pointer-events-none opacity-40"
         style={{ 
-          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)', // Transforms red to #1B6E8C spectrum
+          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)',
+          x: bgX,
+          y: bgY
         }}
       >
         <Player
@@ -38,7 +61,7 @@ function HeroSection() {
           src="https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ec482dfa06d8122041b027_lottie.json"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
-      </div>
+      </motion.div>
 
       {/* ── Top Label ── */}
       <motion.div 
@@ -178,8 +201,6 @@ export default function Home() {
       <HeroSection />
       <WeAreSection />
       <ManifestoSection />
-      <InteractiveLogoHero />
-      
       {/* Marquee Section */}
       <section className="py-20 bg-white overflow-hidden border-y border-black/5">
         <ScrollMarquee baseVelocity={-1.5}>

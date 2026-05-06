@@ -1,67 +1,57 @@
-import React, { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
+import React, { useRef, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { Phone } from 'lucide-react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useGLTF, Environment } from '@react-three/drei';
 
-const MEDIA_ITEMS = [
-  '/logo.svg',
-  '/favicon.png',
-  '/logo_full.png',
-  '/logo_alt.svg',
-  '/faviconwhite.png'
-];
+// Shared mouse target — updated by window listener, read every frame
+const FM = { x: 0, y: 0 };
+if (typeof window !== 'undefined') {
+  window.addEventListener('mousemove', (e) => {
+    FM.x = (e.clientX / window.innerWidth) * 2 - 1;
+    FM.y = -((e.clientY / window.innerHeight) * 2 - 1);
+  }, { passive: true });
+}
+
+function FooterModel({ url }) {
+  const gltf = useGLTF(url);
+
+  // Deep-clone so we own this object's matrix — not the GLTF cache
+  const clonedScene = useRef(null);
+  if (!clonedScene.current) {
+    clonedScene.current = gltf.scene.clone(true);
+    clonedScene.current.traverse((n) => {
+      n.matrixAutoUpdate = true;
+      n.frustumCulled = false;
+    });
+  }
+
+  const meshRef = useRef();
+  const s = useRef({ rx: 0, ry: 0, px: 0, py: 0 });
+
+  useFrame(({ clock }, delta) => {
+    if (!meshRef.current) return;
+    const ease = 1 - Math.exp(-delta * 14);
+
+    // Strong tilt — matches the hero feel
+    s.current.rx += (FM.y * -1.0 - s.current.rx) * ease;
+    s.current.ry += (FM.x *  1.4 - s.current.ry) * ease;
+
+    // Subtle position drift
+    s.current.px += (FM.x * 0.35 - s.current.px) * ease;
+    s.current.py += (FM.y * 0.25 - s.current.py) * ease;
+
+    meshRef.current.rotation.x = s.current.rx;
+    meshRef.current.rotation.y = s.current.ry;
+    meshRef.current.position.x = s.current.px;
+    meshRef.current.position.y = s.current.py + Math.sin(clock.elapsedTime * 0.6) * 0.1;
+  });
+
+  return <primitive ref={meshRef} object={clonedScene.current} dispose={null} scale={0.8} />;
+}
 
 export default function Footer() {
   const triggerRef = useRef(null);
-  const cardRef = useRef(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const xPercent = clientX / window.innerWidth;
-      const yPercent = clientY / window.innerHeight;
-
-      // Parallax movement for the card
-      const xMove = (xPercent - 0.5) * 150;
-      const yMove = (yPercent - 0.5) * 150;
-
-      gsap.to(cardRef.current, {
-        x: xMove,
-        y: yMove,
-        rotateY: (xPercent - 0.5) * 40,
-        rotateX: -(yPercent - 0.5) * 40,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-
-      // Change image based on mouse X for the 3D rotation effect
-      const index = Math.floor(xPercent * (MEDIA_ITEMS.length - 1));
-      setActiveImageIndex(index);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // Intersection Observer for Nav Opacity
-    const homeNavBottom = document.querySelector('.home_navigation-bottom');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (homeNavBottom) {
-          homeNavBottom.style.opacity = entry.isIntersecting ? '0' : '1';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    if (triggerRef.current) {
-      observer.observe(triggerRef.current);
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      observer.disconnect();
-    };
-  }, []);
-
   const footerLinks = [
     { 
       title: 'AGENCY', 
@@ -157,27 +147,26 @@ export default function Footer() {
             </div>
         </div>
 
-        {/* 3D Card Model (Background Layer) */}
-        <div 
-            ref={cardRef} 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
-            style={{ perspective: '1500px' }}
-        >
-            <div className="relative w-[60vw] md:w-[45vw] aspect-[0.75] flex items-center justify-center">
-                {MEDIA_ITEMS.map((src, i) => (
-                    <img 
-                        key={`${src}-${i}`}
-                        src={src}
-                        alt=""
-                        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-150 ${i === activeImageIndex ? 'opacity-20 md:opacity-30' : 'opacity-0'}`}
-                    />
-                ))}
-            </div>
+        {/* 3D Model Layer (Background) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Canvas 
+            shadows 
+            dpr={[1, 1.2]} 
+            performance={{ min: 0.5 }}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+            camera={{ position: [0, 0, 5], fov: 45 }}
+          >
+            <ambientLight intensity={0.4} />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
+                        <Suspense fallback={null}>
+                <FooterModel url="/models/savincliff_pill.glb" />
+                <Environment preset="warehouse" />
+              </Suspense>
+          </Canvas>
         </div>
 
         {/* Dynamic Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none z-[5]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black pointer-events-none z-[5]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_90%)] pointer-events-none z-[5] opacity-60" />
       </section>
 
       {/* WhatsApp FAB with Dribbble Animation */}

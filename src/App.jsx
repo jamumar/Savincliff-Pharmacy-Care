@@ -81,10 +81,13 @@ const AuthenticatedApp = () => {
 
 import { ReactLenis } from '@studio-freight/react-lenis';
 
+import CursorFollower from '@/components/ui/CursorFollower';
+
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: false }}>
       <div className="relative w-full min-h-screen overflow-x-hidden font-sans text-foreground bg-background">
+        <CursorFollower />
         <AuthProvider>
           <QueryClientProvider client={queryClientInstance}>
             <Router>
