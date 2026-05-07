@@ -6,7 +6,7 @@ import { useGLTF, Environment } from '@react-three/drei';
 
 // ─── Models list ──────────────────────────────────────────────────────────────
 const MODELS = [
-  { url: '/models/savincliff_pill.glb',                   label: 'PILL YIN YANG' },
+  { url: '/models/opt_savincliff_pill.glb',               label: 'PILL YIN YANG' },
   { url: '/models/opt_azure_embrace.glb',                 label: 'AZURE EMBRACE' },
   { url: '/models/opt_candy_ribbon.glb',                  label: 'CANDY RIBBON' },
   { url: '/models/opt_crystal_spiral.glb',                label: 'CRYSTAL SPIRAL' },

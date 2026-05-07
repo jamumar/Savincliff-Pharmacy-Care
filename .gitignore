@@ -29,3 +29,7 @@ yarn-error.log*
 # lock files (optional but usually excluded if you want to force fresh installs, though recommended to keep)
 # package-lock.json
 # yarn.lock
+
+# Raw unoptimized 3D models (use opt_*.glb instead)
+public/models/Meshy_AI_*.glb
+public/models/savincliff_pill.glb
