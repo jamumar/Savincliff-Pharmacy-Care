@@ -138,7 +138,7 @@ export default function Navbar() {
       </div>
 
       {/* Desktop Navbar */}
-      <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-6' : 'py-10'}`}>
+      <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-4' : 'py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-12 flex items-center justify-between">
           <Link to="/">
              <Logo variant={useDark ? 'dark' : 'light'} />
@@ -154,39 +154,39 @@ export default function Navbar() {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="flex-1 flex justify-center gap-20 xl:gap-32"
               >
-                 <div className="flex flex-col gap-4">
-                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                 <div className="flex flex-col gap-3">
+                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
                      [ COMPANY ]
                    </div>
-                   <Link to="/about" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-2 h-2 rounded-full ${isActive('/about') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> ABOUT
+                   <Link to="/about" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/about') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> ABOUT
                    </Link>
-                   <Link to="/shop" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-2 h-2 rounded-full ${isActive('/shop') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> EXPLORE
+                   <Link to="/shop" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/shop') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> EXPLORE
                    </Link>
                  </div>
                  
-                 <div className="flex flex-col gap-4">
-                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                 <div className="flex flex-col gap-3">
+                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
                      [ CLINICAL ]
                    </div>
-                   <Link to="/services" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-2 h-2 rounded-full ${isActive('/services') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> SERVICES
+                   <Link to="/services" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/services') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> SERVICES
                    </Link>
-                   <Link to="/products" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-2 h-2 rounded-full ${isActive('/products') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> QA / NODES
+                   <Link to="/products" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/products') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> QA / NODES
                    </Link>
                  </div>
 
-                 <div className="flex flex-col gap-4">
-                   <div className="text-[14px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                 <div className="flex flex-col gap-3">
+                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
                      [ PORTAL ]
                    </div>
-                   <Link to="/wholesale" className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-2 h-2 rounded-full ${isActive('/wholesale') ? 'bg-[#1B6E8C]' : 'bg-transparent group-hover:bg-[#1B6E8C]'} border border-[#1B6E8C]/20`} /> RX TERMINAL
+                   <Link to="/wholesale" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/wholesale') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> RX TERMINAL
                    </Link>
-                   <button onClick={() => setCartOpen(true)} className={`text-[18px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3 text-left`}>
-                     <div className="w-2 h-2 rounded-full bg-transparent group-hover:bg-[#1B6E8C] border border-[#1B6E8C]/20" /> ORDER [{count}]
+                   <button onClick={() => setCartOpen(true)} className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3 text-left`}>
+                     <div className="w-1.5 h-1.5 rounded-full bg-transparent border border-[#1B6E8C]/20" /> ORDER [{count}]
                    </button>
                  </div>
               </motion.div>
@@ -196,11 +196,11 @@ export default function Navbar() {
           {/* Right Side Buttons - Always visible but adaptive */}
           <div className="flex items-center gap-8">
              {user ? (
-               <button onClick={logout} className={`px-12 py-6 text-[16px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
+               <button onClick={logout} className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
                   EXIT SESSION
                </button>
              ) : (
-               <Link to="/register" className={`px-12 py-6 text-[16px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
+               <Link to="/register" className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
                   DISCOVERY CALL
                </Link>
              )}

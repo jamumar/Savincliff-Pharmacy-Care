@@ -83,12 +83,12 @@ function HeroSection() {
             <AnimatedText 
               text="delivering" 
               splitBy="char" 
-              className="font-serif-italic font-light text-[7vw] md:text-[4vw] text-white/50 lowercase" 
+              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase" 
             />
             <AnimatedText 
               text="CLINICAL CARE" 
               splitBy="word" 
-              className="font-black uppercase tracking-[-0.04em] text-[12vw] md:text-[8vw] leading-none" 
+              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none" 
             />
           </div>
           <div className="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6">
@@ -96,20 +96,20 @@ function HeroSection() {
               text="for the" 
               splitBy="char" 
               delay={0.2} 
-              className="font-serif-italic font-light text-[7vw] md:text-[4vw] text-white/50 lowercase" 
+              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase" 
             />
             <AnimatedText 
               text="PATIENTS OF" 
               splitBy="word" 
               delay={0.2} 
-              className="font-black uppercase tracking-[-0.04em] text-[12vw] md:text-[8vw] leading-none" 
+              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none" 
             />
           </div>
           <AnimatedText 
             text="TOMORROW" 
             splitBy="char" 
             delay={0.4} 
-            className="font-black uppercase tracking-[-0.04em] text-[12vw] md:text-[8vw] leading-none" 
+            className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none" 
           />
         </div>
       </motion.div>
