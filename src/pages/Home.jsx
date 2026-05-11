@@ -111,20 +111,20 @@ function HeroSection() {
 
 /* ═══════════════════════════════════════════════════════
    SECTION 2 — WE ARE
-   The panel slides UP over the hero with a frosted-glass
-   backdrop (blurred hero visible underneath), then zooms
-   the "WE ARE" text while the background solidifies dark.
+   Panel slides UP over hero with frosted-glass backdrop,
+   then the SVG zooms in via scale (GPU-only, no layout).
+   transformOrigin replaces x-translation to avoid vw-string
+   interpolation glitches at high scale values.
    ═══════════════════════════════════════════════════════ */
 function WeAreSection({ scrollYProgress }) {
   // Phase 1 [0→0.2]: slide up from below viewport
   const y = useTransform(scrollYProgress, [0, 0.2], ['100vh', '0vh']);
 
-  // Phase 2 [0.2→0.9]: zoom + pan
-  // PERF: scale(43.75) on a fixed 80vw element = visual 3500vw — GPU only, zero layout cost.
-  // Animating `width` to 3500vw caused layout recalculation every frame → Chrome freeze.
+  // Phase 2 [0.2→0.9]: scale-based zoom — GPU compositor only, zero layout cost.
+  // scale(43.75) on an 80vw element = 3500vw visual width.
   const scale = useTransform(scrollYProgress, [0.2, 0.9], [1, 43.75]);
-  const x     = useTransform(scrollYProgress, [0.2, 0.9], ['0vw', '-800vw']);
 
+  // Background: starts as light-gray semi-transparent (frosted), transitions to solid black
   const backgroundColor = useTransform(
     scrollYProgress,
     [0,                       0.5,                  0.9],
@@ -144,10 +144,8 @@ function WeAreSection({ scrollYProgress }) {
       <motion.div
         style={{
           scale,
-          x,
           width: '80vw',
-          transformOrigin: 'center center',
-          transformStyle: 'preserve-3d',
+          transformOrigin: '20% center',
         }}
         className="flex-shrink-0 will-change-transform"
       >
@@ -210,23 +208,23 @@ export default function Home() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ['start start', 'end end']
   });
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Shared sticky container: hero sits behind, WeAre slides up over it */}
+      {/* Robust structure: Single sticky container for both Hero and WeAreSection */}
       <div ref={containerRef} className="relative h-[350vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
-          {/* Hero — absolute behind, out of normal flow */}
+          {/* Hero stays fixed in the background */}
           <div className="absolute inset-0 z-0">
             <HeroSection />
           </div>
-          {/* WeAre — in normal flow, w-full h-full fills the 100vh sticky container */}
+
+          {/* WeAreSection overlays and slides up */}
           <WeAreSection scrollYProgress={scrollYProgress} />
         </div>
       </div>
-
       <ManifestoSection />
       {/* Marquee Section */}
       <section className="py-20 bg-white overflow-hidden border-y border-black/5">
