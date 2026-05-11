@@ -86,7 +86,7 @@ import CursorFollower from '@/components/ui/CursorFollower';
 function App() {
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothTouch: false }}>
-      <div className="relative w-full min-h-screen overflow-x-hidden font-sans text-foreground bg-background">
+      <div className="relative w-full min-h-screen overflow-x-clip font-sans text-foreground bg-background">
         <CursorFollower />
         <AuthProvider>
           <QueryClientProvider client={queryClientInstance}>
