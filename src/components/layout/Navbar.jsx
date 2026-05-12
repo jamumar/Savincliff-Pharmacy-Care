@@ -21,7 +21,7 @@ export default function Navbar() {
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/about';
+  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/wholesale', '/contact', '/compliance'].includes(location.pathname);
   const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {

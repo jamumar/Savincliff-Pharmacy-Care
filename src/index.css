@@ -146,6 +146,32 @@
   animation: marquee 40s linear infinite;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHTNING EFFECT  —  Services Hero
+   Multi-branch bolt with volumetric glow, matching the reference aesthetic.
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Energy pulse traveling along the main bolt */
+@keyframes lgPulse {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1800; }
+}
+
+/* Slow breathe on the central star glow */
+@keyframes lgBreathe {
+  from { opacity: 0.65; }
+  to   { opacity: 1.0; }
+}
+
+/* Organic flicker on diagonal branches */
+@keyframes lgFlicker {
+  0%,  100% { opacity: 1.0; }
+  18%        { opacity: 0.75; }
+  42%        { opacity: 0.95; }
+  67%        { opacity: 0.7;  }
+  83%        { opacity: 0.9;  }
+}
+
 /* Justified text for the services manifest */
 .text-justify-inter {
   text-align: justify;
