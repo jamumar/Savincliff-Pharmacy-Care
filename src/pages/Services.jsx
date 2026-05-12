@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─── 3D Model ─────────────────────────────────────────────────────────── */
 function HeroModel({ mouse }) {
   const groupRef = useRef();
-  const { scene } = useGLTF('/models/glass_wave_duo.glb');
+  const { scene } = useGLTF('/models/opt_glass_wave_duo.glb');
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -547,4 +547,4 @@ export default function Services() {
 }
 
 /* ─── Preload ───────────────────────────────────────────────────────────── */
-useGLTF.preload('/models/glass_wave_duo.glb');
+useGLTF.preload('/models/opt_glass_wave_duo.glb');
