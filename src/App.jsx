@@ -21,6 +21,8 @@ import Contact from '@/pages/Contact';
 import Checkout from '@/pages/CheckOut';
 import Register from '@/pages/Register';
 import RefundPolicy from '@/pages/RefundPolicy';
+import Faqs from '@/pages/Faqs';
+import FaqDetail from '@/pages/FaqDetail';
 
 // Account pages
 import AccountLayout from '@/pages/account/AccountLayout';
@@ -59,6 +61,8 @@ const AuthenticatedApp = () => {
           <Route path="/wholesale" element={<Wholesale />} />
           <Route path="/compliance" element={<Compliance />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/faqs/:slug" element={<FaqDetail />} />
           <Route path="/checkout" element={user ? <Checkout /> : <Register />} />
           <Route path="/register" element={<Register />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />

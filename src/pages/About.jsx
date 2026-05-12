@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import Lenis from '@studio-freight/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
-import { ArrowUpRight, ShieldCheck, Activity, Zap } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck, Activity, Zap, Plus } from 'lucide-react';
 import AnimatedText from '@/components/ui/AnimatedText';
 import ScrollMarquee from '@/components/ui/ScrollMarquee';
 
@@ -28,11 +28,13 @@ const NARRATIVE_WORDS = [
   { text: "THROUGH" }, { text: "FULL-SPECTRUM" }, { text: "CLINICAL" }, { text: "CERTAINTY." }
 ];
 
-const PinnedScrollReveal = () => {
-  const sectionRef = useRef(null);
+export default function About() {
+  const splitSectionRef = useRef(null);
+  const paragraphSectionRef = useRef(null);
   const paragraphRef = useRef(null);
-  
-  useEffect(() => {
+
+  useGSAP(() => {
+    // 1. Lenis Setup
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
@@ -46,59 +48,70 @@ const PinnedScrollReveal = () => {
     }
     requestAnimationFrame(raf);
 
-    const ctx = gsap.context(() => {
-      const chars = paragraphRef.current.querySelectorAll(".char");
+    // 2. Text Reveal Animation
+    const chars = paragraphRef.current.querySelectorAll(".char");
 
-      gsap.set(chars, {
-        x: 100,
-        opacity: 0,
-        rotateY: 90,
-      });
+    gsap.set(chars, {
+      x: 100,
+      opacity: 0,
+      rotateY: 90,
+    });
 
-      gsap.to(chars, {
-        x: 0,
-        opacity: 1,
-        rotateY: 0,
-        ease: "expo.out",
-        stagger: 0.01,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom+=3000 top",
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
+    gsap.to(chars, {
+      x: 0,
+      opacity: 1,
+      rotateY: 0,
+      ease: "expo.out",
+      stagger: 0.01,
+      scrollTrigger: {
+        trigger: paragraphSectionRef.current,
+        start: "top top",
+        end: "bottom+=5000 top",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // 3. Split Section Panels Animation
+    const panels = gsap.utils.toArray('.scroll-panel');
+    
+    // Initialize panels
+    panels.forEach((panel, i) => {
+      if (i === 0) {
+        gsap.set(panel, { y: 0, zIndex: 1 });
+      } else {
+        gsap.set(panel, { y: '100%', zIndex: i + 1 });
+      }
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: splitSectionRef.current,
+        start: 'top top',
+        end: `+=${panels.length * 100}%`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    panels.forEach((panel, i) => {
+      if (i === 0) return;
+      tl.to(panel, {
+        y: '0%',
+        ease: 'none',
       });
-    }, sectionRef);
+    });
+
+    ScrollTrigger.refresh();
 
     return () => {
-      ctx.revert();
       lenis.destroy();
     };
   }, []);
-
-  return (
-    <section ref={sectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
-      <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
-         <div className="max-w-[1400px] mx-auto">
-           <p ref={paragraphRef} className="paragraph text-xl md:text-[2.6vw] text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
-              {NARRATIVE_WORDS.map((w, i) => (
-                <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
-                  {w.text.split("").map((char, ci) => (
-                    <span key={ci} className="char inline-block">{char}</span>
-                  ))}
-                </span>
-              ))}
-           </p>
-         </div>
-      </div>
-    </section>
-  );
-};
-
-export default function About() {
   
   // Animation config for infinite back-and-forth glide (7s total loop)
   const getTransition = (delay) => ({
@@ -113,13 +126,16 @@ export default function About() {
     <div className="bg-white min-h-screen">
       
       {/* Native Auto-Playing Typography Hero */}
-      <section className="bg-black text-brand-teal min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]">
+      <section 
+        className="bg-black text-[#22D3EE] min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]"
+        style={{ textShadow: '0 0 35px rgba(34, 211, 238, 0.45)' }}
+      >
         <div className="w-full flex flex-col justify-center space-y-2">
             <motion.h1 
               initial={{ x: "-5vw" }}
               animate={{ x: "60vw" }} 
               transition={getTransition(0)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
             >
                Legacy
             </motion.h1>
@@ -127,7 +143,7 @@ export default function About() {
               initial={{ x: "10vw" }}
               animate={{ x: "40vw" }} 
               transition={getTransition(0.3)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
             >
                Innovation
             </motion.h1>
@@ -135,7 +151,7 @@ export default function About() {
               initial={{ x: "-15vw" }}
               animate={{ x: "50vw" }} 
               transition={getTransition(0.6)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
             >
                Human
             </motion.h1>
@@ -143,7 +159,7 @@ export default function About() {
               initial={{ x: "20vw" }}
               animate={{ x: "70vw" }} 
               transition={getTransition(0.9)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-90 whitespace-nowrap"
+              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
             >
                Freedom
             </motion.h1>
@@ -154,7 +170,21 @@ export default function About() {
       </section>
 
       {/* Pinned Scroll Scrub Reveal */}
-      <PinnedScrollReveal />
+      <section ref={paragraphSectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
+        <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
+           <div className="max-w-[1400px] mx-auto">
+             <p ref={paragraphRef} className="paragraph text-xl md:text-[2.6vw] text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
+                {NARRATIVE_WORDS.map((w, i) => (
+                  <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
+                    {w.text.split("").map((char, ci) => (
+                      <span key={ci} className="char inline-block">{char}</span>
+                    ))}
+                  </span>
+                ))}
+             </p>
+           </div>
+        </div>
+      </section>
 
       {/* Story Section */}
       <section className="section-padding bg-white">
@@ -198,30 +228,102 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-black text-white section-padding px-5 md:px-0">
-        <div className="grid-container">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10">
-                {[
-                   { i: <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-brand-teal" />, t: 'VERIFICATION', d: 'WE OPERATE UNDER A ZERO-TRUST MODEL. EVERY UNIT OF MEDICATION IS AUDITED THROUGH PRIMARY SOURCE MANIFESTS BEFORE COMMITTING TO THE QUEUE.' },
-                   { i: <Activity className="w-8 h-8 md:w-10 md:h-10 text-brand-teal" />, t: 'PRECISION', d: 'HUMAN ERROR IS ARCHITECTURALLY ELIMINATED. LICENSED PHARMACISTS OVERSEE ALL THERAPEUTIC SYNERGIES FOR TOTAL CLINICAL ALIGNMENT.' },
-                   { i: <Zap className="w-8 h-8 md:w-10 md:h-10 text-brand-teal" />, t: 'ACCESS', d: 'MEDICAL ESSENTIALS ARE A HUMAN RIGHT. WE HAVE OPTIMIZED OUR DISPATCH NODES TO ENSURE REACH ACROSS THE PAN-AFRICAN FRONTIER.' }
-                ].map((node, i) => (
-                    <motion.div 
-                        key={node.t}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.2, duration: 1, ease: easeQuint }}
-                        className="p-8 md:p-16 border-b md:border-b-0 md:border-r border-white/10 last:border-r-0 last:border-b-0 hover:bg-white/5 transition-colors duration-700"
-                    >
-                        <div className="mb-6 md:mb-12">{node.i}</div>
-                        <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-4 md:mb-8">{node.t}</h3>
-                        <p className="text-[10px] md:text-[11px] font-black tracking-[0.2em] md:tracking-[0.25em] uppercase text-white/30 leading-relaxed">
-                           {node.d}
-                        </p>
-                    </motion.div>
-                ))}
+      {/* Split Sticky Scroll Section */}
+      <section ref={splitSectionRef} className="relative bg-black h-screen flex flex-col md:flex-row overflow-hidden">
+        {/* Left Side - Sticky */}
+        <div className="w-full md:w-1/2 bg-black text-white p-12 md:p-24 flex flex-col justify-center">
+          <div className="text-brand-teal text-[10px] font-black tracking-[0.2em] uppercase mb-4">
+            [ENTERPRISE]
+          </div>
+          <h2 className="text-[8vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none">
+            WHY CHOOSE<br />SAVINCLIFF
+          </h2>
+        </div>
+
+        {/* Right Side - Panels */}
+        <div className="w-full md:w-1/2 relative h-full">
+          {/* Panel 1 */}
+          <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+              Dedicated Senior Team
+            </h3>
+            <div className="space-y-4 max-w-lg">
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">SENIOR TEAM DIRECTORS</span>
+                <span>12</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">NEW CLIENTS ACCEPTED</span>
+                <span>≈ 1 Per Month</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">HQ LOCATION</span>
+                <span>≈ Abuja, Nigeria</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">SATELLITE OFFICE</span>
+                <span>≈ Lagos, Nigeria</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">TEAM DISTRIBUTION</span>
+                <span>Pan-African</span>
+              </div>
             </div>
+          </div>
+
+          {/* Panel 2 */}
+          <div className="scroll-panel absolute inset-0 bg-white text-black p-12 md:p-24 flex flex-col justify-center">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+              Choose your way
+            </h3>
+            <div className="space-y-4 max-w-lg">
+              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">FLAT RATE PROJECT(S)</span>
+                <span>Yes</span>
+              </div>
+              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">DESIGN & DEV RETAINER</span>
+                <span>Yes</span>
+              </div>
+              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">GROWTH & SEO RETAINER</span>
+                <span>Yes</span>
+              </div>
+              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">CLINICAL TRAINING</span>
+                <span>Yes</span>
+              </div>
+              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">PRODUCTION SERVICES</span>
+                <span>Yes</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Panel 3 */}
+          <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+              Project Count & Recognition
+            </h3>
+            <div className="space-y-4 max-w-lg">
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">FINALIZED PROJECTS</span>
+                <span>300+</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">ENTERPRISE PARTNER</span>
+                <span>Finalist 2026</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">1ST EVER CLINICAL.GOV</span>
+                <span>Won First State Contract</span>
+              </div>
+              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="opacity-70">AWWWARDS</span>
+                <span>Honorable Mentions x15</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

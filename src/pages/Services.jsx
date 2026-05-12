@@ -287,70 +287,207 @@ function ServicesHero() {
   );
 }
 
-/* ─── Service Cards ─────────────────────────────────────────────────────── */
-const SERVICES = [
-  { id: '01', name: 'Clinical Dispensing', desc: 'Precision handling of all pharmaceutical requirements. Every dose is verified through primary clinical audits before fulfillment.', icon: <Package className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
-  { id: '02', name: 'Rx Verification', desc: 'Advanced regulatory portal for prescription authentication. We link patients directly to our licensed clinical oversight team.', icon: <ClipboardList className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
-  { id: '03', name: 'Chronic Care Node', desc: 'Integrated management plans for hypertension, diabetes, and respiratory conditions. Long-term health, redefined.', icon: <Activity className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
-  { id: '04', name: 'Wholesale Ops', desc: 'Industrial-grade pharmaceutical supply chain for hospitals and clinics. Total compliance, total transparency.', icon: <ShieldCheck className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
-  { id: '05', name: 'Rapid Logistics', desc: 'Temperature-controlled fulfillment network delivering medical essentials within 4 hours in Abuja and 48 hours nationwide.', icon: <Truck className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
-  { id: '06', name: 'Clinical Advisory', desc: 'Direct consultation node allowing patients to interact with licensed pharmacists for medication synergy and dosage guidance.', icon: <Zap className="w-10 h-10 text-brand-teal" strokeWidth={1} /> },
+/* ─── Stacked Capabilities Section (SVZ Overlapping Sticky Rows) ────────── */
+const CAPABILITIES_DATA = [
+  {
+    id: '[01]',
+    title: 'STRATEGY',
+    desc: 'WE ALIGN ON THE VISION SO EVERY STEP FORWARD IS A STEP WITH PURPOSE.',
+    list: ['Web Competitor Analysis', 'Persona Posters', 'User Flows', 'User Journey', 'Sitemap'],
+    visual: (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex flex-col gap-3 transform -rotate-12">
+          <div className="w-24 h-8 bg-[#FF2A2A] rounded-sm" />
+          <div className="w-20 h-8 bg-[#FF2A2A] rounded-sm" />
+        </div>
+      </div>
+    )
+  },
+  {
+    id: '[02]',
+    title: 'BRAND',
+    desc: "WE LAY THE GROUNDWORK FOR WHO YOU ARE NOW — AND WHO YOU'RE MEANT TO BECOME.",
+    list: ['Naming workshop', 'Brand Strategy & Core', 'Brand Deck', 'Logo Evolution', 'Sales & Marketing Collateral', 'Messaging & copy'],
+    visual: (
+      <div className="absolute inset-0 flex items-end justify-center">
+        <div className="w-28 h-14 bg-[#FF2A2A] rounded-t-full" />
+      </div>
+    )
+  },
+  {
+    id: '[03]',
+    title: 'DESIGN',
+    desc: 'WE CRAFT BEAUTY WITH INTENTION, WHERE FORM AND FUNCTION MEET IN PERFECT BALANCE.',
+    list: [
+      'Analyze & absorb strategy', 'UI/uX design', 'Moodboard & Brainstorm',
+      'Wireframes & Content Mapping', 'Design systems & ui kits', 'Animations & Interactions',
+      'Illustrations & graphic design', 'high-fidelity website design',
+      'Experiential design & Motion design', 'product design', '3D Design',
+      'Usability Testing', 'AI assets generator engine'
+    ],
+    visual: (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-32 h-32 flex items-center justify-center">
+          <div className="absolute top-0 w-32 h-14 bg-black rounded-t-full" />
+          <div className="absolute bottom-0 w-32 h-14 bg-black rounded-b-full" />
+          <div className="w-10 h-10 bg-[#FF2A2A] rounded-full z-10" />
+        </div>
+      </div>
+    )
+  },
+  {
+    id: '[04]',
+    title: 'DEVELOPMENT',
+    desc: 'WE BRING DESIGN TO LIFE WITH CODE THAT’S CLEAN, FAST, AND BUILT TO SCALE.',
+    list: [
+      'Webflow Development', 'Custom Development', 'front-end optimization',
+      'Accessibility optimization', 'web app development', 'AI Development & Integrations',
+      'Data migration & mapping'
+    ],
+    visual: (
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+        <div className="w-4 h-4 bg-[#FF2A2A] rounded-full" />
+        <div className="w-20 h-10 border-t-8 border-l-8 border-r-8 border-black rounded-t-full relative">
+          <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full" />
+          <div className="absolute -bottom-2 -right-2 w-3 h-3 bg-white rounded-full" />
+        </div>
+      </div>
+    )
+  },
+  {
+    id: '[05]',
+    title: 'PRODUCTION',
+    desc: 'WE CREATE THE FOUNDATION FOR YOUR NEXT BIG IDEA.',
+    list: [
+      'Creative Identity Workshop', 'Define Vision & Creative Focus',
+      'Pre-Production Briefing', 'Talent & Set Scouting', 'Campaign Execution',
+      'Post-Production'
+    ],
+    visual: (
+      <div className="absolute inset-0 flex items-end justify-center">
+        <div className="w-0 h-0 border-l-[50px] border-l-transparent border-r-[50px] border-r-transparent border-b-[80px] border-b-[#c28484]" />
+      </div>
+    )
+  },
+  {
+    id: '[06]',
+    title: 'GROWTH',
+    desc: 'WE AMPLIFY WHAT’S WORKING AND OPEN THE DOORS TO WHAT’S NEXT.',
+    list: ['seo & SEM Strategy', 'custom dashboard reporting', 'process & workflow automation', 'Ai consulting'],
+    visual: (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-20 h-20 bg-gradient-to-tr from-[#FF2A2A] to-[#4a2020] rounded-lg transform rotate-45" />
+      </div>
+    )
+  },
+  {
+    id: '[07]',
+    title: 'Ai ecosystems',
+    desc: 'WE ENGINEER SMART INFRASTRUCTURES THAT DO THE WORK — SO YOU CAN FOCUS ON VISION.',
+    list: [
+      'Prompt Engineering & Workflow Design', 'Custom LLM Agent Development',
+      'AI Strategy & Automation Consulting', 'Data Integration & Fine-Tuning',
+      'No-Code AI Tools & Prototypes', 'Voice & Chat Interface Design',
+      'AI + Webflow Integration', 'AI-Driven Personalization Systems',
+      'Model Selection & Deployment Strategy'
+    ],
+    visual: (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="grid grid-cols-3 gap-2 w-20 h-20">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className={`w-full h-full rounded-xs ${i === 4 ? 'bg-[#FF2A2A]' : 'bg-white/10'}`} />
+          ))}
+        </div>
+      </div>
+    )
+  }
 ];
 
-function AnimatedServiceCards() {
-  const sectionRef = useRef(null);
+function StackedCapabilities() {
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray('.service-card');
+      const rows = gsap.utils.toArray('.capability-row');
 
-      gsap.set(cards, { y: 100, z: -200, scale: 0.9, opacity: 0, rotate: (i) => gsap.utils.random(-10, 10), transformOrigin: 'center center' });
-      gsap.set(cards[0], { y: 0, z: 0, scale: 1, opacity: 1, rotate: 0 });
+      // Initialize row stack positions
+      // Row 0 starts completely visible at the top
+      // Consecutive rows start offscreen below the viewport
+      rows.forEach((row, i) => {
+        if (i === 0) {
+          gsap.set(row, { y: 0, zIndex: 1 });
+        } else {
+          gsap.set(row, { y: window.innerHeight, zIndex: i + 1 });
+        }
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: containerRef.current,
           start: 'top top',
-          end: `+=${cards.length * 800}`,
-          scrub: 1.2,
+          end: `+=${rows.length * 750}`,
+          scrub: true,
           pin: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
-      cards.forEach((card, i) => {
+      // Animate each subsequent row sliding up to lock underneath the previous row's header tab
+      rows.forEach((row, i) => {
         if (i === 0) return;
-        const prev = cards[i - 1];
-        tl.to(card, { y: 0, z: 0, scale: 1, opacity: 1, rotate: 0, ease: 'power3.out', duration: 0.6 });
-        tl.to(prev, { y: -80, z: -150, scale: 0.85, opacity: 0.3, ease: 'power2.out', duration: 0.6 }, '<');
-        tl.to({}, { duration: 0.5 });
+        const targetY = i * 64; // Staggered top offset interval exposing exactly the title strip
+
+        tl.to(row, {
+          y: targetY,
+          ease: 'none',
+          duration: 1,
+        });
       });
-    }, sectionRef);
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen flex items-center justify-center bg-black overflow-hidden" style={{ perspective: '1000px' }}>
-      <div className="relative w-full max-w-4xl h-[600px] flex items-center justify-center">
-        {SERVICES.map((s) => (
-          <div
-            key={s.id}
-            className="service-card absolute w-full max-w-lg md:max-w-2xl bg-white text-black p-8 md:p-16 border border-black/10 shadow-2xl flex flex-col justify-between min-h-[450px]"
-          >
-            <div>
-              <div className="mb-10">{s.icon}</div>
-              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 leading-none">{s.name}</h3>
-              <p className="text-[11px] md:text-[13px] font-bold tracking-[0.2em] uppercase text-black/60 leading-relaxed max-w-md">{s.desc}</p>
+    <div ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden select-none">
+      {CAPABILITIES_DATA.map((item, index) => (
+        <div
+          key={item.id}
+          className="capability-row absolute left-0 top-0 w-full h-full bg-black pt-6 border-t border-white/10 flex flex-col justify-start"
+        >
+          <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-16 max-w-[1800px] mx-auto px-6 md:px-12">
+            {/* Left Column: Heading + Content */}
+            <div className="w-full lg:w-7/12 flex flex-col">
+              {/* Title Block — optimized to occupy exactly the exposed 64px header space */}
+              <div className="flex items-baseline gap-3 h-[40px] mb-4">
+                <span className="text-[11px] font-black text-[#FF2A2A]">{item.id}</span>
+                <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-white">{item.title}</h3>
+              </div>
+
+              {/* Content Area */}
+              <div className="pr-0 lg:pr-12">
+                <p className="text-[11px] md:text-[13px] font-bold tracking-[0.15em] text-white uppercase mb-8 leading-relaxed max-w-xl">
+                  {item.desc}
+                </p>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                  {item.list.map((listItem, idx) => (
+                    <li key={idx} className="text-[10px] md:text-[11px] font-semibold tracking-[0.1em] text-white/50 uppercase">
+                      {listItem}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="mt-12 flex justify-between items-end">
-              <span className="text-4xl md:text-6xl font-black opacity-10 select-none tracking-tighter">{s.id}</span>
-              <div className="w-2 h-2 bg-brand-teal rounded-full" />
+
+            {/* Right Column: Visual Card Placeholder */}
+            <div className="w-full lg:w-5/12 h-[280px] md:h-[360px] bg-[#262626] rounded-2xl md:rounded-3xl overflow-hidden border border-white/5 shadow-2xl shrink-0 relative mt-4 lg:mt-0">
+              {item.visual}
             </div>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -362,16 +499,16 @@ export default function Services() {
       {/* SVZ-style dark hero with 3D model */}
       <ServicesHero />
 
-      {/* Capabilities heading — moved lower, smaller */}
-      <section className="px-6 md:px-12 py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto border-b border-black pb-10">
+      {/* Capabilities heading */}
+      <section className="px-6 md:px-12 pt-32 pb-12 bg-black text-white">
+        <div className="max-w-[1800px] mx-auto border-b border-white/10 pb-10">
           <h2 className="text-[8vw] md:text-[5vw] font-black uppercase tracking-[-0.03em] leading-[0.9]">CAPABILITIES</h2>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-black/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
+          <p className="text-[11px] font-bold tracking-[0.4em] text-white/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
         </div>
       </section>
 
-      {/* Animated card stack */}
-      <AnimatedServiceCards />
+      {/* Stacked overlapping rows */}
+      <StackedCapabilities />
 
       {/* Precision Logistics Highlight */}
       <section className="bg-black text-white py-40 px-6 md:px-12 overflow-hidden relative">

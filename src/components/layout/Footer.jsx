@@ -234,9 +234,14 @@ export default function Footer() {
         href="https://wa.me/923251206427"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] group"
+        className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] group flex items-center gap-3"
       >
-        <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-brand-teal transition-all duration-700 shadow-2xl relative border border-white/10">
+        {/* Hover Label */}
+        <div className="bg-black text-white text-[10px] font-black tracking-[0.3em] uppercase py-2 px-4 border border-white/20 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 whitespace-nowrap shadow-2xl backdrop-blur-sm">
+          WHATSAPP NODE
+        </div>
+
+        <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-brand-teal transition-all duration-700 shadow-2xl relative border border-white/10 shrink-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             <source src="/animations/whatsapp_1.mp4" type="video/mp4" />
           </video>

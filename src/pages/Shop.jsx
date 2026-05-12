@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/CartContext';
 import ProductDetailModal from '@/components/shop/ProductDetailModal';
 import { Plus, Check, ArrowUpRight } from 'lucide-react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useGLTF, Environment } from '@react-three/drei';
+import * as THREE from 'three';
 
 const easeQuint = [0.16, 1, 0.3, 1];
 
@@ -18,6 +21,138 @@ const MOCK_PRODUCTS = [
   { id: 9, name: 'AETERNA SERUM', brand: 'AETERNA LABS', price: 35000, img: '/images/skincare.png', unit: '50 ML', category: 'Dermal' },
 ];
 
+/* ─── 3D Hero Model ─────────────────────────────────────────────────────── */
+function ShopHeroModel({ mouse }) {
+  const groupRef = useRef();
+  const { scene } = useGLTF('/models/opt_savincliff_pill.glb');
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const t = state.clock.getElapsedTime();
+
+    // Smooth cursor tracking across 180 degree sweeps
+    const targetY = mouse.current[0] * (Math.PI / 2);
+    const targetX = mouse.current[1] * (Math.PI / 4);
+
+    groupRef.current.rotation.y += (targetY - groupRef.current.rotation.y) * 0.1;
+    groupRef.current.rotation.x += (targetX - groupRef.current.rotation.x) * 0.1;
+
+    // Subtle premium idle float
+    groupRef.current.position.y = Math.sin(t * 0.8) * 0.08;
+  });
+
+  return (
+    <group ref={groupRef} scale={1.3} position={[0, 0, 0]}>
+      <primitive object={scene} />
+    </group>
+  );
+}
+
+/* ─── Hero Section mimicking SVZ reference layout ───────────────────────── */
+function ShopHero() {
+  const mouse = useRef([0, 0]);
+  const [time, setTime] = useState('');
+
+  // Track mouse
+  useEffect(() => {
+    const onMove = (e) => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      mouse.current = [
+        (e.clientX / w - 0.5) * 2,
+        (e.clientY / h - 0.5) * 2,
+      ];
+    };
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
+  // Live time
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <section className="relative w-full bg-black overflow-hidden select-none" style={{ height: '100svh' }}>
+      {/* Deep vignette background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,_rgba(20,20,20,0.6)_0%,_rgba(0,0,0,1)_100%)] z-[1]" />
+
+      {/* 3D Canvas Container */}
+      <div className="absolute inset-0 z-[2]">
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          gl={{ antialias: true, alpha: true }}
+          dpr={[1, 2]}
+        >
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
+          <directionalLight position={[-5, -3, -5]} intensity={0.5} color="#22D3EE" />
+          <pointLight position={[0, 2, 3]} intensity={2.0} color="#ffffff" />
+          <Suspense fallback={null}>
+            <Environment preset="studio" />
+            <ShopHeroModel mouse={mouse} />
+          </Suspense>
+        </Canvas>
+      </div>
+
+      {/* Text Overlay mimicking SVZ Capabilities Hero layout */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
+        {/* Big stylized Headline: PRIMARY SoURCE */}
+        <div className="text-center flex items-center justify-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: easeQuint }}
+            className="font-black uppercase tracking-[-0.04em] leading-[0.88] text-white flex items-center justify-center"
+            style={{ fontSize: 'clamp(3rem, 8vw, 8.5rem)' }}
+          >
+            PRIMARY S<span className="font-serif italic lowercase font-light mx-1">o</span>URCE
+          </motion.h1>
+        </div>
+      </div>
+
+      {/* Bottom indicators */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="absolute bottom-8 left-0 right-0 z-30 px-8 md:px-12 flex items-end justify-between pointer-events-none select-none"
+      >
+        {/* Left: Scroll */}
+        <div className="flex items-center gap-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-white/50">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6" />
+          </svg>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">SCROLL &amp; EXPLORE</span>
+            <span className="text-[9px] font-black tracking-[0.3em] text-white/25 uppercase">THE SAVINCLIFF REALM</span>
+          </div>
+        </div>
+
+        {/* Right: Location + time */}
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col items-end gap-0.5">
+            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">ABUJA, NIGERIA</span>
+            <div className="flex gap-2 items-center">
+              <span className="text-[9px] font-black tracking-[0.25em] text-white/25 uppercase">Local time:</span>
+              <span className="text-[9px] font-black tracking-[0.25em] text-white/50 uppercase">{time}</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-white/50">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6" />
+          </svg>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { add, items } = useCart();
@@ -25,20 +160,24 @@ export default function Shop() {
   const isAdded = (id) => items.some(item => item.id === id);
 
   return (
-    <div className="bg-white min-h-screen pt-24 md:pt-40">
+    <div className="bg-white min-h-screen">
       
-      {/* High-Impact Heading */}
-      <section className="px-5 md:px-12 mb-12 md:mb-40">
-         <div className="max-w-[1800px] mx-auto border-b border-black pb-8 md:pb-12 overflow-hidden">
-            <motion.h1 
-               initial={{ y: 100 }}
-               animate={{ y: 0 }}
-               transition={{ duration: 1, ease: easeQuint }}
-               className="text-[12vw] md:text-[8vw] font-black uppercase tracking-tighter leading-none"
+      {/* Premium Dark Hero Section */}
+      <ShopHero />
+
+      {/* Reduced Heading moved to a new standalone section above products */}
+      <section className="pt-20 md:pt-32 px-5 md:px-12 mb-8 md:mb-16 bg-white">
+         <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-6 md:pb-8 overflow-hidden">
+            <motion.h2 
+               initial={{ y: 50, opacity: 0 }}
+               whileInView={{ y: 0, opacity: 1 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8, ease: easeQuint }}
+               className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
             >
                INVENTORY
-            </motion.h1>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-8">
+            </motion.h2>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-6">
                <p className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">Clinical Manifest / Synchronized 2026</p>
                <span className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal sm:px-4 sm:border-l border-brand-teal">Total: {MOCK_PRODUCTS.length} NODES</span>
             </div>

@@ -10,6 +10,7 @@ const NAV = [
   { label: 'EXPLORE', path: '/shop' },
   { label: 'SERVICES', path: '/services' },
   { label: 'QA / NODES', path: '/products' },
+  { label: 'FAQS', path: '/faqs' },
   { label: 'RX TERMINAL', path: '/wholesale' },
 ];
 
@@ -21,7 +22,7 @@ export default function Navbar() {
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/wholesale', '/contact', '/compliance'].includes(location.pathname);
+  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/wholesale', '/contact', '/compliance', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
   const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Navbar() {
         >
           <div className="flex justify-between items-center px-6 py-5">
             <Link to="/" onClick={() => setOpen(false)}>
-              <Logo variant={open || !useDark ? 'light' : 'dark'} />
+              <Logo variant={open || !useDark ? 'light' : 'dark'} scrolled={scrolled} />
             </Link>
             <button 
               className="centered-nav__toggle w-10 h-10 flex flex-col items-center justify-center" 
@@ -141,7 +142,7 @@ export default function Navbar() {
       <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-4' : 'py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-12 flex items-center justify-between">
           <Link to="/">
-             <Logo variant={useDark ? 'dark' : 'light'} />
+             <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
           </Link>
 
           {/* Desktop Center Links - Hidden on Scroll */}
@@ -163,6 +164,15 @@ export default function Navbar() {
                    </Link>
                    <Link to="/shop" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
                      <div className={`w-1.5 h-1.5 rounded-full ${isActive('/shop') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> EXPLORE
+                   </Link>
+                 </div>
+
+                 <div className="flex flex-col gap-3">
+                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
+                     [ WORK ]
+                   </div>
+                   <Link to="/faqs" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
+                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/faqs') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> FAQS
                    </Link>
                  </div>
                  
