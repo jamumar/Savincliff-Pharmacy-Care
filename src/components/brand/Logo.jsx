@@ -24,7 +24,7 @@ export default function Logo({ className = "", variant = "dark", scrolled = fals
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            src="/logo.svg"
+            src="/logo.png"
             alt="Savincliff"
             className="h-full w-auto object-contain select-none"
           />
