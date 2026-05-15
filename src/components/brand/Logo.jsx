@@ -35,7 +35,7 @@ export default function Logo({ className = "", variant = "dark", scrolled = fals
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
-            className="absolute -left-2 md:-left-3 top-1/2 -translate-y-[55%] w-[65px] h-[65px] md:w-[75px] md:h-[75px] flex items-center justify-center cursor-pointer"
+            className="absolute left-0 top-0 w-[65px] h-[65px] md:w-[75px] md:h-[75px] flex items-center justify-center cursor-pointer"
           >
             <Canvas
               camera={{ position: [0, 0, 4.5], fov: 45 }}

@@ -141,7 +141,7 @@ export default function Navbar() {
       {/* Desktop Navbar */}
       <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-4' : 'py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-12 flex items-center justify-between">
-          <Link to="/">
+          <Link to="/" className={scrolled ? "absolute left-0 top-0" : ""}>
              <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
           </Link>
 
