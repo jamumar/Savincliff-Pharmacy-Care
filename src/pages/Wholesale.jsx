@@ -31,7 +31,7 @@ export default function Wholesale() {
       {/* High-Impact Heading */}
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12 text-center md:text-left">
-            <h1 className="display-svz uppercase">VERIFICATION</h1>
+            <h1 className="sub-display-svz">VERIFICATION</h1>
             <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Clinical Rx Upload / Prescription Specification Protocol</p>
          </div>
       </section>

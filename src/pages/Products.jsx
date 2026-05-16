@@ -17,7 +17,7 @@ export default function Products() {
       {/* High-Impact Heading */}
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
-            <h1 className="display-svz uppercase">STANDARDS</h1>
+            <h1 className="sub-display-svz">STANDARDS</h1>
             <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS / VERIFIED 2026</p>
          </div>
       </section>

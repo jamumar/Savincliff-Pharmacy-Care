@@ -22,7 +22,7 @@ export default function Navbar() {
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/wholesale', '/contact', '/compliance', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
+  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/contact', '/compliance', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
   const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {
@@ -204,7 +204,7 @@ export default function Navbar() {
           </AnimatePresence>
           
           {/* Right Side Buttons - Always visible but adaptive */}
-          <div className="flex items-center gap-8">
+          <div className={`flex items-center gap-8 ${scrolled ? 'ml-auto' : ''}`}>
              {user ? (
                <button onClick={logout} className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
                   EXIT SESSION
