@@ -15,7 +15,7 @@ function LogoModel() {
 
 export default function Logo({ className = "", variant = "dark", scrolled = false }) {
   return (
-    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[60px] md:h-[80px]' : 'h-[40px] md:h-[45px]'} ${className}`}>
+    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[75px] md:h-[100px]' : 'h-[50px] md:h-[55px]'} ${className}`}>
       <AnimatePresence mode="wait">
         {!scrolled ? (
           <motion.img

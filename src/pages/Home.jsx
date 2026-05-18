@@ -1,17 +1,120 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { ArrowUpRight, Plus, Check } from 'lucide-react';
+
 import AnimatedText from '@/components/ui/AnimatedText';
 import ScrollMarquee from '@/components/ui/ScrollMarquee';
+import { useCart } from '@/lib/CartContext';
+import { MOCK_PRODUCTS } from '@/pages/Shop';
 
 
 const ease = [0.16, 1, 0.3, 1];
 
 /* ═══════════════════════════════════════════════════════
-   FLOATING DECORATIONS (The "Tale" Color Shapes)
+   FLOATING DECORATIONS (SVZ-Style Geometric Shapes)
    ═══════════════════════════════════════════════════════ */
+function HeroShapeGroup({ mousePosition, springConfig }) {
+  return (
+    <div className="relative w-[100vw] h-full shrink-0 flex-none">
+      {/* Huge Plus Sign (Left) */}
+      <motion.div 
+        className="absolute left-[5%] top-[25%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px]"
+        animate={{
+          x: mousePosition.x * -40,
+          y: mousePosition.y * -40,
+          rotate: -20 + mousePosition.x * 5
+        }}
+        transition={springConfig}
+      >
+        <div className="absolute top-1/2 left-0 w-full h-[28%] bg-[#121212] -translate-y-1/2" />
+        <div className="absolute left-1/2 top-0 w-[28%] h-full bg-[#121212] -translate-x-1/2" />
+        {/* Inner cutout hole */}
+        <div className="absolute inset-0 m-auto w-[28%] h-[28%] bg-black rounded-full" />
+      </motion.div>
+
+      {/* Large Half Circle (Bottom Center/Left) */}
+      <motion.div 
+        className="absolute left-[20%] bottom-[-15%] w-[40vw] h-[40vw] max-w-[450px] max-h-[450px]"
+        animate={{
+          x: mousePosition.x * 25,
+          y: mousePosition.y * 25,
+        }}
+        transition={{ type: 'spring', stiffness: 30, damping: 30 }}
+      >
+        <div className="w-full h-full bg-[#121212] rounded-tr-[100%] rounded-tl-full relative">
+          {/* Teal circle stuck to the top right tip of the curve */}
+          <div className="absolute right-[0%] top-[0%] w-[10vw] h-[10vw] max-w-[120px] max-h-[120px] bg-brand-teal rounded-full shadow-[0_0_80px_rgba(27,110,140,0.4)] translate-x-1/2 -translate-y-1/2" />
+        </div>
+      </motion.div>
+
+      {/* Thick Angled Lines / Rays (Right) */}
+      <motion.div 
+        className="absolute right-[5%] top-[15%] w-[40vw] h-[50vw] max-w-[500px]"
+        animate={{
+          x: mousePosition.x * -20,
+          y: mousePosition.y * -30,
+        }}
+        transition={springConfig}
+      >
+        <div className="absolute top-[10%] right-0 w-[120%] h-[4%] bg-[#121212] rotate-[-12deg]" />
+        
+        {/* Line 2 with Teal Circle attached to its left end */}
+        <div className="absolute top-[40%] right-0 w-[100%] h-[4%] bg-[#121212] rotate-[-12deg]">
+          <div className="absolute left-0 top-1/2 w-[8vw] h-[8vw] max-w-[100px] max-h-[100px] bg-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_80px_rgba(27,110,140,0.4)]" />
+        </div>
+        
+        <div className="absolute top-[75%] right-0 w-[85%] h-[4%] bg-[#121212] rotate-[-12deg]" />
+      </motion.div>
+      
+      {/* Secondary Abstract Shape (Top Right Edge) */}
+      <motion.div 
+        className="absolute right-[-10%] top-[-5%] w-[35vw] h-[35vw] max-w-[400px] max-h-[400px]"
+        animate={{
+          x: mousePosition.x * 15,
+          y: mousePosition.y * 15,
+        }}
+        transition={springConfig}
+      >
+        <div className="w-full h-full border-[40px] border-[#121212] rounded-full opacity-50 relative" style={{ clipPath: 'polygon(50% 0%, 100% 0, 100% 100%, 50% 100%)' }}>
+          {/* Teal circle attached to top edge of this clip */}
+          <div className="absolute top-0 left-[50%] w-[6vw] h-[6vw] max-w-[80px] max-h-[80px] bg-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_80px_rgba(27,110,140,0.4)]" />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function HeroShapes() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const springConfig = { type: 'spring', stiffness: 40, damping: 30 };
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <motion.div 
+        className="flex h-full w-[200vw]"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ ease: "linear", duration: 20, repeat: Infinity }}
+      >
+        <HeroShapeGroup mousePosition={mousePosition} springConfig={springConfig} />
+        <HeroShapeGroup mousePosition={mousePosition} springConfig={springConfig} />
+      </motion.div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════
    SECTION 1 — HERO
    ═══════════════════════════════════════════════════════ */
@@ -27,20 +130,8 @@ function HeroSection() {
   return (
     <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
 
-      {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40"
-        style={{
-          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)',
-        }}
-      >
-        <Player
-          autoplay
-          loop
-          src="https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ec482dfa06d8122041b027_lottie.json"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </div>
+      {/* ── Geometric Shapes Background ── */}
+      <HeroShapes />
 
       {/* ── Top Label ── */}
       <motion.div
@@ -112,22 +203,22 @@ function HeroSection() {
 /* ═══════════════════════════════════════════════════════
    SECTION 2 — WE ARE
    Panel slides UP over hero with frosted-glass backdrop,
-   then the SVG zooms in via scale (GPU-only, no layout).
-   transformOrigin replaces x-translation to avoid vw-string
-   interpolation glitches at high scale values.
+   then the SVG zooms in via scale (GPU-only, no layout cost).
    ═══════════════════════════════════════════════════════ */
 function WeAreSection({ scrollYProgress }) {
   // Phase 1 [0→0.2]: slide up from below viewport
   const y = useTransform(scrollYProgress, [0, 0.2], ['100vh', '0vh']);
 
-  // Phase 2 [0.2→0.9]: scale-based zoom — GPU compositor only, zero layout cost.
-  // scale(43.75) on an 80vw element = 3500vw visual width.
-  const scale = useTransform(scrollYProgress, [0.2, 0.9], [1, 43.75]);
+  // Phase 2 [0.2→0.75]: scale zoom — same as original
+  const scale = useTransform(scrollYProgress, [0.2, 0.75], [1, 43.75]);
 
-  // Background: starts as light-gray semi-transparent (frosted), transitions to solid black
+  // Phase 3 [0.75→0.92]: fade out → ManifestoSection flows in cleanly below
+  const opacity = useTransform(scrollYProgress, [0.73, 0.92], [1, 0]);
+
+  // Background: frosted glass → solid black (cleared by opacity above)
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0,                       0.5,                  0.9],
+    [0,                        0.5,                  0.75],
     ['rgba(160,160,160,0.35)', 'rgba(8,8,8,0.75)', 'rgba(8,8,8,1)']
   );
 
@@ -136,6 +227,7 @@ function WeAreSection({ scrollYProgress }) {
       style={{
         y,
         backgroundColor,
+        opacity,
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
       }}
@@ -146,8 +238,9 @@ function WeAreSection({ scrollYProgress }) {
           scale,
           width: '80vw',
           transformOrigin: '20% center',
+          willChange: 'transform',
         }}
-        className="flex-shrink-0 will-change-transform"
+        className="flex-shrink-0"
       >
         <img
           src="https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ec482dfa06d8122041b028_WE%20Are.svg"
@@ -204,6 +297,86 @@ function ManifestoSection() {
   );
 }
 
+/* ═══════════════════════════════════════════════════════
+   SECTION 4 — PRODUCT CAROUSEL
+   ═══════════════════════════════════════════════════════ */
+function ProductCarouselSection() {
+  const { add, items } = useCart();
+  const isAdded = (id) => items.some(item => item.id === id);
+
+  // Duplicate products for seamless infinite scrolling
+  const carouselItems = [...MOCK_PRODUCTS, ...MOCK_PRODUCTS];
+
+  return (
+    <section className="bg-white py-20 overflow-hidden select-none">
+      <div className="mb-12 px-5 md:px-12 flex justify-between items-end max-w-[1800px] mx-auto">
+         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-black">
+            FEATURED NODES
+         </h2>
+         <Link to="/shop" className="text-[10px] font-black tracking-[0.3em] uppercase text-black/40 hover:text-brand-teal transition-colors flex items-center gap-2">
+            View All <ArrowUpRight className="w-3 h-3" />
+         </Link>
+      </div>
+
+      <div className="relative w-full flex">
+        {/* Shadow overlays for edge fading */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+
+        <motion.div 
+          className="flex gap-0 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 50, repeat: Infinity }}
+        >
+          {carouselItems.map((p, i) => (
+            <div
+                key={`${p.id}-${i}`}
+                className="group relative w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[25vw] flex-shrink-0 border-r border-y border-black/10 cursor-pointer overflow-hidden flex flex-col justify-between h-[45vh] sm:h-[50vh] bg-white first:border-l"
+            >
+                {/* Image Layer */}
+                <div className="absolute inset-0 z-0 bg-[#FAFAFA] svz-image-reveal">
+                    <img 
+                        src={p.img} 
+                        alt={p.name} 
+                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
+                        draggable={false}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700" />
+                </div>
+
+                {/* Content Layer */}
+                <div className="relative z-10 w-full p-6 md:p-8 flex flex-col justify-between h-full pointer-events-none">
+                    <div className="flex justify-between items-start">
+                        <div className="space-y-2">
+                          <p className="text-[9px] font-black tracking-[0.3em] uppercase text-black/30 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
+                          <h3 className="text-lg md:text-xl font-black uppercase tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-700">{p.name}</h3>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-end pointer-events-auto">
+                        <div className="space-y-1">
+                            <p className="text-[8px] font-black tracking-[0.3em] uppercase text-black/40">{p.brand}</p>
+                            <p className="text-xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
+                        </div>
+                        
+                        <button 
+                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); add(p); }}
+                            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-700 ${
+                              isAdded(p.id) ? 'bg-brand-teal text-white' : 'bg-black text-white group-hover:bg-brand-teal'
+                            }`}
+                        >
+                            {isAdded(p.id) ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -214,7 +387,7 @@ export default function Home() {
   return (
     <div className="bg-black min-h-screen">
       {/* Robust structure: Single sticky container for both Hero and WeAreSection */}
-      <div ref={containerRef} className="relative h-[350vh]">
+      <div ref={containerRef} className="relative h-[240vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Hero stays fixed in the background */}
           <div className="absolute inset-0 z-0">
@@ -227,13 +400,16 @@ export default function Home() {
       </div>
       <ManifestoSection />
       {/* Marquee Section */}
-      <section className="py-20 bg-white overflow-hidden border-y border-black/5">
+      <section className="py-20 bg-white overflow-hidden border-t border-black/5">
         <ScrollMarquee baseVelocity={-1.5}>
           <span className="text-[12vw] font-black uppercase tracking-[-0.04em] text-black/[0.03] mx-12">
             SAVINCLIFF PHARMACY · CLINICAL PRECISION · PRIMARY SOURCE ·
           </span>
         </ScrollMarquee>
       </section>
+
+      {/* Product Carousel Section */}
+      <ProductCarouselSection />
 
       {/* Final CTA */}
       <section className="bg-black text-white py-40 md:py-60 relative overflow-hidden">

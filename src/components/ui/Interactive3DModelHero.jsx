@@ -234,7 +234,7 @@ export default function Interactive3DModelHero() {
 
           {/* Model */}
           <Suspense fallback={null}>
-            <PillModel pointer={pointer} debugRef={debugRef} url="/models/savincliff_pill.glb" />
+            <PillModel pointer={pointer} debugRef={debugRef} url="/models/opt_savincliff_pill.glb" />
             <Environment preset="warehouse" />
           </Suspense>
         </Canvas>
@@ -327,4 +327,4 @@ function useFrameDebugReadout(debugRef, panelRef) {
   }, [debugRef, panelRef]);
 }
 
-useGLTF.preload('/models/savincliff_pill.glb');
+useGLTF.preload('/models/opt_savincliff_pill.glb');

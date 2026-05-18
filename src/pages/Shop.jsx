@@ -9,7 +9,7 @@ import * as THREE from 'three';
 
 const easeQuint = [0.16, 1, 0.3, 1];
 
-const MOCK_PRODUCTS = [
+export const MOCK_PRODUCTS = [
   { id: 1, name: 'NEUROGEN AXON', brand: 'SVZ PHARMA', price: 15400, img: '/images/product2.png', unit: '30 CAPS', category: 'Cognitive' },
   { id: 2, name: 'SPECTRUM DROPS', brand: 'CLINICAL SPEC', price: 8900, img: '/images/product1.png', unit: '10 ML', category: 'Ophthalmic' },
   { id: 3, name: 'AURUM REGEN', brand: 'AURUM LABS', price: 24500, img: '/images/product3.png', unit: '30 ML', category: 'Topical' },
@@ -25,6 +25,9 @@ const MOCK_PRODUCTS = [
 function ShopHeroModel({ mouse }) {
   const groupRef = useRef();
   const { scene } = useGLTF('/models/opt_savincliff_pill.glb');
+  
+  // Clone the scene so the Navbar doesn't steal this instance when it mounts on scroll!
+  const clonedScene = React.useMemo(() => scene.clone(), [scene]);
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -43,7 +46,7 @@ function ShopHeroModel({ mouse }) {
 
   return (
     <group ref={groupRef} scale={1.3} position={[0, 0, 0]}>
-      <primitive object={scene} />
+      <primitive object={clonedScene} />
     </group>
   );
 }
@@ -103,16 +106,16 @@ function ShopHero() {
 
       {/* Text Overlay mimicking SVZ Capabilities Hero layout */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
-        {/* Big stylized Headline: PRIMARY SoURCE */}
-        <div className="text-center flex items-center justify-center">
+        <div className="text-center flex flex-col items-center justify-center mt-20 md:mt-32">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: easeQuint }}
-            className="font-black uppercase tracking-[-0.04em] leading-[0.88] text-white flex items-center justify-center"
-            style={{ fontSize: 'clamp(3rem, 8vw, 8.5rem)' }}
+            className="text-[12vw] md:text-[9.5vw] font-black uppercase tracking-[-0.04em] leading-[0.9] text-white"
           >
-            PRIMARY S<span className="font-serif italic lowercase font-light mx-1">o</span>URCE
+            PRIMARY<br />
+            S<span className="font-serif italic text-brand-teal inline-block transform -rotate-6 mx-1">O</span>UR
+            <span className="font-serif italic text-white/90 inline-block transform rotate-2">C</span>E
           </motion.h1>
         </div>
       </div>
@@ -166,7 +169,7 @@ export default function Shop() {
       <ShopHero />
 
       {/* Reduced Heading moved to a new standalone section above products */}
-      <section className="pt-20 md:pt-32 px-5 md:px-12 mb-8 md:mb-16 bg-white">
+      <section className="relative z-10 pt-20 md:pt-32 px-5 md:px-12 mb-8 md:mb-16 bg-white">
          <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-6 md:pb-8 overflow-hidden">
             <motion.h2 
                initial={{ y: 50, opacity: 0 }}
@@ -185,7 +188,7 @@ export default function Shop() {
       </section>
 
       {/* Product Grid */}
-      <section className="px-5 md:px-12 pb-20 md:pb-40">
+      <section className="relative z-10 px-5 md:px-12 pb-20 md:pb-40 bg-white">
           <div className="max-w-[1800px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-black/10">
               {MOCK_PRODUCTS.map((p, i) => (
                   <motion.div

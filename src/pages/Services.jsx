@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─── 3D Model ─────────────────────────────────────────────────────────── */
 function HeroModel({ mouse }) {
   const groupRef = useRef();
-  const { scene } = useGLTF('/models/opt_glass_wave_duo.glb');
+  const { scene } = useGLTF('/models/opt_africa.glb');
 
   useFrame((state) => {
     if (!groupRef.current) return;

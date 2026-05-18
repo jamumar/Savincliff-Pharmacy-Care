@@ -15,8 +15,32 @@ const MODELS = [
   { url: '/models/opt_leather_wings_in_flig.glb',         label: 'LEATHER WINGS' },
   { url: '/models/opt_pill_yin_yang.glb',                 label: 'MESHY YIN YANG' },
   { url: '/models/opt_the_yin_yang_yin_yang_med.glb',     label: 'YIN YANG MED' },
+  { url: '/models/opt_Atlas_on_Fire_0508010357.glb', label: 'ATLAS ON FIRE' },
+  { url: '/models/opt_Azure_Embrace_0506235638.glb', label: 'AZURE EMBRACE 2' },
+  { url: '/models/opt_Azure_Spiral_0508010416.glb', label: 'AZURE SPIRAL' },
+  { url: '/models/opt_Blue_Yin_Yang_of_Pill_0504002208.glb', label: 'BLUE YIN YANG' },
+  { url: '/models/opt_Candy_Ribbon_0506235751.glb', label: 'CANDY RIBBON 2' },
+  { url: '/models/opt_Crimson_S_curve_0508014249.glb', label: 'CRIMSON S CURVE' },
+  { url: '/models/opt_Crystal_Spiral_0506235732.glb', label: 'CRYSTAL SPIRAL 2' },
+  { url: '/models/opt_Earth_in_an_S_0508010344.glb', label: 'AFRICA S CURVE' },
+  { url: '/models/opt_Emerald_Duet_0506235505.glb', label: 'EMERALD DUET 2' },
+  { url: '/models/opt_Glass_Wave_Duo_0508010604.glb', label: 'GLASS WAVE DUO' },
+  { url: '/models/opt_Golden_Ember_0506235551.glb', label: 'GOLDEN EMBER 2' },
+  { url: '/models/opt_Ice_Sculpture_0508010522.glb', label: 'ICE SCULPTURE' },
+  { url: '/models/opt_Interwoven_Waves_0508010554.glb', label: 'INTERWOVEN WAVES' },
+  { url: '/models/opt_Leather_Wings_in_Flig_0506235622.glb', label: 'LEATHER WINGS 2' },
+  { url: '/models/opt_Luminescent_Crescent_0508010511.glb', label: 'LUMINESCENT CRESCENT' },
+  { url: '/models/opt_Luminous_S_Curve_0508010546.glb', label: 'LUMINOUS S CURVE' },
+  { url: '/models/opt_Luminous_Serpent_0508010451.glb', label: 'LUMINOUS SERPENT' },
+  { url: '/models/opt_Molecular_Yin_Yang_0508010438.glb', label: 'MOLECULAR YIN YANG' },
+  { url: '/models/opt_Neon_Leaf_0508010502.glb', label: 'NEON LEAF' },
+  { url: '/models/opt_Pill_Yin_Yang_0506235536.glb', label: 'PILL YIN YANG 2' },
+  { url: '/models/opt_The_Yin_Yang_of_Medic_0506235604.glb', label: 'YIN YANG MED 2' },
+  { url: '/models/opt_Whisper_of_Glass_0508014335.glb', label: 'WHISPER OF GLASS' },
 ];
-MODELS.forEach(({ url }) => useGLTF.preload(url));
+
+// Preload ONLY the first model to prevent massive network congestion on load
+useGLTF.preload(MODELS[0].url);
 
 // ─── Shared mouse (window-level, always live) ─────────────────────────────────
 const MOUSE = { wx: 0, wy: 0 }; // normalized [-1,1] window coords
