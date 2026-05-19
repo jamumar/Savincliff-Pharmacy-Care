@@ -15,7 +15,7 @@ function LogoModel() {
 
 export default function Logo({ className = "", variant = "dark", scrolled = false }) {
   return (
-    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[75px] md:h-[100px]' : 'h-[50px] md:h-[55px]'} ${className}`}>
+    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[95px] md:h-[135px]' : 'h-[65px] md:h-[80px]'} ${className}`}>
       <AnimatePresence mode="wait">
         {!scrolled ? (
           <motion.img
@@ -35,7 +35,7 @@ export default function Logo({ className = "", variant = "dark", scrolled = fals
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-0 top-0 w-[65px] h-[65px] md:w-[75px] md:h-[75px] flex items-center justify-center cursor-pointer"
+            className="absolute left-0 top-0 w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex items-center justify-center cursor-pointer"
           >
             <Canvas
               camera={{ position: [0, 0, 4.5], fov: 45 }}

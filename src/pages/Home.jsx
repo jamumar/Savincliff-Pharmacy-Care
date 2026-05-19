@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Plus, Check } from 'lucide-react';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 import AnimatedText from '@/components/ui/AnimatedText';
 import ScrollMarquee from '@/components/ui/ScrollMarquee';
@@ -11,109 +12,7 @@ import { MOCK_PRODUCTS } from '@/pages/Shop';
 
 const ease = [0.16, 1, 0.3, 1];
 
-/* ═══════════════════════════════════════════════════════
-   FLOATING DECORATIONS (SVZ-Style Geometric Shapes)
-   ═══════════════════════════════════════════════════════ */
-function HeroShapeGroup({ mousePosition, springConfig }) {
-  return (
-    <div className="relative w-[100vw] h-full shrink-0 flex-none">
-      {/* Huge Plus Sign (Left) */}
-      <motion.div 
-        className="absolute left-[5%] top-[25%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px]"
-        animate={{
-          x: mousePosition.x * -40,
-          y: mousePosition.y * -40,
-          rotate: -20 + mousePosition.x * 5
-        }}
-        transition={springConfig}
-      >
-        <div className="absolute top-1/2 left-0 w-full h-[28%] bg-[#121212] -translate-y-1/2" />
-        <div className="absolute left-1/2 top-0 w-[28%] h-full bg-[#121212] -translate-x-1/2" />
-        {/* Inner cutout hole */}
-        <div className="absolute inset-0 m-auto w-[28%] h-[28%] bg-black rounded-full" />
-      </motion.div>
 
-      {/* Large Half Circle (Bottom Center/Left) */}
-      <motion.div 
-        className="absolute left-[20%] bottom-[-15%] w-[40vw] h-[40vw] max-w-[450px] max-h-[450px]"
-        animate={{
-          x: mousePosition.x * 25,
-          y: mousePosition.y * 25,
-        }}
-        transition={{ type: 'spring', stiffness: 30, damping: 30 }}
-      >
-        <div className="w-full h-full bg-[#121212] rounded-tr-[100%] rounded-tl-full relative">
-          {/* Teal circle stuck to the top right tip of the curve */}
-          <div className="absolute right-[0%] top-[0%] w-[10vw] h-[10vw] max-w-[120px] max-h-[120px] bg-brand-teal rounded-full shadow-[0_0_80px_rgba(27,110,140,0.4)] translate-x-1/2 -translate-y-1/2" />
-        </div>
-      </motion.div>
-
-      {/* Thick Angled Lines / Rays (Right) */}
-      <motion.div 
-        className="absolute right-[5%] top-[15%] w-[40vw] h-[50vw] max-w-[500px]"
-        animate={{
-          x: mousePosition.x * -20,
-          y: mousePosition.y * -30,
-        }}
-        transition={springConfig}
-      >
-        <div className="absolute top-[10%] right-0 w-[120%] h-[4%] bg-[#121212] rotate-[-12deg]" />
-        
-        {/* Line 2 with Teal Circle attached to its left end */}
-        <div className="absolute top-[40%] right-0 w-[100%] h-[4%] bg-[#121212] rotate-[-12deg]">
-          <div className="absolute left-0 top-1/2 w-[8vw] h-[8vw] max-w-[100px] max-h-[100px] bg-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_80px_rgba(27,110,140,0.4)]" />
-        </div>
-        
-        <div className="absolute top-[75%] right-0 w-[85%] h-[4%] bg-[#121212] rotate-[-12deg]" />
-      </motion.div>
-      
-      {/* Secondary Abstract Shape (Top Right Edge) */}
-      <motion.div 
-        className="absolute right-[-10%] top-[-5%] w-[35vw] h-[35vw] max-w-[400px] max-h-[400px]"
-        animate={{
-          x: mousePosition.x * 15,
-          y: mousePosition.y * 15,
-        }}
-        transition={springConfig}
-      >
-        <div className="w-full h-full border-[40px] border-[#121212] rounded-full opacity-50 relative" style={{ clipPath: 'polygon(50% 0%, 100% 0, 100% 100%, 50% 100%)' }}>
-          {/* Teal circle attached to top edge of this clip */}
-          <div className="absolute top-0 left-[50%] w-[6vw] h-[6vw] max-w-[80px] max-h-[80px] bg-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_80px_rgba(27,110,140,0.4)]" />
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
-function HeroShapes() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const springConfig = { type: 'spring', stiffness: 40, damping: 30 };
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      <motion.div 
-        className="flex h-full w-[200vw]"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ ease: "linear", duration: 20, repeat: Infinity }}
-      >
-        <HeroShapeGroup mousePosition={mousePosition} springConfig={springConfig} />
-        <HeroShapeGroup mousePosition={mousePosition} springConfig={springConfig} />
-      </motion.div>
-    </div>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════
    SECTION 1 — HERO
@@ -130,8 +29,20 @@ function HeroSection() {
   return (
     <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
 
-      {/* ── Geometric Shapes Background ── */}
-      <HeroShapes />
+      {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)',
+        }}
+      >
+        <Player
+          autoplay
+          loop
+          src="https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ec482dfa06d8122041b027_lottie.json"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </div>
 
       {/* ── Top Label ── */}
       <motion.div
@@ -209,16 +120,16 @@ function WeAreSection({ scrollYProgress }) {
   // Phase 1 [0→0.2]: slide up from below viewport
   const y = useTransform(scrollYProgress, [0, 0.2], ['100vh', '0vh']);
 
-  // Phase 2 [0.2→0.75]: scale zoom — same as original
-  const scale = useTransform(scrollYProgress, [0.2, 0.75], [1, 43.75]);
+  // Phase 2 [0.2→0.8]: scale zoom
+  const scale = useTransform(scrollYProgress, [0.2, 0.8], [1, 43.75]);
 
-  // Phase 3 [0.75→0.92]: fade out → ManifestoSection flows in cleanly below
-  const opacity = useTransform(scrollYProgress, [0.73, 0.92], [1, 0]);
+  // Phase 3 [0.8→1.0]: fade out → ManifestoSection flows in cleanly below
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
   // Background: frosted glass → solid black (cleared by opacity above)
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0,                        0.5,                  0.75],
+    [0,                        0.4,                  0.8],
     ['rgba(160,160,160,0.35)', 'rgba(8,8,8,0.75)', 'rgba(8,8,8,1)']
   );
 
@@ -227,7 +138,6 @@ function WeAreSection({ scrollYProgress }) {
       style={{
         y,
         backgroundColor,
-        opacity,
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
       }}
@@ -236,6 +146,7 @@ function WeAreSection({ scrollYProgress }) {
       <motion.div
         style={{
           scale,
+          opacity,
           width: '80vw',
           transformOrigin: '20% center',
           willChange: 'transform',
@@ -387,7 +298,7 @@ export default function Home() {
   return (
     <div className="bg-black min-h-screen">
       {/* Robust structure: Single sticky container for both Hero and WeAreSection */}
-      <div ref={containerRef} className="relative h-[240vh]">
+      <div ref={containerRef} className="relative h-[200vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Hero stays fixed in the background */}
           <div className="absolute inset-0 z-0">
