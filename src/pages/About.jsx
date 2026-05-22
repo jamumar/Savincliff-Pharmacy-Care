@@ -429,58 +429,45 @@ export default function About() {
       >
         <div className="w-full flex flex-col justify-center space-y-4 md:space-y-6 pl-[8vw]">
           {HERO_LINES.map((line, i) => {
-            const delay = i * 0.08;
             const exc = line.excursion;
             return (
-              <motion.h1
+              <h1
                 key={line.text}
                 className="hero-line text-[13vw] md:text-[10vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] whitespace-nowrap cursor-default select-none"
-                animate={{
-                  x: [
-                    "0vw",
-                    "0vw",
-                    `calc(${exc}vw + 2vw)`,
-                    `${exc}vw`,
-                    `${exc}vw`,
-                    "0vw",
-                    "0vw"
-                  ],
-                  opacity: [
-                    0.4,
-                    0.4,
-                    1.0,
-                    1.0,
-                    1.0,
-                    0.4,
-                    0.4
-                  ]
-                }}
-                transition={{
-                  duration: 2.6,
-                  repeat: Infinity,
-                  ease: [
-                    "linear",
-                    [0.25, 1, 0.5, 1],
-                    [0.36, 0, 0.66, 1],
-                    "linear",
-                    [0.42, 0, 0.58, 1],
-                    "linear"
-                  ],
-                  times: [
-                    0,
-                    delay / 2.6,
-                    (delay + 0.5) / 2.6,
-                    (delay + 0.65) / 2.6,
-                    (delay + 0.8) / 2.6,
-                    (delay + 1.9) / 2.6,
-                    1.0
-                  ]
+                style={{
+                  '--excursion': `${exc}vw`,
+                  '--excursion-overshoot': `${exc + 2}vw`,
+                  animation: 'hero-glide-in 5.2s infinite',
+                  animationDelay: `${i * 0.16}s`,
                 }}
               >
                 {line.text}
-              </motion.h1>
+              </h1>
             );
           })}
+          <style>{`
+            @keyframes hero-glide-in {
+              0% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.4;
+                animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+              }
+              44% {
+                transform: translate3d(var(--excursion-overshoot), 0, 0);
+                opacity: 1;
+                animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+              }
+              85% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.4;
+                animation-timing-function: linear;
+              }
+              100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.4;
+              }
+            }
+          `}</style>
         </div>
         <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase">
             Constant Motion
