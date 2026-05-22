@@ -29,17 +29,18 @@ function HeroSection() {
   return (
     <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
 
-      {/* ── Background Animation (Filtered from Red to Brand Teal - Boosted visibility) ── */}
+      {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-90"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          filter: 'hue-rotate(200deg) saturate(2) brightness(1.3)',
+          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)',
+          opacity: 0.4,
         }}
       >
         <Player
           autoplay
           loop
-          src="https://cdn.prod.website-files.com/67ec482dfa06d8122041aef1/67ec482dfa06d8122041b027_lottie.json"
+          src="/lottie_background.json"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
