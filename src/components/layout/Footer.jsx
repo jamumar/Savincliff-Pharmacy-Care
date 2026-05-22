@@ -3,6 +3,7 @@ import React, { useRef, Suspense, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
+import useInView from '@/hooks/useInView';
 
 // ─── Models list ──────────────────────────────────────────────────────────────
 const MODELS = [
@@ -42,14 +43,8 @@ const MODELS = [
 // Preload ONLY the first model to prevent massive network congestion on load
 useGLTF.preload(MODELS[0].url);
 
-// ─── Shared mouse (window-level, always live) ─────────────────────────────────
+// ─── Shared mouse (window-level, updated dynamically when footer is active) ───
 const MOUSE = { wx: 0, wy: 0 }; // normalized [-1,1] window coords
-if (typeof window !== 'undefined') {
-  window.addEventListener('mousemove', (e) => {
-    MOUSE.wx = (e.clientX / window.innerWidth) * 2 - 1;
-    MOUSE.wy = -((e.clientY / window.innerHeight) * 2 - 1);
-  }, { passive: true });
-}
 
 // ─── 3D model inside the card ─────────────────────────────────────────────────
 function CardModel({ url }) {
@@ -79,6 +74,7 @@ function CardModel({ url }) {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 export default function Footer() {
+  const [footerRef, isInView] = useInView({ threshold: 0.01 });
   const sectionRef = useRef(null);
   const cardRef    = useRef(null);
 
@@ -86,12 +82,35 @@ export default function Footer() {
   const target  = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
 
-  // Which model to show — driven by cursor X position within section
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Separate states for instant UI updates and debounced heavy 3D model loads
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [renderedIndex, setRenderedIndex] = useState(0);
   const lastIdx = useRef(0);
+
+  // ── Debounce the 3D model swap ──
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setRenderedIndex(hoveredIndex);
+    }, 150);
+    return () => clearTimeout(handler);
+  }, [hoveredIndex]);
+
+  // ── Window-level mouse tracking (only when in view) ──
+  useEffect(() => {
+    if (!isInView) return;
+    const handleMouseMove = (e) => {
+      MOUSE.wx = (e.clientX / window.innerWidth) * 2 - 1;
+      MOUSE.wy = -((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isInView]);
 
   // ── Mouse tracking on the section ──
   useEffect(() => {
+    if (!isInView) return;
     const section = sectionRef.current;
     if (!section) return;
 
@@ -108,16 +127,17 @@ export default function Footer() {
       const idx  = Math.min(MODELS.length - 1, Math.floor(norm * MODELS.length));
       if (idx !== lastIdx.current) {
         lastIdx.current = idx;
-        setActiveIndex(idx);
+        setHoveredIndex(idx);
       }
     };
 
     section.addEventListener('mousemove', onMove, { passive: true });
     return () => section.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [isInView]);
 
   // ── RAF loop: lerp card position ──
   useEffect(() => {
+    if (!isInView) return;
     let raf;
     const LERP = 0.1;
     const CARD_W = window.innerWidth * 0.46; // half card width in px
@@ -137,7 +157,7 @@ export default function Footer() {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [isInView]);
 
   const footerLinks = [
     { title: 'AGENCY',   links: [{ name: 'CAPABILITIES', path: '/services' }, { name: 'ENTERPRISE', path: '/wholesale' }] },
@@ -148,37 +168,39 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black text-white relative overflow-hidden">
+    <footer ref={footerRef} className="bg-black text-white relative overflow-hidden">
       <section
         ref={sectionRef}
         className="relative min-h-screen flex items-center justify-center py-20 px-6 cursor-none"
       >
         {/* ── Floating 3D Card (follows cursor) ── */}
-        <div
-          ref={cardRef}
-          className="absolute top-0 left-0 pointer-events-none z-0"
-          style={{ width: '46vw', height: '60vh' }}
-        >
-          {/* No inner scale wrapper — was causing edge clipping */}
-          <div className="w-full h-full">
-            <Canvas
-              dpr={[1, 1.5]}
-              performance={{ min: 0.5 }}
-              gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-              camera={{ position: [0, 0, 3.2], fov: 42 }}
-            >
-              <ambientLight intensity={0.7} />
-              <directionalLight position={[5, 5, 5]} intensity={1.2} />
-              <directionalLight position={[-5, -3, 5]} intensity={0.4} />
-              <pointLight position={[0, 0, 3]} intensity={3} color="#1B6E8C" />
-              <Suspense fallback={null}>
-                {/* Key on url causes clean remount + fade between models */}
-                <CardModel key={MODELS[activeIndex].url} url={MODELS[activeIndex].url} scale={1.2} />
-                <Environment preset="warehouse" />
-              </Suspense>
-            </Canvas>
+        {isInView && (
+          <div
+            ref={cardRef}
+            className="absolute top-0 left-0 pointer-events-none z-0"
+            style={{ width: '46vw', height: '60vh' }}
+          >
+            {/* No inner scale wrapper — was causing edge clipping */}
+            <div className="w-full h-full">
+              <Canvas
+                dpr={[1, 1.5]}
+                performance={{ min: 0.5 }}
+                gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+                camera={{ position: [0, 0, 3.2], fov: 42 }}
+              >
+                <ambientLight intensity={0.7} />
+                <directionalLight position={[5, 5, 5]} intensity={1.2} />
+                <directionalLight position={[-5, -3, 5]} intensity={0.4} />
+                <pointLight position={[0, 0, 3]} intensity={3} color="#1B6E8C" />
+                <Suspense fallback={null}>
+                  {/* Key on url causes clean remount + fade between models */}
+                  <CardModel key={MODELS[renderedIndex].url} url={MODELS[renderedIndex].url} scale={1.2} />
+                  <Environment preset="warehouse" />
+                </Suspense>
+              </Canvas>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* ── Text Content (above card) ── */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
@@ -203,7 +225,7 @@ export default function Footer() {
 
           {/* Model label — shows which model is active */}
           <p className="text-[10px] font-black tracking-[0.5em] uppercase text-white/25 mb-8">
-            {MODELS[activeIndex].label}
+            {MODELS[hoveredIndex].label}
           </p>
 
           <Link

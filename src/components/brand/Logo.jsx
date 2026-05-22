@@ -41,6 +41,7 @@ export default function Logo({ className = "", variant = "dark", scrolled = fals
               camera={{ position: [0, 0, 4.5], fov: 45 }}
               gl={{ antialias: true, alpha: true }}
               dpr={[1, 2]}
+              frameloop="demand"
             >
               <ambientLight intensity={0.8} />
               <directionalLight position={[5, 5, 5]} intensity={2.0} color="#ffffff" />

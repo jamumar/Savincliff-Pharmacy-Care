@@ -6,6 +6,7 @@ import { Plus, Check, ArrowUpRight } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
+import useInView from '@/hooks/useInView';
 
 const easeQuint = [0.16, 1, 0.3, 1];
 
@@ -53,11 +54,13 @@ function ShopHeroModel({ mouse }) {
 
 /* ─── Hero Section mimicking SVZ reference layout ───────────────────────── */
 function ShopHero() {
+  const [heroRef, isInView] = useInView({ threshold: 0.01 });
   const mouse = useRef([0, 0]);
   const [time, setTime] = useState('');
 
   // Track mouse
   useEffect(() => {
+    if (!isInView) return;
     const onMove = (e) => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -68,7 +71,7 @@ function ShopHero() {
     };
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [isInView]);
 
   // Live time
   useEffect(() => {
@@ -82,26 +85,28 @@ function ShopHero() {
   }, []);
 
   return (
-    <section className="relative w-full bg-black overflow-hidden select-none" style={{ height: '100svh' }}>
+    <section ref={heroRef} className="relative w-full bg-black overflow-hidden select-none" style={{ height: '100svh' }}>
       {/* Deep vignette background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,_rgba(20,20,20,0.6)_0%,_rgba(0,0,0,1)_100%)] z-[1]" />
 
       {/* 3D Canvas Container */}
       <div className="absolute inset-0 z-[2]">
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 45 }}
-          gl={{ antialias: true, alpha: true }}
-          dpr={[1, 2]}
-        >
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-          <directionalLight position={[-5, -3, -5]} intensity={0.5} color="#22D3EE" />
-          <pointLight position={[0, 2, 3]} intensity={2.0} color="#ffffff" />
-          <Suspense fallback={null}>
-            <Environment preset="studio" />
-            <ShopHeroModel mouse={mouse} />
-          </Suspense>
-        </Canvas>
+        {isInView && (
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 45 }}
+            gl={{ antialias: true, alpha: true }}
+            dpr={[1, 2]}
+          >
+            <ambientLight intensity={0.4} />
+            <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
+            <directionalLight position={[-5, -3, -5]} intensity={0.5} color="#22D3EE" />
+            <pointLight position={[0, 2, 3]} intensity={2.0} color="#ffffff" />
+            <Suspense fallback={null}>
+              <Environment preset="studio" />
+              <ShopHeroModel mouse={mouse} />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       {/* Text Overlay mimicking SVZ Capabilities Hero layout */}

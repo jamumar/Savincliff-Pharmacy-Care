@@ -5,6 +5,7 @@ import { useGLTF, Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import useInView from '@/hooks/useInView';
 
 const DEBUG_3D_INTERACTION = false;
 
@@ -152,6 +153,7 @@ function CursorLight({ pointer }) {
 
 // ─── Section ──────────────────────────────────────────────────────────────────
 export default function Interactive3DModelHero() {
+  const [sectionRef, isInView] = useInView({ threshold: 0.01 });
   const pointer = useRef({ x: 0, y: 0 });
   const pointerTarget = useRef({ x: 0, y: 0 });
   const debugRef = useRef({
@@ -196,6 +198,7 @@ export default function Interactive3DModelHero() {
   };
 
   useEffect(() => {
+    if (!isInView) return;
     const handlePointerMove = (event) => updatePointerFromClient(event.clientX, event.clientY, 'window');
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
@@ -205,39 +208,42 @@ export default function Interactive3DModelHero() {
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('mousemove', handlePointerMove);
     };
-  }, []);
+  }, [isInView]);
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full h-[100vh] bg-black overflow-hidden flex items-center justify-center border-t border-white/5"
-      onPointerMove={(event) => updatePointerFromClient(event.clientX, event.clientY, 'section')}
-      onMouseMove={(event) => updatePointerFromClient(event.clientX, event.clientY, 'section mouse')}
+      onPointerMove={isInView ? (event) => updatePointerFromClient(event.clientX, event.clientY, 'section') : undefined}
+      onMouseMove={isInView ? (event) => updatePointerFromClient(event.clientX, event.clientY, 'section mouse') : undefined}
     >
 
       {/* ── 3D Canvas ── */}
       <div className="absolute inset-0 z-0">
-        <Canvas
-          dpr={[1, 1.5]}
-          performance={{ min: 0.5 }}
-          gl={{ antialias: false, powerPreference: 'high-performance' }}
-          camera={{ position: [0, 0, 6], fov: 45 }}
-        >
-          <ScenePointerTracker pointer={pointer} pointerTarget={pointerTarget} debugRef={debugRef} />
-          <CameraRig pointer={pointer} />
-          {DEBUG_3D_INTERACTION && <PointerDebugObject pointer={pointer} />}
+        {isInView && (
+          <Canvas
+            dpr={[1, 1.5]}
+            performance={{ min: 0.5 }}
+            gl={{ antialias: false, powerPreference: 'high-performance' }}
+            camera={{ position: [0, 0, 6], fov: 45 }}
+          >
+            <ScenePointerTracker pointer={pointer} pointerTarget={pointerTarget} debugRef={debugRef} />
+            <CameraRig pointer={pointer} />
+            {DEBUG_3D_INTERACTION && <PointerDebugObject pointer={pointer} />}
 
-          {/* Lighting */}
-          <ambientLight intensity={1.2} />
-          <directionalLight position={[5, 5, 5]} intensity={1} />
-          <directionalLight position={[-5, -5, 5]} intensity={0.4} />
-          <CursorLight pointer={pointer} />
+            {/* Lighting */}
+            <ambientLight intensity={1.2} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <directionalLight position={[-5, -5, 5]} intensity={0.4} />
+            <CursorLight pointer={pointer} />
 
-          {/* Model */}
-          <Suspense fallback={null}>
-            <PillModel pointer={pointer} debugRef={debugRef} url="/models/opt_savincliff_pill.glb" />
-            <Environment preset="warehouse" />
-          </Suspense>
-        </Canvas>
+            {/* Model */}
+            <Suspense fallback={null}>
+              <PillModel pointer={pointer} debugRef={debugRef} url="/models/opt_savincliff_pill.glb" />
+              <Environment preset="warehouse" />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       {/* ── Text Overlay ── */}

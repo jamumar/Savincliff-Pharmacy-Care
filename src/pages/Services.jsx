@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Environment, Float } from '@react-three/drei';
 import * as THREE from 'three';
+import useInView from '@/hooks/useInView';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -171,12 +172,13 @@ function PlasmaBeam() {
 
 /* ─── Hero Section ──────────────────────────────────────────────────────── */
 function ServicesHero() {
+  const [heroRef, isInView] = useInView({ threshold: 0.01 });
   const mouse = useRef([0, 0]);
-  const heroRef = useRef(null);
   const [time, setTime] = useState('');
 
   // Track mouse
   useEffect(() => {
+    if (!isInView) return;
     const onMove = (e) => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -187,7 +189,7 @@ function ServicesHero() {
     };
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [isInView]);
 
   // Live time
   useEffect(() => {
@@ -211,28 +213,30 @@ function ServicesHero() {
 
       {/* 3D Canvas */}
       <div className="absolute inset-0 z-[2]">
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 45 }}
-          gl={{ antialias: true, alpha: true }}
-          dpr={[1, 2]}
-        >
-          <ambientLight intensity={0.2} />
-          <directionalLight position={[5, 5, 5]} intensity={0.8} color="#ffffff" />
-          <directionalLight position={[-5, -3, -5]} intensity={0.3} color="#4488ff" />
-          <pointLight position={[0, 2, 3]} intensity={1.5} color="#ffffff" />
-          <spotLight
-            position={[0, 8, 2]}
-            angle={0.4}
-            penumbra={0.8}
-            intensity={2}
-            color="#ffffff"
-          />
-          <Suspense fallback={null}>
-            <Environment preset="studio" />
-            <PlasmaBeam />
-            <HeroModel mouse={mouse} />
-          </Suspense>
-        </Canvas>
+        {isInView && (
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 45 }}
+            gl={{ antialias: true, alpha: true }}
+            dpr={[1, 2]}
+          >
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[5, 5, 5]} intensity={0.8} color="#ffffff" />
+            <directionalLight position={[-5, -3, -5]} intensity={0.3} color="#4488ff" />
+            <pointLight position={[0, 2, 3]} intensity={1.5} color="#ffffff" />
+            <spotLight
+              position={[0, 8, 2]}
+              angle={0.4}
+              penumbra={0.8}
+              intensity={2}
+              color="#ffffff"
+            />
+            <Suspense fallback={null}>
+              <Environment preset="studio" />
+              <PlasmaBeam />
+              <HeroModel mouse={mouse} />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       {/* Text Overlay */}
@@ -569,7 +573,7 @@ function ShadowOverlay({ color = 'rgba(27,110,140,1)', scale = 55, speed = 40 })
 /* ─── Curved Text 3D Model ──────────────────────────────────────────────── */
 function CurveModel3D({ mouse }) {
   const groupRef = useRef();
-  const { scene } = useGLTF('/models/opt_azure_embrace.glb');
+  const { scene } = useGLTF('/models/opt_the_yin_yang_yin_yang_med.glb');
 
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
@@ -594,7 +598,7 @@ function CurveModel3D({ mouse }) {
 const CURVE_TEXT = "CLINICAL PRECISION. PHARMACEUTICAL EXCELLENCE. SAVINCLIFF VERIFIED. ZERO COMPROMISE. PRECISION DISPENSING. EVERY PRESCRIPTION COUNTS.";
 
 function CurvedTextScroll() {
-  const sectionRef  = useRef(null);
+  const [sectionRef, isInView] = useInView({ threshold: 0.01 });
   const sharpRef    = useRef(null);
   const glowRef     = useRef(null);
   const svgWrapRef  = useRef(null);
@@ -603,6 +607,7 @@ function CurvedTextScroll() {
 
   // Track cursor across the section — same pattern as hero
   useEffect(() => {
+    if (!isInView) return;
     const el = sectionRef.current;
     if (!el) return;
     const onMove = (e) => {
@@ -614,7 +619,7 @@ function CurvedTextScroll() {
     };
     el.addEventListener('mousemove', onMove);
     return () => el.removeEventListener('mousemove', onMove);
-  }, []);
+  }, [isInView]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -682,27 +687,29 @@ function CurvedTextScroll() {
             to   { opacity: 1; }
           }
         `}</style>
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 50 }}
-          gl={{ antialias: true, alpha: true }}
-          dpr={[1, 1.5]}
-          frameloop="always"
-          style={{ background: 'transparent' }}
-        >
-          {/* Bright ambient so dark crystal materials are visible */}
-          <ambientLight intensity={2.2} color="#c8e8f0" />
-          {/* Strong teal key from front-top-right */}
-          <pointLight position={[3, 4, 5]} intensity={12} color="#1B6E8C" />
-          {/* Blue-white fill from left */}
-          <pointLight position={[-4, 0, 3]} intensity={8} color="#40a8d0" />
-          {/* Warm rim from behind */}
-          <pointLight position={[0, -3, -3]} intensity={5} color="#ffffff" />
-          {/* Top directional for overall even illumination */}
-          <directionalLight position={[0, 6, 4]} intensity={3} color="#d0f0ff" />
-          <Suspense fallback={null}>
-            <CurveModel3D mouse={mouse} />
-          </Suspense>
-        </Canvas>
+        {isInView && (
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 50 }}
+            gl={{ antialias: true, alpha: true }}
+            dpr={[1, 1.5]}
+            frameloop="always"
+            style={{ background: 'transparent' }}
+          >
+            {/* Bright ambient so dark crystal materials are visible */}
+            <ambientLight intensity={2.2} color="#c8e8f0" />
+            {/* Strong teal key from front-top-right */}
+            <pointLight position={[3, 4, 5]} intensity={12} color="#1B6E8C" />
+            {/* Blue-white fill from left */}
+            <pointLight position={[-4, 0, 3]} intensity={8} color="#40a8d0" />
+            {/* Warm rim from behind */}
+            <pointLight position={[0, -3, -3]} intensity={5} color="#ffffff" />
+            {/* Top directional for overall even illumination */}
+            <directionalLight position={[0, 6, 4]} intensity={3} color="#d0f0ff" />
+            <Suspense fallback={null}>
+              <CurveModel3D mouse={mouse} />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       {/* Radial glow on top */}
@@ -837,4 +844,4 @@ export default function Services() {
 
 /* ─── Preload ───────────────────────────────────────────────────────────── */
 useGLTF.preload('/models/opt_glass_wave_duo.glb');
-useGLTF.preload('/models/opt_azure_embrace.glb');
+useGLTF.preload('/models/opt_the_yin_yang_yin_yang_med.glb');
