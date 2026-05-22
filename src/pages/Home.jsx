@@ -29,11 +29,11 @@ function HeroSection() {
   return (
     <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
 
-      {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
+      {/* ── Background Animation (Filtered from Red to Brand Teal - Boosted visibility) ── */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-40"
+        className="absolute inset-0 pointer-events-none opacity-90"
         style={{
-          filter: 'hue-rotate(200deg) saturate(1.5) brightness(0.8)',
+          filter: 'hue-rotate(200deg) saturate(2) brightness(1.3)',
         }}
       >
         <Player
@@ -297,8 +297,8 @@ export default function Home() {
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Robust structure: Single sticky container for both Hero and WeAreSection */}
-      <div ref={containerRef} className="relative h-[200vh]">
+      {/* Robust structure: Single sticky container for both Hero and WeAreSection (Slowed down scroll zoom by increasing height to 400vh) */}
+      <div ref={containerRef} className="relative h-[400vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Hero stays fixed in the background */}
           <div className="absolute inset-0 z-0">

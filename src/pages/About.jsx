@@ -327,6 +327,13 @@ function WallOfFame() {
   );
 }
 
+const HERO_LINES = [
+  { text: "PRECISION", excursion: 45 },
+  { text: "WELLNESS", excursion: 28 },
+  { text: "HUMANITY", excursion: 38 },
+  { text: "FUTURE", excursion: 22 }
+];
+
 export default function About() {
   const splitSectionRef = useRef(null);
   const paragraphSectionRef = useRef(null);
@@ -411,57 +418,69 @@ export default function About() {
       lenis.destroy();
     };
   }, []);
-  
-  // Animation config for infinite back-and-forth glide (7s total loop)
-  const getTransition = (delay) => ({
-    duration: 3.5, // 3.5s forward, 3.5s reverse = 7s loop exactly like Lottie
-    repeat: Infinity,
-    repeatType: "reverse",
-    ease: "easeInOut",
-    delay: delay
-  });
 
   return (
     <div className="bg-white min-h-screen">
       
       {/* Native Auto-Playing Typography Hero */}
       <section 
-        className="bg-black text-[#22D3EE] min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]"
-        style={{ textShadow: '0 0 35px rgba(34, 211, 238, 0.45)' }}
+        className="bg-black text-[#1B6E8C] min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]"
+        style={{ textShadow: '0 0 35px rgba(27, 110, 140, 0.4)' }}
       >
-        <div className="w-full flex flex-col justify-center space-y-2">
-            <motion.h1 
-              initial={{ x: "-5vw" }}
-              animate={{ x: "60vw" }} 
-              transition={getTransition(0)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
-            >
-               Legacy
-            </motion.h1>
-            <motion.h1 
-              initial={{ x: "10vw" }}
-              animate={{ x: "40vw" }} 
-              transition={getTransition(0.3)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
-            >
-               Innovation
-            </motion.h1>
-            <motion.h1 
-              initial={{ x: "-15vw" }}
-              animate={{ x: "50vw" }} 
-              transition={getTransition(0.6)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
-            >
-               Human
-            </motion.h1>
-            <motion.h1 
-              initial={{ x: "20vw" }}
-              animate={{ x: "70vw" }} 
-              transition={getTransition(0.9)}
-              className="text-[14vw] md:text-[11vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] opacity-100 whitespace-nowrap"
-            >
-               Freedom
-            </motion.h1>
+        <div className="w-full flex flex-col justify-center space-y-4 md:space-y-6 pl-[8vw]">
+          {HERO_LINES.map((line, i) => {
+            const delay = i * 0.08;
+            const exc = line.excursion;
+            return (
+              <motion.h1
+                key={line.text}
+                className="hero-line text-[13vw] md:text-[10vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] whitespace-nowrap cursor-default select-none"
+                animate={{
+                  x: [
+                    "0vw",
+                    "0vw",
+                    `calc(${exc}vw + 2vw)`,
+                    `${exc}vw`,
+                    `${exc}vw`,
+                    "0vw",
+                    "0vw"
+                  ],
+                  opacity: [
+                    0.4,
+                    0.4,
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.4,
+                    0.4
+                  ]
+                }}
+                transition={{
+                  duration: 2.6,
+                  repeat: Infinity,
+                  ease: [
+                    "linear",
+                    [0.25, 1, 0.5, 1],
+                    [0.36, 0, 0.66, 1],
+                    "linear",
+                    [0.42, 0, 0.58, 1],
+                    "linear"
+                  ],
+                  times: [
+                    0,
+                    delay / 2.6,
+                    (delay + 0.5) / 2.6,
+                    (delay + 0.65) / 2.6,
+                    (delay + 0.8) / 2.6,
+                    (delay + 1.9) / 2.6,
+                    1.0
+                  ]
+                }}
+              >
+                {line.text}
+              </motion.h1>
+            );
+          })}
         </div>
         <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase">
             Constant Motion
