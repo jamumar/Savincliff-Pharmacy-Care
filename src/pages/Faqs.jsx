@@ -181,7 +181,7 @@ export default function Faqs() {
       {/* Hero Section */}
       <section className="px-6 md:px-12 pt-12 pb-24 text-center max-w-[1400px] mx-auto">
         {/* SVZ bespoke stylized Serif/Italic interspersing */}
-        <h1 className="text-[12vw] md:text-[9.5vw] font-black uppercase tracking-[-0.04em] leading-[0.85]">
+        <h1 className="display-giant font-black uppercase tracking-[-0.04em] leading-[0.85]">
           COMMON<br />
           Q<span className="font-serif italic text-brand-teal inline-block transform -rotate-6 mx-1">U</span>E
           <span className="font-serif italic text-white/90 inline-block transform rotate-2">S</span>TI
@@ -198,7 +198,7 @@ export default function Faqs() {
           <section key={cat.id} id={cat.id} className="scroll-mt-32">
             {/* Category Header */}
             <div className="flex items-baseline gap-3 mb-8 border-b border-white/10 pb-4">
-              <span className="text-[11px] font-black text-brand-teal">{cat.idNum}</span>
+              <span className="text-xs font-black text-brand-teal">{cat.idNum}</span>
               <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white uppercase">{cat.title}</h2>
             </div>
 
@@ -214,15 +214,15 @@ export default function Faqs() {
                     className="bg-[#262626] rounded-xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[280px] border border-white/5 shadow-xl group cursor-pointer hover:border-brand-teal/30 transition-all duration-500"
                   >
                     {/* SVZ Signature Internal Corner Crossmarks (+) */}
-                    <span className="absolute top-2 left-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-                    <span className="absolute top-2 right-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-                    <span className="absolute bottom-2 left-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-                    <span className="absolute bottom-2 right-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
+                    <span className="absolute top-2 left-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+                    <span className="absolute top-2 right-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+                    <span className="absolute bottom-2 left-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+                    <span className="absolute bottom-2 right-3 text-brand-teal text-2xs select-none opacity-80">+</span>
 
                     {/* Top Content Area */}
                     <div>
                       {/* Eyebrow Category */}
-                      <div className="text-brand-teal text-[9px] font-black tracking-[0.2em] uppercase mb-4">
+                      <div className="text-brand-teal text-2xs font-black tracking-[0.2em] uppercase mb-4">
                         {cat.tag}
                       </div>
 
@@ -238,7 +238,7 @@ export default function Faqs() {
                           animate={{ height: 'auto', opacity: 1 }}
                           className="overflow-hidden"
                         >
-                          <p className={`text-[11px] text-white/50 tracking-wider font-bold leading-relaxed uppercase ${!isExpanded ? 'line-clamp-3' : ''}`}>
+                          <p className={`text-xs text-white/50 tracking-wider font-bold leading-relaxed uppercase ${!isExpanded ? 'line-clamp-3' : ''}`}>
                             {item.a}
                           </p>
                         </motion.div>
@@ -246,7 +246,7 @@ export default function Faqs() {
                     </div>
 
                     {/* Card Footer Link */}
-                    <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-black tracking-[0.2em] text-white uppercase group-hover:text-brand-teal transition-colors">
+                    <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-2xs font-black tracking-[0.2em] text-white uppercase group-hover:text-brand-teal transition-colors">
                       {isExpanded ? (
                         <span>COLLAPSE</span>
                       ) : (
@@ -273,7 +273,7 @@ export default function Faqs() {
               <button
                 key={cat.id}
                 onClick={() => scrollToSection(cat.id)}
-                className={`px-4 md:px-5 py-2.5 rounded-full text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${
+                className={`px-4 md:px-5 py-2.5 rounded-full text-2xs md:text-2xs font-bold tracking-[0.15em] uppercase whitespace-nowrap transition-all duration-300 shrink-0 ${
                   isActive 
                     ? 'bg-transparent text-white border border-brand-teal shadow-[0_0_15px_rgba(27,110,140,0.3)]' 
                     : 'text-white/40 hover:text-white hover:bg-white/5 border border-transparent'

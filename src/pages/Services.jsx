@@ -268,18 +268,18 @@ function ServicesHero() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6" />
           </svg>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">SCROLL &amp; EXPLORE</span>
-            <span className="text-[9px] font-black tracking-[0.3em] text-white/25 uppercase">THE SAVINCLIFF REALM</span>
+            <span className="text-2xs font-black tracking-[0.35em] text-white/40 uppercase">SCROLL &amp; EXPLORE</span>
+            <span className="text-2xs font-black tracking-[0.3em] text-white/25 uppercase">THE SAVINCLIFF REALM</span>
           </div>
         </div>
 
         {/* Right: Location + time */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-end gap-0.5">
-            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">ABUJA, NIGERIA</span>
+            <span className="text-2xs font-black tracking-[0.35em] text-white/40 uppercase">ABUJA, NIGERIA</span>
             <div className="flex gap-2 items-center">
-              <span className="text-[9px] font-black tracking-[0.25em] text-white/25 uppercase">Local time:</span>
-              <span className="text-[9px] font-black tracking-[0.25em] text-white/50 uppercase">{time}</span>
+              <span className="text-2xs font-black tracking-[0.25em] text-white/25 uppercase">Local time:</span>
+              <span className="text-2xs font-black tracking-[0.25em] text-white/50 uppercase">{time}</span>
             </div>
           </div>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-white/50">
@@ -468,7 +468,7 @@ function StackedCapabilities() {
           {/* Strip Header — always visible (48px), content below is hidden when collapsed) */}
           <div className="w-full border-b border-white/5 h-12 flex items-center px-8 md:px-14">
             <div className="flex items-center gap-3 w-full max-w-[1800px] mx-auto">
-              <span className="text-[10px] font-black text-[#1B6E8C] shrink-0 mr-1">{item.id}</span>
+              <span className="text-2xs font-black text-[#1B6E8C] shrink-0 mr-1">{item.id}</span>
               <h3 className="text-lg md:text-2xl font-black tracking-tight text-white uppercase leading-none">{item.title}</h3>
             </div>
           </div>
@@ -479,18 +479,18 @@ function StackedCapabilities() {
             <div className="w-full lg:w-[55%] flex flex-col">
               {/* Large title in expanded area */}
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-[11px] font-black text-[#1B6E8C] shrink-0">{item.id}</span>
+                <span className="text-xs font-black text-[#1B6E8C] shrink-0">{item.id}</span>
                 <h3 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase leading-none">{item.title}</h3>
               </div>
 
               {/* Content Area */}
               <div className="pr-0 lg:pr-12">
-                <p className="text-[11px] md:text-[12px] font-bold tracking-[0.18em] text-white uppercase mb-10 leading-loose max-w-lg">
+                <p className="text-xs md:text-xs font-bold tracking-[0.18em] text-white uppercase mb-10 leading-loose max-w-lg">
                   {item.desc}
                 </p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                   {item.list.map((listItem, idx) => (
-                    <li key={idx} className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] text-white/40 uppercase">
+                    <li key={idx} className="text-2xs md:text-xs font-semibold tracking-[0.12em] text-white/40 uppercase">
                       {listItem}
                     </li>
                   ))}
@@ -717,7 +717,7 @@ function CurvedTextScroll() {
 
       {/* Section label */}
       <div className="absolute top-8 left-8 md:top-12 md:left-12 z-10">
-        <p className="text-[9px] font-black tracking-[0.4em] uppercase text-white/30">[ CLINICAL STATEMENT ]</p>
+        <p className="text-2xs font-black tracking-[0.4em] uppercase text-white/30">[ CLINICAL STATEMENT ]</p>
       </div>
 
       {/* ── Phase 1: SVG Curved Text ── */}
@@ -754,7 +754,7 @@ function CurvedTextScroll() {
         className="absolute inset-0 flex items-center justify-center px-8 md:px-24 opacity-0 pointer-events-none z-[5]"
       >
         <div className="max-w-3xl text-center space-y-10">
-          <p className="text-[13px] md:text-[15px] font-black tracking-[0.25em] uppercase text-white leading-loose">
+          <p className="text-xs md:text-base font-black tracking-[0.25em] uppercase text-white leading-loose">
             SAVINCLIFF CLIENTS HAVE ACCESSED OVER{' '}
             <span className="text-brand-teal">₦500M+</span> IN CLINICAL DISPENSING
             ACROSS A <span className="text-brand-teal">₦2B+ COMBINED PORTFOLIO</span>,
@@ -764,7 +764,7 @@ function CurvedTextScroll() {
 
           <div className="w-16 h-px bg-brand-teal mx-auto" />
 
-          <p className="text-[13px] md:text-[15px] font-black tracking-[0.25em] uppercase text-white leading-loose">
+          <p className="text-xs md:text-base font-black tracking-[0.25em] uppercase text-white leading-loose">
             WE'VE SERVED INSTITUTIONS BACKED BY{' '}
             <span className="text-brand-teal">FEDERAL HEALTH MANDATES</span>{' '}
             AND PARTNERED WITH{' '}
@@ -778,7 +778,7 @@ function CurvedTextScroll() {
 
       {/* Bottom label */}
       <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-10">
-        <p className="text-[9px] font-black tracking-[0.4em] uppercase text-white/30">SCROLL TO CONTINUE</p>
+        <p className="text-2xs font-black tracking-[0.4em] uppercase text-white/30">SCROLL TO CONTINUE</p>
       </div>
     </section>
   );
@@ -795,8 +795,8 @@ export default function Services() {
       {/* Capabilities heading */}
       <section className="px-6 md:px-12 pt-32 pb-12 bg-black text-white">
         <div className="max-w-[1800px] mx-auto border-b border-white/10 pb-10">
-          <h2 className="text-[8vw] md:text-[5vw] font-black uppercase tracking-[-0.03em] leading-[0.9]">CAPABILITIES</h2>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-white/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
+          <h2 className="display-lg font-black uppercase tracking-[-0.03em] leading-[0.9]">CAPABILITIES</h2>
+          <p className="text-xs font-bold tracking-[0.4em] text-white/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
         </div>
       </section>
 
@@ -827,12 +827,12 @@ export default function Services() {
       {/* Enterprise CTA */}
       <section className="py-40 text-center px-6 md:px-12 bg-white">
         <div className="max-w-[1800px] mx-auto">
-          <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-brand-teal mb-8">Wholesale &amp; Institutional</p>
+          <p className="text-2xs font-bold tracking-[0.4em] uppercase text-brand-teal mb-8">Wholesale &amp; Institutional</p>
           <h2 className="display-svz text-black/10 hover:text-black transition-colors duration-1000 cursor-default">
             ENTERPRISE<br />HEALTH
           </h2>
           <div className="mt-20">
-            <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-500">
+            <button className="bg-black text-white px-20 py-8 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-500">
               Initiate Partnership
             </button>
           </div>

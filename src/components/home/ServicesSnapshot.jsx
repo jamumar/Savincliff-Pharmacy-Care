@@ -27,7 +27,7 @@ export default function ServicesSnapshot() {
           </div>
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase border-b border-white/25 pb-2 hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-colors self-start md:self-auto"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase border-b border-white/25 pb-2 hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-colors self-start md:self-auto"
           >
             All Services <ArrowUpRight className="w-4 h-4" />
           </Link>
@@ -46,7 +46,7 @@ export default function ServicesSnapshot() {
                 className="group relative border-b border-r border-white/8 p-10 hover:bg-white/[0.03] transition-colors cursor-default"
               >
                 <div className="flex items-start justify-between mb-12">
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-white/30">0{i + 1}</span>
+                  <span className="text-2xs tracking-[0.3em] uppercase text-white/30">0{i + 1}</span>
                   <Icon className="w-5 h-5 text-[#1B6E8C] group-hover:scale-110 transition-transform duration-500" strokeWidth={1.25} />
                 </div>
                 <h3 className="font-serif text-2xl md:text-3xl font-light leading-tight mb-3">{s.title}</h3>

@@ -50,9 +50,9 @@ function HeroSection() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease }}
-        className="absolute top-60 md:top-80 z-20 text-[10px] md:text-[14px] font-black tracking-[0.4em] uppercase text-white/40"
+        className="absolute top-60 md:top-80 z-20 text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/40"
       >
-        SAVINCLIFF PHARMACY — EST. 2024
+        SAVINCLIFF PHARMACY — 2026
       </motion.div>
 
       {/* ── Main Headline ── */}
@@ -65,12 +65,12 @@ function HeroSection() {
             <AnimatedText
               text="delivering"
               splitBy="char"
-              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase"
+              className="font-serif-italic font-light text-display-md text-white/50 lowercase"
             />
             <AnimatedText
               text="CLINICAL CARE"
               splitBy="word"
-              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
+              className="font-black uppercase tracking-[-0.04em] display-lg leading-none"
             />
           </div>
           <div className="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6">
@@ -78,20 +78,20 @@ function HeroSection() {
               text="for the"
               splitBy="char"
               delay={0.2}
-              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase"
+              className="font-serif-italic font-light text-display-md text-white/50 lowercase"
             />
             <AnimatedText
               text="PATIENTS OF"
               splitBy="word"
               delay={0.2}
-              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
+              className="font-black uppercase tracking-[-0.04em] display-lg leading-none"
             />
           </div>
           <AnimatedText
             text="TOMORROW"
             splitBy="char"
             delay={0.4}
-            className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
+            className="font-black uppercase tracking-[-0.04em] display-lg leading-none"
           />
         </div>
       </motion.div>
@@ -104,7 +104,7 @@ function HeroSection() {
         className="absolute bottom-12 z-20 flex flex-col items-center gap-4"
       >
         <div className="w-[1px] h-16 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
-        <Link to="/shop" className="text-[10px] font-black tracking-[0.4em] uppercase text-white/30 hover:text-white transition-colors">
+        <Link to="/shop" className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 hover:text-white transition-colors">
           Enter Archive
         </Link>
       </motion.div>
@@ -121,16 +121,16 @@ function WeAreSection({ scrollYProgress }) {
   // Phase 1 [0→0.2]: slide up from below viewport
   const y = useTransform(scrollYProgress, [0, 0.2], ['100vh', '0vh']);
 
-  // Phase 2 [0.2→0.8]: scale zoom
-  const scale = useTransform(scrollYProgress, [0.2, 0.8], [1, 43.75]);
+  // Phase 2 [0.2→0.9]: scale zoom
+  const scale = useTransform(scrollYProgress, [0.2, 0.9], [1, 43.75]);
 
-  // Phase 3 [0.8→1.0]: fade out → ManifestoSection flows in cleanly below
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  // Phase 3 [0.9→1.0]: fade out → ManifestoSection flows in cleanly below
+  const opacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
 
   // Background: frosted glass → solid black (cleared by opacity above)
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0,                        0.4,                  0.8],
+    [0,                        0.4,                  0.9],
     ['rgba(160,160,160,0.35)', 'rgba(8,8,8,0.75)', 'rgba(8,8,8,1)']
   );
 
@@ -171,10 +171,10 @@ function WeAreSection({ scrollYProgress }) {
    ═══════════════════════════════════════════════════════ */
 function ManifestoSection() {
   return (
-    <section className="relative bg-black text-white py-40 md:py-60">
+    <section className="relative z-10 bg-black text-white py-40 md:py-60 mt-[-35vh]">
       <div className="grid-container grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
         <div className="lg:col-span-4 lg:sticky lg:top-40">
-          <p className="text-[11px] font-black tracking-[0.4em] uppercase text-brand-teal mb-8">Clinical Manifesto</p>
+          <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-brand-teal mb-8">Clinical Manifesto</p>
           <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">Our<br />Protocol</h2>
         </div>
         <div className="lg:col-span-8">
@@ -185,21 +185,48 @@ function ManifestoSection() {
             className="text-2xl md:text-5xl font-bold uppercase leading-[1.1] tracking-tight text-justify-inter"
           >
             We are a clinical pharmacy where science meets precision.{' '}
-            <span className="text-white/30 italic font-serif">Verification</span> is our compass, ensuring every medication is authenticated at the source.{' '}
-            We infuse every <span className="text-white/30 italic font-serif">prescription</span> with purpose, crafting therapeutic protocols that protect across every interaction.{' '}
-            <span className="text-white/30 italic font-serif">Quality</span> is our foundation, maintaining the highest pharmaceutical standards in every formulation we dispense.
+            <motion.span
+              initial={{ color: 'rgba(27, 110, 140, 0.4)' }}
+              whileHover={{ scale: 1.1, color: '#1B6E8C', y: -4, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+              className="inline-block italic font-serif cursor-pointer origin-center"
+            >
+              Verification
+            </motion.span>{' '}
+            is our compass, ensuring every medication is authenticated at the source.{' '}
+            We infuse every{' '}
+            <motion.span
+              initial={{ color: 'rgba(27, 110, 140, 0.4)' }}
+              whileHover={{ scale: 1.1, color: '#1B6E8C', y: -4, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+              className="inline-block italic font-serif cursor-pointer origin-center"
+            >
+              prescription
+            </motion.span>{' '}
+            with purpose, crafting therapeutic protocols that protect across every interaction.{' '}
+            <motion.span
+              initial={{ color: 'rgba(27, 110, 140, 0.4)' }}
+              whileHover={{ scale: 1.1, color: '#1B6E8C', y: -4, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+              className="inline-block italic font-serif cursor-pointer origin-center"
+            >
+              Quality
+            </motion.span>{' '}
+            is our foundation, maintaining the highest pharmaceutical standards in every formulation we dispense.
           </motion.p>
           <div className="mt-20 flex flex-col md:flex-row gap-12 border-t border-white/10 pt-20">
             <div className="space-y-4 max-w-xs">
-              <p className="text-[10px] font-black tracking-[0.3em] uppercase text-white/40">Clinical Node 01</p>
-              <p className="text-[12px] font-bold uppercase tracking-widest text-white/60 leading-relaxed">
-                Zero-trust verification protocol for all primary pharmaceutical sources.
+              <p className="text-xs font-bold uppercase tracking-widest text-white/60 leading-relaxed">
+                Verified pharmaceutical sourcing<br />
+                standards for medication safety<br />
+                and authenticity
               </p>
             </div>
             <div className="space-y-4 max-w-xs">
-              <p className="text-[10px] font-black tracking-[0.3em] uppercase text-white/40">Clinical Node 02</p>
-              <p className="text-[12px] font-bold uppercase tracking-widest text-white/60 leading-relaxed">
-                Temperature-controlled logistics network ensuring cold-chain integrity.
+              <p className="text-xs font-bold uppercase tracking-widest text-white/60 leading-relaxed">
+                Temperature-controlled storage<br />
+                systems designed to maintain<br />
+                medication quality and integrity
               </p>
             </div>
           </div>
@@ -222,10 +249,10 @@ function ProductCarouselSection() {
   return (
     <section className="bg-white py-20 overflow-hidden select-none">
       <div className="mb-12 px-5 md:px-12 flex justify-between items-end max-w-[1800px] mx-auto">
-         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-black">
-            FEATURED NODES
+         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none">
+            FEATURED<br />FORMULATIONS
          </h2>
-         <Link to="/shop" className="text-[10px] font-black tracking-[0.3em] uppercase text-black/40 hover:text-brand-teal transition-colors flex items-center gap-2">
+         <Link to="/shop" className="text-2xs md:text-sm font-black tracking-[0.3em] uppercase text-black/40 hover:text-brand-teal transition-colors flex items-center gap-2">
             View All <ArrowUpRight className="w-3 h-3" />
          </Link>
       </div>
@@ -260,14 +287,14 @@ function ProductCarouselSection() {
                 <div className="relative z-10 w-full p-6 md:p-8 flex flex-col justify-between h-full pointer-events-none">
                     <div className="flex justify-between items-start">
                         <div className="space-y-2">
-                          <p className="text-[9px] font-black tracking-[0.3em] uppercase text-black/30 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
+                          <p className="text-2xs md:text-sm font-black tracking-[0.3em] uppercase text-black/30 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
                           <h3 className="text-lg md:text-xl font-black uppercase tracking-tighter leading-none group-hover:translate-x-2 transition-all duration-700">{p.name}</h3>
                         </div>
                     </div>
 
                     <div className="flex justify-between items-end pointer-events-auto">
                         <div className="space-y-1">
-                            <p className="text-[8px] font-black tracking-[0.3em] uppercase text-black/40">{p.brand}</p>
+                            <p className="text-2xs md:text-sm font-black tracking-[0.3em] uppercase text-black/40">{p.brand}</p>
                             <p className="text-xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
                         </div>
                         
@@ -298,8 +325,8 @@ export default function Home() {
 
   return (
     <div className="bg-black min-h-screen">
-      {/* Robust structure: Single sticky container for both Hero and WeAreSection (Slowed down scroll zoom by increasing height to 400vh) */}
-      <div ref={containerRef} className="relative h-[400vh]">
+      {/* Robust structure: Single sticky container for both Hero and WeAreSection (Slowed down scroll zoom by increasing height to 300vh) */}
+      <div ref={containerRef} className="relative h-[300vh] z-0">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Hero stays fixed in the background */}
           <div className="absolute inset-0 z-0">
@@ -314,7 +341,7 @@ export default function Home() {
       {/* Marquee Section */}
       <section className="py-20 bg-white overflow-hidden border-t border-black/5">
         <ScrollMarquee baseVelocity={-1.5}>
-          <span className="text-[12vw] font-black uppercase tracking-[-0.04em] text-black/[0.03] mx-12">
+          <span className="display-giant font-black uppercase tracking-[-0.04em] text-black/[0.03] mx-12">
             SAVINCLIFF PHARMACY · CLINICAL PRECISION · PRIMARY SOURCE ·
           </span>
         </ScrollMarquee>
@@ -332,17 +359,25 @@ export default function Home() {
             transition={{ duration: 1, ease }}
             className="space-y-12"
           >
-            <p className="text-[11px] font-black tracking-[0.5em] uppercase text-brand-teal">Ready to begin?</p>
-            <h2 className="text-6xl md:text-[8vw] font-black uppercase tracking-[-0.04em] leading-[0.85]">
-              LET'S BUILD<br />
-              <span className="font-serif-italic font-light text-[7vw] md:text-[6vw] text-white/20 italic lowercase">something</span> VITAL
+             <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-brand-teal">Ready to begin?</p>
+             <h2 className="text-5xl md:display-md font-black uppercase tracking-[-0.04em] leading-[0.85]">
+              LET’S DELIVER<br />
+              <motion.span
+                initial={{ color: 'rgba(27, 110, 140, 0.3)' }}
+                whileHover={{ scale: 1.05, color: '#1B6E8C', y: -2, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                className="font-serif-italic font-light text-display-sm italic lowercase cursor-pointer inline-block origin-center"
+              >
+                something
+              </motion.span>{' '}
+              VITAL
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-6 pt-10">
-              <Link to="/shop" className="bg-white text-black px-16 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">
+              <Link to="/shop" className="bg-white text-black px-16 py-8 text-2xs md:text-sm font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">
                 Explore Inventory
               </Link>
-              <Link to="/contact" className="border border-white/20 px-16 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4">
-                Discovery Call <ArrowUpRight className="w-5 h-5" />
+              <Link to="/rx-terminal" className="border border-white/20 px-16 py-8 text-2xs md:text-sm font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4">
+                Upload Rx <ArrowUpRight className="w-5 h-5" />
               </Link>
             </div>
           </motion.div>

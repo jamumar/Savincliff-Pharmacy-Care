@@ -31,7 +31,7 @@ export default function CartSidebar() {
             {/* Header */}
             <div className="flex items-center justify-between px-10 py-8 border-b border-black/10">
               <div className="flex items-center gap-4">
-                <span className="text-[12px] font-black uppercase tracking-[0.4em]">BASKET / {count} ITEM</span>
+                <span className="text-xs font-black uppercase tracking-[0.4em]">BASKET / {count} ITEM</span>
               </div>
               <button onClick={() => setOpen(false)} className="w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-700 group">
                 <X className="w-5 h-5 group-hover:rotate-90 transition-transform" />
@@ -45,11 +45,11 @@ export default function CartSidebar() {
                   <ShoppingBag className="w-16 h-16 text-black/10" strokeWidth={1} />
                   <div className="space-y-4">
                      <h3 className="text-4xl font-black uppercase tracking-tighter opacity-10">Historical Null</h3>
-                     <p className="text-[11px] font-bold uppercase tracking-widest text-black/30">Your clinical queue is currently empty.</p>
+                     <p className="text-xs font-bold uppercase tracking-widest text-black/30">Your clinical queue is currently empty.</p>
                   </div>
                   <button
                     onClick={() => setOpen(false)}
-                    className="px-12 py-6 border border-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
+                    className="px-12 py-6 border border-black text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
                   >
                     Enter Inventory
                   </button>
@@ -70,7 +70,7 @@ export default function CartSidebar() {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
                         <div>
-                           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal mb-1">{item.brand}</p>
+                           <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal mb-1">{item.brand}</p>
                            <h4 className="text-xl font-black uppercase tracking-tighter truncate">{item.name}</h4>
                         </div>
                         <div className="flex items-center justify-between">
@@ -78,7 +78,7 @@ export default function CartSidebar() {
                             <button onClick={() => update(item.id, item.qty - 1)} className="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                               <Minus className="w-3 h-3" />
                             </button>
-                            <span className="text-[12px] font-black w-10 text-center">{item.qty}</span>
+                            <span className="text-xs font-black w-10 text-center">{item.qty}</span>
                             <button onClick={() => update(item.id, item.qty + 1)} className="w-8 h-8 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                               <Plus className="w-3 h-3" />
                             </button>
@@ -100,19 +100,19 @@ export default function CartSidebar() {
               <div className="px-10 py-12 border-t border-black/10 space-y-12 bg-[#FAFAFA]">
                 <div className="flex justify-between items-end">
                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30 mb-2">Total Audit</p>
+                      <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/30 mb-2">Total Audit</p>
                       <p className="text-5xl font-black tracking-tighter">₦{total.toLocaleString()}</p>
                    </div>
                    <div className="text-right hidden md:block">
-                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Requirement</p>
-                      <p className="text-[11px] font-bold uppercase tracking-widest text-black/40">Audit Pending Rx Verification</p>
+                      <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Requirement</p>
+                      <p className="text-xs font-bold uppercase tracking-widest text-black/40">Audit Pending Rx Verification</p>
                    </div>
                 </div>
                 
                 <Link
                   to="/checkout"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-8 w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700 group shadow-2xl"
+                  className="flex items-center justify-center gap-8 w-full bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700 group shadow-2xl"
                 >
                   Initiate Checkout <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>

@@ -38,7 +38,7 @@ export default function PrescriptionsPage() {
       {/* High-Impact Heading */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black/5 pb-8 md:pb-12">
         <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">CLINICAL<br />DOCUMENTS</h1>
-        <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive / Ref: {prescriptions.length}</p>
+        <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive / Ref: {prescriptions.length}</p>
       </div>
 
       <div className="grid gap-0 border border-black/5">
@@ -56,21 +56,21 @@ export default function PrescriptionsPage() {
                 </div>
                 <div>
                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">NODE {rx.id}</span>
-                      <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border ${
+                      <span className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal">NODE {rx.id}</span>
+                      <span className={`text-2xs font-black uppercase tracking-widest px-2 py-0.5 border ${
                         rx.status === 'APPROVED' ? 'border-emerald-500/30 text-emerald-500' : 'border-black/10 text-black/40 group-hover:text-white/40'
                       }`}>
                         {rx.status}
                       </span>
                    </div>
                    <h3 className="text-lg md:text-2xl font-black uppercase tracking-tighter">CLINICAL SPECIFICATION 0{rx.id}</h3>
-                   <p className="text-[11px] font-bold tracking-widest uppercase opacity-40 mt-2">COMMITTED {new Date(rx.uploaded_at).toLocaleDateString()}</p>
+                   <p className="text-xs font-bold tracking-widest uppercase opacity-40 mt-2">COMMITTED {new Date(rx.uploaded_at).toLocaleDateString()}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-8 w-full md:w-auto">
                   <button 
-                    className="flex-1 md:flex-none flex items-center justify-center gap-4 px-12 py-6 text-[11px] font-black uppercase tracking-[0.2em] border border-black group-hover:border-white hover:bg-white hover:text-black transition-all duration-700"
+                    className="flex-1 md:flex-none flex items-center justify-center gap-4 px-12 py-6 text-xs font-black uppercase tracking-[0.2em] border border-black group-hover:border-white hover:bg-white hover:text-black transition-all duration-700"
                   >
                     View Node <ArrowUpRight className="w-4 h-4" />
                   </button>
@@ -81,8 +81,8 @@ export default function PrescriptionsPage() {
                           <AlertCircle className="w-5 h-5" />
                        </button>
                        <div className="absolute bottom-full right-0 mb-6 w-80 bg-black text-white p-8 opacity-0 group-hover/note:opacity-100 transition-all pointer-events-none shadow-2xl z-50 border border-white/10 translate-y-4 group-hover/note:translate-y-0 text-left">
-                          <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Clinical Response</p>
-                          <p className="text-[13px] font-bold uppercase tracking-widest leading-relaxed text-white/50">
+                          <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Clinical Response</p>
+                          <p className="text-xs font-bold uppercase tracking-widest leading-relaxed text-white/50">
                              "{rx.pharmacist_note}"
                           </p>
                        </div>
@@ -98,9 +98,9 @@ export default function PrescriptionsPage() {
          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
             <div>
                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Add Document</h2>
-               <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/40">Initiate new clinical verification sequence</p>
+               <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/40">Initiate new clinical verification sequence</p>
             </div>
-            <Link to="/wholesale" className="bg-white text-black px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">
+            <Link to="/rx-terminal" className="bg-white text-black px-12 py-6 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">
                 Begin Upload
             </Link>
          </div>

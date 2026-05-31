@@ -15,6 +15,9 @@ export default {
         serif: ['Fraunces', 'Georgia', 'serif'],
         sans:  ['Gotham', 'Inter', '-apple-system', 'sans-serif'],
       },
+      fontSize: {
+        '2xs': ['10px', { lineHeight: '14px' }],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

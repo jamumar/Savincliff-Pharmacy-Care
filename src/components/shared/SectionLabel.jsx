@@ -10,7 +10,7 @@ export default function SectionLabel({ number, label, variant = "dark" }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase ${color}`}
+      className={`flex items-center gap-4 text-2xs tracking-[0.35em] uppercase ${color}`}
     >
       <span className={`w-8 h-px ${lineColor}`} />
       <span>{number}</span>

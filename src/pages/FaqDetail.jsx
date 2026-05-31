@@ -72,7 +72,7 @@ export default function FaqDetail() {
           <div className="mb-10">
             <Link 
               to="/faqs" 
-              className="inline-flex items-center gap-2 bg-[#141414] hover:bg-black transition-colors px-4 py-2 rounded-full text-[11px] font-medium tracking-wide border border-white/5 text-white/70 hover:text-white"
+              className="inline-flex items-center gap-2 bg-[#141414] hover:bg-black transition-colors px-4 py-2 rounded-full text-xs font-medium tracking-wide border border-white/5 text-white/70 hover:text-white"
             >
               <span className="font-bold text-white">FAQs</span>
               <span className="text-white/30">/</span>
@@ -87,7 +87,7 @@ export default function FaqDetail() {
 
           {/* Highlight Summary Box */}
           <div className="bg-[#141414] rounded-xl p-6 md:p-8 border border-white/5 mb-10">
-            <div className="text-brand-teal text-[10px] font-black tracking-[0.25em] uppercase mb-3">
+            <div className="text-brand-teal text-2xs font-black tracking-[0.25em] uppercase mb-3">
               [SUMMARY]
             </div>
             <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed">
@@ -132,7 +132,7 @@ export default function FaqDetail() {
               <div>
                 <Link 
                   to="/contact" 
-                  className="inline-block bg-black text-white hover:bg-white hover:text-black transition-all duration-500 px-8 py-4 rounded-full text-[10px] font-black tracking-[0.25em] uppercase shadow-lg"
+                  className="inline-block bg-black text-white hover:bg-white hover:text-black transition-all duration-500 px-8 py-4 rounded-full text-2xs font-black tracking-[0.25em] uppercase shadow-lg"
                 >
                   INITIATE PARTNERSHIP
                 </Link>
@@ -144,7 +144,7 @@ export default function FaqDetail() {
           <div className="mt-12 pt-6 border-t border-white/5 text-center">
             <button 
               onClick={() => navigate(-1)} 
-              className="text-[10px] font-black tracking-[0.3em] text-white/40 hover:text-brand-teal uppercase transition-colors"
+              className="text-2xs font-black tracking-[0.3em] text-white/40 hover:text-brand-teal uppercase transition-colors"
             >
               &larr; Return to Question Directory
             </button>
@@ -172,24 +172,24 @@ export default function FaqDetail() {
               className="bg-[#262626] rounded-xl p-8 relative overflow-hidden flex flex-col justify-between min-h-[260px] border border-white/5 shadow-xl group hover:border-brand-teal/30 transition-all duration-500 block"
             >
               {/* Inner Corner Crossmarks */}
-              <span className="absolute top-3 left-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-              <span className="absolute top-3 right-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-              <span className="absolute bottom-3 left-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
-              <span className="absolute bottom-3 right-3 text-brand-teal text-[10px] select-none opacity-80">+</span>
+              <span className="absolute top-3 left-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+              <span className="absolute top-3 right-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+              <span className="absolute bottom-3 left-3 text-brand-teal text-2xs select-none opacity-80">+</span>
+              <span className="absolute bottom-3 right-3 text-brand-teal text-2xs select-none opacity-80">+</span>
 
               <div>
-                <div className="text-brand-teal text-[9px] font-black tracking-[0.2em] uppercase mb-4">
+                <div className="text-brand-teal text-2xs font-black tracking-[0.2em] uppercase mb-4">
                   {item.tag}
                 </div>
                 <h4 className="font-serif text-base md:text-lg text-white mb-4 leading-snug tracking-wide group-hover:text-white transition-colors">
                   {item.q}
                 </h4>
-                <p className="text-[11px] text-white/50 tracking-wider font-bold leading-relaxed uppercase line-clamp-3">
+                <p className="text-xs text-white/50 tracking-wider font-bold leading-relaxed uppercase line-clamp-3">
                   {item.a}
                 </p>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-black tracking-[0.2em] text-white uppercase group-hover:text-brand-teal transition-colors">
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-2xs font-black tracking-[0.2em] text-white uppercase group-hover:text-brand-teal transition-colors">
                 <span>READ MORE</span>
                 <span className="text-brand-teal text-xs transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
               </div>

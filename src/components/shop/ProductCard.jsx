@@ -51,45 +51,45 @@ export default function ProductCard({ product, index = 0, onView }) {
         </div>
         {/* Badge */}
         {product.badge && (
-          <span className={`absolute top-3 left-3 text-[9px] tracking-[0.2em] uppercase px-2.5 py-1.5 font-medium ${badgeColors[product.badge] || 'bg-black/10 text-black/60'}`}>
+          <span className={`absolute top-3 left-3 text-2xs tracking-[0.2em] uppercase px-2.5 py-1.5 font-medium ${badgeColors[product.badge] || 'bg-black/10 text-black/60'}`}>
             {product.badge}
           </span>
         )}
         {!product.inStock && (
           <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-black/50 font-medium">Out of Stock</span>
+            <span className="text-2xs tracking-[0.3em] uppercase text-black/50 font-medium">Out of Stock</span>
           </div>
         )}
       </div>
 
       {/* Info */}
       <div className="p-5 flex flex-col flex-1">
-        <p className="text-[10px] tracking-[0.25em] uppercase text-[#1B6E8C] mb-1">{product.brand}</p>
+        <p className="text-2xs tracking-[0.25em] uppercase text-[#1B6E8C] mb-1">{product.brand}</p>
         <h3 className="font-serif text-lg font-light leading-tight">{product.name}</h3>
-        <p className="text-[11px] text-black/40 mt-1">{product.unit}</p>
+        <p className="text-xs text-black/40 mt-1">{product.unit}</p>
 
         <div className="mt-3 flex flex-wrap gap-1">
           {product.tags.slice(0, 2).map(t => (
-            <span key={t} className="text-[9px] tracking-wide uppercase border border-black/10 px-2 py-1 text-black/45">{t}</span>
+            <span key={t} className="text-2xs tracking-wide uppercase border border-black/10 px-2 py-1 text-black/45">{t}</span>
           ))}
         </div>
 
         <div className="mt-auto pt-4 flex items-center justify-between">
           <span className="font-serif text-2xl font-light">₦{product.price.toLocaleString()}</span>
           {product.category === 'rx' ? (
-            <span className="flex items-center gap-1.5 text-[10px] text-amber-600">
+            <span className="flex items-center gap-1.5 text-2xs text-amber-600">
               <AlertCircle className="w-3.5 h-3.5" /> Rx needed
             </span>
           ) : product.inStock ? (
             <motion.button
               whileTap={{ scale: 0.92 }}
               onClick={() => add(product)}
-              className="text-[10px] tracking-[0.2em] uppercase px-4 py-2.5 bg-[#0A0A0A] text-white hover:bg-[#1B6E8C] transition-colors duration-500"
+              className="text-2xs tracking-[0.2em] uppercase px-4 py-2.5 bg-[#0A0A0A] text-white hover:bg-[#1B6E8C] transition-colors duration-500"
             >
               Add to Cart
             </motion.button>
           ) : (
-            <span className="text-[10px] text-black/35 tracking-wide">Unavailable</span>
+            <span className="text-2xs text-black/35 tracking-wide">Unavailable</span>
           )}
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function RefundPolicy() {
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
             <h1 className="display-svz uppercase">CARE<br />PROTOCOLS</h1>
-            <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Custodial Chain and Refund Specification</p>
+            <p className="text-xs font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Custodial Chain and Refund Specification</p>
          </div>
       </section>
 
@@ -42,7 +42,7 @@ export default function RefundPolicy() {
                 {PROTOCOLS.map((p) => (
                     <div key={p.id} className="space-y-8 group">
                         <div className="flex items-center gap-6">
-                            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">Protocol {p.id}</span>
+                            <span className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal">Protocol {p.id}</span>
                             <div className="h-px bg-black/10 flex-1" />
                         </div>
                         <h2 className="text-4xl font-black uppercase tracking-tighter leading-none group-hover:text-brand-teal transition-colors duration-500">{p.title}</h2>
@@ -55,13 +55,13 @@ export default function RefundPolicy() {
 
             <div className="lg:col-span-4 bg-black text-white p-12 lg:p-20 space-y-12 relative overflow-hidden">
                 <div className="relative z-10 space-y-8">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal">Pharmacist Audit</p>
-                    <p className="text-[13px] font-bold uppercase leading-relaxed tracking-widest text-white/50 italic">
+                    <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal">Pharmacist Audit</p>
+                    <p className="text-xs font-bold uppercase leading-relaxed tracking-widest text-white/50 italic">
                         "Clinical safety is our priority. By adhering to these protocols, we guarantee that every medication reaching a patient is in its original, safe, and effective state."
                     </p>
                     <div className="flex flex-col">
-                        <span className="text-[11px] font-black tracking-widest uppercase">Superintendent Pharmacist</span>
-                        <span className="text-[9px] font-bold uppercase tracking-widest text-white/30">SAVINCLIFF CLINICAL / 2026</span>
+                        <span className="text-xs font-black tracking-widest uppercase">Superintendent Pharmacist</span>
+                        <span className="text-2xs font-bold uppercase tracking-widest text-white/30">SAVINCLIFF CLINICAL / 2026</span>
                     </div>
                 </div>
                 {/* Decoration */}

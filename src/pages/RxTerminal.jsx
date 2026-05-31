@@ -24,7 +24,7 @@ const STEPS = [
     }
 ];
 
-export default function Wholesale() {
+export default function RxTerminal() {
   return (
     <div className="bg-white min-h-screen pt-40">
       
@@ -32,7 +32,7 @@ export default function Wholesale() {
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12 text-center md:text-left">
             <h1 className="sub-display-svz">VERIFICATION</h1>
-            <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Clinical Rx Upload / Prescription Specification Protocol</p>
+            <p className="text-xs font-black tracking-[0.4em] text-black/40 mt-4 uppercase underline underline-offset-8">Clinical Rx Upload / Prescription Specification Protocol</p>
          </div>
       </section>
 
@@ -52,7 +52,7 @@ export default function Wholesale() {
                         <div>
                             <div className="mb-12">{s.icon}</div>
                             <h3 className="text-3xl font-black uppercase tracking-tighter mb-8 leading-none">{s.name}</h3>
-                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-black/40 group-hover:text-white/40 leading-relaxed max-w-xs">{s.desc}</p>
+                            <p className="text-xs font-bold tracking-[0.2em] uppercase text-black/40 group-hover:text-white/40 leading-relaxed max-w-xs">{s.desc}</p>
                         </div>
                         <span className="text-4xl font-black opacity-10 group-hover:opacity-30 self-end transition-opacity select-none">{s.id}</span>
                     </motion.div>
@@ -66,7 +66,7 @@ export default function Wholesale() {
          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
             <div className="space-y-12">
                 <h2 className="sub-display-svz">COMMISSION<br />UPLOAD</h2>
-                <p className="text-[11px] md:text-[13px] font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed max-w-md">
+                <p className="text-xs md:text-xs font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed max-w-md">
                     Our uploader terminal utilizes end-to-end clinical encryption. Your medical data is processed through a high-fidelity verification node before dispatch.
                 </p>
                 <div className="aspect-video bg-white/5 border border-white/10 overflow-hidden relative group rounded-lg shadow-inner">
@@ -79,7 +79,7 @@ export default function Wholesale() {
                     >
                         <source src="/animations/whatsapp_3.mp4" type="video/mp4" />
                     </video>
-                    <div className="absolute bottom-4 left-4 text-[9px] font-black tracking-[0.4em] text-white/30 uppercase">Node Activity Monitor</div>
+                    <div className="absolute bottom-4 left-4 text-2xs font-black tracking-[0.4em] text-white/30 uppercase">Node Activity Monitor</div>
                 </div>
             </div>
             <div className="bg-white text-black p-4 lg:p-20 border border-white/10 shadow-2xl">
@@ -95,19 +95,19 @@ export default function Wholesale() {
          <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24">
              <div className="lg:col-span-4">
                  <h2 className="text-4xl font-black uppercase tracking-tighter mb-12">CLINICAL<br />SPEC</h2>
-                 <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-brand-teal">Operational Protocols</p>
+                 <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand-teal">Operational Protocols</p>
              </div>
              <div className="lg:col-span-8 flex flex-col justify-center space-y-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div className="space-y-6">
-                        <p className="text-[13px] font-black uppercase tracking-tighter">PHARMACIST AUDIT</p>
-                        <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-black/40">
+                        <p className="text-xs font-black uppercase tracking-tighter">PHARMACIST AUDIT</p>
+                        <p className="text-xs font-bold uppercase leading-relaxed tracking-widest text-black/40">
                            Every document is subjected to a live clinical review by our licensed pharmacists within a 30-minute node cycle.
                         </p>
                     </div>
                     <div className="space-y-6">
-                        <p className="text-[13px] font-black uppercase tracking-tighter">DATA INTEGRITY</p>
-                        <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-black/40">
+                        <p className="text-xs font-black uppercase tracking-tighter">DATA INTEGRITY</p>
+                        <p className="text-xs font-bold uppercase leading-relaxed tracking-widest text-black/40">
                            Your medical specification is encrypted and handled only by verified clinical staff in accordance with NDPA standards.
                         </p>
                     </div>
@@ -116,9 +116,9 @@ export default function Wholesale() {
                 <div className="pt-12 border-t border-black/10 flex flex-col md:flex-row items-center justify-between gap-12">
                    <div className="flex items-center gap-4 text-black/40">
                       <ShieldCheck className="w-8 h-8 text-brand-teal" />
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em]">Zero-Trust Verification Active</p>
+                      <p className="text-2xs font-black uppercase tracking-[0.2em]">Zero-Trust Verification Active</p>
                    </div>
-                   <a href="https://wa.me/923251206427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 bg-black text-white px-12 py-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-500">
+                   <a href="https://wa.me/923251206427" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 bg-black text-white px-12 py-6 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-500">
                       Initiate WhatsApp Node <ArrowRight className="w-4 h-4" />
                    </a>
                 </div>

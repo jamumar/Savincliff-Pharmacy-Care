@@ -15,8 +15,8 @@ import Shop from '@/pages/Shop';
 import About from '@/pages/About';
 import Products from '@/pages/Products';
 import Services from '@/pages/Services';
-import Wholesale from '@/pages/Wholesale';
-import Compliance from '@/pages/Compliance';
+import RxTerminal from '@/pages/RxTerminal';
+import Protocols from '@/pages/Protocols';
 import Contact from '@/pages/Contact';
 import Checkout from '@/pages/CheckOut';
 import Register from '@/pages/Register';
@@ -58,8 +58,8 @@ const AuthenticatedApp = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/wholesale" element={<Wholesale />} />
-          <Route path="/compliance" element={<Compliance />} />
+          <Route path="/rx-terminal" element={<RxTerminal />} />
+          <Route path="/protocols" element={<Protocols />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/faqs/:slug" element={<FaqDetail />} />

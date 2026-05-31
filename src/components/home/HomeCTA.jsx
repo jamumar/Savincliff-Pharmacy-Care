@@ -12,7 +12,7 @@ export default function HomeCTA() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[10px] tracking-[0.45em] uppercase text-white/35"
+          className="text-2xs tracking-[0.45em] uppercase text-white/35"
         >
           — Next Step —
         </motion.p>
@@ -35,15 +35,15 @@ export default function HomeCTA() {
           className="flex flex-wrap justify-center gap-3 mt-14"
         >
           <Link
-            to="/wholesale"
-            className="group inline-flex items-center gap-3 bg-white text-[#0A0A0A] px-8 py-5 text-[11px] tracking-[0.2em] uppercase hover:bg-[#1B6E8C] hover:text-white transition-colors duration-500"
+            to="/rx-terminal"
+            className="group inline-flex items-center gap-3 bg-white text-[#0A0A0A] px-8 py-5 text-xs tracking-[0.2em] uppercase hover:bg-[#1B6E8C] hover:text-white transition-colors duration-500"
           >
             Upload Prescription
             <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-500" />
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 border border-white/25 px-8 py-5 text-[11px] tracking-[0.2em] uppercase hover:border-white/60 hover:bg-white/5 transition-all"
+            className="inline-flex items-center gap-3 border border-white/25 px-8 py-5 text-xs tracking-[0.2em] uppercase hover:border-white/60 hover:bg-white/5 transition-all"
           >
             Visit Us Today
           </Link>

@@ -7,7 +7,7 @@ function LogoModel() {
   const { scene } = useGLTF('/models/opt_savincliff_pill.glb');
 
   return (
-    <group scale={1.65} position={[-0.2, 0.08, 0]} rotation={[0, 0, 0]}>
+    <group scale={1.65} position={[-0.85, 0.08, 0]} rotation={[0, 0, 0]}>
       <primitive object={scene} />
     </group>
   );
@@ -15,7 +15,7 @@ function LogoModel() {
 
 export default function Logo({ className = "", variant = "dark", scrolled = false }) {
   return (
-    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[95px] md:h-[135px]' : 'h-[65px] md:h-[80px]'} ${className}`}>
+    <div className={`flex items-center relative transition-all duration-500 ${!scrolled ? 'h-[95px] md:h-[135px] w-auto' : 'h-[65px] md:h-[80px] w-[80px] md:w-[100px]'} ${className}`}>
       <AnimatePresence mode="wait">
         {!scrolled ? (
           <motion.img

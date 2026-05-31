@@ -66,13 +66,13 @@ export default function Checkout() {
           </div>
           <div className="space-y-4">
              <h1 className="text-5xl font-black uppercase tracking-tighter">ORDER COMMITTED</h1>
-             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-black/40 leading-relaxed max-w-sm mx-auto">
+             <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/40 leading-relaxed max-w-sm mx-auto">
                 Fulfillment protocol initiated. A licensed pharmacist will contact your node <b>{form.phone}</b> for final clinical verification.
              </p>
           </div>
           <div className="pt-8 flex flex-col md:flex-row justify-center gap-6">
-             <Link to="/shop" className="bg-black text-white px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-700">Continue Inventory</Link>
-             <Link to="/account/orders" className="border border-black text-black px-12 py-6 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white duration-700">Audit Status</Link>
+             <Link to="/shop" className="bg-black text-white px-12 py-6 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal duration-700">Continue Inventory</Link>
+             <Link to="/account/orders" className="border border-black text-black px-12 py-6 text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white duration-700">Audit Status</Link>
           </div>
         </motion.div>
       </div>
@@ -86,7 +86,7 @@ export default function Checkout() {
         {/* Header */}
         <div className="border-b border-black pb-12 mb-20 flex flex-col md:flex-row justify-between items-end gap-12">
            <h1 className="display-svz">FULFILLMENT</h1>
-           <Link to="/shop" className="text-[10px] font-black tracking-[0.4em] uppercase text-black/40 hover:text-black transition-colors flex items-center gap-4">
+           <Link to="/shop" className="text-2xs font-black tracking-[0.4em] uppercase text-black/40 hover:text-black transition-colors flex items-center gap-4">
               <ArrowLeft className="w-4 h-4" /> Exit to Inventory
            </Link>
         </div>
@@ -96,7 +96,7 @@ export default function Checkout() {
            {STEPS.map((s, i) => (
                <div key={s} className="flex-1 min-w-[120px] relative">
                    <div className={`h-1 w-full transition-all duration-1000 ${i <= step ? 'bg-brand-teal' : 'bg-black/10'}`} />
-                   <p className={`mt-4 text-[10px] font-black tracking-[0.4em] transition-colors ${i === step ? 'text-black' : 'text-black/20'}`}>
+                   <p className={`mt-4 text-2xs font-black tracking-[0.4em] transition-colors ${i === step ? 'text-black' : 'text-black/20'}`}>
                       {i + 1} / {s}
                    </p>
                </div>
@@ -119,16 +119,16 @@ export default function Checkout() {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                        <h4 className="text-lg font-black uppercase tracking-tighter">{item.name}</h4>
-                                       <p className="text-[10px] font-bold tracking-widest text-black/40 uppercase mt-1">{item.brand} / UNIT: {item.unit}</p>
+                                       <p className="text-2xs font-bold tracking-widest text-black/40 uppercase mt-1">{item.brand} / UNIT: {item.unit}</p>
                                     </div>
                                     <div className="text-right">
                                        <p className="text-xl font-black tracking-tighter">₦{(item.price * item.qty).toLocaleString()}</p>
-                                       <p className="text-[9px] font-bold text-black/30 mt-1 uppercase">QTY: {item.qty}</p>
+                                       <p className="text-2xs font-bold text-black/30 mt-1 uppercase">QTY: {item.qty}</p>
                                     </div>
                                 </div>
                             ))}
                          </div>
-                         <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700">
+                         <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700">
                              Next Sequence / IDENTITY <ArrowRight className="w-5 h-5" />
                          </button>
                       </motion.div>
@@ -142,8 +142,8 @@ export default function Checkout() {
                                 <button key={opt.id} onClick={() => setDelivery(opt.id)} className={`p-10 border text-left flex flex-col justify-between min-h-[160px] transition-all duration-500 ${delivery === opt.id ? 'bg-black text-white border-black' : 'border-black/10 hover:border-black'}`}>
                                    <opt.icon className={`w-8 h-8 ${delivery === opt.id ? 'text-brand-teal' : 'text-black/20'}`} />
                                    <div>
-                                      <p className="text-[12px] font-black uppercase tracking-[0.2em]">{opt.label}</p>
-                                      <p className={`text-[9px] font-bold mt-2 uppercase tracking-widest ${delivery === opt.id ? 'text-white/40' : 'text-black/30'}`}>{opt.desc}</p>
+                                      <p className="text-xs font-black uppercase tracking-[0.2em]">{opt.label}</p>
+                                      <p className={`text-2xs font-bold mt-2 uppercase tracking-widest ${delivery === opt.id ? 'text-white/40' : 'text-black/30'}`}>{opt.desc}</p>
                                    </div>
                                 </button>
                             ))}
@@ -152,25 +152,25 @@ export default function Checkout() {
                          <div className="space-y-12">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                <div className="space-y-4">
-                                  <label className="text-[10px] font-black tracking-[0.4em] uppercase">Patient Handle</label>
-                                  <input value={form.name} onChange={e => setField('name', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest focus:outline-none focus:border-black uppercase" />
+                                  <label className="text-2xs font-black tracking-[0.4em] uppercase">Patient Handle</label>
+                                  <input value={form.name} onChange={e => setField('name', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest focus:outline-none focus:border-black uppercase" />
                                </div>
                                <div className="space-y-4">
-                                  <label className="text-[10px] font-black tracking-[0.4em] uppercase">Phone Node</label>
-                                  <input value={form.phone} onChange={e => setField('phone', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest focus:outline-none focus:border-black uppercase" />
+                                  <label className="text-2xs font-black tracking-[0.4em] uppercase">Phone Node</label>
+                                  <input value={form.phone} onChange={e => setField('phone', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest focus:outline-none focus:border-black uppercase" />
                                </div>
                             </div>
                             {delivery === 'delivery' && (
                                <div className="space-y-4">
-                                  <label className="text-[10px] font-black tracking-[0.4em] uppercase">Dispatch Address</label>
-                                  <textarea rows={2} value={form.address} onChange={e => setField('address', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest focus:outline-none focus:border-black uppercase resize-none" />
+                                  <label className="text-2xs font-black tracking-[0.4em] uppercase">Dispatch Address</label>
+                                  <textarea rows={2} value={form.address} onChange={e => setField('address', e.target.value)} className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest focus:outline-none focus:border-black uppercase resize-none" />
                                </div>
                             )}
                          </div>
 
                          <div className="flex gap-8">
-                            <button onClick={() => setStep(0)} className="w-32 border border-black text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
-                            <button onClick={() => setStep(2)} disabled={!form.name || !form.phone || (delivery === 'delivery' && !form.address)} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20">
+                            <button onClick={() => setStep(0)} className="w-32 border border-black text-black text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
+                            <button onClick={() => setStep(2)} disabled={!form.name || !form.phone || (delivery === 'delivery' && !form.address)} className="flex-1 bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20">
                                Final Confirmation <ArrowRight className="w-5 h-5" />
                             </button>
                          </div>
@@ -182,27 +182,27 @@ export default function Checkout() {
                          <h2 className="text-3xl font-black uppercase tracking-tighter">FINAL COMMIT</h2>
                          <div className="space-y-12">
                             <div className="p-12 bg-[#FAFAFA] border border-black/5 space-y-8">
-                               <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">Protocol Acknowledgement</p>
-                               <p className="text-[12px] font-black uppercase leading-relaxed tracking-widest text-black/40">
+                               <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal">Protocol Acknowledgement</p>
+                               <p className="text-xs font-black uppercase leading-relaxed tracking-widest text-black/40">
                                   By committing this order, you acknowledge that a licensed pharmacist must verify all clinical specifications before fulfillment node activation.
                                </p>
                             </div>
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                <div className="space-y-2">
-                                  <p className="text-[10px] font-black uppercase tracking-widest text-black/30">Target Node</p>
-                                  <p className="text-[13px] font-black uppercase tracking-tighter">{form.name}</p>
+                                  <p className="text-2xs font-black uppercase tracking-widest text-black/30">Target Node</p>
+                                  <p className="text-xs font-black uppercase tracking-tighter">{form.name}</p>
                                </div>
                                <div className="space-y-2">
-                                  <p className="text-[10px] font-black uppercase tracking-widest text-black/30">Dispatch Spec</p>
-                                  <p className="text-[13px] font-black uppercase tracking-tighter">{delivery === 'pickup' ? 'PICKUP @ GWARINPA' : form.address}</p>
+                                  <p className="text-2xs font-black uppercase tracking-widest text-black/30">Dispatch Spec</p>
+                                  <p className="text-xs font-black uppercase tracking-tighter">{delivery === 'pickup' ? 'PICKUP @ GWARINPA' : form.address}</p>
                                </div>
                             </div>
                          </div>
 
                          <div className="flex gap-8">
-                            <button onClick={() => setStep(1)} className="w-32 border border-black text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
-                            <button onClick={placeOrder} disabled={isSubmitting} className="flex-1 bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-1000">
+                            <button onClick={() => setStep(1)} className="w-32 border border-black text-black text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all">Back</button>
+                            <button onClick={placeOrder} disabled={isSubmitting} className="flex-1 bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-1000">
                                {isSubmitting ? 'COMMITTING...' : 'COMMIT ORDER'} <CheckCircle className="w-5 h-5" />
                             </button>
                          </div>
@@ -214,29 +214,29 @@ export default function Checkout() {
             {/* Sidebar Summary */}
             <div className="lg:col-span-5">
                <div className="bg-black text-white p-12 lg:p-16 sticky top-40 shadow-2xl">
-                  <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Audit Summary</p>
+                  <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Audit Summary</p>
                   <div className="space-y-8 mb-12">
                      <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-bold uppercase tracking-widest text-white/40">Basket Subtotal</span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/40">Basket Subtotal</span>
                         <span className="text-xl font-black tracking-tighter">₦{total.toLocaleString()}</span>
                      </div>
                      <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-bold uppercase tracking-widest text-white/40">Dispatch Fee</span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/40">Dispatch Fee</span>
                         <span className="text-xl font-black tracking-tighter">{deliveryFee > 0 ? `₦${deliveryFee.toLocaleString()}` : '0.00'}</span>
                      </div>
                      <div className="h-px bg-white/10" />
                      <div className="flex justify-between items-end">
-                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-brand-teal">Total Audit</span>
+                        <span className="text-xs font-black uppercase tracking-[0.4em] text-brand-teal">Total Audit</span>
                         <span className="text-4xl font-black tracking-tighter">₦{grandTotal.toLocaleString()}</span>
                      </div>
                   </div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-white/20 leading-relaxed">
+                  <p className="text-2xs font-bold uppercase tracking-widest text-white/20 leading-relaxed">
                      Order Ref: SYN-NODE-{uuidv4().substring(0,8).toUpperCase()}<br />
                      Clinical verification cycle: 15-30m
                   </p>
                   <div className="mt-12 pt-12 border-t border-white/5 flex items-center gap-6 opacity-30">
                       <ShieldCheckIcon className="w-8 h-8" />
-                      <p className="text-[9px] font-black uppercase tracking-[0.2em] leading-tight">Patient data handled<br />via zero-trust encryption</p>
+                      <p className="text-2xs font-black uppercase tracking-[0.2em] leading-tight">Patient data handled<br />via zero-trust encryption</p>
                   </div>
                </div>
             </div>

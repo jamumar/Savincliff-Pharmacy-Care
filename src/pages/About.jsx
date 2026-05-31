@@ -73,8 +73,8 @@ function ShowcaseSection() {
     <section className="bg-black text-white py-24 md:py-40 px-8 md:px-20 lg:px-32">
       {/* Heading */}
       <div className="max-w-[1400px] mx-auto">
-        <p className="text-[9px] font-black tracking-[0.4em] uppercase text-white/30 mb-6">[ CLINICAL PARTNERSHIPS ]</p>
-        <h2 className="text-[9vw] md:text-[5.5vw] font-black uppercase tracking-tighter leading-none mb-20 md:mb-28">
+        <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 mb-6">[ CLINICAL PARTNERSHIPS ]</p>
+        <h2 className="display-lg font-black uppercase tracking-tighter leading-none mb-20 md:mb-28">
           SHOWCASE OF<br />CLINICAL EXCELLENCE
         </h2>
 
@@ -83,11 +83,11 @@ function ShowcaseSection() {
 
           {/* Left — Story detail */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-[22px] md:text-[28px] font-black uppercase leading-snug tracking-tight mb-10 max-w-lg transition-all duration-500">
+            <h3 className="text-2xl md:text-3xl font-black uppercase leading-snug tracking-tight mb-10 max-w-lg transition-all duration-500">
               {story.headline}
             </h3>
 
-            <button className="inline-flex items-center gap-3 border border-white/30 px-6 py-3 text-[10px] font-black uppercase tracking-[0.25em] hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-all duration-300 mb-16">
+            <button className="inline-flex items-center gap-3 border border-white/30 px-6 py-3 text-2xs md:text-sm font-black uppercase tracking-[0.25em] hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-all duration-300 mb-16">
               {story.cta} <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
 
@@ -95,8 +95,8 @@ function ShowcaseSection() {
             <div className="flex gap-10 md:gap-16">
               {story.stats.map((s, i) => (
                 <div key={i}>
-                  <p className="text-[40px] md:text-[56px] font-black leading-none tracking-tighter text-white">{s.value}</p>
-                  <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-white/40 mt-2 max-w-[120px]">{s.label}</p>
+                  <p className="text-4xl md:text-6xl font-black leading-none tracking-tighter text-white">{s.value}</p>
+                  <p className="text-2xs md:text-sm font-black tracking-[0.15em] text-white/40 mt-2 max-w-[120px]">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -109,7 +109,7 @@ function ShowcaseSection() {
                 key={s.id}
                 onClick={() => setActive(i)}
                 className={[
-                  'w-full h-[100px] flex items-center justify-center text-[13px] font-black uppercase tracking-[0.2em] transition-all duration-400 border border-white/5',
+                  'w-full h-[100px] flex items-center justify-center text-2xs md:text-sm font-black uppercase tracking-[0.2em] transition-all duration-400 border border-white/5',
                   i === active
                     ? 'bg-[#1B6E8C] text-white'
                     : 'bg-black text-white hover:bg-[#1B6E8C] hover:text-white',
@@ -221,7 +221,7 @@ function WallOfFame() {
   return (
     <section className="bg-[#050505] text-white py-24 md:py-32 overflow-hidden relative min-h-screen flex flex-col justify-center">
       <div className="relative z-10 text-center mb-16 px-8 pointer-events-none">
-        <h2 className="text-[10vw] md:text-[7vw] font-black uppercase tracking-tighter leading-none">
+        <h2 className="display-lg font-black uppercase tracking-tighter leading-none">
           WALL OF F<span className="font-serif italic normal-case tracking-normal pr-1 md:pr-2 -ml-2 md:-ml-4 text-[1.1em]">a</span>ME
         </h2>
       </div>
@@ -247,7 +247,7 @@ function WallOfFame() {
                 }}
                 className="flex flex-col justify-between bg-[#0a0a0a] p-8 md:p-10 border border-white/5 rounded-sm cursor-pointer transition-colors h-[280px]"
               >
-                <p className="text-[13px] text-white/30 leading-relaxed font-medium pointer-events-none line-clamp-4">
+                <p className="text-xs text-white/30 leading-relaxed font-medium pointer-events-none line-clamp-4">
                   {t.text}
                 </p>
                 <div className="flex items-center gap-4 mt-6 pointer-events-none opacity-40">
@@ -255,8 +255,8 @@ function WallOfFame() {
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-white/70">{t.name}</div>
-                    <div className="text-[9px] font-medium uppercase tracking-[0.15em] text-white/30 mt-1">{t.role}</div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-white/70">{t.name}</div>
+                    <div className="text-2xs font-medium uppercase tracking-[0.15em] text-white/30 mt-1">{t.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -273,7 +273,7 @@ function WallOfFame() {
           >
             <button 
               onClick={() => setMode('GRID')}
-              className="absolute top-0 md:top-4 right-8 md:right-24 text-[11px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-brand-teal transition-colors z-20 py-2 px-4 border border-white/10 hover:border-brand-teal/50 rounded-sm"
+              className="absolute top-0 md:top-4 right-8 md:right-24 text-2xs md:text-sm font-black uppercase tracking-[0.2em] text-white/40 hover:text-brand-teal transition-colors z-20 py-2 px-4 border border-white/10 hover:border-brand-teal/50 rounded-sm"
             >
               [ Back to Wall ]
             </button>
@@ -296,7 +296,7 @@ function WallOfFame() {
                 onDragEnd={handleDragEnd}
                 className="absolute flex flex-col justify-between bg-[#111] p-10 md:p-14 border border-white/10 rounded-sm w-[90%] md:w-[540px] h-[340px] cursor-grab active:cursor-grabbing shadow-2xl z-10"
               >
-                <p className="text-[15px] md:text-[16px] text-white/80 leading-relaxed font-medium pointer-events-none">
+                <p className="text-base md:text-base text-white/80 leading-relaxed font-medium pointer-events-none">
                   {TESTIMONIALS[activeIndex].text}
                 </p>
                 <div className="flex items-center gap-4 mt-8 pointer-events-none">
@@ -305,7 +305,7 @@ function WallOfFame() {
                   </div>
                   <div>
                     <div className="text-xs font-bold uppercase tracking-wider text-white">{TESTIMONIALS[activeIndex].name}</div>
-                    <div className="text-[10px] font-medium uppercase tracking-[0.15em] text-white/50 mt-1">{TESTIMONIALS[activeIndex].role}</div>
+                    <div className="text-2xs font-medium uppercase tracking-[0.15em] text-white/50 mt-1">{TESTIMONIALS[activeIndex].role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -327,12 +327,7 @@ function WallOfFame() {
   );
 }
 
-const HERO_LINES = [
-  { text: "PRECISION", excursion: 45 },
-  { text: "WELLNESS", excursion: 28 },
-  { text: "HUMANITY", excursion: 38 },
-  { text: "FUTURE", excursion: 22 }
-];
+const HERO_LINES = ["PRECISION", "WELLNESS", "HUMANITY", "FUTURE"];
 
 export default function About() {
   const splitSectionRef = useRef(null);
@@ -427,49 +422,41 @@ export default function About() {
         className="bg-black text-[#1B6E8C] min-h-screen relative overflow-hidden flex flex-col justify-center pt-[15vh] pb-[10vh]"
         style={{ textShadow: '0 0 35px rgba(27, 110, 140, 0.4)' }}
       >
-        <div className="w-full flex flex-col justify-center space-y-4 md:space-y-6 pl-[8vw]">
-          {HERO_LINES.map((line, i) => {
-            const exc = line.excursion;
+        <div className="w-full flex flex-col justify-center space-y-4 md:space-y-6 pl-[8vw] pr-[8vw]">
+          {HERO_LINES.map((text, i) => {
             return (
               <h1
-                key={line.text}
-                className="hero-line text-[13vw] md:text-[10vw] leading-[0.85] font-serif font-normal tracking-[-0.02em] whitespace-nowrap cursor-default select-none"
+                key={text}
+                className="hero-line display-lg leading-[0.85] font-black tracking-[-0.04em] whitespace-nowrap cursor-default select-none w-max"
                 style={{
-                  '--excursion': `${exc}vw`,
-                  '--excursion-overshoot': `${exc + 2}vw`,
-                  animation: 'hero-glide-in 5.2s infinite',
-                  animationDelay: `${i * 0.16}s`,
+                  animation: 'hero-glide-in 8s infinite',
+                  animationDelay: `${i * 0.4}s`,
                 }}
               >
-                {line.text}
+                {text}
               </h1>
             );
           })}
           <style>{`
             @keyframes hero-glide-in {
-              0% {
+              0%, 15% {
                 transform: translate3d(0, 0, 0);
-                opacity: 0.4;
+                opacity: 0.35;
                 animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
               }
-              44% {
-                transform: translate3d(var(--excursion-overshoot), 0, 0);
+              40%, 65% {
+                transform: translate3d(calc(84vw - 100%), 0, 0);
                 opacity: 1;
                 animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
               }
-              85% {
+              90%, 100% {
                 transform: translate3d(0, 0, 0);
-                opacity: 0.4;
-                animation-timing-function: linear;
-              }
-              100% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.4;
+                opacity: 0.35;
               }
             }
           `}</style>
         </div>
-        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase">
+        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white/50 text-2xs md:text-sm font-black tracking-[0.4em] uppercase">
             Constant Motion
         </div>
       </section>
@@ -478,7 +465,7 @@ export default function About() {
       <section ref={paragraphSectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
         <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
            <div className="max-w-[1400px] mx-auto">
-             <p ref={paragraphRef} className="paragraph text-xl md:text-[2.6vw] text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
+             <p ref={paragraphRef} className="paragraph text-xl md:display-sm text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
                 {NARRATIVE_WORDS.map((w, i) => (
                   <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
                     {w.text.split("").map((char, ci) => (
@@ -495,16 +482,26 @@ export default function About() {
       <section className="section-padding bg-white">
         <div className="grid-container grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-32 items-center">
             <div className="space-y-8 md:space-y-16">
-                <h2 className="text-[10vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none flex flex-col items-start">
-                  <AnimatedText text="THE" splitBy="word" />
-                  <AnimatedText text="MANIFEST" splitBy="char" delay={0.1} />
+                <h2 className="display-lg font-black uppercase tracking-tighter leading-none flex flex-col items-start">
+                  <AnimatedText text="OUR" splitBy="word" />
+                  <AnimatedText text="FOUNDATION" splitBy="char" delay={0.1} />
                 </h2>
                 <div className="space-y-6 md:space-y-10 max-w-xl">
                     <p className="text-lg md:text-2xl text-black font-black leading-none tracking-tighter uppercase">
-                        Originating in the FCT node of Abuja, Savincliff emerged from a singular clinical requirement.
+                        Built in Abuja to<br />
+                        modernize the pharmacy<br />
+                        experience through<br />
+                        precision, trust, and<br />
+                        patient-centered care
                     </p>
-                    <p className="text-[11px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.4em] text-black/40 uppercase leading-relaxed border-l-4 border-[#1B6E8C] pl-6 md:pl-8">
-                        Traditional pharmacy models prioritized volume over verification. We inverted the sequence. Every prescription processed at Savincliff is a project of precision—audited by architects of health and delivered through a secured custodial chain.
+                    <p className="text-xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] text-black/40 uppercase leading-relaxed border-l-4 border-[#1B6E8C] pl-6 md:pl-8">
+                        Traditional pharmacy models often prioritize<br />
+                        speed over precision. Savincliff was created<br />
+                        to deliver a more thoughtful standard of<br />
+                        pharmaceutical care – where every<br />
+                        prescription is reviewed carefully, every<br />
+                        medication is verified at the source, & every<br />
+                        patient interaction is built on trust.
                     </p>
                 </div>
             </div>
@@ -521,12 +518,12 @@ export default function About() {
                     loop 
                     muted 
                     playsInline
-                    className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-all duration-1000"
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000"
                 >
                     <source src="/animations/whatsapp_2.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-                <div className="absolute top-6 left-6 text-white/50 text-[9px] font-black tracking-[0.4em] uppercase border border-white/20 p-2">
+                <div className="absolute top-6 left-6 text-white/50 text-2xs md:text-sm font-black tracking-[0.4em] uppercase border border-white/20 p-2">
                     CLINICAL MANIFEST v2.0
                 </div>
             </motion.div>
@@ -537,11 +534,11 @@ export default function About() {
       <section ref={splitSectionRef} className="relative bg-black h-screen flex flex-col md:flex-row overflow-hidden">
         {/* Left Side - Sticky */}
         <div className="w-full md:w-1/2 bg-black text-white p-12 md:p-24 flex flex-col justify-center">
-          <div className="text-brand-teal text-[10px] font-black tracking-[0.2em] uppercase mb-4">
-            [ENTERPRISE]
+          <div className="text-brand-teal text-2xs md:text-sm font-black tracking-[0.2em] uppercase mb-4">
+            [OUR DIFFERENCE]
           </div>
-          <h2 className="text-[8vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none">
-            WHY CHOOSE<br />SAVINCLIFF
+          <h2 className="display-lg font-black uppercase tracking-tighter leading-none">
+            WHY<br />SAVINCLIFF
           </h2>
         </div>
 
@@ -550,28 +547,28 @@ export default function About() {
           {/* Panel 1 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
             <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
-              Dedicated Senior Team
+              Clinical Standards
             </h3>
             <div className="space-y-4 max-w-lg">
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">SENIOR TEAM DIRECTORS</span>
-                <span>12</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">VERIFIED SOURCING</span>
+                <span className="text-right">Authenticated pharmaceutical supply systems</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">NEW CLIENTS ACCEPTED</span>
-                <span>≈ 1 Per Month</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">PRESCRIPTION REVIEW</span>
+                <span className="text-right">Every prescription reviewed by licensed pharmacists</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">HQ LOCATION</span>
-                <span>≈ Abuja, Nigeria</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">STORAGE SYSTEMS</span>
+                <span className="text-right">Temperature-controlled medication handling & cold-chain handling</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">SATELLITE OFFICE</span>
-                <span>≈ Lagos, Nigeria</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">DIGITAL ACCESS</span>
+                <span className="text-right">Secure prescription and patient portal systems</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">TEAM DISTRIBUTION</span>
-                <span>Pan-African</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">PATIENT SUPPORT</span>
+                <span className="text-right">Consultation-driven pharmaceutical care</span>
               </div>
             </div>
           </div>
@@ -579,28 +576,28 @@ export default function About() {
           {/* Panel 2 */}
           <div className="scroll-panel absolute inset-0 bg-white text-black p-12 md:p-24 flex flex-col justify-center">
             <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
-              Choose your way
+              Built for Modern Care
             </h3>
             <div className="space-y-4 max-w-lg">
-              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">FLAT RATE PROJECT(S)</span>
-                <span>Yes</span>
+              <div className="flex justify-between items-start gap-4 border-b border-black/10 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">VERIFIED SOURCING</span>
+                <span className="text-right">Authenticated pharmaceutical supply chain</span>
               </div>
-              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">DESIGN & DEV RETAINER</span>
-                <span>Yes</span>
+              <div className="flex justify-between items-start gap-4 border-b border-black/10 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">DIGITAL PRESCRIPTIONS</span>
+                <span className="text-right">Secure prescription upload and review</span>
               </div>
-              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">GROWTH & SEO RETAINER</span>
-                <span>Yes</span>
+              <div className="flex justify-between items-start gap-4 border-b border-black/10 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">PATIENT PORTAL</span>
+                <span className="text-right">Private medication records and review</span>
               </div>
-              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">CLINICAL TRAINING</span>
-                <span>Yes</span>
+              <div className="flex justify-between items-start gap-4 border-b border-black/10 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">CLINICAL CONSULTATION</span>
+                <span className="text-right">Consultation-driven medication support</span>
               </div>
-              <div className="flex justify-between border-b border-black/10 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">PRODUCTION SERVICES</span>
-                <span>Yes</span>
+              <div className="flex justify-between items-start gap-4 border-b border-black/10 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">DELIVERY & COLLECTION</span>
+                <span className="text-right">Flexible pickup and local delivery systems</span>
               </div>
             </div>
           </div>
@@ -608,35 +605,38 @@ export default function About() {
           {/* Panel 3 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
             <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
-              Project Count & Recognition
+              Precision Infrastructure
             </h3>
             <div className="space-y-4 max-w-lg">
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">FINALIZED PROJECTS</span>
-                <span>300+</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">DIGITAL RX</span>
+                <span className="text-right">Integrated prescription intake systems</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">ENTERPRISE PARTNER</span>
-                <span>Finalist 2026</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">CLINICAL REVIEW</span>
+                <span className="text-right">Licensed pharmacist oversight protocols</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">1ST EVER CLINICAL.GOV</span>
-                <span>Won First State Contract</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">SOURCE TRACEABILITY</span>
+                <span className="text-right">Medication authentication at procurement level</span>
               </div>
-              <div className="flex justify-between border-b border-white/20 pb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">
-                <span className="opacity-70">AWWWARDS</span>
-                <span>Honorable Mentions x15</span>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">PATIENT ACCESS</span>
+                <span className="text-right">Secure patient portal architecture</span>
+              </div>
+              <div className="flex justify-between items-start gap-4 border-b border-white/20 pb-2 text-2xs md:text-sm font-black uppercase tracking-wider">
+                <span className="opacity-70 shrink-0">STORAGE CONTROL</span>
+                <span className="text-right">Environmental monitoring and storage integrity</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Compliance Strip */}
       <section className="py-20 md:py-40 bg-white border-b border-black/5 overflow-hidden">
-          <ScrollMarquee baseVelocity={1.5}>
-             <span className="text-[15vw] md:text-[10vw] font-black uppercase tracking-[-0.05em] text-black/5 mx-8 md:mx-24">
-                PCN LICENSED NODE / NAFDAC PRIMARY SOURCE / VERIFIED CLINICAL CERTAINTY / 
+          <ScrollMarquee baseVelocity={-1.5}>
+             <span className="display-giant font-black uppercase tracking-[-0.05em] text-black/5 mx-8 md:mx-24">
+                PCN – NAFDAC – NDPR – VERIFIED – SECURE – COMPLIANT – AUTHENTICATED – 
              </span>
           </ScrollMarquee>
       </section>
@@ -652,10 +652,10 @@ export default function About() {
         <div className="grid-container">
             <div className="bg-black text-white p-8 md:p-20 lg:p-40 relative overflow-hidden group">
                 <div className="relative z-10 space-y-8 md:space-y-16">
-                    <h2 className="text-[8vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none">EXPERIENCE<br />THE PRECISION</h2>
+                    <h2 className="display-lg font-black uppercase tracking-tighter leading-none">EXPERIENCE<br />THE PRECISION</h2>
                     <div className="flex flex-col sm:flex-row gap-4 md:gap-8">
-                        <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">Explore Inventory</button>
-                        <button className="border border-white/20 px-8 md:px-16 py-5 md:py-8 text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4 md:gap-6 group/btn">
+                        <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-2xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">Explore Inventory</button>
+                        <button className="border border-white/20 px-8 md:px-16 py-5 md:py-8 text-2xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4 md:gap-6 group/btn">
                             Consult Pharmacist <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover/btn:translate-x-2 group-hover/btn:-translate-y-2 transition-transform" />
                         </button>
                     </div>

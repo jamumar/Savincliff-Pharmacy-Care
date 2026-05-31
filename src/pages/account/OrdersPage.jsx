@@ -78,45 +78,45 @@ function OrderDetailsModal({ order, onClose }) {
 
           <div className="lg:col-span-5 bg-[#FAFAFA] p-12 lg:p-16 space-y-16 flex flex-col justify-center">
              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Transaction Audit</p>
+                <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal mb-4">Transaction Audit</p>
                 <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-none">ORDER<br />NODE 0{order.id}</h2>
-                <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-black/30 mt-6 flex items-center gap-2">
+                <p className="text-xs font-bold tracking-[0.3em] uppercase text-black/30 mt-6 flex items-center gap-2">
                    <Activity className="w-4 h-4" /> STATUS: {order.status}
                 </p>
              </div>
 
              <div className="space-y-10">
                 <div className="space-y-4">
-                   <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30 flex items-center gap-2">
+                   <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/30 flex items-center gap-2">
                       <MapPin className="w-3 h-3" /> FULFILLMENT NODE
                    </p>
-                   <p className="text-[13px] font-bold uppercase tracking-tight leading-tight">{order.shipping_address}</p>
+                   <p className="text-xs font-bold uppercase tracking-tight leading-tight">{order.shipping_address}</p>
                 </div>
                 <div className="space-y-4">
-                   <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30 flex items-center gap-2">
+                   <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/30 flex items-center gap-2">
                       <CreditCard className="w-3 h-3" /> TRANSFER PROTOCOL
                    </p>
-                   <p className="text-[13px] font-bold uppercase tracking-tight">{order.payment_method}</p>
+                   <p className="text-xs font-bold uppercase tracking-tight">{order.payment_method}</p>
                 </div>
              </div>
 
              <div className="pt-12 border-t border-black/10">
-                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30 mb-2">Grand Total Audit</p>
+                 <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/30 mb-2">Grand Total Audit</p>
                  <p className="text-5xl font-black tracking-tighter">₦{parseFloat(order.total_price).toLocaleString()}</p>
              </div>
           </div>
 
           <div className="lg:col-span-7 p-12 lg:p-20 space-y-12">
-             <h4 className="text-[11px] font-black uppercase tracking-[0.3em] border-b border-black/5 pb-8 flex items-center justify-between">
+             <h4 className="text-xs font-black uppercase tracking-[0.3em] border-b border-black/5 pb-8 flex items-center justify-between">
                 ITEMIZED SPECIFICATION <span>[{order.items?.length || 0}]</span>
              </h4>
              <div className="space-y-0">
                 {order.items?.map((item, i) => (
                    <div key={i} className="py-8 border-b border-black/5 flex justify-between items-start group">
                       <div>
-                         <p className="text-[10px] font-black uppercase tracking-widest text-black/30 mb-1">NODE 0{i + 1}</p>
+                         <p className="text-2xs font-black uppercase tracking-widest text-black/30 mb-1">NODE 0{i + 1}</p>
                          <h5 className="text-xl font-black uppercase tracking-tighter">{item.product_name}</h5>
-                         <p className="text-[11px] font-bold text-black/40 mt-4 tracking-widest uppercase">{item.quantity} UNIT SPECIFIED</p>
+                         <p className="text-xs font-bold text-black/40 mt-4 tracking-widest uppercase">{item.quantity} UNIT SPECIFIED</p>
                       </div>
                       <p className="text-xl font-black tracking-tighter">₦{(item.price_at_purchase * item.quantity).toLocaleString()}</p>
                    </div>
@@ -125,8 +125,8 @@ function OrderDetailsModal({ order, onClose }) {
              
              {order.notes && (
                <div className="p-12 bg-black text-white space-y-4">
-                  <p className="text-[9px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Notes</p>
-                  <p className="text-[13px] font-bold uppercase tracking-widest leading-relaxed text-white/50">
+                  <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Notes</p>
+                  <p className="text-xs font-bold uppercase tracking-widest leading-relaxed text-white/50">
                      "{order.notes}"
                   </p>
                </div>
@@ -146,7 +146,7 @@ export default function OrdersPage() {
     <div className="space-y-10 md:space-y-20">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black/5 pb-8 md:pb-12">
         <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">ORDER<br />ARCHIVE</h1>
-        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/30">{orders.length} TOTAL NODES RECORDED</p>
+        <p className="text-2xs font-black tracking-[0.4em] uppercase text-black/30">{orders.length} TOTAL NODES RECORDED</p>
       </div>
 
       <div className="grid gap-0 border border-black/5">
@@ -161,16 +161,16 @@ export default function OrdersPage() {
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-6">
-                    <span className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal">NODE 0{order.id}</span>
-                    <span className="text-[11px] font-black uppercase tracking-widest bg-black/5 group-hover:bg-white/10 px-3 py-1 transition-colors">{order.status}</span>
+                    <span className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal">NODE 0{order.id}</span>
+                    <span className="text-xs font-black uppercase tracking-widest bg-black/5 group-hover:bg-white/10 px-3 py-1 transition-colors">{order.status}</span>
                 </div>
                 <h3 className="text-xl md:text-4xl font-black uppercase tracking-tighter leading-none">AUDIT REF: {order.idempotency_key?.slice(0,8)}</h3>
-                <p className="text-[11px] font-bold tracking-widest uppercase opacity-40">COMMITTED {new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                <p className="text-xs font-bold tracking-widest uppercase opacity-40">COMMITTED {new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
               </div>
 
               <div className="text-left md:text-right flex items-center gap-6 md:gap-12">
                 <div>
-                   <p className="text-[10px] font-black tracking-[0.4em] uppercase opacity-30 group-hover:opacity-60 mb-2">Commit Value</p>
+                   <p className="text-2xs font-black tracking-[0.4em] uppercase opacity-30 group-hover:opacity-60 mb-2">Commit Value</p>
                    <p className="text-2xl md:text-4xl font-black tracking-tighter">₦{parseFloat(order.total_price).toLocaleString()}</p>
                 </div>
                 <ArrowUpRight className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500" />

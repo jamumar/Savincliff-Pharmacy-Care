@@ -48,7 +48,7 @@ export default function HomeHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 1 }}
-            className="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase text-white/40 mb-8"
+            className="flex items-center gap-4 text-2xs tracking-[0.35em] uppercase text-white/40 mb-8"
           >
             <span className="w-10 h-px bg-white/25" />
             <span>Est. Gwarinpa — Abuja, Nigeria</span>
@@ -94,8 +94,8 @@ export default function HomeHero() {
           >
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
-                to="/wholesale"
-                className="group inline-flex items-center gap-3 bg-white text-[#0A0A0A] px-7 py-4 text-[11px] tracking-[0.2em] uppercase hover:bg-[#1B6E8C] hover:text-white transition-colors duration-500"
+                to="/rx-terminal"
+                className="group inline-flex items-center gap-3 bg-white text-[#0A0A0A] px-7 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#1B6E8C] hover:text-white transition-colors duration-500"
               >
                 Upload Prescription
                 <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-500" />
@@ -104,7 +104,7 @@ export default function HomeHero() {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 border border-white/25 px-7 py-4 text-[11px] tracking-[0.2em] uppercase hover:border-white/60 hover:bg-white/5 transition-all"
+                className="inline-flex items-center gap-3 border border-white/25 px-7 py-4 text-xs tracking-[0.2em] uppercase hover:border-white/60 hover:bg-white/5 transition-all"
               >
                 <MapPin className="w-3.5 h-3.5" />
                 Visit Our Store
@@ -115,7 +115,7 @@ export default function HomeHero() {
                 href="https://wa.me/923251206427"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 px-4 py-4 text-[11px] tracking-[0.2em] uppercase text-white/70 hover:text-[#1B6E8C] transition-colors"
+                className="inline-flex items-center gap-3 px-4 py-4 text-xs tracking-[0.2em] uppercase text-white/70 hover:text-[#1B6E8C] transition-colors"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 Chat on WhatsApp
@@ -138,7 +138,7 @@ export default function HomeHero() {
                 transition={{ delay: 1.7 + i * 0.1, duration: 0.6 }}
               >
                 <p className="font-serif text-2xl font-light text-[#1B6E8C]">{s.value}</p>
-                <p className="text-[10px] tracking-[0.25em] uppercase text-white/35 mt-1">{s.label}</p>
+                <p className="text-2xs tracking-[0.25em] uppercase text-white/35 mt-1">{s.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -163,7 +163,7 @@ export default function HomeHero() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 to-transparent" />
           {/* Badges */}
-          <div className="absolute bottom-5 left-5 right-5 flex justify-between text-[9px] tracking-[0.25em] uppercase z-10">
+          <div className="absolute bottom-5 left-5 right-5 flex justify-between text-2xs tracking-[0.25em] uppercase z-10">
             <span className="bg-[#0A0A0A]/80 backdrop-blur px-3 py-2 text-white/80">PCN · Licensed</span>
             <span className="bg-[#0A0A0A]/80 backdrop-blur px-3 py-2 text-white/80">Genuine · Verified</span>
           </div>
@@ -185,7 +185,7 @@ export default function HomeHero() {
 
       {/* Ticker */}
       <div className="border-t border-white/8 py-5 overflow-hidden">
-        <div className="flex gap-12 marquee-track whitespace-nowrap text-[10px] tracking-[0.35em] uppercase text-white/30">
+        <div className="flex gap-12 marquee-track whitespace-nowrap text-2xs tracking-[0.35em] uppercase text-white/30">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex gap-12 shrink-0">
               {['Chronic Care', 'Prescription Dispensing', 'Wellness & Supplements', 'Blood Pressure Monitoring', 'Family & Baby Care', 'Diabetes Support', 'Patient Counseling', 'Wholesale Program'].map((t, i) => (

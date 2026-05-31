@@ -23,7 +23,7 @@ export default function ProductCategoryCarousel() {
     <section className="bg-[#FAFAFA] py-24 md:py-32">
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div className="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase text-[#0A0A0A]/45">
+          <div className="flex items-center gap-4 text-2xs tracking-[0.35em] uppercase text-[#0A0A0A]/45">
             <span className="w-8 h-px bg-[#0A0A0A]/25" />
             <span>Carousel of Care</span>
           </div>
@@ -71,8 +71,8 @@ export default function ProductCategoryCarousel() {
             />
             <div className="relative h-full flex flex-col justify-between p-8 text-white">
               <div className="flex justify-between items-start">
-                <span className="text-[10px] tracking-[0.3em] uppercase text-white/40">0{i + 1} / 0{categories.length}</span>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#1B6E8C]">{cat.tagline}</span>
+                <span className="text-2xs tracking-[0.3em] uppercase text-white/40">0{i + 1} / 0{categories.length}</span>
+                <span className="text-2xs tracking-[0.3em] uppercase text-[#1B6E8C]">{cat.tagline}</span>
               </div>
               <div>
                 <p className="font-serif text-6xl font-light text-white/8">{cat.count}</p>
@@ -80,12 +80,12 @@ export default function ProductCategoryCarousel() {
                 <p className="text-sm text-white/50 mt-4 leading-relaxed">{cat.desc}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {cat.products.map((p) => (
-                    <span key={p} className="text-[9px] tracking-wider uppercase border border-white/15 px-3 py-1.5">
+                    <span key={p} className="text-2xs tracking-wider uppercase border border-white/15 px-3 py-1.5">
                       {p}
                     </span>
                   ))}
                 </div>
-                <div className="mt-7 inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-white/60 border-b border-white/20 pb-1">
+                <div className="mt-7 inline-flex items-center gap-2 text-2xs tracking-[0.2em] uppercase text-white/60 border-b border-white/20 pb-1">
                   Browse category <ArrowUpRight className="w-3 h-3" />
                 </div>
               </div>

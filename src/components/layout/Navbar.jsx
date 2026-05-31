@@ -6,12 +6,14 @@ import { useCart } from '@/lib/CartContext';
 import { useAuth } from '@/lib/AuthContext';
 
 const NAV = [
+  { label: 'HOME', path: '/' },
   { label: 'ABOUT', path: '/about' },
-  { label: 'EXPLORE', path: '/shop' },
+  { label: 'INVENTORY', path: '/shop' },
+  { label: 'WELLNESS', path: '/products' },
   { label: 'SERVICES', path: '/services' },
-  { label: 'QA / NODES', path: '/products' },
-  { label: 'FAQS', path: '/faqs' },
-  { label: 'RX TERMINAL', path: '/wholesale' },
+  { label: 'PROTOCOLS', path: '/protocols' },
+  { label: 'INQUIRIES', path: '/faqs' },
+  { label: 'RX TERMINAL', path: '/rx-terminal' },
 ];
 
 export default function Navbar() {
@@ -22,7 +24,7 @@ export default function Navbar() {
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/contact', '/compliance', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
+  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
   const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {
@@ -126,10 +128,10 @@ export default function Navbar() {
               </div>
 
               {/* Marquee Banner */}
-              <div className="bg-[#1B6E8C] text-white py-4 uppercase text-[10px] font-black tracking-[0.3em] overflow-hidden whitespace-nowrap">
+              <div className="bg-[#1B6E8C] text-white py-4 uppercase text-2xs font-black tracking-[0.3em] overflow-hidden whitespace-nowrap">
                 <div className="animate-marquee inline-block">
                   {[...Array(10)].map((_, i) => (
-                    <span key={i} className="mx-8">DISCOVERY CALL &rarr;</span>
+                    <span key={i} className="mx-8">UPLOAD RX &rarr;</span>
                   ))}
                 </div>
               </div>
@@ -141,7 +143,7 @@ export default function Navbar() {
       {/* Desktop Navbar */}
       <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-4' : 'py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8 flex items-center justify-between">
-          <Link to="/" className={scrolled ? "absolute left-0 top-0" : ""}>
+          <Link to="/">
              <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
           </Link>
 
@@ -155,65 +157,76 @@ export default function Navbar() {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="flex-1 flex justify-center gap-20 xl:gap-32"
               >
-                 <div className="flex flex-col gap-3">
-                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                     [ COMPANY ]
-                   </div>
-                   <Link to="/about" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/about') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> ABOUT
-                   </Link>
-                   <Link to="/shop" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/shop') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> EXPLORE
-                   </Link>
-                 </div>
+                  <div className="flex flex-col gap-3">
+                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
+                      [ COMPANY ]
+                    </div>
+                    <Link to="/" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> HOME
+                    </Link>
+                    <Link to="/about" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/about') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> ABOUT
+                    </Link>
+                  </div>
 
-                 <div className="flex flex-col gap-3">
-                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                     [ WORK ]
-                   </div>
-                   <Link to="/faqs" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/faqs') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> FAQS
-                   </Link>
-                 </div>
-                 
-                 <div className="flex flex-col gap-3">
-                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                     [ CLINICAL ]
-                   </div>
-                   <Link to="/services" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/services') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> SERVICES
-                   </Link>
-                   <Link to="/products" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/products') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> QA / NODES
-                   </Link>
-                 </div>
+                  <div className="flex flex-col gap-3">
+                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
+                      [ MARKET ]
+                    </div>
+                    <Link to="/shop" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/shop') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> INVENTORY
+                    </Link>
+                    <Link to="/products" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/products') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> WELLNESS
+                    </Link>
+                  </div>
+                  
+                  <div className="flex flex-col gap-3">
+                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
+                      [ CLINICAL ]
+                    </div>
+                    <Link to="/services" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/services') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> SERVICES
+                    </Link>
+                    <Link to="/protocols" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/protocols') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> PROTOCOLS
+                    </Link>
+                  </div>
 
-                 <div className="flex flex-col gap-3">
-                   <div className="text-[10px] font-bold text-current/30 tracking-[0.2em] uppercase mb-1">
-                     [ PORTAL ]
-                   </div>
-                   <Link to="/wholesale" className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${isActive('/wholesale') ? 'bg-[#1B6E8C]' : 'bg-transparent'} border border-[#1B6E8C]/20`} /> RX TERMINAL
-                   </Link>
-                   <button onClick={() => setCartOpen(true)} className={`text-[12px] font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-3 text-left`}>
-                     <div className="w-1.5 h-1.5 rounded-full bg-transparent border border-[#1B6E8C]/20" /> ORDER [{count}]
-                   </button>
-                 </div>
+                  <div className="flex flex-col gap-3">
+                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
+                      [ ACCESS ]
+                    </div>
+                    <Link to="/faqs" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/faqs') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> INQUIRIES
+                    </Link>
+                    <Link to="/rx-terminal" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
+                      <span className={`transition-colors duration-500 ${isActive('/rx-terminal') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> RX TERMINAL
+                    </Link>
+                    <button onClick={() => setCartOpen(true)} className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2 text-left`}>
+                      <span className="text-current/30">-</span> ORDER [{count}]
+                    </button>
+                  </div>
               </motion.div>
             )}
           </AnimatePresence>
           
           {/* Right Side Buttons - Always visible but adaptive */}
-          <div className={`flex items-center gap-8 ${scrolled ? 'ml-auto' : ''}`}>
-             {user ? (
-               <button onClick={logout} className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
+          <div className="flex items-center gap-8">
+             {user && (
+               <button 
+                 onClick={logout} 
+                 className={`text-2xs md:text-sm font-black uppercase tracking-[0.2em] ${useDark ? 'text-black/50 hover:text-black' : 'text-white/50 hover:text-white'} transition-colors`}
+               >
                   EXIT SESSION
                </button>
-             ) : (
-               <Link to="/register" className={`px-8 py-3 text-[11px] font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}>
-                  DISCOVERY CALL
-               </Link>
              )}
+             <Link 
+               to="/rx-terminal" 
+               className={`px-8 py-3 text-2xs md:text-sm font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}
+             >
+                UPLOAD RX
+             </Link>
           </div>
         </div>
       </nav>

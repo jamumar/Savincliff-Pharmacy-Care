@@ -29,13 +29,13 @@ export default function AccountLayout() {
         {/* Account Header */}
         <div className="border-b border-black pb-8 md:pb-12 mb-10 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
-               <h1 className="text-[10vw] md:text-[5vw] font-black uppercase tracking-tighter leading-none">Dashboard</h1>
-               <p className="text-[9px] md:text-[11px] font-bold tracking-[0.3em] md:tracking-[0.4em] text-black/40 mt-2 md:mt-4 uppercase">Clinical Terminal / Identity Ref: {user.id || 'N/A'}</p>
+               <h1 className="display-lg font-black uppercase tracking-tighter leading-none">Dashboard</h1>
+               <p className="text-2xs md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] text-black/40 mt-2 md:mt-4 uppercase">Clinical Terminal / Identity Ref: {user.id || 'N/A'}</p>
             </div>
             <div className="flex items-center gap-4 md:gap-6">
                 <div className="text-right hidden md:block">
-                    <p className="text-[11px] font-bold tracking-widest uppercase text-black">{user.username || 'Patient'}</p>
-                    <p className="text-[10px] tracking-widest uppercase text-black/30">{user.email}</p>
+                    <p className="text-xs font-bold tracking-widest uppercase text-black">{user.username || 'Patient'}</p>
+                    <p className="text-2xs tracking-widest uppercase text-black/30">{user.email}</p>
                 </div>
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-black flex items-center justify-center text-white overflow-hidden border border-black/10">
                    {user.avatar_url ? (
@@ -63,7 +63,7 @@ export default function AccountLayout() {
                     <Link
                       key={item.path}
                       to={item.path}
-                      className={`flex items-center gap-2 px-4 py-3 whitespace-nowrap transition-all duration-500 text-[10px] font-black uppercase tracking-[0.15em] ${
+                      className={`flex items-center gap-2 px-4 py-3 whitespace-nowrap transition-all duration-500 text-2xs font-black uppercase tracking-[0.15em] ${
                         active ? 'bg-black text-white' : 'bg-[#FAFAFA] text-black/40 hover:bg-black/5 hover:text-black'
                       }`}
                     >
@@ -88,7 +88,7 @@ export default function AccountLayout() {
                     >
                       <div className="flex items-center gap-4">
                         <item.icon className="w-4 h-4" strokeWidth={active ? 2 : 1} />
-                        <span className="text-[11px] font-black uppercase tracking-[0.2em]">{item.label}</span>
+                        <span className="text-xs font-black uppercase tracking-[0.2em]">{item.label}</span>
                       </div>
                       <ArrowUpRight className={`w-4 h-4 transition-transform ${active ? 'opacity-100' : 'opacity-0'}`} />
                     </Link>
@@ -97,18 +97,18 @@ export default function AccountLayout() {
             </nav>
 
             <div className="hidden lg:block bg-brand-teal/5 p-12 space-y-6">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Support</p>
-                <p className="text-[11px] font-bold text-black/60 uppercase leading-tight tracking-widest">
+                <p className="text-2xs font-black uppercase tracking-[0.4em] text-brand-teal">Clinical Support</p>
+                <p className="text-xs font-bold text-black/60 uppercase leading-tight tracking-widest">
                     Emergency prescription assistance node active 24/7.
                 </p>
-                <Link to="/contact" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.2em] border-b border-black pb-2 hover:text-brand-teal hover:border-brand-teal transition-all">
+                <Link to="/contact" className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] border-b border-black pb-2 hover:text-brand-teal hover:border-brand-teal transition-all">
                     Initiate Contact <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
             </div>
 
             <button
                onClick={logout}
-               className="hidden lg:block w-full py-8 border border-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
+               className="hidden lg:block w-full py-8 border border-black text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
             >
                Close Session
             </button>

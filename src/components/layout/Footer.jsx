@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import React, { useRef, Suspense, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import useInView from '@/hooks/useInView';
@@ -74,9 +74,85 @@ function CardModel({ url }) {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 export default function Footer() {
+  const location = useLocation();
   const [footerRef, isInView] = useInView({ threshold: 0.01 });
   const sectionRef = useRef(null);
   const cardRef    = useRef(null);
+
+  const getFooterContent = () => {
+    const path = location.pathname;
+    if (path === '/about') {
+      return {
+        topText: null,
+        line1: 'BUILDING THE FUTURE',
+        middleText: 'OF',
+        line2: 'COMMUNITY HEALTHCARE',
+        ctaText: 'CONTACT US',
+        ctaPath: '/contact'
+      };
+    }
+    if (path === '/services') {
+      return {
+        topText: 'MODERN',
+        line1: 'PHARMACEUTICAL',
+        middleText: null,
+        line2: 'CARE SYSTEMS',
+        ctaText: 'CONTACT US',
+        ctaPath: '/contact'
+      };
+    }
+    if (path === '/shop' || path === '/products') {
+      return {
+        topText: null,
+        line1: 'HEALTH',
+        middleText: null,
+        line2: 'BEYOND PRESCRIPTIONS',
+        ctaText: 'CONTACT US',
+        ctaPath: '/contact'
+      };
+    }
+    if (path === '/rx-terminal') {
+      return {
+        topText: 'YOUR',
+        line1: 'DIGITAL HEALTH',
+        middleText: null,
+        line2: 'PORTAL',
+        ctaText: 'ACCESS TERMINAL',
+        ctaPath: '/rx-terminal'
+      };
+    }
+    if (path === '/protocols') {
+      return {
+        topText: null,
+        line1: 'TRUST BUILT',
+        middleText: 'INTO',
+        line2: 'EVERY PROCESS',
+        ctaText: 'CONTACT US',
+        ctaPath: '/contact'
+      };
+    }
+    if (path === '/faqs' || path.startsWith('/faqs/')) {
+      return {
+        topText: 'ANSWERS',
+        line1: 'FOR MODERN',
+        middleText: null,
+        line2: 'HEALTHCARE ACCESS',
+        ctaText: 'ACCESS TERMINAL',
+        ctaPath: '/rx-terminal'
+      };
+    }
+    // Default / Home Page
+    return {
+      topText: 'MODERN',
+      line1: 'PHARMACEUTIC CARE',
+      middleText: null,
+      line2: null,
+      ctaText: 'CONTACT US',
+      ctaPath: '/contact'
+    };
+  };
+
+  const { topText, line1, middleText, line2, ctaText, ctaPath } = getFooterContent();
 
   // Smoothed card position (follows cursor in section-local coords)
   const target  = useRef({ x: 0, y: 0 });
@@ -160,10 +236,10 @@ export default function Footer() {
   }, [isInView]);
 
   const footerLinks = [
-    { title: 'AGENCY',   links: [{ name: 'CAPABILITIES', path: '/services' }, { name: 'ENTERPRISE', path: '/wholesale' }] },
-    { title: 'WORK',     links: [{ name: 'PROJECTS', path: '/products' }, { name: 'FAQs', path: '/contact' }] },
-    { title: 'CULTURE',  links: [{ name: 'ABOUT', path: '/about' }, { name: 'SHOP', path: '/shop' }] },
-    { title: 'INSIGHTS', links: [{ name: 'BLOG POSTS', path: '/compliance' }, { name: "CLIENT'S INVESTORS", path: '/wholesale' }] },
+    { title: 'AGENCY',   links: [{ name: 'CAPABILITIES', path: '/services' }, { name: 'ENTERPRISE', path: '/rx-terminal' }] },
+    { title: 'WORK',     links: [{ name: 'WELLNESS', path: '/products' }, { name: 'FAQs', path: '/contact' }] },
+    { title: 'CULTURE',  links: [{ name: 'ABOUT', path: '/about' }, { name: 'INVENTORY', path: '/shop' }] },
+    { title: 'INSIGHTS', links: [{ name: 'PROTOCOLS', path: '/protocols' }, { name: "CLIENT'S INVESTORS", path: '/rx-terminal' }] },
     { title: 'SOCIALS',  links: [{ name: 'IG', path: '#' }, { name: 'LINKEDIN', path: '#' }] },
   ];
 
@@ -204,36 +280,42 @@ export default function Footer() {
 
         {/* ── Text Content (above card) ── */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
-          <div className="opacity-50 text-[10px] md:text-[12px] font-black tracking-[0.5em] mb-12 uppercase">
-            SAVINCLIFF PHARMACY — EST. 2024
+          <div className="opacity-50 text-2xs md:text-sm font-black tracking-[0.5em] mb-12 uppercase">
+            SAVINCLIFF PHARMACY — 2026
           </div>
 
           <div className="mb-20">
-            <div className="text-[3.5vw] md:text-[2vw] font-bold text-white/40 uppercase leading-none mb-4 tracking-tighter">
-              humans
-            </div>
-            <h2 className="text-[9vw] md:text-[6vw] font-black leading-[0.8] tracking-[-0.05em] uppercase mb-4">
-              Bridging The Gap
+            {topText && (
+              <div className="display-sm font-bold text-white/40 uppercase leading-none mb-4 tracking-tighter">
+                {topText}
+              </div>
+            )}
+            <h2 className="display-lg font-black leading-[0.8] tracking-[-0.05em] uppercase mb-4">
+              {line1}
             </h2>
-            <div className="text-[3.5vw] md:text-[2vw] font-bold text-white/40 uppercase leading-none mb-6 tracking-tighter">
-              between
-            </div>
-            <h2 className="text-[8vw] md:text-[5.5vw] font-black leading-[0.8] tracking-[-0.05em] uppercase">
-              Technology and Artistry
-            </h2>
+            {middleText && (
+              <div className="display-sm font-bold text-white/40 uppercase leading-none mb-6 tracking-tighter">
+                {middleText}
+              </div>
+            )}
+            {line2 && (
+              <h2 className="display-lg font-black leading-[0.8] tracking-[-0.05em] uppercase">
+                {line2}
+              </h2>
+            )}
           </div>
 
           {/* Model label — shows which model is active */}
-          <p className="text-[10px] font-black tracking-[0.5em] uppercase text-white/25 mb-8">
+          <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-white/25 mb-8">
             {MODELS[hoveredIndex].label}
           </p>
 
           <Link
-            to="/contact"
+            to={ctaPath || '/contact'}
             className="group relative inline-flex items-center justify-center px-16 py-7 border border-white/20 overflow-hidden transition-all duration-700 hover:border-white/40 cursor-pointer pointer-events-auto"
           >
-            <span className="relative z-10 text-[13px] font-black tracking-[0.3em] uppercase group-hover:text-black transition-colors duration-700">
-              DISCOVERY CALL
+            <span className="relative z-10 text-2xs md:text-sm font-black tracking-[0.3em] uppercase group-hover:text-black transition-colors duration-700">
+              {ctaText}
             </span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out" />
           </Link>
@@ -242,13 +324,13 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-16 mt-40 w-full max-w-7xl text-left border-t border-white/5 pt-20">
             {footerLinks.map((group) => (
               <div key={group.title} className="space-y-8">
-                <h3 className="text-[11px] font-bold tracking-[0.4em] text-white/30 uppercase">{group.title}</h3>
+                <h3 className="text-2xs md:text-sm font-black tracking-[0.4em] text-white/30 uppercase">{group.title}</h3>
                 <div className="flex flex-col gap-6">
                   {group.links.map((link) => (
                     <Link
                       key={link.name}
                       to={link.path}
-                      className="text-[12px] font-black tracking-[0.2em] uppercase hover:text-brand-teal transition-all duration-500 hover:translate-x-2 pointer-events-auto cursor-pointer"
+                      className="text-2xs md:text-sm font-black tracking-[0.2em] uppercase hover:text-brand-teal transition-all duration-500 hover:translate-x-2 pointer-events-auto cursor-pointer"
                     >
                       {link.name}
                     </Link>
@@ -260,13 +342,13 @@ export default function Footer() {
 
           <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-12">
             <div className="flex flex-col items-center md:items-start gap-2">
-              <p className="text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase">
-                © 2024 Savincliff Pharmacy. All rights reserved.
+              <p className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase">
+                © 2026 Savincliff Pharmacy. All rights reserved.
               </p>
             </div>
             <div className="flex gap-12">
-              <Link to="/privacy" className="text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Privacy Policy</Link>
-              <Link to="/terms"   className="text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Service Protocol</Link>
+              <Link to="/privacy" className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Privacy Policy</Link>
+              <Link to="/terms"   className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Service Protocol</Link>
             </div>
           </div>
         </div>
@@ -283,7 +365,7 @@ export default function Footer() {
         className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] group flex items-center gap-3"
       >
         {/* Hover Label */}
-        <div className="bg-black text-white text-[10px] font-black tracking-[0.3em] uppercase py-2 px-4 border border-white/20 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 whitespace-nowrap shadow-2xl backdrop-blur-sm">
+        <div className="bg-black text-white text-2xs md:text-sm font-black tracking-[0.3em] uppercase py-2 px-4 border border-white/20 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 whitespace-nowrap shadow-2xl backdrop-blur-sm">
           WHATSAPP NODE
         </div>
 

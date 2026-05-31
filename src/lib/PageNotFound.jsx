@@ -22,7 +22,7 @@ export default function PageNotFound() {
                 className="max-w-2xl w-full text-center relative z-10 space-y-12"
             >
                 <div>
-                   <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-4 flex items-center justify-center gap-2">
+                   <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal mb-4 flex items-center justify-center gap-2">
                        <AlertCircle className="w-4 h-4" /> NODE ERROR / 404
                    </p>
                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">
@@ -31,10 +31,10 @@ export default function PageNotFound() {
                 </div>
                 
                 <div className="space-y-6">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-black">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-black">
                         The requested specification <span className="text-brand-teal">"/{pageName}"</span> could not be synchronized with the clinical manifest.
                     </p>
-                    <p className="text-[11px] font-bold uppercase tracking-widest leading-relaxed text-black/40 max-w-sm mx-auto">
+                    <p className="text-xs font-bold uppercase tracking-widest leading-relaxed text-black/40 max-w-sm mx-auto">
                         The node was either never committed to the repository or has been archived during a clinical update cycle.
                     </p>
                 </div>
@@ -42,13 +42,13 @@ export default function PageNotFound() {
                 <div className="pt-8">
                     <Link 
                         to="/" 
-                        className="inline-flex items-center gap-8 bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700"
+                        className="inline-flex items-center gap-8 bg-black text-white px-20 py-8 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700"
                     >
                         <ArrowLeft className="w-4 h-4" /> Root Restart
                     </Link>
                 </div>
 
-                <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/20">
+                <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/20">
                    Audit Ref: LOG-ERR-NODE-000404
                 </p>
             </motion.div>

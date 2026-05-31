@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,22 +53,46 @@
   }
   
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
+  .text-display-giant {
+    @apply text-[12vw] md:text-[10vw];
+  }
+  .text-display-lg {
+    @apply text-[8vw] md:text-[6vw];
+  }
+  .text-display-md {
+    @apply text-[5vw] md:text-[3.5vw];
+  }
+  .text-display-sm {
+    @apply text-[3.5vw] md:text-[2vw];
+  }
+
+  .display-giant {
+    @apply text-display-giant font-black leading-[0.85] tracking-[-0.04em] uppercase;
+  }
+  .display-lg {
+    @apply text-display-lg font-black leading-[0.95] tracking-[-0.03em] uppercase;
+  }
+  .display-md {
+    @apply text-display-md font-black leading-[1.0] tracking-[-0.02em] uppercase;
+  }
+  .display-sm {
+    @apply text-display-sm font-bold leading-[1.1] tracking-tight uppercase;
+  }
   .display-svz {
-    @apply text-[14vw] md:text-[12vw] font-black leading-[0.85] tracking-[-0.04em] uppercase;
+    @apply display-giant;
   }
   .sub-display-svz {
-    @apply text-[6vw] md:text-[4vw] font-black leading-[0.9] tracking-[-0.03em] uppercase;
+    @apply display-md;
   }
   .label-svz {
-    @apply text-[11px] font-black tracking-[0.4em] uppercase text-svz-red;
+    @apply text-2xs font-black tracking-[0.4em] uppercase text-svz-red;
   }
   .grid-container {
     @apply max-w-[1800px] mx-auto px-[5vw];
@@ -83,8 +104,7 @@
     @apply border border-black/10;
   }
   .font-serif-italic {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
+    @apply font-serif italic;
   }
 }
 

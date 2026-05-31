@@ -30,7 +30,7 @@ export default function FeaturedProducts() {
           </div>
           <Link
             to="/shop"
-            className="group inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase border-b border-black/25 pb-2 hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-colors self-start md:self-auto"
+            className="group inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase border-b border-black/25 pb-2 hover:border-[#1B6E8C] hover:text-[#1B6E8C] transition-colors self-start md:self-auto"
           >
             Browse Full Shop <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-500" />
           </Link>
@@ -51,7 +51,7 @@ export default function FeaturedProducts() {
         >
           <Link
             to="/shop"
-            className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white px-10 py-5 text-[11px] tracking-[0.2em] uppercase hover:bg-[#1B6E8C] transition-colors duration-500"
+            className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white px-10 py-5 text-xs tracking-[0.2em] uppercase hover:bg-[#1B6E8C] transition-colors duration-500"
           >
             Shop All Products <ArrowUpRight className="w-4 h-4" />
           </Link>

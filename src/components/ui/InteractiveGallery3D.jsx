@@ -52,7 +52,7 @@ export default function InteractiveGallery3D() {
       
       {/* HUD Info */}
       <div className="absolute top-10 left-6 md:left-12 z-50">
-         <p className="text-[10px] md:text-[11px] font-black tracking-[0.4em] uppercase text-white/50 mb-2">Architectural Directory</p>
+         <p className="text-2xs md:text-xs font-black tracking-[0.4em] uppercase text-white/50 mb-2">Architectural Directory</p>
          <h2 className="text-3xl md:text-5xl font-black uppercase text-white tracking-tighter">Clinical<br/>Index</h2>
       </div>
 

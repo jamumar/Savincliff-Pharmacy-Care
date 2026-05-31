@@ -7,6 +7,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import useInView from '@/hooks/useInView';
+import ScrollMarquee from '@/components/ui/ScrollMarquee';
 
 const easeQuint = [0.16, 1, 0.3, 1];
 
@@ -26,7 +27,7 @@ export const MOCK_PRODUCTS = [
 function ShopHeroModel({ mouse }) {
   const groupRef = useRef();
   const { scene } = useGLTF('/models/opt_savincliff_pill.glb');
-  
+
   // Clone the scene so the Navbar doesn't steal this instance when it mounts on scroll!
   const clonedScene = React.useMemo(() => scene.clone(), [scene]);
 
@@ -116,7 +117,7 @@ function ShopHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: easeQuint }}
-            className="text-[12vw] md:text-[9.5vw] font-black uppercase tracking-[-0.04em] leading-[0.9] text-white"
+            className="display-giant font-black uppercase tracking-[-0.04em] leading-[0.9] text-white"
           >
             PRIMARY<br />
             S<span className="font-serif italic text-brand-teal inline-block transform -rotate-6 mx-1">O</span>UR
@@ -138,18 +139,18 @@ function ShopHero() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6" />
           </svg>
           <div className="flex flex-col gap-0.5">
-            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">SCROLL &amp; EXPLORE</span>
-            <span className="text-[9px] font-black tracking-[0.3em] text-white/25 uppercase">THE SAVINCLIFF REALM</span>
+            <span className="text-2xs font-black tracking-[0.35em] text-white/40 uppercase">SCROLL &amp; EXPLORE</span>
+            <span className="text-2xs font-black tracking-[0.3em] text-white/25 uppercase">THE SAVINCLIFF REALM</span>
           </div>
         </div>
 
         {/* Right: Location + time */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-end gap-0.5">
-            <span className="text-[9px] font-black tracking-[0.35em] text-white/40 uppercase">ABUJA, NIGERIA</span>
+            <span className="text-2xs font-black tracking-[0.35em] text-white/40 uppercase">ABUJA, NIGERIA</span>
             <div className="flex gap-2 items-center">
-              <span className="text-[9px] font-black tracking-[0.25em] text-white/25 uppercase">Local time:</span>
-              <span className="text-[9px] font-black tracking-[0.25em] text-white/50 uppercase">{time}</span>
+              <span className="text-2xs font-black tracking-[0.25em] text-white/25 uppercase">Local time:</span>
+              <span className="text-2xs font-black tracking-[0.25em] text-white/50 uppercase">{time}</span>
             </div>
           </div>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-white/50">
@@ -169,97 +170,94 @@ export default function Shop() {
 
   return (
     <div className="bg-white min-h-screen">
-      
+
       {/* Premium Dark Hero Section */}
       <ShopHero />
 
       {/* Reduced Heading moved to a new standalone section above products */}
       <section className="relative z-10 pt-20 md:pt-32 px-5 md:px-12 mb-8 md:mb-16 bg-white">
-         <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-6 md:pb-8 overflow-hidden">
-            <motion.h2 
-               initial={{ y: 50, opacity: 0 }}
-               whileInView={{ y: 0, opacity: 1 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.8, ease: easeQuint }}
-               className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
-            >
-               INVENTORY
-            </motion.h2>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-6">
-               <p className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">Clinical Manifest / Synchronized 2026</p>
-               <span className="text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal sm:px-4 sm:border-l border-brand-teal">Total: {MOCK_PRODUCTS.length} NODES</span>
-            </div>
-         </div>
+        <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-6 md:pb-8 overflow-hidden">
+          <motion.h2
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: easeQuint }}
+            className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
+          >
+            INVENTORY
+          </motion.h2>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-6">
+            <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">Clinical Manifest / Synchronized 2026</p>
+            <span className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal sm:px-4 sm:border-l border-brand-teal">Total: {MOCK_PRODUCTS.length} NODES</span>
+          </div>
+        </div>
       </section>
 
       {/* Product Grid */}
       <section className="relative z-10 px-5 md:px-12 pb-20 md:pb-40 bg-white">
-          <div className="max-w-[1800px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-black/10">
-              {MOCK_PRODUCTS.map((p, i) => (
-                  <motion.div
-                      key={p.id}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05, duration: 0.8 }}
-                      className="group relative border-b border-r border-black/10 cursor-pointer overflow-hidden flex flex-col justify-between h-[50vh] sm:h-[55vh] lg:h-[65vh]"
-                      onClick={() => setSelectedProduct(p)}
+        <div className="max-w-[1800px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-black/10">
+          {MOCK_PRODUCTS.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.8 }}
+              className="group relative border-b border-r border-black/10 cursor-pointer overflow-hidden flex flex-col justify-between h-[50vh] sm:h-[55vh] lg:h-[65vh]"
+              onClick={() => setSelectedProduct(p)}
+            >
+              {/* Image Layer */}
+              <div className="absolute inset-0 z-0 bg-[#FAFAFA] svz-image-reveal">
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700" />
+              </div>
+
+              {/* Content Layer */}
+              <div className="relative z-10 w-full p-6 md:p-12 flex flex-col justify-between h-full">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-2 md:space-y-4">
+                    <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
+                    <h3 className="text-lg md:text-2xl font-black uppercase tracking-tighter leading-none group-hover:translate-x-2 md:group-hover:translate-x-4 transition-all duration-700">{p.name}</h3>
+                  </div>
+                  <span className="text-2xs md:text-2xs font-black tracking-[0.3em] uppercase text-black/30 opacity-0 group-hover:opacity-100 transition-all duration-700 border-b border-black hidden sm:inline">View Spec</span>
+                </div>
+
+                <div className="flex justify-between items-end">
+                  <div className="space-y-1">
+                    <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">{p.brand}</p>
+                    <p className="text-xl md:text-3xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
+                  </div>
+
+                  <button
+                    onClick={(e) => { e.stopPropagation(); add(p); }}
+                    className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center transition-all duration-700 ${isAdded(p.id) ? 'bg-brand-teal text-white' : 'bg-black text-white group-hover:bg-brand-teal'
+                      }`}
                   >
-                      {/* Image Layer */}
-                      <div className="absolute inset-0 z-0 bg-[#FAFAFA] svz-image-reveal">
-                          <img 
-                              src={p.img} 
-                              alt={p.name} 
-                              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" 
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-700" />
-                      </div>
-
-                      {/* Content Layer */}
-                      <div className="relative z-10 w-full p-6 md:p-12 flex flex-col justify-between h-full">
-                          <div className="flex justify-between items-start">
-                             <div className="space-y-2 md:space-y-4">
-                                <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 group-hover:text-brand-teal transition-all duration-500">Node 0{p.id}</p>
-                                <h3 className="text-lg md:text-2xl font-black uppercase tracking-tighter leading-none group-hover:translate-x-2 md:group-hover:translate-x-4 transition-all duration-700">{p.name}</h3>
-                             </div>
-                             <span className="text-[8px] md:text-[9px] font-black tracking-[0.3em] uppercase text-black/30 opacity-0 group-hover:opacity-100 transition-all duration-700 border-b border-black hidden sm:inline">View Spec</span>
-                          </div>
-
-                          <div className="flex justify-between items-end">
-                              <div className="space-y-1">
-                                 <p className="text-[8px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">{p.brand}</p>
-                                 <p className="text-xl md:text-3xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
-                              </div>
-                              
-                              <button 
-                                 onClick={(e) => { e.stopPropagation(); add(p); }}
-                                 className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center transition-all duration-700 ${
-                                    isAdded(p.id) ? 'bg-brand-teal text-white' : 'bg-black text-white group-hover:bg-brand-teal'
-                                 }`}
-                              >
-                                 {isAdded(p.id) ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <Plus className="w-4 h-4 md:w-5 md:h-5" />}
-                              </button>
-                          </div>
-                      </div>
-                  </motion.div>
-              ))}
-          </div>
+                    {isAdded(p.id) ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <Plus className="w-4 h-4 md:w-5 md:h-5" />}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* Footer Ticker */}
       <section className="bg-black py-12 md:py-24 overflow-hidden select-none pointer-events-none">
-          <div className="animate-marquee whitespace-nowrap">
-             {Array(8).fill("").map((_, i) => (
-                <span key={i} className="text-[15vw] md:text-[12vw] font-black uppercase tracking-[-0.05em] text-white/5 mx-6 md:mx-12">
-                   INVENTORY SYNC / CLINICAL SPECIFICATIONS / SAVINCLIFF PRIMARY / 
-                </span>
-             ))}
-          </div>
+        <ScrollMarquee baseVelocity={-0.4}>
+          <span className="display-giant font-black uppercase tracking-[-0.05em] text-white/5 mx-6 md:mx-12">
+            SAVINCLIFF COMBINES CLINICAL OVERSIGHT, DIGITAL AUTHENTICATION FOR MODERN INFRASTRUCTURE, AND MODERN VERIFIED – CLINICAL – PHARMACEUTICAL WORKFLOWS DISPENSING – SYSTEMS – TO CREATE A SAFER AND MORE INTELLIGENT DISPENSING – SOURCING – COMPLIANCE –
+          </span>
+        </ScrollMarquee>
       </section>
 
-      <ProductDetailModal 
-         product={selectedProduct} 
-         onClose={() => setSelectedProduct(null)} 
+      <ProductDetailModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
       />
     </div>
   );

@@ -46,7 +46,7 @@ export default function ServiceAccordion() {
             onClick={() => setOpen(open === i ? -1 : i)}
             className="w-full grid grid-cols-12 items-center gap-4 py-8 md:py-10 text-left group"
           >
-            <span className="col-span-2 md:col-span-1 text-[11px] tracking-[0.3em] text-[#0A0A0A]/35 group-hover:text-[#1B6E8C] transition-colors">{s.num}</span>
+            <span className="col-span-2 md:col-span-1 text-xs tracking-[0.3em] text-[#0A0A0A]/35 group-hover:text-[#1B6E8C] transition-colors">{s.num}</span>
             <h3 className="col-span-8 md:col-span-7 font-serif text-2xl md:text-4xl lg:text-5xl font-light tracking-tight">{s.title}</h3>
             <span className="hidden md:block col-span-3 text-sm text-[#0A0A0A]/45">{s.sub}</span>
             <span className="col-span-2 md:col-span-1 justify-self-end">

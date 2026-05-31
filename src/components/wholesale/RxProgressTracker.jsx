@@ -24,7 +24,7 @@ export default function RxProgressTracker() {
             className="group p-8 md:p-10 border-r border-b border-[#0A0A0A]/10 hover:bg-[#0A0A0A] hover:text-white transition-colors duration-500"
           >
             <div className="flex items-center justify-between mb-14">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#0A0A0A]/35 group-hover:text-[#1B6E8C] transition-colors">
+              <span className="text-2xs tracking-[0.3em] uppercase text-[#0A0A0A]/35 group-hover:text-[#1B6E8C] transition-colors">
                 Step 0{i + 1}
               </span>
               <div

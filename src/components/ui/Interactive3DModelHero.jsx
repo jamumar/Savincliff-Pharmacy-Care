@@ -254,16 +254,16 @@ export default function Interactive3DModelHero() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-6 md:space-y-10"
         >
-          <h2 className="text-white text-[10vw] md:text-[8.5vw] font-black uppercase tracking-[-0.04em] leading-[0.85]">
+          <h2 className="text-white display-lg font-black uppercase tracking-[-0.04em] leading-[0.85]">
             BRIDGING THE GAP
           </h2>
 
           <div className="flex flex-col items-center gap-4">
-            <span className="text-white/40 text-[12px] md:text-[16px] font-black tracking-[0.6em] uppercase">
+            <span className="text-white/40 text-xs md:text-base font-black tracking-[0.6em] uppercase">
               BETWEEN
             </span>
 
-            <h2 className="text-white text-[10vw] md:text-[8.5vw] font-black uppercase tracking-[-0.04em] leading-[0.85]">
+            <h2 className="text-white display-lg font-black uppercase tracking-[-0.04em] leading-[0.85]">
               TECHNOLOGY AND ARTISTRY
             </h2>
           </div>
@@ -273,7 +273,7 @@ export default function Interactive3DModelHero() {
               to="/register"
               className="group relative inline-flex items-center gap-6 border border-white/20 px-12 md:px-20 py-6 md:py-10 hover:bg-white hover:text-black transition-all duration-700"
             >
-              <span className="text-[12px] md:text-[14px] font-black uppercase tracking-[0.4em]">
+              <span className="text-xs md:text-sm font-black uppercase tracking-[0.4em]">
                 Discovery Call
               </span>
               <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -298,7 +298,7 @@ function DebugPanel({ debugRef, panelRef }) {
   return (
     <pre
       ref={panelRef}
-      className="pointer-events-none absolute bottom-4 left-4 z-30 max-w-[calc(100%-2rem)] whitespace-pre-wrap rounded border border-white/15 bg-black/75 p-3 font-mono text-[10px] leading-relaxed text-brand-teal"
+      className="pointer-events-none absolute bottom-4 left-4 z-30 max-w-[calc(100%-2rem)] whitespace-pre-wrap rounded border border-white/15 bg-black/75 p-3 font-mono text-2xs leading-relaxed text-brand-teal"
     />
   );
 }

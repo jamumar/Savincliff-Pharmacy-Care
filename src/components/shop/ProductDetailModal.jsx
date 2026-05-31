@@ -59,7 +59,7 @@ export default function ProductDetailModal({ product, onClose }) {
                 className="w-full h-full object-cover grayscale transition-all duration-1000 hover:grayscale-0" 
              />
              <div className="absolute bottom-4 left-4 md:bottom-20 md:left-[5vw]">
-                <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/10">Protocol Ref: SYN/00{product.id}X</p>
+                <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/10">Protocol Ref: SYN/00{product.id}X</p>
              </div>
           </div>
 
@@ -71,7 +71,7 @@ export default function ProductDetailModal({ product, onClose }) {
                      initial={{ opacity: 0, x: -20 }}
                      animate={{ opacity: 1, x: 0 }}
                      transition={{ delay: 0.3, duration: 0.8 }}
-                     className="text-[10px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal mb-3 md:mb-6"
+                     className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal mb-3 md:mb-6"
                    >
                      {product.brand} / Clinical Node
                    </motion.p>
@@ -84,13 +84,13 @@ export default function ProductDetailModal({ product, onClose }) {
                       {product.name}
                    </motion.h2>
                    <div className="flex flex-wrap items-center gap-3 md:gap-6">
-                      <span className="text-[10px] md:text-[11px] font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 md:px-5 md:py-2">{product.category}</span>
-                      <span className="text-[10px] md:text-[11px] font-black tracking-widest uppercase border border-black/10 px-3 py-1.5 md:px-5 md:py-2">Audit Verified</span>
+                      <span className="text-2xs md:text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 md:px-5 md:py-2">{product.category}</span>
+                      <span className="text-2xs md:text-xs font-black tracking-widest uppercase border border-black/10 px-3 py-1.5 md:px-5 md:py-2">Audit Verified</span>
                    </div>
                 </div>
 
                 <div className="space-y-4 md:space-y-8 max-w-lg">
-                   <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20">Audit specification</p>
+                   <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20">Audit specification</p>
                    <p className="text-base md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase">
                       {product.description || "Primary medical formulation verified through the Savincliff Clinical Node. Total source integrity."}
                    </p>
@@ -99,7 +99,7 @@ export default function ProductDetailModal({ product, onClose }) {
                 <div className="pt-6 md:pt-16 border-t border-black/10">
                    <div className="flex items-end justify-between mb-8 md:mb-16">
                       <div>
-                         <p className="text-[9px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 mb-2 md:mb-4">Node Price / Unit</p>
+                         <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 mb-2 md:mb-4">Node Price / Unit</p>
                          <p className="text-3xl md:text-5xl font-black tracking-tighter">₦{product.price.toLocaleString()}</p>
                       </div>
                       
@@ -107,7 +107,7 @@ export default function ProductDetailModal({ product, onClose }) {
                          <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                            <Minus className="w-4 h-4 md:w-5 md:h-5" />
                          </button>
-                         <span className="w-10 md:w-16 text-center text-sm md:text-[16px] font-black">{qty}</span>
+                         <span className="w-10 md:w-16 text-center text-sm md:text-base font-black">{qty}</span>
                          <button onClick={() => setQty(q => q + 1)} className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                            <Plus className="w-4 h-4 md:w-5 md:h-5" />
                          </button>
@@ -118,17 +118,17 @@ export default function ProductDetailModal({ product, onClose }) {
                        <button 
                           onClick={handleAdd}
                           disabled={added}
-                          className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-black text-white hover:bg-brand-teal transition-all duration-700 disabled:bg-brand-teal"
+                          className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-2xs md:text-xs font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-black text-white hover:bg-brand-teal transition-all duration-700 disabled:bg-brand-teal"
                        >
                           <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" /> {added ? 'ACTIVE' : 'Add Node'}
                        </button>
-                       <button className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-[10px] md:text-[12px] font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-white text-black hover:bg-black hover:text-white transition-all duration-700 border-l border-black">
+                       <button className="flex items-center justify-center gap-3 md:gap-8 py-5 md:py-10 text-2xs md:text-xs font-black uppercase tracking-[0.15em] md:tracking-[0.3em] bg-white text-black hover:bg-black hover:text-white transition-all duration-700 border-l border-black">
                           Clinical Doc <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
                        </button>
                    </div>
                 </div>
                 
-                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/10">
+                <p className="text-2xs md:text-2xs font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/10">
                    Synchronized Archive / 102.33.1.04
                 </p>
              </div>

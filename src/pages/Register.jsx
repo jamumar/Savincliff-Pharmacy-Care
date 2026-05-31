@@ -79,19 +79,19 @@ export default function Register() {
         <Logo variant="light" />
         
         <div className="relative z-10">
-           <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Portal Authentication / Node 04</p>
+           <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Portal Authentication / Node 04</p>
            <h1 className="display-svz">
              THE<br />
              ACCESS
            </h1>
            <div className="mt-20 max-w-sm">
-             <p className="text-[11px] font-bold uppercase leading-relaxed tracking-widest text-white/40">
+             <p className="text-xs font-bold uppercase leading-relaxed tracking-widest text-white/40">
                Initialize your clinical session. Total verification. High-fidelity medical synchronization begins here.
              </p>
            </div>
         </div>
 
-        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
+        <div className="text-2xs font-black uppercase tracking-[0.3em] text-white/10">
            Savincliff Clinical © 2026
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-brand-teal/5 blur-[150px] rounded-full" />
@@ -105,7 +105,7 @@ export default function Register() {
         className="flex-1 flex flex-col justify-center px-6 md:px-24 bg-black min-h-screen py-24 md:py-0"
       >
         <div className="max-w-md w-full">
-          <Link to="/" className="inline-flex items-center gap-4 text-[10px] font-black tracking-[0.3em] uppercase text-white/30 hover:text-white transition-colors mb-10 md:mb-20">
+          <Link to="/" className="inline-flex items-center gap-4 text-2xs font-black tracking-[0.3em] uppercase text-white/30 hover:text-white transition-colors mb-10 md:mb-20">
              <ArrowLeft className="w-4 h-4" /> Exit to Root
           </Link>
 
@@ -116,7 +116,7 @@ export default function Register() {
                       <CheckCircle className="w-10 h-10" strokeWidth={1} />
                    </div>
                    <h2 className="text-4xl font-black uppercase tracking-tighter">NODE ACCESSED</h2>
-                   <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/30">Redirecting to clinical terminal...</p>
+                   <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/30">Redirecting to clinical terminal...</p>
                 </motion.div>
              ) : (
                 <motion.div key="form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
@@ -125,7 +125,7 @@ export default function Register() {
                          <button 
                             key={m} 
                             onClick={() => setMode(m)}
-                            className={`pb-4 text-[11px] font-black uppercase tracking-[0.4em] transition-all relative ${mode === m ? 'text-white' : 'text-white/20'}`}
+                            className={`pb-4 text-xs font-black uppercase tracking-[0.4em] transition-all relative ${mode === m ? 'text-white' : 'text-white/20'}`}
                          >
                             {m === 'signin' ? 'Session' : 'Registry'}
                             {mode === m && <motion.div layoutId="auth-line" className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-teal" />}
@@ -136,57 +136,57 @@ export default function Register() {
                    <button 
                       onClick={handleGoogle}
                       disabled={loading}
-                      className="w-full flex items-center justify-center gap-6 border border-white/10 py-6 text-[11px] font-black uppercase tracking-[0.2em] group hover:bg-white hover:text-black transition-all duration-700 mb-12"
+                      className="w-full flex items-center justify-center gap-6 border border-white/10 py-6 text-xs font-black uppercase tracking-[0.2em] group hover:bg-white hover:text-black transition-all duration-700 mb-12"
                    >
                       <GoogleIcon /> Continue with Google Node
                    </button>
 
                    <div className="flex items-center gap-8 mb-12">
                       <div className="h-px bg-white/10 flex-1" />
-                      <span className="text-[9px] font-black tracking-[0.4em] text-white/20">OR</span>
+                      <span className="text-2xs font-black tracking-[0.4em] text-white/20">OR</span>
                       <div className="h-px bg-white/10 flex-1" />
                    </div>
 
                    <form onSubmit={handleSubmit} className="space-y-12">
                       {mode === 'signup' && (
                          <div className="space-y-4">
-                            <label className="text-[9px] font-black tracking-[0.4em] uppercase text-white/40">Patient Handle</label>
+                            <label className="text-2xs font-black tracking-[0.4em] uppercase text-white/40">Patient Handle</label>
                             <input 
                                type="text" 
                                value={form.name} 
                                onChange={e => set('name', e.target.value)}
                                placeholder="ENTER FULL SPEC"
-                               className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                               className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                             />
                          </div>
                       )}
                       
                       <div className="space-y-4">
-                         <label className="text-[9px] font-black tracking-[0.4em] uppercase text-white/40">Email Protocol</label>
+                         <label className="text-2xs font-black tracking-[0.4em] uppercase text-white/40">Email Protocol</label>
                          <input 
                             type="email" 
                             value={form.email} 
                             onChange={e => set('email', e.target.value)}
                             placeholder="IDENTITY@NODE.COM"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                          />
                       </div>
 
                       <div className="space-y-4">
-                         <label className="text-[9px] font-black tracking-[0.4em] uppercase text-white/40">Access Key</label>
+                         <label className="text-2xs font-black tracking-[0.4em] uppercase text-white/40">Access Key</label>
                          <input 
                             type="password" 
                             value={form.password} 
                             onChange={e => set('password', e.target.value)}
                             placeholder="SECRET KEY"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-[12px] font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
                          />
                       </div>
 
                       <button 
                          type="submit" 
                          disabled={loading}
-                         className="w-full bg-white text-black py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700 flex items-center justify-center gap-6"
+                         className="w-full bg-white text-black py-8 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700 flex items-center justify-center gap-6"
                       >
                          {loading ? 'Processing Node...' : mode === 'signin' ? 'Initiate Session' : 'Registry Entry'} <ArrowRight className="w-4 h-4" />
                       </button>

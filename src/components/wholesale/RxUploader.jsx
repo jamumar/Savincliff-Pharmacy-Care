@@ -20,7 +20,7 @@ export default function RxUploader() {
     <div className="bg-white p-8 md:p-12 lg:p-20 shadow-2xl relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-brand-teal" />
       
-      <div className="flex items-center gap-4 text-[10px] font-black tracking-[0.4em] uppercase mb-12 text-black">
+      <div className="flex items-center gap-4 text-2xs font-black tracking-[0.4em] uppercase mb-12 text-black">
         <Lock className="w-4 h-4 text-brand-teal" />
         <span>Secure Clinical Terminal / End-to-End Encryption</span>
       </div>
@@ -38,13 +38,13 @@ export default function RxUploader() {
             </div>
             <div className="space-y-4">
                 <h3 className="text-4xl font-black uppercase tracking-tighter">SPECIFICATION RECEIVED</h3>
-                <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-black/40 max-w-sm mx-auto leading-relaxed">
+                <p className="text-xs font-bold tracking-[0.3em] uppercase text-black/40 max-w-sm mx-auto leading-relaxed">
                    Audit node finalized. Our clinical team will contact your identified node <b>{form.phone}</b> within a 30-minute window.
                 </p>
             </div>
             <button
               onClick={() => { setSubmitted(false); setFile(null); setForm({ name: '', phone: '', notes: '' }); }}
-              className="px-12 py-6 border border-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
+              className="px-12 py-6 border border-black text-xs font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-700"
             >
               Initiate New Upload
             </button>
@@ -75,7 +75,7 @@ export default function RxUploader() {
                  <p className="text-2xl font-black uppercase tracking-tighter">
                    {file ? file.name : 'COMMIT DOCUMENT'}
                  </p>
-                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-40 mt-2">
+                 <p className="text-2xs font-bold uppercase tracking-[0.3em] opacity-40 mt-2">
                     {file ? 'Specification Attached' : 'Drop Rx or click to navigate Archive'}
                  </p>
               </div>
@@ -91,46 +91,46 @@ export default function RxUploader() {
             {/* Inputs */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                <div className="space-y-4">
-                  <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Identity Handle</label>
+                  <label className="text-2xs font-black tracking-[0.4em] uppercase text-black">Identity Handle</label>
                   <input
                     required
                     placeholder="FULL NAME SPEC"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors"
+                    className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors"
                   />
                </div>
                <div className="space-y-4">
-                  <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Contact Node</label>
+                  <label className="text-2xs font-black tracking-[0.4em] uppercase text-black">Contact Node</label>
                   <input
                     required
                     placeholder="+234 XXX XXX XXXX"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors"
+                    className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors"
                   />
                </div>
             </div>
 
             <div className="space-y-4">
-                <label className="text-[10px] font-black tracking-[0.4em] uppercase text-black">Audit Notes (Optional)</label>
+                <label className="text-2xs font-black tracking-[0.4em] uppercase text-black">Audit Notes (Optional)</label>
                 <textarea
                   rows={3}
                   placeholder="ADDITIONAL CLINICAL REQUIREMENTS..."
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  className="w-full bg-transparent border-b border-black/10 py-4 text-[12px] font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-black/10 py-4 text-xs font-bold tracking-widest text-black focus:outline-none focus:border-black uppercase transition-colors resize-none"
                 />
             </div>
 
             <button
               type="submit"
               disabled={!file}
-              className="w-full bg-black text-white py-8 text-[12px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-6 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20"
+              className="w-full bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-6 hover:bg-brand-teal transition-all duration-700 disabled:opacity-20"
             >
               Initiate Process Node <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-center text-black/30 max-w-xs mx-auto leading-relaxed">
+            <p className="text-2xs font-bold uppercase tracking-[0.4em] text-center text-black/30 max-w-xs mx-auto leading-relaxed">
               By initiating this upload, you consent to the clinical audit of your biometric and medical data per Savincliff Standards.
             </p>
           </motion.form>

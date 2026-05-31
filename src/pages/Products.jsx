@@ -18,7 +18,7 @@ export default function Products() {
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
             <h1 className="sub-display-svz">STANDARDS</h1>
-            <p className="text-[11px] font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS / VERIFIED 2026</p>
+            <p className="text-xs font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS / VERIFIED 2026</p>
          </div>
       </section>
 
@@ -35,9 +35,9 @@ export default function Products() {
                     className="p-16 border-b md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[400px]"
                 >
                     <div>
-                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-black/20 group-hover:text-white/20 mb-8">{a.id} / AUDIT</p>
+                        <p className="text-2xs font-black tracking-[0.4em] uppercase text-black/20 group-hover:text-white/20 mb-8">{a.id} / AUDIT</p>
                         <h3 className="text-3xl font-black uppercase tracking-tighter mb-6">{a.title}</h3>
-                        <p className="text-[11px] font-bold text-black/40 group-hover:text-white/40 tracking-widest uppercase leading-relaxed">
+                        <p className="text-xs font-bold text-black/40 group-hover:text-white/40 tracking-widest uppercase leading-relaxed">
                            {a.text}
                         </p>
                     </div>
@@ -56,7 +56,7 @@ export default function Products() {
                   <p className="text-xl text-white font-medium leading-tight tracking-tight uppercase">
                       Integrity is not a value; it's a specification. Every medication at Savincliff is subjected to a four-layer clinical audit before entering our inventory node.
                   </p>
-                  <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed">
+                  <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed">
                       We dismantle the complexity of pharmaceutical verification to ensure that your health is anchored by primary-source certainty.
                   </p>
                </div>
@@ -80,10 +80,10 @@ export default function Products() {
          <div className="max-w-[1800px] mx-auto">
             <h2 className="display-svz text-black/10 hover:text-black transition-colors duration-1000 cursor-default uppercase">SPECIAL<br />PROCUREMENT</h2>
             <div className="mt-20 max-w-2xl mx-auto space-y-12">
-               <p className="text-[11px] font-black uppercase tracking-[0.4em] text-black">
+               <p className="text-xs font-black uppercase tracking-[0.4em] text-black">
                   Can't identify your requirement in our primary catalogue?
                </p>
-               <button className="bg-black text-white px-20 py-8 text-[12px] font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700">
+               <button className="bg-black text-white px-20 py-8 text-xs font-black uppercase tracking-[0.3em] hover:bg-brand-teal transition-all duration-700">
                    Request Sourcing Node
                </button>
             </div>
