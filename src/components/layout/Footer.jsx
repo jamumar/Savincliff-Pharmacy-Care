@@ -340,15 +340,14 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-12">
+          <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-12 relative z-10">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase">
-                © 2026 Savincliff Pharmacy. All rights reserved.
+                © 2026 Savincliff Pharmacy & Chronic Care Centre. All rights reserved.
               </p>
             </div>
-            <div className="flex gap-12">
-              <Link to="/privacy" className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Privacy Policy</Link>
-              <Link to="/terms"   className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase hover:text-white transition-colors pointer-events-auto cursor-pointer">Service Protocol</Link>
+            <div className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase text-center md:text-right">
+              PCN REGISTERED &middot; NAFDAC COMPLIANCE
             </div>
           </div>
         </div>
@@ -356,6 +355,13 @@ export default function Footer() {
         {/* Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,black_85%)] pointer-events-none z-[5] opacity-70" />
       </section>
+
+      {/* Giant Faint Watermark */}
+      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 select-none pointer-events-none z-[1] w-full text-center">
+        <span className="text-[12vw] md:text-[15vw] font-serif italic font-light text-white/[0.03] lowercase tracking-tighter leading-none whitespace-nowrap">
+          savincliff <span className="uppercase text-[0.8em]">RX</span>
+        </span>
+      </div>
 
       {/* WhatsApp FAB */}
       <a

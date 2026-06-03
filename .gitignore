@@ -33,3 +33,11 @@ yarn-error.log*
 # Raw unoptimized 3D models (use opt_*.glb instead)
 public/models/Meshy_AI_*.glb
 public/models/savincliff_pill.glb
+
+# Local dev and debug files
+dev.log
+dev.pid
+test-responsive.html
+
+# Documentation
+FONTS.md

@@ -86,6 +86,10 @@ export default function ProductDetailModal({ product, onClose }) {
                    <div className="flex flex-wrap items-center gap-3 md:gap-6">
                       <span className="text-2xs md:text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 md:px-5 md:py-2">{product.category}</span>
                       <span className="text-2xs md:text-xs font-black tracking-widest uppercase border border-black/10 px-3 py-1.5 md:px-5 md:py-2">Audit Verified</span>
+                      <span className="text-2xs md:text-xs font-black tracking-widest uppercase border border-brand-teal/20 text-brand-teal px-3 py-1.5 md:px-5 md:py-2 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse" />
+                        IN STOCK
+                      </span>
                    </div>
                 </div>
 

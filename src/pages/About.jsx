@@ -31,36 +31,58 @@ const NARRATIVE_WORDS = [
 /* ─── Showcase Section ───────────────────────────────────────── */
 const STORIES = [
   {
-    id: 'NAUTH',
-    label: 'NAUTH',
-    headline: 'HOW NAUTH REDUCED DISPENSING ERRORS BY 94% WITH SAVINCLIFF\'S VERIFICATION PROTOCOL',
+    id: 'AUTHENTICATION',
+    label: 'AUTHENTICATION',
+    headline: `SAVINCLIFF COMBINES CLINICAL
+OVERSIGHT, DIGITAL
+INFRASTRUCTURE, AND MODERN
+PHARMACEUTICAL WORKFLOWS
+TO CREATE A SAFER AND MORE
+INTELLIGENT DISPENSING
+EXPERIENCE`,
     cta: 'READ CLINICAL REPORT',
     stats: [
-      { value: '94%', label: 'Reduction in dispensing errors' },
-      { value: '12K+', label: 'Prescriptions verified monthly' },
-      { value: '4.9/5', label: 'Patient satisfaction score' },
+      { value: 'VERIFIED', label: "MULTI-STEP\nPRESCRIPTION\nREVIEW" },
+      { value: 'SECURE', label: "PROTECTED\nDIGITAL PATIENT\nSYSTEMS" },
+      { value: 'CONTROLLED', label: "TEMPERATURE-\nMONITORED\nMEDICATION\nHANDLING" },
     ],
   },
   {
-    id: 'UITH',
-    label: 'UITH',
-    headline: 'HOW UITH SCALED THEIR CLINICAL PHARMACY OPERATIONS ACROSS 3 CAMPUSES IN 6 MONTHS',
+    id: 'DISPENSING',
+    label: 'DISPENSING',
+    headline: `MEDICATION PREPARATION AND
+DESIGNED FOR
+AUTHENTICATION
+DISPENSING SYSTEMS
+STRUCTURED AROUND CLINICAL
+CLINICAL PRECISION
+OVERSIGHT, STORAGE INTEGRITY,
+AND PATIENT-CENTERED
+ACCURACY.`,
     cta: 'READ CLINICAL REPORT',
-    stats: [
-      { value: '3x', label: 'Operational scale increase' },
-      { value: '99.2%', label: 'Formulary accuracy rate' },
-      { value: '6 mo', label: 'Full deployment timeline' },
-    ],
+    stats: [],
   },
   {
-    id: 'LUTH',
-    label: 'LUTH',
-    headline: 'HOW LUTH ACHIEVED ZERO-COMPROMISE PHARMACEUTICAL SOURCING FOR A \u20A620B PORTFOLIO',
+    id: 'PATIENT ACCESS',
+    label: 'PATIENT ACCESS',
+    headline: `INTEGRATED PRESCRIPTION
+MEDICATION PREPARATION AND
+DESIGNED FOR
+AUTHENTICATION
+DISPENSING SYSTEMS
+UPLOAD, REFILL COORDINATION,
+AUTHENTICATION
+AND SECURE PATIENT PORTAL
+STRUCTURED AROUND CLINICAL
+CLINICAL PRECISION
+SYSTEMS DESIGNED FOR MODERN
+OVERSIGHT, STORAGE INTEGRITY,
+PHARMACEUTICAL CARE.`,
     cta: 'READ CLINICAL REPORT',
     stats: [
-      { value: '\u20A620B+', label: 'Portfolio under management' },
-      { value: '100%', label: 'NAFDAC-verified sourcing' },
-      { value: '18+', label: 'Institutional partnerships' },
+      { value: 'DIGITAL', label: "ONLINE\nPRESCRIPTION\nSUBMISSION" },
+      { value: 'ACCESSIBLE', label: "PATIENT\nMEDICATION\nHISTORY ACCESS" },
+      { value: 'CONNECTED', label: "INTEGRATED\nPAYMENT AND\nREFILL SYSTEMS" },
     ],
   },
 ];
@@ -73,9 +95,9 @@ function ShowcaseSection() {
     <section className="bg-black text-white py-24 md:py-40 px-8 md:px-20 lg:px-32">
       {/* Heading */}
       <div className="max-w-[1400px] mx-auto">
-        <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 mb-6">[ CLINICAL PARTNERSHIPS ]</p>
+        <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 mb-6">[CLINICAL SYSTEMS]</p>
         <h2 className="display-lg font-black uppercase tracking-tighter leading-none mb-20 md:mb-28">
-          SHOWCASE OF<br />CLINICAL EXCELLENCE
+          DESIGNED FOR<br />CLINICAL PRECISION
         </h2>
 
         {/* Two-column layout */}
@@ -83,7 +105,7 @@ function ShowcaseSection() {
 
           {/* Left — Story detail */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-2xl md:text-3xl font-black uppercase leading-snug tracking-tight mb-10 max-w-lg transition-all duration-500">
+            <h3 className="text-2xl md:text-3xl font-black uppercase leading-snug tracking-tight mb-10 max-w-lg transition-all duration-500 whitespace-pre-line">
               {story.headline}
             </h3>
 
@@ -95,8 +117,8 @@ function ShowcaseSection() {
             <div className="flex gap-10 md:gap-16">
               {story.stats.map((s, i) => (
                 <div key={i}>
-                  <p className="text-4xl md:text-6xl font-black leading-none tracking-tighter text-white">{s.value}</p>
-                  <p className="text-2xs md:text-sm font-black tracking-[0.15em] text-white/40 mt-2 max-w-[120px]">{s.label}</p>
+                  <p className="text-lg md:text-2xl font-black leading-tight tracking-widest text-white uppercase whitespace-pre-line">{s.value}</p>
+                  <p className="text-3xs md:text-xs font-black tracking-[0.2em] text-white/40 mt-2 whitespace-pre-line uppercase">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -126,206 +148,195 @@ function ShowcaseSection() {
   );
 }
 
-/* ─── Wall of Fame (Single Card Swipe) ────────────────────── */
-const TESTIMONIALS = [
-  {
-    text: "Our website and brand took a leap forward. The process was smooth. The communication was terrific. I really appreciate the team’s attention to detail and delivery.",
-    name: "Jon Silvers",
-    role: "Head of Marketing, Search.io"
-  },
-  {
-    text: "We've had the pleasure to work with the team on a complete re-design of our website. We were highly impressed by their structured approach and organization.",
-    name: "Vincent Huber",
-    role: "Co-Founder, Jrny"
-  },
-  {
-    text: "We're very happy with the finished website & brand. The team did a great job of understanding the challenges of both our business and what we needed.",
-    name: "Jenn Virskus",
-    role: "Head of Marketing, Saildrone"
-  },
-  {
-    text: "They have been an incredible partner from research to design, development, and beyond. Their thoughtfulness, adaptability, and ability to truly understand our needs.",
-    name: "Bill Meyer",
-    role: "Executive Director, EMA Foundation"
-  },
-  {
-    text: "They did a beautiful job designing and developing our site. The team made the effort to really understand our data, analytics, brand, and our team loves the outcome.",
-    name: "Summer Romasco",
-    role: "VP of Marketing, Burner"
-  },
-  {
-    text: "Very responsive to the needs of our brand and worked in partnership with us to create a visual identity that feels authentic to our diverse team, users, and community.",
-    name: "Mariana Racasan",
-    role: "Marketing Director, Zehhub"
-  },
-  {
-    text: "Working with great design teams can be an almost transcendental experience. They’re able to unlock what’s in your head, even if you can’t always articulate it well.",
-    name: "Michael Peach",
-    role: "VP, Marketing, Rimsys"
-  },
-  {
-    text: "Working with the team was nothing short of amazing. Not only does their portfolio speak for itself, they are a one-stop shop for branding, design and development.",
-    name: "Travis Wingate",
-    role: "VP, Marketing, Supermove"
-  },
-  {
-    text: "From teaming with our internal infrastructure team to iron out developer details, to standing by for our late night website launch, they were there for us.",
-    name: "Alexis Hain",
-    role: "Operations Manager, Patreon"
-  }
+/* ─── Dispensing Care Carousel (Pharmaceutical Images) ────────── */
+const CAROUSEL_IMAGES = [
+  { url: '/images/pharmacy_interior.png', label: 'INTERIOR RENDER', number: '01' },
+  { url: '/images/digital_terminal.png', label: 'DIGITAL WORKFLOW', number: '02' },
+  { url: '/images/medication_shelving.png', label: 'STORAGE SHELVING', number: '03' },
+  { url: '/images/lab.png', label: 'CLINICAL LAB', number: '04' },
+  { url: '/images/pharmacist.png', label: 'PHARMACIST CONSULTATION', number: '05' },
 ];
 
-function WallOfFame() {
-  const [mode, setMode] = useState('GRID'); // 'GRID' | 'SINGLE'
+function DispensingCareCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // 1 for next, -1 for prev
+  const [direction, setDirection] = useState(0); // -1 for left, 1 for right
 
-  const handleDragEnd = (e, { offset, velocity }) => {
-    const swipePower = Math.abs(offset.x) * velocity.x;
-    const swipeConfidenceThreshold = 10000;
-    const distanceThreshold = 100;
-
-    if (offset.x < -distanceThreshold || swipePower < -swipeConfidenceThreshold) {
-      if (activeIndex < TESTIMONIALS.length - 1) {
-        setDirection(1);
-        setActiveIndex(prev => prev + 1);
-      }
-    } else if (offset.x > distanceThreshold || swipePower > swipeConfidenceThreshold) {
-      if (activeIndex > 0) {
-        setDirection(-1);
-        setActiveIndex(prev => prev - 1);
-      }
-    }
+  const nextSlide = () => {
+    setDirection(1);
+    setActiveIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
   };
 
-  const variants = {
+  const prevSlide = () => {
+    setDirection(-1);
+    setActiveIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length);
+  };
+
+  const slideVariants = {
     enter: (dir) => ({
-      x: dir > 0 ? 300 : -300,
+      x: dir > 0 ? 100 : -100,
       opacity: 0,
-      scale: 0.9,
+      scale: 0.95
     }),
     center: {
-      zIndex: 1,
       x: 0,
       opacity: 1,
       scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.4 }
+      }
     },
     exit: (dir) => ({
-      zIndex: 0,
-      x: dir < 0 ? 300 : -300,
+      x: dir < 0 ? 100 : -100,
       opacity: 0,
-      scale: 0.9,
+      scale: 0.95,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.4 }
+      }
     })
   };
 
+  const handleDragEnd = (e, { offset, velocity }) => {
+    const swipeThreshold = 50;
+    if (offset.x < -swipeThreshold) {
+      nextSlide();
+    } else if (offset.x > swipeThreshold) {
+      prevSlide();
+    }
+  };
+
   return (
-    <section className="bg-[#050505] text-white py-24 md:py-32 overflow-hidden relative min-h-screen flex flex-col justify-center">
-      <div className="relative z-10 text-center mb-16 px-8 pointer-events-none">
-        <h2 className="display-lg font-black uppercase tracking-tighter leading-none">
-          WALL OF F<span className="font-serif italic normal-case tracking-normal pr-1 md:pr-2 -ml-2 md:-ml-4 text-[1.1em]">a</span>ME
-        </h2>
-      </div>
+    <section className="bg-[#050505] text-white py-24 md:py-40 px-8 md:px-20 lg:px-32 relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+          
+          {/* Left Side: Header & Navigation */}
+          <div className="lg:col-span-5 flex flex-col justify-between h-full min-w-0">
+            <div>
+              <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 mb-6">
+                [ DISPENSING ENVIRONMENT ]
+              </p>
+              <h2 className="display-sm md:display-md lg:display-lg font-black uppercase tracking-tighter leading-[0.85] mb-12">
+                BUILT FOR THE<br />
+                FUTURE OF<br />
+                PHARMACEUTICAL<br />
+                <span className="text-brand-teal">DISPENSING<br />CARE</span>
+              </h2>
+            </div>
 
-      <AnimatePresence mode="wait">
-        {mode === 'GRID' ? (
-          <motion.div
-            key="grid"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-6 md:px-12 max-w-[1400px] mx-auto w-full"
-          >
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02, backgroundColor: '#141414' }}
-                onClick={() => {
-                  setActiveIndex(i);
-                  setDirection(0); // Reset direction for clean entry
-                  setMode('SINGLE');
-                }}
-                className="flex flex-col justify-between bg-[#0a0a0a] p-8 md:p-10 border border-white/5 rounded-sm cursor-pointer transition-colors h-[280px]"
-              >
-                <p className="text-xs text-white/30 leading-relaxed font-medium pointer-events-none line-clamp-4">
-                  {t.text}
-                </p>
-                <div className="flex items-center gap-4 mt-6 pointer-events-none opacity-40">
-                  <div className="w-10 h-10 bg-[#1a1a1a] flex items-center justify-center font-bold text-white/50 rounded-sm shrink-0">
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-white/70">{t.name}</div>
-                    <div className="text-2xs font-medium uppercase tracking-[0.15em] text-white/30 mt-1">{t.role}</div>
-                  </div>
+            {/* Slider controls & details */}
+            <div className="space-y-8 mt-4">
+              <div className="flex items-center gap-6">
+                <span className="text-sm font-black tracking-widest text-brand-teal">
+                  {CAROUSEL_IMAGES[activeIndex].number}
+                </span>
+                <div className="flex-1 h-[1px] bg-white/10 relative overflow-hidden max-w-[200px]">
+                  <motion.div 
+                    className="absolute top-0 left-0 h-full bg-brand-teal"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((activeIndex + 1) / CAROUSEL_IMAGES.length) * 100}%` }}
+                    transition={{ duration: 0.4 }}
+                  />
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="single"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-            className="relative w-full h-[450px] flex items-center justify-center overflow-hidden flex-col"
-          >
-            <button 
-              onClick={() => setMode('GRID')}
-              className="absolute top-0 md:top-4 right-8 md:right-24 text-2xs md:text-sm font-black uppercase tracking-[0.2em] text-white/40 hover:text-brand-teal transition-colors z-20 py-2 px-4 border border-white/10 hover:border-brand-teal/50 rounded-sm"
-            >
-              [ Back to Wall ]
-            </button>
+                <span className="text-sm font-black tracking-widest text-white/20">
+                  0{CAROUSEL_IMAGES.length}
+                </span>
+              </div>
 
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={activeIndex}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleDragEnd}
-                className="absolute flex flex-col justify-between bg-[#111] p-10 md:p-14 border border-white/10 rounded-sm w-[90%] md:w-[540px] h-[340px] cursor-grab active:cursor-grabbing shadow-2xl z-10"
-              >
-                <p className="text-base md:text-base text-white/80 leading-relaxed font-medium pointer-events-none">
-                  {TESTIMONIALS[activeIndex].text}
-                </p>
-                <div className="flex items-center gap-4 mt-8 pointer-events-none">
-                  <div className="w-12 h-12 bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold rounded-sm shrink-0">
-                    {TESTIMONIALS[activeIndex].name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-white">{TESTIMONIALS[activeIndex].name}</div>
-                    <div className="text-2xs font-medium uppercase tracking-[0.15em] text-white/50 mt-1">{TESTIMONIALS[activeIndex].role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              {/* Caption */}
+              <div className="h-8">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-xs font-black tracking-[0.3em] uppercase text-white/60"
+                  >
+                    {CAROUSEL_IMAGES[activeIndex].label}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+
+              {/* Navigation buttons */}
+              <div className="flex gap-4">
+                <button
+                  onClick={prevSlide}
+                  className="w-12 h-12 md:w-16 md:h-16 border border-white/10 rounded-sm flex items-center justify-center hover:border-brand-teal hover:text-brand-teal transition-all duration-300 group"
+                  aria-label="Previous slide"
+                >
+                  <svg className="w-5 h-5 transform rotate-180 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="w-12 h-12 md:w-16 md:h-16 border border-white/10 rounded-sm flex items-center justify-center hover:border-brand-teal hover:text-brand-teal transition-all duration-300 group"
+                  aria-label="Next slide"
+                >
+                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side: Image Viewport */}
+          <div className="lg:col-span-7 w-full">
+            <div className="relative aspect-square md:aspect-[4/3] w-full overflow-hidden bg-[#111] border border-white/5 shadow-2xl rounded-sm cursor-grab active:cursor-grabbing select-none">
+              <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                <motion.div
+                  key={activeIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.6}
+                  onDragEnd={handleDragEnd}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={CAROUSEL_IMAGES[activeIndex].url}
+                    alt={CAROUSEL_IMAGES[activeIndex].label}
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable="false"
+                  />
+                  {/* Subtle overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
             
-            {/* Navigation Indicators */}
-            <div className="absolute bottom-4 flex gap-2 z-10">
-              {TESTIMONIALS.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-brand-teal scale-125' : 'bg-white/20'}`}
+            {/* Slide indicator dots */}
+            <div className="flex gap-2.5 mt-6 justify-center lg:justify-start">
+              {CAROUSEL_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > activeIndex ? 1 : -1);
+                    setActiveIndex(i);
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === activeIndex ? 'w-8 bg-brand-teal' : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+
+        </div>
+      </div>
     </section>
   );
 }
+
 
 const HERO_LINES = ["PRECISION", "WELLNESS", "HUMANITY", "FUTURE"];
 
@@ -644,15 +655,15 @@ export default function About() {
       {/* ── Showcase of Clinical Excellence ─────────────────────────── */}
       <ShowcaseSection />
 
-      {/* ── Wall of Fame ───────────────────────────────────────────── */}
-      <WallOfFame />
+      {/* ── Dispensing Care Carousel ─────────────────────────────────── */}
+      <DispensingCareCarousel />
 
       {/* High-Fidelity CTA */}
       <section className="section-padding bg-white">
         <div className="grid-container">
             <div className="bg-black text-white p-8 md:p-20 lg:p-40 relative overflow-hidden group">
                 <div className="relative z-10 space-y-8 md:space-y-16">
-                    <h2 className="display-lg font-black uppercase tracking-tighter leading-none">EXPERIENCE<br />THE PRECISION</h2>
+                    <h2 className="display-md font-black uppercase tracking-tighter leading-none">EXPERIENCE<br />THE PRECISION</h2>
                     <div className="flex flex-col sm:flex-row gap-4 md:gap-8">
                         <button className="bg-white text-black px-8 md:px-16 py-5 md:py-8 text-2xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-brand-teal hover:text-white transition-all duration-700">Explore Inventory</button>
                         <button className="border border-white/20 px-8 md:px-16 py-5 md:py-8 text-2xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700 flex items-center justify-center gap-4 md:gap-6 group/btn">

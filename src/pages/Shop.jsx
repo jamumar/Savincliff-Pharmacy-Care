@@ -12,15 +12,15 @@ import ScrollMarquee from '@/components/ui/ScrollMarquee';
 const easeQuint = [0.16, 1, 0.3, 1];
 
 export const MOCK_PRODUCTS = [
-  { id: 1, name: 'NEUROGEN AXON', brand: 'SVZ PHARMA', price: 15400, img: '/images/product2.png', unit: '30 CAPS', category: 'Cognitive' },
-  { id: 2, name: 'SPECTRUM DROPS', brand: 'CLINICAL SPEC', price: 8900, img: '/images/product1.png', unit: '10 ML', category: 'Ophthalmic' },
-  { id: 3, name: 'AURUM REGEN', brand: 'AURUM LABS', price: 24500, img: '/images/product3.png', unit: '30 ML', category: 'Topical' },
-  { id: 4, name: 'VERIFY COMPLEX', brand: 'SYNTHETIC NODE', price: 12000, img: '/images/product2.png', unit: '60 TABS', category: 'Audit' },
-  { id: 5, name: 'DISPENSE PRIMARY', brand: 'SVZ PHARMA', price: 32000, img: '/images/product1.png', unit: '100 ML', category: 'Clinical' },
-  { id: 6, name: 'PROTOCOL SYNC', brand: 'CLINICAL SPEC', price: 18500, img: '/images/product3.png', unit: '15 ML', category: 'Verfied' },
-  { id: 7, name: 'VITA D3+K2', brand: 'ESSENTIALS', price: 9200, img: '/images/vitamins.png', unit: '60 CAPS', category: 'Supplement' },
-  { id: 8, name: 'PHARMA NOIR', brand: 'PHARMACOPIA', price: 28000, img: '/images/capsules.png', unit: '90 CAPS', category: 'Premium' },
-  { id: 9, name: 'AETERNA SERUM', brand: 'AETERNA LABS', price: 35000, img: '/images/skincare.png', unit: '50 ML', category: 'Dermal' },
+  { id: 1, name: 'NEUROGEN AXON', brand: 'SVZ PHARMA', price: 15400, img: '/images/product2.png', unit: '30 CAPS', category: 'WELLNESS' },
+  { id: 2, name: 'SPECTRUM DROPS', brand: 'CLINICAL SPEC', price: 8900, img: '/images/product1.png', unit: '10 ML', category: 'PRESCRIPTION' },
+  { id: 3, name: 'AURUM REGEN', brand: 'AURUM LABS', price: 24500, img: '/images/product3.png', unit: '30 ML', category: 'DERMATOLOGY' },
+  { id: 4, name: 'VERIFY COMPLEX', brand: 'SYNTHETIC NODE', price: 12000, img: '/images/product2.png', unit: '60 TABS', category: 'PRESCRIPTION' },
+  { id: 5, name: 'DISPENSE PRIMARY', brand: 'SVZ PHARMA', price: 32000, img: '/images/product1.png', unit: '100 ML', category: 'DIABETES CARE' },
+  { id: 6, name: 'PROTOCOL SYNC', brand: 'CLINICAL SPEC', price: 18500, img: '/images/product3.png', unit: '15 ML', category: 'CARDIOLOGY' },
+  { id: 7, name: 'VITA D3+K2', brand: 'ESSENTIALS', price: 9200, img: '/images/vitamins.png', unit: '60 CAPS', category: 'SUPPLEMENTS' },
+  { id: 8, name: 'PHARMA NOIR', brand: 'PHARMACOPIA', price: 28000, img: '/images/capsules.png', unit: '90 CAPS', category: 'PEDIATRICS' },
+  { id: 9, name: 'AETERNA SERUM', brand: 'AETERNA LABS', price: 35000, img: '/images/skincare.png', unit: '50 ML', category: 'DERMATOLOGY' },
 ];
 
 /* ─── 3D Hero Model ─────────────────────────────────────────────────────── */
@@ -165,8 +165,13 @@ function ShopHero() {
 export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { add, items } = useCart();
+  const [activeFilter, setActiveFilter] = useState('ALL');
 
   const isAdded = (id) => items.some(item => item.id === id);
+
+  const filteredProducts = activeFilter === 'ALL'
+    ? MOCK_PRODUCTS
+    : MOCK_PRODUCTS.filter(p => p.category === activeFilter);
 
   return (
     <div className="bg-white min-h-screen">
@@ -174,21 +179,39 @@ export default function Shop() {
       {/* Premium Dark Hero Section */}
       <ShopHero />
 
-      {/* Reduced Heading moved to a new standalone section above products */}
-      <section className="relative z-10 pt-20 md:pt-32 px-5 md:px-12 mb-8 md:mb-16 bg-white">
-        <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-6 md:pb-8 overflow-hidden">
-          <motion.h2
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: easeQuint }}
-            className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
-          >
-            INVENTORY
-          </motion.h2>
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mt-4 md:mt-6">
-            <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">Clinical Manifest / Synchronized 2026</p>
-            <span className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal sm:px-4 sm:border-l border-brand-teal">Total: {MOCK_PRODUCTS.length} NODES</span>
+      {/* Standalone Header & Filters section */}
+      <section className="relative z-10 pt-20 md:pt-32 px-5 md:px-12 mb-8 bg-white">
+        <div className="max-w-[1800px] mx-auto border-b border-black/10 pb-8 overflow-hidden">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-6 border-b border-black/5">
+            <div>
+              <motion.h2
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: easeQuint }}
+                className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
+              >
+                INVENTORY
+              </motion.h2>
+              <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40 mt-4">Clinical Manifest / Synchronized 2026</p>
+            </div>
+          </div>
+
+          {/* Filters row */}
+          <div className="flex flex-wrap gap-2 md:gap-4 mt-6 md:mt-8">
+            {['ALL', 'PRESCRIPTION', 'WELLNESS', 'SUPPLEMENTS', 'DIABETES CARE', 'CARDIOLOGY', 'DERMATOLOGY', 'PEDIATRICS'].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 border text-2xs md:text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${
+                  activeFilter === filter
+                    ? 'bg-black text-white border-black'
+                    : 'bg-transparent text-black/40 border-black/10 hover:text-black hover:border-black/30'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -196,7 +219,7 @@ export default function Shop() {
       {/* Product Grid */}
       <section className="relative z-10 px-5 md:px-12 pb-20 md:pb-40 bg-white">
         <div className="max-w-[1800px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-black/10">
-          {MOCK_PRODUCTS.map((p, i) => (
+          {filteredProducts.map((p, i) => (
             <motion.div
               key={p.id}
               initial={{ opacity: 0 }}
@@ -230,6 +253,10 @@ export default function Shop() {
                   <div className="space-y-1">
                     <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40">{p.brand}</p>
                     <p className="text-xl md:text-3xl font-black tracking-tighter transition-all duration-700 group-hover:text-brand-teal">₦{p.price.toLocaleString()}</p>
+                    <div className="flex items-center gap-1.5 pt-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse" />
+                      <span className="text-3xs font-black tracking-[0.2em] text-brand-teal uppercase">IN STOCK</span>
+                    </div>
                   </div>
 
                   <button
