@@ -79,7 +79,7 @@ export default function Register() {
         <Logo variant="light" />
         
         <div className="relative z-10">
-           <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Portal Authentication / Node 04</p>
+           <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal mb-12">Portal Authentication - Node 04</p>
            <h1 className="display-svz">
              THE<br />
              ACCESS
@@ -155,8 +155,8 @@ export default function Register() {
                                type="text" 
                                value={form.name} 
                                onChange={e => set('name', e.target.value)}
-                               placeholder="ENTER FULL SPEC"
-                               className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                               placeholder="Enter full name"
+                               className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-semibold tracking-normal text-white focus:outline-none focus:border-brand-teal transition-colors" 
                             />
                          </div>
                       )}
@@ -167,8 +167,8 @@ export default function Register() {
                             type="email" 
                             value={form.email} 
                             onChange={e => set('email', e.target.value)}
-                            placeholder="IDENTITY@NODE.COM"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                            placeholder="email@node.com"
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-semibold tracking-normal text-white focus:outline-none focus:border-brand-teal transition-colors" 
                          />
                       </div>
 
@@ -178,8 +178,8 @@ export default function Register() {
                             type="password" 
                             value={form.password} 
                             onChange={e => set('password', e.target.value)}
-                            placeholder="SECRET KEY"
-                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-bold tracking-widest text-white focus:outline-none focus:border-brand-teal uppercase transition-colors" 
+                            placeholder="Enter password"
+                            className="w-full bg-transparent border-b border-white/10 py-4 text-xs font-semibold tracking-normal text-white focus:outline-none focus:border-brand-teal transition-colors" 
                          />
                       </div>
 

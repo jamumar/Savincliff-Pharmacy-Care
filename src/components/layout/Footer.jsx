@@ -236,11 +236,11 @@ export default function Footer() {
   }, [isInView]);
 
   const footerLinks = [
-    { title: 'AGENCY',   links: [{ name: 'CAPABILITIES', path: '/services' }, { name: 'ENTERPRISE', path: '/rx-terminal' }] },
-    { title: 'WORK',     links: [{ name: 'WELLNESS', path: '/products' }, { name: 'FAQs', path: '/contact' }] },
-    { title: 'CULTURE',  links: [{ name: 'ABOUT', path: '/about' }, { name: 'INVENTORY', path: '/shop' }] },
-    { title: 'INSIGHTS', links: [{ name: 'PROTOCOLS', path: '/protocols' }, { name: "CLIENT'S INVESTORS", path: '/rx-terminal' }] },
-    { title: 'SOCIALS',  links: [{ name: 'IG', path: '#' }, { name: 'LINKEDIN', path: '#' }] },
+    { title: 'COMPANY',    links: [{ name: 'HOME', path: '/' }, { name: 'ABOUT', path: '/about' }] },
+    { title: 'MARKET',     links: [{ name: 'INVENTORY', path: '/shop' }, { name: 'WELLNESS', path: '/products' }] },
+    { title: 'CLINICAL',   links: [{ name: 'SERVICES', path: '/services' }, { name: 'PROTOCOLS', path: '/protocols' }] },
+    { title: 'ACCESS',     links: [{ name: 'INQUIRIES', path: '/faqs' }, { name: 'RX TERMINAL', path: '/rx-terminal' }] },
+    { title: 'SOCIALS',    links: [{ name: 'INSTAGRAM', path: '#' }, { name: 'LINKEDIN', path: '#' }] },
   ];
 
   return (
@@ -340,13 +340,13 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-12 relative z-10">
+          <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-[10vw] md:pb-[13vw] relative z-10">
             <div className="flex flex-col items-center md:items-start gap-2">
-              <p className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase">
+              <p className="text-xs md:text-sm font-normal tracking-[0.05em] text-white/40">
                 © 2026 Savincliff Pharmacy & Chronic Care Centre. All rights reserved.
               </p>
             </div>
-            <div className="text-2xs font-bold tracking-[0.3em] text-white/20 uppercase text-center md:text-right">
+            <div className="text-xs md:text-sm font-normal tracking-[0.15em] text-white/40 uppercase text-center md:text-right">
               PCN REGISTERED &middot; NAFDAC COMPLIANCE
             </div>
           </div>
@@ -357,9 +357,9 @@ export default function Footer() {
       </section>
 
       {/* Giant Faint Watermark */}
-      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 select-none pointer-events-none z-[1] w-full text-center">
-        <span className="text-[12vw] md:text-[15vw] font-serif italic font-light text-white/[0.03] lowercase tracking-tighter leading-none whitespace-nowrap">
-          savincliff <span className="uppercase text-[0.8em]">RX</span>
+      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 select-none pointer-events-none z-[6] w-full text-center">
+        <span className="text-[9vw] md:text-[11vw] font-serif font-light text-white/[0.06] lowercase tracking-tight leading-none whitespace-nowrap">
+          savincliff rx
         </span>
       </div>
 

@@ -13,19 +13,19 @@ import ScrollMarquee from '@/components/ui/ScrollMarquee';
 const easeQuint = [0.16, 1, 0.3, 1];
 
 const NARRATIVE_WORDS = [
-  { text: "WE" }, { text: "ARE" }, { text: "A" }, { text: "CLINICAL" }, { text: "PHARMACY" },
-  { text: "WHERE" }, { text: "SCIENCE" }, { text: "MEETS" }, { text: "PRECISION." },
-  { text: "VERIFICATION", teal: true }, { text: "IS" }, { text: "OUR" }, { text: "COMPASS," },
-  { text: "ENSURING" }, { text: "EVERY" }, { text: "MEDICATION" }, { text: "IS" },
-  { text: "AUTHENTICATED" }, { text: "AT" }, { text: "THE" }, { text: "SOURCE." },
-  { text: "WE" }, { text: "INFUSE" }, { text: "EVERY" }, { text: "PRESCRIPTION", teal: true },
-  { text: "WITH" }, { text: "PURPOSE," }, { text: "CRAFTING" }, { text: "THERAPEUTIC" },
-  { text: "PROTOCOLS" }, { text: "THAT" }, { text: "PROTECT" }, { text: "ACROSS" }, { text: "EVERY" },
-  { text: "INTERACTION." }, { text: "QUALITY", teal: true }, { text: "IS" }, { text: "OUR" },
-  { text: "FOUNDATION," }, { text: "MAINTAINING" }, { text: "THE" }, { text: "HIGHEST" },
-  { text: "PHARMACEUTICAL" }, { text: "STANDARDS" }, { text: "IN" }, { text: "EVERY" },
-  { text: "FORMULATION" }, { text: "WE" }, { text: "DISPENSE." },
-  { text: "THROUGH" }, { text: "FULL-SPECTRUM" }, { text: "CLINICAL" }, { text: "CERTAINTY." }
+  { text: "We" }, { text: "are" }, { text: "a" }, { text: "clinical" }, { text: "pharmacy" },
+  { text: "where" }, { text: "science" }, { text: "meets" }, { text: "precision." },
+  { text: "Verification", teal: true }, { text: "is" }, { text: "our" }, { text: "compass," },
+  { text: "ensuring" }, { text: "every" }, { text: "medication" }, { text: "is" },
+  { text: "authenticated" }, { text: "at" }, { text: "the" }, { text: "source." },
+  { text: "We" }, { text: "infuse" }, { text: "every" }, { text: "prescription", teal: true },
+  { text: "with" }, { text: "purpose," }, { text: "crafting" }, { text: "therapeutic" },
+  { text: "protocols" }, { text: "that" }, { text: "protect" }, { text: "across" }, { text: "every" },
+  { text: "interaction." }, { text: "Quality", teal: true }, { text: "is" }, { text: "our" },
+  { text: "foundation," }, { text: "maintaining" }, { text: "the" }, { text: "highest" },
+  { text: "pharmaceutical" }, { text: "standards" }, { text: "in" }, { text: "every" },
+  { text: "formulation" }, { text: "we" }, { text: "dispense." },
+  { text: "Through" }, { text: "full-spectrum" }, { text: "clinical" }, { text: "certainty." }
 ];
 
 /* ─── Showcase Section ───────────────────────────────────────── */
@@ -50,13 +50,10 @@ EXPERIENCE`,
   {
     id: 'DISPENSING',
     label: 'DISPENSING',
-    headline: `MEDICATION PREPARATION AND
-DESIGNED FOR
-AUTHENTICATION
-DISPENSING SYSTEMS
-STRUCTURED AROUND CLINICAL
-CLINICAL PRECISION
-OVERSIGHT, STORAGE INTEGRITY,
+    headline: `CLINICAL DISPENSING SYSTEMS
+STRUCTURED AROUND RIGOROUS
+PHARMACEUTICAL OVERSIGHT,
+MEDICATION AUTHENTICATION,
 AND PATIENT-CENTERED
 ACCURACY.`,
     cta: 'READ CLINICAL REPORT',
@@ -65,19 +62,12 @@ ACCURACY.`,
   {
     id: 'PATIENT ACCESS',
     label: 'PATIENT ACCESS',
-    headline: `INTEGRATED PRESCRIPTION
-MEDICATION PREPARATION AND
-DESIGNED FOR
-AUTHENTICATION
-DISPENSING SYSTEMS
-UPLOAD, REFILL COORDINATION,
-AUTHENTICATION
-AND SECURE PATIENT PORTAL
-STRUCTURED AROUND CLINICAL
-CLINICAL PRECISION
-SYSTEMS DESIGNED FOR MODERN
-OVERSIGHT, STORAGE INTEGRITY,
-PHARMACEUTICAL CARE.`,
+    headline: `INTEGRATED DIGITAL PORTALS
+DESIGNED FOR SECURE
+PRESCRIPTION UPLOADS,
+SEAMLESS REFILL COORDINATION,
+AND CONVENIENT PATIENT
+ACCESS TO PHARMACEUTICAL CARE.`,
     cta: 'READ CLINICAL REPORT',
     stats: [
       { value: 'DIGITAL', label: "ONLINE\nPRESCRIPTION\nSUBMISSION" },
@@ -217,7 +207,7 @@ function DispensingCareCarousel() {
               <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 mb-6">
                 [ DISPENSING ENVIRONMENT ]
               </p>
-              <h2 className="display-sm md:display-md lg:display-lg font-black uppercase tracking-tighter leading-[0.85] mb-12">
+              <h2 className="display-sm md:display-md lg:display-md font-black uppercase tracking-tighter leading-[0.85] mb-12">
                 BUILT FOR THE<br />
                 FUTURE OF<br />
                 PHARMACEUTICAL<br />
@@ -378,7 +368,7 @@ export default function About() {
       scrollTrigger: {
         trigger: paragraphSectionRef.current,
         start: "top top",
-        end: "bottom+=5000 top",
+        end: "bottom+=1500 top", // optimized pin duration
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -476,7 +466,7 @@ export default function About() {
       <section ref={paragraphSectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
         <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
            <div className="max-w-[1400px] mx-auto">
-             <p ref={paragraphRef} className="paragraph text-xl md:display-sm text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
+             <p ref={paragraphRef} className="paragraph text-xl md:text-3xl text-white leading-relaxed tracking-normal font-bold flex flex-wrap justify-center items-center text-center">
                 {NARRATIVE_WORDS.map((w, i) => (
                   <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
                     {w.text.split("").map((char, ci) => (
@@ -505,7 +495,7 @@ export default function About() {
                         precision, trust, and<br />
                         patient-centered care
                     </p>
-                    <p className="text-xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] text-black/40 uppercase leading-relaxed border-l-4 border-[#1B6E8C] pl-6 md:pl-8">
+                    <p className="text-xs md:text-sm font-semibold tracking-normal text-black/60 leading-relaxed border-l-4 border-[#1B6E8C] pl-6 md:pl-8">
                         Traditional pharmacy models often prioritize<br />
                         speed over precision. Savincliff was created<br />
                         to deliver a more thoughtful standard of<br />
@@ -557,7 +547,7 @@ export default function About() {
         <div className="w-full md:w-1/2 relative h-full">
           {/* Panel 1 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
               Clinical Standards
             </h3>
             <div className="space-y-4 max-w-lg">
@@ -586,7 +576,7 @@ export default function About() {
 
           {/* Panel 2 */}
           <div className="scroll-panel absolute inset-0 bg-white text-black p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
               Built for Modern Care
             </h3>
             <div className="space-y-4 max-w-lg">
@@ -615,7 +605,7 @@ export default function About() {
 
           {/* Panel 3 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
+            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
               Precision Infrastructure
             </h3>
             <div className="space-y-4 max-w-lg">
@@ -647,7 +637,7 @@ export default function About() {
       <section className="py-20 md:py-40 bg-white border-b border-black/5 overflow-hidden">
           <ScrollMarquee baseVelocity={-1.5}>
              <span className="display-giant font-black uppercase tracking-[-0.05em] text-black/5 mx-8 md:mx-24">
-                PCN – NAFDAC – NDPR – VERIFIED – SECURE – COMPLIANT – AUTHENTICATED – 
+                PCN - NAFDAC - NDPR - VERIFIED - SECURE - COMPLIANT - AUTHENTICATED - 
              </span>
           </ScrollMarquee>
       </section>

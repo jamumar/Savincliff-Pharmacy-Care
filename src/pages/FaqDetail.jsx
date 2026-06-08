@@ -4,32 +4,32 @@ import { motion } from 'framer-motion';
 
 const FAQ_DATABASE = {
   'default': {
-    category: 'CLIENT EXPERIENCE',
-    shortTitle: 'Can Savincliff work with international ...',
-    question: 'Can Savincliff work with international or remote teams?',
-    summary: "Yes—Savincliff works globally with async workflows, secure synchronization nodes, and real-time clinical audit trails. We deploy redundant nodes across multiple jurisdictions.",
-    fullText: "Savincliff operates as a highly available, globally distributed healthcare technology framework. Our asynchronous clinical management pipeline empowers cross-border institutions to interface securely without workflow friction. Utilizing high-performance client-side cache layers alongside robust cloud replication engines, remote institutional stakeholders maintain complete visibility and cryptographically certified dispensing precision across every operational tier. Every interaction is strictly verified to guarantee uncompromising accuracy.",
+    category: 'PATIENT SUPPORT',
+    shortTitle: 'Can Savincliff help with prescription ...',
+    question: 'How does Savincliff verify and coordinate prescription safety?',
+    summary: "Yes—Savincliff coordinates with your prescribing physicians to double-check dosages, run drug-interaction scans, and maintain full cold-chain transit integrity.",
+    fullText: "Savincliff operates as a highly coordinated clinical support node. Our prescription review pipeline verifies compounds directly at the source. Utilizing state-of-the-art temperature monitoring alongside robust packaging protocols, we guarantee the safety and purity of your therapeutic formulations from compounding to final home delivery. Every prescription is strictly double-verified by a licensed pharmacist for complete security.",
     cta: {
-      badge: "HIRE SAVINCLIFF",
-      heading: "We only onboard select institutional nodes monthly — reserve your allocation early.",
+      badge: "CLINICAL HELP",
+      heading: "Our clinical support desk is available to assist you with prescriptions or orders.",
       benefits: [
-        "Work directly with Savincliff's principal pharmaceutical architects",
-        "Accelerate institutional throughput with automated compliance verification",
-        "Seamless end-to-end telemetry integration with zero operational overhead"
+        "Consult directly with licensed, board-certified clinical pharmacists",
+        "Perform comprehensive drug-interaction reviews before compound preparation",
+        "Set up secure, automated refill schedules tailored to your therapy"
       ]
     },
     related: [
       {
-        slug: 'changes-later',
-        tag: 'CLINICAL ARCHITECTURE',
-        q: 'WHAT HAPPENS IF I WANT TO MAKE CHANGES TO THE TERMINAL LATER?',
-        a: 'YOU CAN DEPLOY MODULAR OVERLAYS OR ENGAGE SAVINCLIFF FOR EXPANSION NODES AND SCALING.'
+        slug: 'prescription-refills',
+        tag: 'CLINICAL PROTOCOLS',
+        q: 'How do I request a refill for my compounded medication?',
+        a: 'You can request refills through your portal or upload a new prescription directly to our Rx Terminal.'
       },
       {
-        slug: 'brand-evolution',
-        tag: 'REGULATORY IDENTITY',
-        q: 'DO I NEED A FULL OVERHAUL OR JUST A SYSTEM EVOLUTION?',
-        a: 'FULL OVERHAULS REDEFINE DISPENSING TOPOLOGY; EVOLUTIONS SEAMLESSLY UPGRADE SUB-MODULES WHILE PRESERVING AUDIT CONTINUITY.'
+        slug: 'delivery-logistics',
+        tag: 'COLD-CHAIN SUPPORT',
+        q: 'How is my medication shipped and delivered?',
+        a: 'We dispatch all temperature-sensitive items in secure cold-chain packouts with continuous logging.'
       }
     ]
   }
@@ -81,7 +81,7 @@ export default function FaqDetail() {
           </div>
 
           {/* Core Question Title */}
-          <h2 className="font-serif text-3xl md:text-5xl text-white mb-12 leading-tight tracking-wide max-w-4xl">
+          <h2 className="font-sans text-3xl md:text-5xl font-black text-white mb-12 leading-tight tracking-tight uppercase max-w-4xl">
             {data.question}
           </h2>
 
@@ -109,15 +109,15 @@ export default function FaqDetail() {
 
             {/* Left Box: Striking solid black block with custom overlapping brand lettering */}
             <div className="bg-black text-brand-teal rounded-lg p-8 md:p-10 flex items-center justify-center shrink-0 border border-white/10 shadow-inner w-full lg:w-auto text-center">
-              <div className="font-serif font-black text-4xl md:text-5xl tracking-tighter uppercase leading-none select-none">
-                HIRE<br />
-                <span className="text-white">SVZ</span>
+              <div className="font-sans font-black text-3xl md:text-4xl tracking-tighter uppercase leading-none select-none">
+                CLINICAL<br />
+                <span className="text-white">CARE</span>
               </div>
             </div>
 
             {/* Right Column: Heading & Benefits list */}
             <div className="flex-1 flex flex-col justify-center z-10">
-              <h3 className="font-serif text-xl md:text-3xl font-bold mb-6 leading-snug tracking-wide text-white">
+              <h3 className="font-sans text-xl md:text-3xl font-black mb-6 leading-snug tracking-tight uppercase text-white">
                 {data.cta.heading}
               </h3>
               <ul className="flex flex-col gap-3 mb-8">
@@ -181,10 +181,10 @@ export default function FaqDetail() {
                 <div className="text-brand-teal text-2xs font-black tracking-[0.2em] uppercase mb-4">
                   {item.tag}
                 </div>
-                <h4 className="font-serif text-base md:text-lg text-white mb-4 leading-snug tracking-wide group-hover:text-white transition-colors">
+                <h4 className="font-sans text-base md:text-lg font-bold text-white mb-4 leading-snug tracking-tight group-hover:text-white transition-colors">
                   {item.q}
                 </h4>
-                <p className="text-xs text-white/50 tracking-wider font-bold leading-relaxed uppercase line-clamp-3">
+                <p className="text-xs md:text-sm text-white/60 tracking-normal font-normal leading-relaxed line-clamp-3">
                   {item.a}
                 </p>
               </div>

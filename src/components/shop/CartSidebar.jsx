@@ -31,7 +31,7 @@ export default function CartSidebar() {
             {/* Header */}
             <div className="flex items-center justify-between px-10 py-8 border-b border-black/10">
               <div className="flex items-center gap-4">
-                <span className="text-xs font-black uppercase tracking-[0.4em]">BASKET / {count} ITEM</span>
+                <span className="text-xs font-black uppercase tracking-[0.4em]">BASKET - {count} ITEM</span>
               </div>
               <button onClick={() => setOpen(false)} className="w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-700 group">
                 <X className="w-5 h-5 group-hover:rotate-90 transition-transform" />

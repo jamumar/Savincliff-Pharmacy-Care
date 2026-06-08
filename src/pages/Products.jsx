@@ -18,7 +18,7 @@ export default function Products() {
       <section className="px-6 md:px-12 mb-20 lg:mb-40">
          <div className="max-w-[1800px] mx-auto border-b border-black pb-12">
             <h1 className="sub-display-svz">STANDARDS</h1>
-            <p className="text-xs font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS / VERIFIED 2026</p>
+            <p className="text-xs font-black tracking-[0.4em] text-black/40 mt-4 uppercase">CLINICAL QUALITY PROTOCOLS - VERIFIED 2026</p>
          </div>
       </section>
 
@@ -35,9 +35,9 @@ export default function Products() {
                     className="p-16 border-b md:border-r border-black/10 hover:bg-black hover:text-white transition-all duration-700 group flex flex-col justify-between min-h-[400px]"
                 >
                     <div>
-                        <p className="text-2xs font-black tracking-[0.4em] uppercase text-black/20 group-hover:text-white/20 mb-8">{a.id} / AUDIT</p>
+                        <p className="text-2xs font-black tracking-[0.4em] uppercase text-black/20 group-hover:text-white/20 mb-8">{a.id} - AUDIT</p>
                         <h3 className="text-3xl font-black uppercase tracking-tighter mb-6">{a.title}</h3>
-                        <p className="text-xs font-bold text-black/40 group-hover:text-white/40 tracking-widest uppercase leading-relaxed">
+                        <p className="text-xs font-medium text-black/50 group-hover:text-white/60 tracking-normal leading-relaxed">
                            {a.text}
                         </p>
                     </div>
@@ -53,10 +53,10 @@ export default function Products() {
             <div>
                <h2 className="sub-display-svz mb-12">CLINICAL<br />INTEGRITY</h2>
                <div className="space-y-8 max-w-xl">
-                  <p className="text-xl text-white font-medium leading-tight tracking-tight uppercase">
+                  <p className="text-lg md:text-xl text-white font-medium leading-relaxed tracking-normal">
                       Integrity is not a value; it's a specification. Every medication at Savincliff is subjected to a four-layer clinical audit before entering our inventory node.
                   </p>
-                  <p className="text-xs font-bold tracking-[0.3em] uppercase text-white/40 leading-relaxed">
+                  <p className="text-xs md:text-sm font-semibold tracking-normal text-white/60 leading-relaxed">
                       We dismantle the complexity of pharmaceutical verification to ensure that your health is anchored by primary-source certainty.
                   </p>
                </div>

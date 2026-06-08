@@ -33,7 +33,7 @@ export default function AccountOverview() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 1, ease: easeQuint }}
         >
-           <p className="label-svz mb-4 md:mb-8">Patient Identity / FCT Node</p>
+           <p className="label-svz mb-4 md:mb-8">Patient Identity - FCT Node</p>
            <h1 className="text-3xl md:text-8xl font-black uppercase tracking-tighter leading-none">
              Welcome back,<br />{user?.username || 'NODE 01'}
            </h1>
@@ -55,7 +55,7 @@ export default function AccountOverview() {
            >
              <div className="flex justify-between items-start">
                 <div className="space-y-2">
-                   <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/20 group-hover:text-brand-teal transition-all duration-500">{stat.id} / AUDIT</p>
+                   <p className="text-2xs font-black uppercase tracking-[0.4em] text-black/20 group-hover:text-brand-teal transition-all duration-500">{stat.id} - AUDIT</p>
                    <p className="text-xs font-black uppercase tracking-[0.4em]">{stat.label}</p>
                 </div>
                 <stat.icon className="w-6 h-6 opacity-10 group-hover:opacity-100 group-hover:text-brand-teal transition-all duration-700" strokeWidth={1} />

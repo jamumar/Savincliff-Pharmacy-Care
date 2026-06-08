@@ -30,7 +30,7 @@ export default function AccountLayout() {
         <div className="border-b border-black pb-8 md:pb-12 mb-10 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
                <h1 className="display-lg font-black uppercase tracking-tighter leading-none">Dashboard</h1>
-               <p className="text-2xs md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] text-black/40 mt-2 md:mt-4 uppercase">Clinical Terminal / Identity Ref: {user.id || 'N/A'}</p>
+               <p className="text-2xs md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] text-black/40 mt-2 md:mt-4 uppercase">Clinical Terminal - Identity Ref: {user.id || 'N/A'}</p>
             </div>
             <div className="flex items-center gap-4 md:gap-6">
                 <div className="text-right hidden md:block">

@@ -189,11 +189,11 @@ export default function Shop() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: easeQuint }}
-                className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
+                className="display-md text-black"
               >
                 INVENTORY
               </motion.h2>
-              <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40 mt-4">Clinical Manifest / Synchronized 2026</p>
+              <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40 mt-4">Clinical Manifest - Synchronized 2026</p>
             </div>
           </div>
 
@@ -203,11 +203,10 @@ export default function Shop() {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 border text-2xs md:text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${
-                  activeFilter === filter
+                className={`px-4 py-2 border text-2xs md:text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${activeFilter === filter
                     ? 'bg-black text-white border-black'
                     : 'bg-transparent text-black/40 border-black/10 hover:text-black hover:border-black/30'
-                }`}
+                  }`}
               >
                 {filter}
               </button>
@@ -277,7 +276,7 @@ export default function Shop() {
       <section className="bg-black py-12 md:py-24 overflow-hidden select-none pointer-events-none">
         <ScrollMarquee baseVelocity={-0.4}>
           <span className="display-giant font-black uppercase tracking-[-0.05em] text-white/5 mx-6 md:mx-12">
-            SAVINCLIFF COMBINES CLINICAL OVERSIGHT, DIGITAL AUTHENTICATION FOR MODERN INFRASTRUCTURE, AND MODERN VERIFIED – CLINICAL – PHARMACEUTICAL WORKFLOWS DISPENSING – SYSTEMS – TO CREATE A SAFER AND MORE INTELLIGENT DISPENSING – SOURCING – COMPLIANCE –
+            VERIFIED – CLINICAL – PHARMACEUTICAL WORKFLOWS – DISPENSING – SYSTEMS – SOURCING - COMPLIANCE
           </span>
         </ScrollMarquee>
       </section>

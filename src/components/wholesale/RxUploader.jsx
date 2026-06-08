@@ -22,7 +22,7 @@ export default function RxUploader() {
       
       <div className="flex items-center gap-4 text-2xs font-black tracking-[0.4em] uppercase mb-12 text-black">
         <Lock className="w-4 h-4 text-brand-teal" />
-        <span>Secure Clinical Terminal / End-to-End Encryption</span>
+        <span>Secure Clinical Terminal - End-to-End Encryption</span>
       </div>
 
       <AnimatePresence mode="wait">

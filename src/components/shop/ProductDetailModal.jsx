@@ -73,7 +73,7 @@ export default function ProductDetailModal({ product, onClose }) {
                      transition={{ delay: 0.3, duration: 0.8 }}
                      className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal mb-3 md:mb-6"
                    >
-                     {product.brand} / Clinical Node
+                     {product.brand} - Clinical Node
                    </motion.p>
                    <motion.h2 
                      initial={{ opacity: 0, y: 40 }}
@@ -103,7 +103,7 @@ export default function ProductDetailModal({ product, onClose }) {
                 <div className="pt-6 md:pt-16 border-t border-black/10">
                    <div className="flex items-end justify-between mb-8 md:mb-16">
                       <div>
-                         <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 mb-2 md:mb-4">Node Price / Unit</p>
+                         <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/20 mb-2 md:mb-4">Node Price - Unit</p>
                          <p className="text-3xl md:text-5xl font-black tracking-tighter">₦{product.price.toLocaleString()}</p>
                       </div>
                       
@@ -133,7 +133,7 @@ export default function ProductDetailModal({ product, onClose }) {
                 </div>
                 
                 <p className="text-2xs md:text-2xs font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black/10">
-                   Synchronized Archive / 102.33.1.04
+                   Synchronized Archive - 102.33.1.04
                 </p>
              </div>
           </div>

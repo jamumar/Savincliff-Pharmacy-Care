@@ -38,7 +38,7 @@ export default function PrescriptionsPage() {
       {/* High-Impact Heading */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-12 border-b border-black/5 pb-8 md:pb-12">
         <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">CLINICAL<br />DOCUMENTS</h1>
-        <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive / Ref: {prescriptions.length}</p>
+        <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 underline underline-offset-8">Verified Prescription Archive - Ref: {prescriptions.length}</p>
       </div>
 
       <div className="grid gap-0 border border-black/5">

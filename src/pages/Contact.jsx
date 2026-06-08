@@ -19,7 +19,7 @@ export default function Contact() {
             >
                ESTABLISH<br />SYNC
             </motion.h1>
-            <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40 mt-4 md:mt-8">Primary Communications Node / FCT Abuja</p>
+            <p className="text-2xs md:text-xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/40 mt-4 md:mt-8">Primary Communications Node - FCT Abuja</p>
          </div>
       </section>
 
@@ -31,24 +31,24 @@ export default function Contact() {
             <div className="lg:col-span-4 space-y-12 md:space-y-24">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 md:gap-12">
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 01 / Physical</p>
+                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 01 - Physical</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">CLINICAL HQ</h3>
-                      <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
-                         Divib Plaza, 7th Avenue,<br />Gwarinpa, Abuja / FCT
+                      <p className="text-base md:text-lg text-black/60 font-medium tracking-tight leading-relaxed">
+                         Divib Plaza, 7th Avenue,<br />Gwarinpa, Abuja - FCT
                       </p>
                    </div>
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 02 / Digital</p>
+                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 02 - Digital</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">DIRECT SYNC</h3>
-                      <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
+                      <p className="text-base md:text-lg text-black/60 font-medium tracking-tight leading-relaxed">
                          node@savincliff.com<br />
                          +234 (0) 923 251 2064
                       </p>
                    </div>
                    <div className="space-y-3 md:space-y-4">
-                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 03 / Support</p>
+                      <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-brand-teal">Node 03 - Support</p>
                       <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter">PATIENT DESK</h3>
-                      <p className="text-base md:text-xl text-black/60 font-medium uppercase tracking-tight leading-tight">
+                      <p className="text-base md:text-lg text-black/60 font-medium tracking-tight leading-relaxed">
                          Live Terminal Available<br />
                          09:00 — 18:00 WAT
                       </p>
@@ -77,17 +77,17 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
                         <div className="space-y-3 md:space-y-4 relative group">
                             <label className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Patient Handle</label>
-                            <input placeholder="ENTER FULL NAME" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all" />
+                            <input placeholder="Enter full name" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-lg font-semibold tracking-normal focus:outline-none focus:border-brand-teal transition-all" />
                         </div>
                         <div className="space-y-3 md:space-y-4 relative group">
                             <label className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Digital Node</label>
-                            <input placeholder="EMAIL@NODE.COM" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all" />
+                            <input placeholder="email@node.com" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-lg font-semibold tracking-normal focus:outline-none focus:border-brand-teal transition-all" />
                         </div>
                     </div>
                     
                     <div className="space-y-3 md:space-y-4 relative group">
-                        <label className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Clinical Protocol / Message</label>
-                        <textarea rows={4} placeholder="STATE YOUR REQUIREMENT" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-2xl font-black uppercase tracking-tighter focus:outline-none focus:border-brand-teal transition-all resize-none" />
+                        <label className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase opacity-40 group-focus-within:opacity-100 transition-opacity">Clinical Protocol - Message</label>
+                        <textarea rows={4} placeholder="State your requirement" className="w-full bg-transparent border-b border-black/10 py-4 md:py-6 text-base md:text-lg font-semibold tracking-normal focus:outline-none focus:border-brand-teal transition-all resize-none" />
                     </div>
 
                     <button type="button" className="group flex items-center justify-between w-full bg-black text-white px-6 md:px-12 py-6 md:py-10 text-xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.4em] hover:bg-brand-teal transition-all duration-700">
@@ -103,7 +103,7 @@ export default function Contact() {
           <div className="animate-marquee whitespace-nowrap">
              {Array(8).fill("").map((_, i) => (
                 <span key={i} className="display-giant font-black uppercase tracking-[-0.05em] text-white/5 mx-8 md:mx-24">
-                   ESTABLISH SYNC / ABUJA NODE / FCT / GWARINPA / 09.04.12 / 
+                   ESTABLISH SYNC - ABUJA NODE - FCT - GWARINPA - 09.04.12 - 
                 </span>
              ))}
           </div>

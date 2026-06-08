@@ -10,128 +10,48 @@ const FAQ_CATEGORIES = [
     tag: 'ABOUT SAVINCLIFF',
     questions: [
       {
-        q: 'WHAT MAKES SAVINCLIFF DIFFERENT FROM OTHER AGENCIES?',
-        a: 'SAVINCLIFF BLENDS ARTISTRY AND TECH WITH INTENTIONAL GROWTH AND ELITE PHARMACEUTICAL EXECUTION.'
+        q: 'What makes Savincliff Pharmacy different?',
+        a: 'Savincliff blends state-of-the-art digital infrastructure with strict clinical pharmacy standards, ensuring verified sourcing and precise custom compounding.'
       },
       {
-        q: 'WHAT KIND OF AGENCY IS SAVINCLIFF?',
-        a: 'SAVINCLIFF IS A HIGH-CALIBER CREATIVE AND TECHNICAL AGENCY WITH FULL-SPECTRUM CLINICAL SERVICES.'
+        q: 'Is Savincliff a fully licensed pharmacy?',
+        a: 'Yes, Savincliff is fully licensed under all applicable health regulatory guidelines, with certified pharmacists overseeing every order.'
       }
     ]
   },
   {
-    id: 'client-experience',
+    id: 'prescriptions-and-refills',
     idNum: '[02]',
-    title: 'CLIENT EXPERIENCE',
-    tag: 'CLIENT EXPERIENCE',
+    title: 'PRESCRIPTIONS & REFILLS',
+    tag: 'PRESCRIPTIONS & REFILLS',
     questions: [
       {
-        q: 'HOW DO WE GET STARTED WORKING WITH SAVINCLIFF?',
-        a: 'BOOK A DISCOVERY CALL—SAVINCLIFF FOLLOWS UP WITH A CUSTOM CLINICAL AUDIT AND PROPOSAL.'
+        q: 'How do I upload my prescription?',
+        a: 'You can submit your prescription directly through our digital Rx Terminal. Once uploaded, our clinical team will review and verify it.'
       },
       {
-        q: 'CAN SAVINCLIFF WORK WITH INTERNATIONAL OR REMOTE TEAMS?',
-        a: 'YES—SAVINCLIFF WORKS GLOBALLY WITH ASYNC WORKFLOWS AND SECURE DISTRIBUTED AUDIT NODES.'
+        q: 'Can I set up automatic refills for my medication?',
+        a: 'Yes. You can manage recurring refills directly through your secure patient portal, or speak to a clinical coordinator to automate the schedule.'
       },
       {
-        q: 'WHO WILL BE LEADING OUR PROJECT AT SAVINCLIFF?',
-        a: 'PROJECTS ARE LED BY SENIOR PHARMACEUTICAL ARCHITECTS AND SUPPORTED BY A CLOSE-KNIT CLINICAL TEAM.'
-      },
-      {
-        q: 'HOW ARE PROJECTS TYPICALLY PRICED AT SAVINCLIFF?',
-        a: 'SAVINCLIFF USES FLAT-FEE PRICING WITH OPTIONAL PHASES OR ONGOING REGULATORY RETAINERS.'
-      },
-      {
-        q: 'HOW INVOLVED WILL OUR TEAM NEED TO BE DURING A PROJECT?',
-        a: 'CLIENT COLLABORATION IS KEY—SAVINCLIFF GUIDES, BUT YOUR STRATEGIC INPUT SHAPES THE FINAL COMPLIANCE OUTCOME.'
-      },
-      {
-        q: 'WHAT HAPPENS AFTER THE PROJECT LAUNCHES?',
-        a: 'SAVINCLIFF OFFERS POST-LAUNCH SUPPORT, AUDIT MONITORING, TRAINING, AND LONG-TERM PARTNERSHIP OPTIONS.'
+        q: 'What is the clinical verification cycle?',
+        a: 'Each prescription undergoes a rigorous double-verification process by our licensed pharmacists, which typically takes between 15 to 30 minutes.'
       }
     ]
   },
   {
-    id: 'branding',
+    id: 'compounding',
     idNum: '[03]',
-    title: 'BRANDING',
-    tag: 'BRANDING',
+    title: 'CUSTOM COMPOUNDING',
+    tag: 'CUSTOM COMPOUNDING',
     questions: [
       {
-        q: 'HOW DOES SAVINCLIFF APPROACH HEALTHCARE IDENTITY?',
-        a: 'WE CRAFT TIMELESS VISUAL SYSTEMS THAT COMMAND TRUST WHILE RETAINING CUTTING-EDGE DIGITAL PRECISION.'
+        q: 'What compounding capabilities do you offer?',
+        a: 'We specialize in tailored dosage formulations, allergen-free preparations, bioidentical hormone therapies, and custom pediatric compounding.'
       },
       {
-        q: 'DO YOU PROVIDE FULL DESIGN SYSTEMS AND COMPLIANCE KITS?',
-        a: 'EVERY DIGITAL DEPLOYMENT INCLUDES COMPREHENSIVE COMPONENT ARCHITECTURE BUILT FOR INSTITUTIONAL SCALE.'
-      }
-    ]
-  },
-  {
-    id: 'design-ux',
-    idNum: '[04]',
-    title: 'DESIGN & UX',
-    tag: 'DESIGN & UX',
-    questions: [
-      {
-        q: 'HOW DO YOU ENSURE SEAMLESS DISPENSING USABILITY?',
-        a: 'WE CONDUCT RIGOROUS USER FLOW AUDITS AND CLINICAL PERSONA MAPPING TO ACCELERATE FULFILLMENT VELOCITY.'
-      },
-      {
-        q: 'DO YOU INTEGRATE VOLUMETRIC 3D EXPERIENCES?',
-        a: 'YES, WE DEPLOY HIGH-FIDELITY WEBGL/THREE.JS VISUALIZATIONS TO ELEVATE PRODUCT PRESENTATION WITH ADDITIVE LIGHTING.'
-      }
-    ]
-  },
-  {
-    id: 'production',
-    idNum: '[05]',
-    title: 'PRODUCTION',
-    tag: 'PRODUCTION',
-    questions: [
-      {
-        q: 'WHAT IS YOUR PRE-PRODUCTION BRIEFING PROCESS?',
-        a: 'WE ALIGN ON STRICT CREATIVE FOCUS AND COMPLIANCE BOUNDARIES BEFORE EXECUTING INDUSTRIAL-GRADE MEDIA CAMPAIGNS.'
-      }
-    ]
-  },
-  {
-    id: 'engineering-development',
-    idNum: '[06]',
-    title: 'ENGINEERING & DEVELOPMENT',
-    tag: 'ENGINEERING & DEVELOPMENT',
-    questions: [
-      {
-        q: 'WHAT TECHNOLOGY STACK DOES SAVINCLIFF DEPLOY?',
-        a: 'HIGH-PERFORMANCE REACT NODES, TAURI DESKTOP ENGINES, AND SECURE OFFLINE-FIRST INDEXEDDB SYNCHRONIZATION.'
-      },
-      {
-        q: 'ARE YOUR SYSTEMS FULLY REGULATORY COMPLIANT?',
-        a: 'TOTAL CRYPTOGRAPHIC AUDIT TRAILS GUARANTEE SEAMLESS COMPLIANCE ACROSS LOCAL AND INTERNATIONAL DISPENSING STANDARDS.'
-      }
-    ]
-  },
-  {
-    id: 'webflow-nocode',
-    idNum: '[07]',
-    title: 'WEBFLOW & NO-CODE',
-    tag: 'WEBFLOW & NO-CODE',
-    questions: [
-      {
-        q: 'CAN YOU INTEGRATE CUSTOM AI AGENTS INTO EXISTING PLATFORMS?',
-        a: 'WE BUILD EMBEDDED NO-CODE AI PROTOTYPES AND AUTOMATION WORKFLOWS TAILORED DIRECTLY TO INSTITUTIONAL DASHBOARDS.'
-      }
-    ]
-  },
-  {
-    id: 'strategy-consulting',
-    idNum: '[08]',
-    title: 'STRATEGY & CONSULTING',
-    tag: 'STRATEGY & CONSULTING',
-    questions: [
-      {
-        q: 'HOW DO WE SCALE OUR CLINICAL DISPENSING REACH?',
-        a: 'WE CONDUCT COMPREHENSIVE COMPETITOR MAPPING AND ECOSYSTEM AUTOMATION TO AMPLIFY WHAT WORKS AND SECURE FUTURE EXPANSION.'
+        q: 'How do you verify compound safety and purity?',
+        a: 'We run quality testing assays, including high-performance liquid chromatography and sterility screens, to guarantee compound active agent potency.'
       }
     ]
   }
@@ -227,7 +147,7 @@ export default function Faqs() {
                       </div>
 
                       {/* Question Heading */}
-                      <h3 className="font-serif text-base md:text-lg text-white mb-4 leading-snug tracking-wide group-hover:text-white transition-colors">
+                      <h3 className="font-sans text-base md:text-lg font-bold text-white mb-4 leading-snug tracking-tight group-hover:text-white transition-colors">
                         {item.q}
                       </h3>
 
@@ -238,7 +158,7 @@ export default function Faqs() {
                           animate={{ height: 'auto', opacity: 1 }}
                           className="overflow-hidden"
                         >
-                          <p className={`text-xs text-white/50 tracking-wider font-bold leading-relaxed uppercase ${!isExpanded ? 'line-clamp-3' : ''}`}>
+                          <p className={`text-xs md:text-sm text-white/60 tracking-normal font-normal leading-relaxed ${!isExpanded ? 'line-clamp-3' : ''}`}>
                             {item.a}
                           </p>
                         </motion.div>

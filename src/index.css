@@ -61,16 +61,16 @@
 
 @layer utilities {
   .text-display-giant {
-    @apply text-[12vw] md:text-[10vw];
+    @apply text-[clamp(3.5rem,10vw,7.5rem)] md:text-[clamp(5rem,8vw,8.5rem)];
   }
   .text-display-lg {
-    @apply text-[8vw] md:text-[6vw];
+    @apply text-[clamp(2.5rem,7vw,4rem)] md:text-[clamp(3.5rem,5vw,4.5rem)];
   }
   .text-display-md {
-    @apply text-[5vw] md:text-[3.5vw];
+    @apply text-[clamp(1.75rem,4.5vw,2.75rem)] md:text-[clamp(2.25rem,3vw,3.25rem)];
   }
   .text-display-sm {
-    @apply text-[3.5vw] md:text-[2vw];
+    @apply text-[clamp(1.35rem,3vw,1.85rem)] md:text-[clamp(1.5rem,1.8vw,2.25rem)];
   }
 
   .display-giant {
@@ -91,8 +91,11 @@
   .sub-display-svz {
     @apply display-md;
   }
+  .display-clamp {
+    @apply text-display-lg leading-[0.95];
+  }
   .label-svz {
-    @apply text-2xs font-black tracking-[0.4em] uppercase text-svz-red;
+    @apply text-2xs font-black tracking-[0.4em] uppercase text-brand-teal;
   }
   .grid-container {
     @apply max-w-[1800px] mx-auto px-[5vw];

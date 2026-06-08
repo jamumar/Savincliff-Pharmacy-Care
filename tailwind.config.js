@@ -43,7 +43,6 @@ export default {
           deep:     '#0E4F73',
           slate:    '#666666',
         },
-        'svz-red': '#1B6E8C',
       },
       keyframes: {
         'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },

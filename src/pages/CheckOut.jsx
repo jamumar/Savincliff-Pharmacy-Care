@@ -12,8 +12,8 @@ import { toast } from '@/components/ui/use-toast';
 import { useAuth } from '@/lib/AuthContext';
 
 const DELIVERY_OPTIONS = [
-  { id: 'pickup', label: 'CLINICAL PICKUP', desc: 'DIVIB PLAZA, 7TH AVE, GWARINPA / FREE', icon: Store },
-  { id: 'delivery', label: 'PATIENT DISPATCH', desc: 'ABUJA METRO AREA / ₦1,500', icon: Truck },
+  { id: 'pickup', label: 'CLINICAL PICKUP', desc: 'DIVIB PLAZA, 7TH AVE, GWARINPA - FREE', icon: Store },
+  { id: 'delivery', label: 'PATIENT DISPATCH', desc: 'ABUJA METRO AREA - ₦1,500', icon: Truck },
 ];
 
 const STEPS = ['AUDIT', 'IDENTITY', 'CONFIRM'];
@@ -65,7 +65,7 @@ export default function Checkout() {
             <CheckCircle className="w-12 h-12" strokeWidth={1} />
           </div>
           <div className="space-y-4">
-             <h1 className="text-5xl font-black uppercase tracking-tighter">ORDER COMMITTED</h1>
+             <h1 className="display-lg text-black">ORDER COMMITTED</h1>
              <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/40 leading-relaxed max-w-sm mx-auto">
                 Fulfillment protocol initiated. A licensed pharmacist will contact your node <b>{form.phone}</b> for final clinical verification.
              </p>
@@ -110,7 +110,7 @@ export default function Checkout() {
                <AnimatePresence mode="wait">
                   {step === 0 && (
                       <motion.div key="st0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
-                         <h2 className="text-3xl font-black uppercase tracking-tighter">BASKET AUDIT</h2>
+                         <h2 className="display-md text-black">BASKET AUDIT</h2>
                          <div className="border border-black/10">
                             {items.map(item => (
                                 <div key={item.id} className="p-8 border-b border-black/10 flex gap-8 items-center group">
@@ -119,7 +119,7 @@ export default function Checkout() {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                        <h4 className="text-lg font-black uppercase tracking-tighter">{item.name}</h4>
-                                       <p className="text-2xs font-bold tracking-widest text-black/40 uppercase mt-1">{item.brand} / UNIT: {item.unit}</p>
+                                       <p className="text-2xs font-bold tracking-widest text-black/40 uppercase mt-1">{item.brand} - UNIT: {item.unit}</p>
                                     </div>
                                     <div className="text-right">
                                        <p className="text-xl font-black tracking-tighter">₦{(item.price * item.qty).toLocaleString()}</p>
@@ -128,15 +128,15 @@ export default function Checkout() {
                                 </div>
                             ))}
                          </div>
-                         <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700">
-                             Next Sequence / IDENTITY <ArrowRight className="w-5 h-5" />
-                         </button>
+                          <button onClick={() => setStep(1)} className="w-full bg-black text-white py-8 text-xs font-black uppercase tracking-[0.3em] flex items-center justify-center gap-8 hover:bg-brand-teal transition-all duration-700">
+                             Next Sequence - IDENTITY <ArrowRight className="w-5 h-5" />
+                          </button>
                       </motion.div>
                   )}
 
                   {step === 1 && (
                       <motion.div key="st1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16">
-                         <h2 className="text-3xl font-black uppercase tracking-tighter">IDENTITY SPEC</h2>
+                         <h2 className="display-md text-black">IDENTITY SPEC</h2>
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             {DELIVERY_OPTIONS.map(opt => (
                                 <button key={opt.id} onClick={() => setDelivery(opt.id)} className={`p-10 border text-left flex flex-col justify-between min-h-[160px] transition-all duration-500 ${delivery === opt.id ? 'bg-black text-white border-black' : 'border-black/10 hover:border-black'}`}>
@@ -179,7 +179,7 @@ export default function Checkout() {
 
                   {step === 2 && (
                       <motion.div key="st2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16">
-                         <h2 className="text-3xl font-black uppercase tracking-tighter">FINAL COMMIT</h2>
+                         <h2 className="display-md text-black">FINAL COMMIT</h2>
                          <div className="space-y-12">
                             <div className="p-12 bg-[#FAFAFA] border border-black/5 space-y-8">
                                <p className="text-2xs font-black tracking-[0.4em] uppercase text-brand-teal">Protocol Acknowledgement</p>

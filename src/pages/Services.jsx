@@ -247,8 +247,7 @@ function ServicesHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="font-black uppercase tracking-[-0.04em] leading-[0.88] text-white"
-            style={{ fontSize: 'clamp(3.5rem, 9vw, 9.5rem)' }}
+            className="display-giant text-white"
           >
             SAVINCLIFF
           </motion.h1>
@@ -311,9 +310,9 @@ const TEAL3 = 'rgba(27,110,140,0.2)';
 const CAPABILITIES_DATA = [
   {
     id: '[01]',
-    title: 'STRATEGY',
-    desc: 'WE ALIGN ON THE VISION SO EVERY STEP FORWARD IS A STEP WITH PURPOSE.',
-    list: ['Web Competitor Analysis', 'Persona Posters', 'User Flows', 'User Journey', 'Sitemap'],
+    title: 'CLINICAL REGULATION',
+    desc: 'We align on medical regulatory compliance so every compound dispensed is rigidly verified.',
+    list: ['Regulatory compliance audit', 'DEA compliance checking', 'Federal health standards verification', 'Workflow validation guidelines', 'Risk assessment protocols'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ display:'flex', flexDirection:'column', gap:12, animation:'cap-float 3s ease-in-out infinite' }}>
@@ -325,9 +324,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[02]',
-    title: 'BRAND',
-    desc: "WE LAY THE GROUNDWORK FOR WHO YOU ARE NOW — AND WHO YOU'RE MEANT TO BECOME.",
-    list: ['Naming workshop', 'Brand Strategy & Core', 'Brand Deck', 'Logo Evolution', 'Sales & Marketing Collateral', 'Messaging & copy'],
+    title: 'COMPOUNDING BRAND',
+    desc: 'We formulate therapeutic preparations with raw chemical grade essences and clinical accuracy.',
+    list: ['Active ingredient assay', 'Excipient customization', 'Bioidentical hormone formulas', 'Liquid and oral suspension compounds', 'Topical dermal preparations', 'Veterinary compounding adaptions'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ width:80, height:80, background:`linear-gradient(135deg,${TEAL},${TEAL2})`, animation:'cap-morph 4s ease-in-out infinite' }} />
@@ -336,9 +335,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[03]',
-    title: 'DESIGN',
-    desc: 'WE CRAFT BEAUTY WITH INTENTION, WHERE FORM AND FUNCTION MEET IN PERFECT BALANCE.',
-    list: ['UI/UX Design', 'Moodboard & Brainstorm', 'Design Systems & UI Kits', 'Animations & Interactions', '3D Design', 'Usability Testing'],
+    title: 'DISPENSING PRESETS',
+    desc: 'We craft safe medication alignment designs, balancing multiple therapeutic targets in harmony.',
+    list: ['Bar-coded medication validation', 'Pharmacist clinical reviews', 'Dosage verification engines', 'Multi-drug interaction audits', 'Adherence support models', 'Patient profile sync algorithms'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ position:'relative', width:88, height:88 }}>
@@ -351,9 +350,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[04]',
-    title: 'DEVELOPMENT',
-    desc: "WE BRING DESIGN TO LIFE WITH CODE THAT'S CLEAN, FAST, AND BUILT TO SCALE.",
-    list: ['Custom Development', 'Front-end Optimization', 'Accessibility', 'Web App Development', 'AI Integrations', 'Data Migration'],
+    title: 'THERAPEUTIC ENGINE',
+    desc: 'We support integrated care infrastructures that monitor therapeutic compliance at scale.',
+    list: ['Custom dosage optimization', 'Therapeutic efficacy logs', 'Adverse reaction tracking', 'Real-time adherence reporting', 'Tele-pharmacy support channels', 'EHR record synchronizations'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ position:'relative', width:72, height:72 }}>
@@ -366,9 +365,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[05]',
-    title: 'PRODUCTION',
-    desc: 'WE CREATE THE FOUNDATION FOR YOUR NEXT BIG IDEA.',
-    list: ['Creative Identity Workshop', 'Define Vision & Creative Focus', 'Pre-Production Briefing', 'Talent & Set Scouting', 'Campaign Execution', 'Post-Production'],
+    title: 'COLD-CHAIN DISPATCH',
+    desc: 'We secure temperature-controlled cold chain networks for end-to-end medication integrity.',
+    list: ['Temperature-controlled packouts', 'Continuous sensor logging', 'Insulated barrier shipping', 'Real-time transit alerts', 'Secure handoff authentications', 'Proof-of-delivery logging'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ animation:'cap-bounce 2s ease-in-out infinite' }}>
@@ -379,9 +378,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[06]',
-    title: 'GROWTH',
-    desc: "WE AMPLIFY WHAT'S WORKING AND OPEN THE DOORS TO WHAT'S NEXT.",
-    list: ['SEO & SEM Strategy', 'Custom Dashboard Reporting', 'Process & Workflow Automation', 'AI Consulting'],
+    title: 'INTEGRITY TESTING',
+    desc: 'We run quality testing assays to ensure compound purity and active agent potency.',
+    list: ['High-Performance Liquid Chromatography', 'Sterility testing protocols', 'Endotoxin presence screens', 'Particulate analysis audits', 'Potency and safety certifications'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ position:'relative' }}>
@@ -393,9 +392,9 @@ const CAPABILITIES_DATA = [
   },
   {
     id: '[07]',
-    title: 'AI ECOSYSTEMS',
-    desc: 'WE ENGINEER SMART INFRASTRUCTURES THAT DO THE WORK — SO YOU CAN FOCUS ON VISION.',
-    list: ['Prompt Engineering & Workflow Design', 'Custom LLM Agent Development', 'AI Strategy & Automation Consulting', 'Data Integration & Fine-Tuning', 'No-Code AI Tools & Prototypes', 'Voice & Chat Interface Design'],
+    title: 'CARE ECOSYSTEMS',
+    desc: 'We compile smart patient care plans that help do the work of healing so patients focus on wellness.',
+    list: ['Patient compliance counseling', 'Refill synchronization algorithms', 'Interactive medication counseling', 'Self-reporting patient portals', 'Provider clinical consulting', 'Care coordination dashboards'],
     visual: (
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8, width:80, height:80 }}>
@@ -485,7 +484,7 @@ function StackedCapabilities() {
 
               {/* Content Area */}
               <div className="pr-0 lg:pr-12">
-                <p className="text-xs md:text-xs font-bold tracking-[0.18em] text-white uppercase mb-10 leading-loose max-w-lg">
+                <p className="text-xs md:text-sm font-semibold tracking-normal text-white/70 mb-10 leading-relaxed max-w-lg">
                   {item.desc}
                 </p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -627,7 +626,7 @@ function CurvedTextScroll() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: '+=5000',          // long enough for both phases
+          end: '+=1500',          // optimized pin duration
           scrub: 1.2,
           pin: true,
           anticipatePin: 1,
@@ -796,7 +795,7 @@ export default function Services() {
       <section className="px-6 md:px-12 pt-32 pb-12 bg-black text-white">
         <div className="max-w-[1800px] mx-auto border-b border-white/10 pb-10">
           <h2 className="display-lg font-black uppercase tracking-[-0.03em] leading-[0.9]">CAPABILITIES</h2>
-          <p className="text-xs font-bold tracking-[0.4em] text-white/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO / 2026 EDITION</p>
+          <p className="text-xs font-bold tracking-[0.4em] text-white/40 mt-3 uppercase">CLINICAL SERVICE PORTFOLIO - 2026 EDITION</p>
         </div>
       </section>
 

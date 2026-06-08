@@ -46,7 +46,7 @@ export default function RefundPolicy() {
                             <div className="h-px bg-black/10 flex-1" />
                         </div>
                         <h2 className="text-4xl font-black uppercase tracking-tighter leading-none group-hover:text-brand-teal transition-colors duration-500">{p.title}</h2>
-                        <p className="text-xl md:text-2xl text-black/60 font-medium leading-tight tracking-tight uppercase max-w-4xl">
+                        <p className="text-lg md:text-xl text-black/60 font-medium leading-relaxed tracking-normal max-w-4xl">
                            {p.body}
                         </p>
                     </div>
@@ -61,7 +61,7 @@ export default function RefundPolicy() {
                     </p>
                     <div className="flex flex-col">
                         <span className="text-xs font-black tracking-widest uppercase">Superintendent Pharmacist</span>
-                        <span className="text-2xs font-bold uppercase tracking-widest text-white/30">SAVINCLIFF CLINICAL / 2026</span>
+                        <span className="text-2xs font-bold uppercase tracking-widest text-white/30">SAVINCLIFF CLINICAL - 2026</span>
                     </div>
                 </div>
                 {/* Decoration */}

@@ -175,14 +175,14 @@ function ManifestoSection() {
       <div className="grid-container grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
         <div className="lg:col-span-4 lg:sticky lg:top-40">
           <p className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-brand-teal mb-8">Clinical Manifesto</p>
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">Our<br />Protocol</h2>
+          <h2 className="display-md text-white">Our<br />Protocol</h2>
         </div>
         <div className="lg:col-span-8">
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease }}
-            className="text-2xl md:text-5xl font-bold uppercase leading-[1.1] tracking-tight text-justify-inter"
+            className="text-xl md:text-3xl font-medium leading-relaxed tracking-normal text-justify-inter"
           >
             We are a clinical pharmacy where science meets precision.{' '}
             <motion.span
@@ -249,7 +249,7 @@ function ProductCarouselSection() {
   return (
     <section className="bg-white py-20 overflow-hidden select-none">
       <div className="mb-12 px-5 md:px-12 flex justify-between items-end max-w-[1800px] mx-auto">
-         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none">
+         <h2 className="display-md text-black">
             FEATURED<br />FORMULATIONS
          </h2>
          <Link to="/shop" className="text-2xs md:text-sm font-black tracking-[0.3em] uppercase text-black/40 hover:text-brand-teal transition-colors flex items-center gap-2">
@@ -360,13 +360,13 @@ export default function Home() {
             className="space-y-12"
           >
              <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-brand-teal">Ready to begin?</p>
-             <h2 className="text-5xl md:display-md font-black uppercase tracking-[-0.04em] leading-[0.85]">
+             <h2 className="display-md leading-[0.85] text-white">
               LET’S DELIVER<br />
               <motion.span
                 initial={{ color: 'rgba(27, 110, 140, 0.3)' }}
                 whileHover={{ scale: 1.05, color: '#1B6E8C', y: -2, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-                className="font-serif-italic font-light text-display-sm italic lowercase cursor-pointer inline-block origin-center"
+                className="font-serif-italic font-light text-display-md italic lowercase cursor-pointer inline-block origin-center"
               >
                 something
               </motion.span>{' '}

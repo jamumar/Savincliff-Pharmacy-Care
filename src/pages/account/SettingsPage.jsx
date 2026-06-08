@@ -53,7 +53,7 @@ export default function SettingsPage() {
       {/* High-Impact Heading */}
       <div className="border-b border-black/5 pb-8 md:pb-12">
         <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">IDENTITY<br />SPECIFICATION</h1>
-        <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 mt-3 md:mt-4 underline underline-offset-8">Audit and modify biometric contact parameters / Ref: {user?.id || '0000'}</p>
+        <p className="text-2xs md:text-2xs font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-black/30 mt-3 md:mt-4 underline underline-offset-8">Audit and modify biometric contact parameters - Ref: {user?.id || '0000'}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20">
