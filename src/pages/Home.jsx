@@ -356,15 +356,19 @@ export default function Home() {
         </div>
       </div>
       <ManifestoSection />
-      {/* Marquee Section */}
-      <section className="py-20 bg-white overflow-hidden border-t border-black/5">
-        <ScrollMarquee baseVelocity={-1.5}>
-          <span className="display-giant font-black uppercase tracking-[-0.04em] text-black/[0.03] mx-12">
-            SAVINCLIFF PHARMACY - CLINICAL PRECISION - PRIMARY SOURCE - SAVINCLIFF PHARMACY - CLINICAL PRECISION - PRIMARY SOURCE -
-          </span>
-        </ScrollMarquee>
-      </section>
-
+    {/* Marquee Section */}
+<section className="py-20 bg-white overflow-hidden border-t border-black/5">
+  <ScrollMarquee baseVelocity={-0.25}>
+    {Array.from({ length: 6 }).map((_, i) => (
+      <span
+        key={i}
+        className="display-giant font-black uppercase tracking-[-0.04em] text-black/[0.03] whitespace-nowrap"
+      >
+        SAVINCLIFF PHARMACY - CLINICAL PRECISION - PRIMARY SOURCE -&nbsp;
+      </span>
+    ))}
+  </ScrollMarquee>
+</section>
       {/* Product Carousel Section */}
       <ProductCarouselSection />
 

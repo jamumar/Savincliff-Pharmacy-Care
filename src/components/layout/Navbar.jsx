@@ -42,35 +42,50 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
-
+ const mobileTransparent = isDarkHeroPage && !open;
+const mobileUseDark = !isDarkHeroPage;
+const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
   return (
     <>
       {/* Mobile Navbar (Header + Menu) */}
       <div className="lg:hidden">
-        <header 
-          className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-500 ${
-            open ? 'bg-black text-white' : useDark || scrolled ? 'bg-white text-black border-b border-black/10' : 'bg-transparent text-white border-b border-transparent'
-          }`}
-        >
-          <div className="flex justify-between items-center px-6 py-5">
-            <Link to="/" onClick={() => setOpen(false)}>
-              <Logo variant={open || !useDark ? 'light' : 'dark'} scrolled={scrolled} />
-            </Link>
-            <button 
-              className="centered-nav__toggle w-10 h-10 flex flex-col items-center justify-center" 
-              onClick={() => setOpen(!open)}
-            >
-              <motion.div 
-                animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
-                className={`w-6 h-[1.5px] mb-1.5 transition-colors ${open ? 'bg-white' : useDark ? 'bg-black' : 'bg-white'}`} 
-              />
-              <motion.div 
-                animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
-                className={`w-6 h-[1.5px] transition-colors ${open ? 'bg-white' : useDark ? 'bg-black' : 'bg-white'}`} 
-              />
-            </button>
-          </div>
-        </header>
+     <header
+  className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-500 ${
+    open
+      ? 'bg-black text-white'
+      : mobileUseDark
+        ? 'bg-white text-black border-b border-black/10'
+        : 'bg-transparent text-white border-b border-transparent'
+  }`}
+>
+  <div className="flex justify-between items-center px-6 py-5">
+    <Link to="/" onClick={() => setOpen(false)}>
+      <Logo
+        variant={mobileLogoVariant}
+        scrolled={scrolled}
+      />
+    </Link>
+
+    <button
+      className="centered-nav__toggle w-10 h-10 flex flex-col items-center justify-center"
+      onClick={() => setOpen(!open)}
+    >
+      <motion.div
+        animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
+        className={`w-6 h-[1.5px] mb-1.5 transition-colors ${
+          open || mobileTransparent ? 'bg-white' : 'bg-black'
+        }`}
+      />
+
+      <motion.div
+        animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
+        className={`w-6 h-[1.5px] transition-colors ${
+          open || mobileTransparent ? 'bg-white' : 'bg-black'
+        }`}
+      />
+    </button>
+  </div>
+</header>
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
