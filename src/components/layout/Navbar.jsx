@@ -141,95 +141,171 @@ export default function Navbar() {
       </div>
 
       {/* Desktop Navbar */}
-      <nav className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${useDark ? 'text-black' : 'text-white'} ${scrolled ? 'py-4' : 'py-6'}`}>
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8 flex items-center justify-between">
-          <Link to="/">
-             <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
-          </Link>
+     {/* Desktop Navbar */}
+<nav
+  className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${
+    useDark ? 'text-black' : 'text-white'
+  } ${scrolled ? 'py-4' : 'py-8'}`}
+>
+  <div className="w-full px-[clamp(28px,3vw,64px)] grid grid-cols-[260px_1fr_260px] items-start">
+    {/* Left Logo */}
+    <Link to="/" className="block w-[230px] xl:w-[250px] -mt-1">
+      <div className="w-full [&_svg]:w-full [&_img]:w-full [&_svg]:h-auto [&_img]:h-auto">
+        <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
+      </div>
+    </Link>
 
-          {/* Desktop Center Links - Hidden on Scroll */}
-          <AnimatePresence>
-            {!scrolled && (
-              <motion.div 
-                initial={{ opacity: 1, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="flex-1 flex justify-center gap-20 xl:gap-32"
-              >
-                  <div className="flex flex-col gap-3">
-                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
-                      [ COMPANY ]
-                    </div>
-                    <Link to="/" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> HOME
-                    </Link>
-                    <Link to="/about" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/about') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> ABOUT
-                    </Link>
-                  </div>
+    {/* Desktop Center Links - Hidden on Scroll */}
+    <AnimatePresence>
+      {!scrolled && (
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center gap-[clamp(48px,6vw,120px)] pt-1"
+        >
+          <div className="flex flex-col gap-3">
+            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+              [ COMPANY ]
+            </div>
 
-                  <div className="flex flex-col gap-3">
-                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
-                      [ MARKET ]
-                    </div>
-                    <Link to="/shop" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/shop') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> INVENTORY
-                    </Link>
-                    <Link to="/products" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/products') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> WELLNESS
-                    </Link>
-                  </div>
-                  
-                  <div className="flex flex-col gap-3">
-                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
-                      [ CLINICAL ]
-                    </div>
-                    <Link to="/services" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/services') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> SERVICES
-                    </Link>
-                    <Link to="/protocols" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/protocols') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> PROTOCOLS
-                    </Link>
-                  </div>
+            <Link
+              to="/"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              HOME
+            </Link>
 
-                  <div className="flex flex-col gap-3">
-                    <div className="text-2xs md:text-sm font-black text-current/30 tracking-[0.2em] uppercase mb-1">
-                      [ ACCESS ]
-                    </div>
-                    <Link to="/faqs" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/faqs') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> INQUIRIES
-                    </Link>
-                    <Link to="/rx-terminal" className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2`}>
-                      <span className={`transition-colors duration-500 ${isActive('/rx-terminal') ? 'text-[#1B6E8C]' : 'text-current/30'}`}>-</span> RX TERMINAL
-                    </Link>
-                    <button onClick={() => setCartOpen(true)} className={`text-2xs md:text-sm font-black tracking-[0.2em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2 text-left`}>
-                      <span className="text-current/30">-</span> ORDER [{count}]
-                    </button>
-                  </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          
-          {/* Right Side Buttons - Always visible but adaptive */}
-          <div className="flex items-center gap-8">
-             {user && (
-               <button 
-                 onClick={logout} 
-                 className={`text-2xs md:text-sm font-black uppercase tracking-[0.2em] ${useDark ? 'text-black/50 hover:text-black' : 'text-white/50 hover:text-white'} transition-colors`}
-               >
-                  EXIT SESSION
-               </button>
-             )}
-             <Link 
-               to="/rx-terminal" 
-               className={`px-8 py-3 text-2xs md:text-sm font-black uppercase tracking-[0.2em] border ${useDark ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'} transition-all`}
-             >
-                UPLOAD RX
-             </Link>
+            <Link
+              to="/about"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/about') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              ABOUT
+            </Link>
           </div>
-        </div>
-      </nav>
+
+          <div className="flex flex-col gap-3">
+            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+              [ MARKET ]
+            </div>
+
+            <Link
+              to="/shop"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/shop') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              INVENTORY
+            </Link>
+
+            <Link
+              to="/products"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/products') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              WELLNESS
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+              [ CLINICAL ]
+            </div>
+
+            <Link
+              to="/services"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/services') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              SERVICES
+            </Link>
+
+            <Link
+              to="/protocols"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/protocols') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              PROTOCOLS
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+              [ ACCESS ]
+            </div>
+
+            <Link
+              to="/faqs"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/faqs') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              INQUIRIES
+            </Link>
+
+            <Link
+              to="/rx-terminal"
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+            >
+              <span className={`transition-colors duration-500 ${isActive('/rx-terminal') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                -
+              </span>
+              RX TERMINAL
+            </Link>
+
+            <button
+              onClick={() => setCartOpen(true)}
+              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2 text-left"
+            >
+              <span className="text-current/40">-</span>
+              ORDER [{count}]
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+
+    {/* Right Side Buttons */}
+    <div className="flex items-center justify-end gap-6">
+      {user && (
+        <button
+          onClick={logout}
+          className={`text-2xs md:text-sm font-black uppercase tracking-[0.22em] ${
+            useDark ? 'text-black/50 hover:text-black' : 'text-white/50 hover:text-white'
+          } transition-colors`}
+        >
+          EXIT SESSION
+        </button>
+      )}
+
+      <Link
+        to="/rx-terminal"
+        className={`min-w-[180px] px-8 py-4 text-center text-2xs md:text-sm font-black uppercase tracking-[0.22em] border ${
+          useDark
+            ? 'border-black text-black hover:bg-black hover:text-white'
+            : 'border-white text-white hover:bg-white hover:text-black'
+        } transition-all`}
+      >
+        UPLOAD RX
+      </Link>
+    </div>
+  </div>
+</nav>
 
     </>
   );
