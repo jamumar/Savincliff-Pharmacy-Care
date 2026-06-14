@@ -17,19 +17,23 @@ const ease = [0.16, 1, 0.3, 1];
 /* ═══════════════════════════════════════════════════════
    SECTION 1 — HERO
    ═══════════════════════════════════════════════════════ */
+
 function HeroSection() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
 
   const yText = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-
-
   return (
-    <section ref={ref} className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center">
-
-      {/* ── Background Animation (Filtered from Red to Brand Teal) ── */}
+    <section
+      ref={ref}
+      className="relative h-[100svh] bg-black overflow-hidden flex flex-col items-center justify-center"
+    >
+      {/* ── Background Animation ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -58,40 +62,48 @@ function HeroSection() {
       {/* ── Main Headline ── */}
       <motion.div
         style={{ y: yText, opacity: opacityText }}
-        className="relative z-20 text-center w-full max-w-[1400px] px-6 text-white mt-40 md:mt-60"
+        className="relative z-20 w-full px-4 text-white mt-40 md:mt-60"
       >
-        <div className="flex flex-col items-center gap-2 md:gap-4">
-          <div className="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6">
-            <AnimatedText
-              text="delivering"
-              splitBy="char"
-              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase"
-            />
-            <AnimatedText
-              text="CLINICAL CARE"
-              splitBy="word"
-              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
-            />
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6">
-            <AnimatedText
-              text="for the"
-              splitBy="char"
-              delay={0.2}
-              className="font-serif-italic font-light text-[5vw] md:text-[3vw] text-white/50 lowercase"
-            />
-            <AnimatedText
-              text="PATIENTS OF"
-              splitBy="word"
-              delay={0.2}
-              className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
-            />
-          </div>
+        <div className="mx-auto grid w-fit grid-cols-[18vw_auto] md:grid-cols-[18vw_auto] items-center gap-x-2 md:gap-x-6 text-center">
+          {/* Line 1 small text */}
+          <AnimatedText
+            text="delivering"
+            splitBy="char"
+            className="justify-self-end self-center whitespace-nowrap font-serif-italic font-light text-[4.2vw] md:text-[3vw] text-white/50 lowercase leading-none"
+          />
+
+          {/* Line 1 big text */}
+          <AnimatedText
+            text="CLINICAL CARE"
+            splitBy="word"
+            className="justify-self-start whitespace-nowrap font-black uppercase tracking-[-0.04em] text-[8vw] md:text-[6vw] leading-none"
+          />
+
+          {/* Line 2 small text */}
+          <AnimatedText
+            text="for the"
+            splitBy="char"
+            delay={0.2}
+            className="justify-self-end self-center whitespace-nowrap font-serif-italic font-light text-[4.2vw] md:text-[3vw] text-white/50 lowercase leading-none"
+          />
+
+          {/* Line 2 big text */}
+          <AnimatedText
+            text="PATIENTS OF"
+            splitBy="word"
+            delay={0.2}
+            className="justify-self-start whitespace-nowrap font-black uppercase tracking-[-0.04em] text-[8vw] md:text-[6vw] leading-none"
+          />
+
+          {/* Line 3 empty left column */}
+          <div />
+
+          {/* Line 3 big text */}
           <AnimatedText
             text="TOMORROW"
             splitBy="char"
             delay={0.4}
-            className="font-black uppercase tracking-[-0.04em] text-[9vw] md:text-[6vw] leading-none"
+            className="justify-self-start whitespace-nowrap font-black uppercase tracking-[-0.04em] text-[8vw] md:text-[6vw] leading-none"
           />
         </div>
       </motion.div>
@@ -104,14 +116,17 @@ function HeroSection() {
         className="absolute bottom-12 z-20 flex flex-col items-center gap-4"
       >
         <div className="w-[1px] h-16 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
-        <Link to="/shop" className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 hover:text-white transition-colors">
+
+        <Link
+          to="/shop"
+          className="text-2xs md:text-sm font-black tracking-[0.4em] uppercase text-white/30 hover:text-white transition-colors"
+        >
           Enter Archive
         </Link>
       </motion.div>
     </section>
   );
 }
-
 /* ═══════════════════════════════════════════════════════
    SECTION 2 — WE ARE
    Panel slides UP over hero with frosted-glass backdrop,
