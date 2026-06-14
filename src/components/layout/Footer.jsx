@@ -144,7 +144,7 @@ export default function Footer() {
     // Default / Home Page
     return {
       topText: 'MODERN',
-      line1: 'PHARMACEUTIC CARE',
+      line1: 'PHARMACEUTICAL CARE',
       middleText: null,
       line2: null,
       ctaText: 'CONTACT US',
