@@ -144,7 +144,7 @@ export default function Footer() {
     // Default / Home Page
     return {
       topText: 'MODERN',
-      line1: 'PHARMACEUTICAL CARE',
+      line1: 'PHARMA CARE',
       middleText: null,
       line2: null,
       ctaText: 'CONTACT US',
@@ -290,7 +290,7 @@ export default function Footer() {
                 {topText}
               </div>
             )}
-            <h2 className="display-lg font-black leading-[0.8] tracking-[-0.05em] uppercase mb-4">
+            <h2 className="text-[7vw] md:text-[6vw] font-black leading-[0.8] tracking-[-0.05em] uppercase mb-4">
               {line1}
             </h2>
             {middleText && (
@@ -299,7 +299,7 @@ export default function Footer() {
               </div>
             )}
             {line2 && (
-              <h2 className="display-lg font-black leading-[0.8] tracking-[-0.05em] uppercase">
+              <h2 className="text-[7vw] md:text-[6vw] font-black leading-[0.8] tracking-[-0.05em] uppercase">
                 {line2}
               </h2>
             )}
