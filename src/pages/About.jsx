@@ -428,7 +428,7 @@ export default function About() {
             return (
               <h1
                 key={text}
-                className="hero-line display-lg leading-[0.85] font-black tracking-[-0.04em] whitespace-nowrap cursor-default select-none w-max"
+                className="hero-line display-giant leading-[0.85] font-black tracking-[-0.04em] whitespace-nowrap cursor-default select-none w-max"
                 style={{
                   animation: 'hero-glide-in 8s infinite',
                   animationDelay: `${i * 0.4}s`,
