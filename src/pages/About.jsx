@@ -544,9 +544,6 @@ export default function About() {
                     <source src="/animations/whatsapp_2.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-                <div className="absolute top-6 left-6 text-white/50 text-2xs md:text-sm font-black tracking-[0.4em] uppercase border border-white/20 p-2">
-                    CLINICAL MANIFEST v2.0
-                </div>
             </motion.div>
         </div>
       </section>
