@@ -342,7 +342,7 @@ export default function Home() {
       <section className="py-20 bg-white overflow-hidden border-t border-black/5">
         <ScrollMarquee baseVelocity={-1.5}>
           <span className="display-giant font-black uppercase tracking-[-0.04em] text-black/[0.03] mx-12">
-            SAVINCLIFF PHARMACY · CLINICAL PRECISION · PRIMARY SOURCE ·
+            SAVINCLIFF-PHARMACY-CLINICAL PRECISION-PRIMARY-SOURCE
           </span>
         </ScrollMarquee>
       </section>
