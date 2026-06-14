@@ -378,7 +378,7 @@ export default function Home() {
             className="space-y-12"
           >
              <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-brand-teal">Ready to begin?</p>
-             <h2 className="display-lg font-black uppercase tracking-[-0.04em] leading-[0.85] text-white">
+             <h2 className="text-[7vw] md:text-[6vw] font-black uppercase tracking-[-0.04em] leading-[0.85] text-white">
               LET’S DELIVER<br />
               <motion.span
                 initial={{ color: 'rgba(27, 110, 140, 0.3)' }}
