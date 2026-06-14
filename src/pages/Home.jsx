@@ -118,19 +118,23 @@ function HeroSection() {
    then the SVG zooms in via scale (GPU-only, no layout cost).
    ═══════════════════════════════════════════════════════ */
 function WeAreSection({ scrollYProgress }) {
-  // Phase 1 [0→0.2]: slide up from below viewport
-  const y = useTransform(scrollYProgress, [0, 0.2], ['100vh', '0vh']);
+  // Phase 1: slide up from below viewport
+  const y = useTransform(scrollYProgress, [0, 0.28], ['100vh', '0vh']);
 
-  // Phase 2 [0.2→0.9]: scale zoom
-  const scale = useTransform(scrollYProgress, [0.2, 0.9], [1, 43.75]);
+  // Phase 2: smoother zoom, same final scale
+  const scale = useTransform(
+    scrollYProgress,
+    [0.22, 0.45, 0.7, 0.95],
+    [1, 4, 14, 43.75]
+  );
 
-  // Phase 3 [0.9→1.0]: fade out → ManifestoSection flows in cleanly below
-  const opacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+  // Phase 3: fade out → ManifestoSection flows in cleanly below
+  const opacity = useTransform(scrollYProgress, [0.88, 0.98], [1, 0]);
 
-  // Background: frosted glass → solid black (cleared by opacity above)
+  // Background: original frosted glass → solid black
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0,                        0.4,                  0.9],
+    [0, 0.4, 0.9],
     ['rgba(160,160,160,0.35)', 'rgba(8,8,8,0.75)', 'rgba(8,8,8,1)']
   );
 
@@ -165,7 +169,6 @@ function WeAreSection({ scrollYProgress }) {
     </motion.div>
   );
 }
-
 /* ═══════════════════════════════════════════════════════
    SECTION 3 — MANIFESTO
    ═══════════════════════════════════════════════════════ */
