@@ -466,7 +466,7 @@ export default function About() {
       <section ref={paragraphSectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
         <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
            <div className="max-w-[1400px] mx-auto">
-             <p ref={paragraphRef} className="paragraph text-xl md:text-3xl text-white leading-relaxed tracking-normal font-bold flex flex-wrap justify-center items-center text-center">
+             <p ref={paragraphRef} className="paragraph text-xl md:display-sm text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
                 {NARRATIVE_WORDS.map((w, i) => (
                   <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
                     {w.text.split("").map((char, ci) => (
