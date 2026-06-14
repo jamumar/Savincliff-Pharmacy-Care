@@ -200,7 +200,7 @@ function ManifestoSection() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease }}
-            className="text-xl md:text-3xl font-medium leading-relaxed tracking-normal text-justify-inter"
+            className="text-2xl md:text-5xl font-bold uppercase leading-[1.1] tracking-tight text-justify-inter"
           >
             We are a clinical pharmacy where science meets precision.{' '}
             <motion.span
