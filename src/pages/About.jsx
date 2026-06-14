@@ -547,7 +547,7 @@ export default function About() {
         <div className="w-full md:w-1/2 relative h-full">
           {/* Panel 1 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
               Clinical Standards
             </h3>
             <div className="space-y-4 max-w-lg">
@@ -576,7 +576,7 @@ export default function About() {
 
           {/* Panel 2 */}
           <div className="scroll-panel absolute inset-0 bg-white text-black p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
               Built for Modern Care
             </h3>
             <div className="space-y-4 max-w-lg">
@@ -605,7 +605,7 @@ export default function About() {
 
           {/* Panel 3 */}
           <div className="scroll-panel absolute inset-0 bg-brand-teal text-white p-12 md:p-24 flex flex-col justify-center">
-            <h3 className="font-sans text-3xl md:text-5xl font-black mb-8 leading-tight tracking-tight uppercase">
+            <h3 className="font-serif text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-wide">
               Precision Infrastructure
             </h3>
             <div className="space-y-4 max-w-lg">

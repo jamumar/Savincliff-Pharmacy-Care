@@ -81,7 +81,7 @@ export default function FaqDetail() {
           </div>
 
           {/* Core Question Title */}
-          <h2 className="font-sans text-3xl md:text-5xl font-black text-white mb-12 leading-tight tracking-tight uppercase max-w-4xl">
+          <h2 className="font-serif text-3xl md:text-5xl text-white mb-12 leading-tight tracking-wide max-w-4xl">
             {data.question}
           </h2>
 
@@ -109,7 +109,7 @@ export default function FaqDetail() {
 
             {/* Left Box: Striking solid black block with custom overlapping brand lettering */}
             <div className="bg-black text-brand-teal rounded-lg p-8 md:p-10 flex items-center justify-center shrink-0 border border-white/10 shadow-inner w-full lg:w-auto text-center">
-              <div className="font-sans font-black text-3xl md:text-4xl tracking-tighter uppercase leading-none select-none">
+              <div className="font-serif font-black text-4xl md:text-5xl tracking-tighter uppercase leading-none select-none">
                 CLINICAL<br />
                 <span className="text-white">CARE</span>
               </div>
@@ -117,7 +117,7 @@ export default function FaqDetail() {
 
             {/* Right Column: Heading & Benefits list */}
             <div className="flex-1 flex flex-col justify-center z-10">
-              <h3 className="font-sans text-xl md:text-3xl font-black mb-6 leading-snug tracking-tight uppercase text-white">
+              <h3 className="font-serif text-xl md:text-3xl font-bold mb-6 leading-snug tracking-wide text-white">
                 {data.cta.heading}
               </h3>
               <ul className="flex flex-col gap-3 mb-8">
@@ -181,7 +181,7 @@ export default function FaqDetail() {
                 <div className="text-brand-teal text-2xs font-black tracking-[0.2em] uppercase mb-4">
                   {item.tag}
                 </div>
-                <h4 className="font-sans text-base md:text-lg font-bold text-white mb-4 leading-snug tracking-tight group-hover:text-white transition-colors">
+                <h4 className="font-serif text-base md:text-lg text-white mb-4 leading-snug tracking-wide group-hover:text-white transition-colors">
                   {item.q}
                 </h4>
                 <p className="text-xs md:text-sm text-white/60 tracking-normal font-normal leading-relaxed line-clamp-3">

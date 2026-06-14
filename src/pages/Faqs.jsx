@@ -147,7 +147,7 @@ export default function Faqs() {
                       </div>
 
                       {/* Question Heading */}
-                      <h3 className="font-sans text-base md:text-lg font-bold text-white mb-4 leading-snug tracking-tight group-hover:text-white transition-colors">
+                      <h3 className="font-serif text-base md:text-lg text-white mb-4 leading-snug tracking-wide group-hover:text-white transition-colors">
                         {item.q}
                       </h3>
 

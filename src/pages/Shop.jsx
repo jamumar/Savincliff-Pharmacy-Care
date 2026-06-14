@@ -117,7 +117,7 @@ function ShopHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: easeQuint }}
-            className="display-giant font-black uppercase tracking-[-0.04em] leading-[0.9] text-white"
+            className="text-[12vw] md:text-[10vw] font-black uppercase tracking-[-0.04em] leading-[0.9] text-white"
           >
             PRIMARY<br />
             S<span className="font-serif italic text-brand-teal inline-block transform -rotate-6 mx-1">O</span>UR
@@ -189,7 +189,7 @@ export default function Shop() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: easeQuint }}
-                className="display-md text-black"
+                className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-black"
               >
                 INVENTORY
               </motion.h2>
