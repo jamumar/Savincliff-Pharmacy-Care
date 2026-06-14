@@ -466,14 +466,34 @@ export default function About() {
       <section ref={paragraphSectionRef} className="relative bg-black border-t border-white/10 min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20">
         <div className="relative z-10 w-full px-6 md:px-12 lg:px-24">
            <div className="max-w-[1400px] mx-auto">
-             <p ref={paragraphRef} className="paragraph text-xl md:display-sm text-white leading-[1.2] tracking-tighter font-black uppercase flex flex-wrap justify-center items-center text-center">
-                {NARRATIVE_WORDS.map((w, i) => (
-                  <span key={i} className={`word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] ${w.teal ? 'text-brand-teal' : 'text-white'}`}>
-                    {w.text.split("").map((char, ci) => (
-                      <span key={ci} className="char inline-block">{char}</span>
-                    ))}
-                  </span>
-                ))}
+             <p ref={paragraphRef} className="paragraph text-2xl md:text-5xl text-white leading-[1.1] tracking-tight font-bold uppercase flex flex-wrap justify-center items-center text-center">
+                {NARRATIVE_WORDS.map((w, i) => {
+                  if (w.teal) {
+                    return (
+                      <motion.span
+                        key={i}
+                        initial={{ color: 'rgba(27, 110, 140, 0.4)' }}
+                        whileHover={{ scale: 1.1, color: '#1B6E8C', y: -4, textShadow: '0 0 20px rgba(27, 110, 140, 0.4)' }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                        className="word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] font-serif italic cursor-pointer origin-center"
+                      >
+                        {w.text.split("").map((char, ci) => (
+                          <span key={ci} className="char inline-block">{char}</span>
+                        ))}
+                      </motion.span>
+                    );
+                  }
+                  return (
+                    <span
+                      key={i}
+                      className="word inline-flex flex-wrap mx-[0.2em] mb-[0.2em] text-white"
+                    >
+                      {w.text.split("").map((char, ci) => (
+                        <span key={ci} className="char inline-block">{char}</span>
+                      ))}
+                    </span>
+                  );
+                })}
              </p>
            </div>
         </div>
