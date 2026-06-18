@@ -13,7 +13,7 @@ import CartSidebar from '@/components/shop/CartSidebar';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
 import About from '@/pages/About';
-import Products from '@/pages/Products';
+import Wellness from '@/pages/Wellness';
 import Services from '@/pages/Services';
 import RxTerminal from '@/pages/RxTerminal';
 import Protocols from '@/pages/Protocols';
@@ -31,6 +31,11 @@ import OrdersPage from '@/pages/account/OrdersPage';
 import PrescriptionsPage from '@/pages/account/PrescriptionsPage';
 import SettingsPage from '@/pages/account/SettingsPage';
 import WishlistPage from '@/pages/account/WishlistPage';
+
+// CMS Admin Pages
+import AdminRoute from '@/components/shared/AdminRoute';
+import Login from '@/pages/admin/Login';
+import Dashboard from '@/pages/admin/Dashboard';
 
 const AuthenticatedApp = () => {
   const { user, isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -52,10 +57,14 @@ const AuthenticatedApp = () => {
     <CartProvider>
       <CartSidebar />
       <Routes>
+        {/* CMS Administration Routes */}
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdminRoute><Dashboard /></AdminRoute>} />
+
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<Wellness />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/services" element={<Services />} />
           <Route path="/rx-terminal" element={<RxTerminal />} />

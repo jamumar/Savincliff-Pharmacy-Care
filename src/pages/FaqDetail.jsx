@@ -1,44 +1,29 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-const FAQ_DATABASE = {
-  'default': {
-    category: 'PATIENT SUPPORT',
-    shortTitle: 'Can Savincliff help with prescription ...',
-    question: 'How does Savincliff verify and coordinate prescription safety?',
-    summary: "Yes—Savincliff coordinates with your prescribing physicians to double-check dosages, run drug-interaction scans, and maintain full cold-chain transit integrity.",
-    fullText: "Savincliff operates as a highly coordinated clinical support node. Our prescription review pipeline verifies compounds directly at the source. Utilizing state-of-the-art temperature monitoring alongside robust packaging protocols, we guarantee the safety and purity of your therapeutic formulations from compounding to final home delivery. Every prescription is strictly double-verified by a licensed pharmacist for complete security.",
-    cta: {
-      badge: "CLINICAL HELP",
-      heading: "Our clinical support desk is available to assist you with prescriptions or orders.",
-      benefits: [
-        "Consult directly with licensed, board-certified clinical pharmacists",
-        "Perform comprehensive drug-interaction reviews before compound preparation",
-        "Set up secure, automated refill schedules tailored to your therapy"
-      ]
-    },
-    related: [
-      {
-        slug: 'prescription-refills',
-        tag: 'CLINICAL PROTOCOLS',
-        q: 'How do I request a refill for my compounded medication?',
-        a: 'You can request refills through your portal or upload a new prescription directly to our Rx Terminal.'
-      },
-      {
-        slug: 'delivery-logistics',
-        tag: 'COLD-CHAIN SUPPORT',
-        q: 'How is my medication shipped and delivered?',
-        a: 'We dispatch all temperature-sensitive items in secure cold-chain packouts with continuous logging.'
-      }
-    ]
-  }
-};
+import useCmsSettings from '@/hooks/useCmsSettings';
+import { DEFAULT_FAQ_DETAILS } from '@/lib/cmsDefaults';
 
 export default function FaqDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const data = FAQ_DATABASE[slug] || FAQ_DATABASE['default'];
+  
+  const { settings, loading } = useCmsSettings('faq_details', DEFAULT_FAQ_DETAILS);
+  const faqDb = settings || DEFAULT_FAQ_DETAILS;
+  const data = faqDb[slug] || faqDb['default'] || DEFAULT_FAQ_DETAILS['default'];
+
+  // Safe checks for nested properties to prevent crashes
+  const cta = data.cta || {
+    badge: data.ctaBadge || "CLINICAL HELP",
+    heading: data.ctaHeading || "Our clinical support desk is available to assist you with prescriptions or orders.",
+    benefits: data.ctaBenefits || [
+      "Consult directly with licensed, board-certified clinical pharmacists",
+      "Perform comprehensive drug-interaction reviews before compound preparation",
+      "Set up secure, automated refill schedules tailored to your therapy"
+    ]
+  };
+
+  const related = data.related || [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -118,10 +103,10 @@ export default function FaqDetail() {
             {/* Right Column: Heading & Benefits list */}
             <div className="flex-1 flex flex-col justify-center z-10">
               <h3 className="font-serif text-xl md:text-3xl font-bold mb-6 leading-snug tracking-wide text-white">
-                {data.cta.heading}
+                {cta.heading}
               </h3>
               <ul className="flex flex-col gap-3 mb-8">
-                {data.cta.benefits.map((benefit, bIdx) => (
+                {cta.benefits.map((benefit, bIdx) => (
                   <li key={bIdx} className="text-xs md:text-sm font-medium text-white/90 flex items-start gap-3">
                     <span className="text-black font-bold select-none mt-0.5">•</span>
                     <span>{benefit}</span>

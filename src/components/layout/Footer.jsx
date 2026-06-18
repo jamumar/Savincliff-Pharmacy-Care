@@ -4,53 +4,20 @@ import { Link, useLocation } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import useInView from '@/hooks/useInView';
+import useCmsSettings from '@/hooks/useCmsSettings';
+import { DEFAULT_FOOTER_SETTINGS } from '@/lib/cmsDefaults';
 
-// ─── Models list ──────────────────────────────────────────────────────────────
-const MODELS = [
-  { url: '/models/opt_savincliff_pill.glb',               label: 'PILL YIN YANG' },
-  { url: '/models/opt_azure_embrace.glb',                 label: 'AZURE EMBRACE' },
-  { url: '/models/opt_candy_ribbon.glb',                  label: 'CANDY RIBBON' },
-  { url: '/models/opt_crystal_spiral.glb',                label: 'CRYSTAL SPIRAL' },
-  { url: '/models/opt_emerald_duet.glb',                  label: 'EMERALD DUET' },
-  { url: '/models/opt_golden_ember.glb',                  label: 'GOLDEN EMBER' },
-  { url: '/models/opt_leather_wings_in_flig.glb',         label: 'LEATHER WINGS' },
-  { url: '/models/opt_pill_yin_yang.glb',                 label: 'MESHY YIN YANG' },
-  { url: '/models/opt_the_yin_yang_yin_yang_med.glb',     label: 'YIN YANG MED' },
-  { url: '/models/opt_Atlas_on_Fire_0508010357.glb', label: 'ATLAS ON FIRE' },
-  { url: '/models/opt_Azure_Embrace_0506235638.glb', label: 'AZURE EMBRACE 2' },
-  { url: '/models/opt_Azure_Spiral_0508010416.glb', label: 'AZURE SPIRAL' },
-  { url: '/models/opt_Blue_Yin_Yang_of_Pill_0504002208.glb', label: 'BLUE YIN YANG' },
-  { url: '/models/opt_Candy_Ribbon_0506235751.glb', label: 'CANDY RIBBON 2' },
-  { url: '/models/opt_Crimson_S_curve_0508014249.glb', label: 'CRIMSON S CURVE' },
-  { url: '/models/opt_Crystal_Spiral_0506235732.glb', label: 'CRYSTAL SPIRAL 2' },
-  { url: '/models/opt_Earth_in_an_S_0508010344.glb', label: 'AFRICA S CURVE' },
-  { url: '/models/opt_Emerald_Duet_0506235505.glb', label: 'EMERALD DUET 2' },
-  { url: '/models/opt_Glass_Wave_Duo_0508010604.glb', label: 'GLASS WAVE DUO' },
-  { url: '/models/opt_Golden_Ember_0506235551.glb', label: 'GOLDEN EMBER 2' },
-  { url: '/models/opt_Ice_Sculpture_0508010522.glb', label: 'ICE SCULPTURE' },
-  { url: '/models/opt_Interwoven_Waves_0508010554.glb', label: 'INTERWOVEN WAVES' },
-  { url: '/models/opt_Leather_Wings_in_Flig_0506235622.glb', label: 'LEATHER WINGS 2' },
-  { url: '/models/opt_Luminescent_Crescent_0508010511.glb', label: 'LUMINESCENT CRESCENT' },
-  { url: '/models/opt_Luminous_S_Curve_0508010546.glb', label: 'LUMINOUS S CURVE' },
-  { url: '/models/opt_Luminous_Serpent_0508010451.glb', label: 'LUMINOUS SERPENT' },
-  { url: '/models/opt_Molecular_Yin_Yang_0508010438.glb', label: 'MOLECULAR YIN YANG' },
-  { url: '/models/opt_Neon_Leaf_0508010502.glb', label: 'NEON LEAF' },
-  { url: '/models/opt_Pill_Yin_Yang_0506235536.glb', label: 'PILL YIN YANG 2' },
-  { url: '/models/opt_The_Yin_Yang_of_Medic_0506235604.glb', label: 'YIN YANG MED 2' },
-  { url: '/models/opt_Whisper_of_Glass_0508014335.glb', label: 'WHISPER OF GLASS' },
-];
+// Preload the default first model to keep network calls optimized
+useGLTF.preload(DEFAULT_FOOTER_SETTINGS.models[0].url);
 
-// Preload ONLY the first model to prevent massive network congestion on load
-useGLTF.preload(MODELS[0].url);
+// Shared mouse coordinate reference
+const MOUSE = { wx: 0, wy: 0 };
 
-// ─── Shared mouse (window-level, updated dynamically when footer is active) ───
-const MOUSE = { wx: 0, wy: 0 }; // normalized [-1,1] window coords
-
-// ─── 3D model inside the card ─────────────────────────────────────────────────
+// 3D model container component
 function CardModel({ url }) {
   const gltf = useGLTF(url);
-
   const clone = useRef(null);
+  
   if (!clone.current) {
     clone.current = gltf.scene.clone(true);
     clone.current.traverse((n) => { n.matrixAutoUpdate = true; n.frustumCulled = false; });
@@ -72,98 +39,38 @@ function CardModel({ url }) {
   return <primitive ref={ref} object={clone.current} dispose={null} scale={1.2} />;
 }
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
 export default function Footer() {
   const location = useLocation();
   const [footerRef, isInView] = useInView({ threshold: 0.01 });
   const sectionRef = useRef(null);
   const cardRef    = useRef(null);
 
+  const { settings, loading } = useCmsSettings('footer', DEFAULT_FOOTER_SETTINGS);
+
+  const modelsList = settings.models || DEFAULT_FOOTER_SETTINGS.models;
+  const whatsappLink = settings.whatsappLink || DEFAULT_FOOTER_SETTINGS.whatsappLink;
+  const whatsappVideo = settings.whatsappVideo || DEFAULT_FOOTER_SETTINGS.whatsappVideo;
+  const copyright = settings.copyright || DEFAULT_FOOTER_SETTINGS.copyright;
+  const compliance = settings.compliance || DEFAULT_FOOTER_SETTINGS.compliance;
+  const giantWatermark = settings.giantWatermark || DEFAULT_FOOTER_SETTINGS.giantWatermark;
+  const footerLinks = settings.footerLinks || DEFAULT_FOOTER_SETTINGS.footerLinks;
+  const pageFooters = settings.pageFooters || DEFAULT_FOOTER_SETTINGS.pageFooters;
+
   const getFooterContent = () => {
     const path = location.pathname;
-    if (path === '/about') {
-      return {
-        topText: null,
-        line1: 'BUILDING THE FUTURE',
-        middleText: 'OF',
-        line2: 'COMMUNITY HEALTHCARE',
-        ctaText: 'CONTACT US',
-        ctaPath: '/contact'
-      };
-    }
-    if (path === '/services') {
-      return {
-        topText: 'MODERN',
-        line1: 'PHARMACEUTICAL',
-        middleText: null,
-        line2: 'CARE SYSTEMS',
-        ctaText: 'CONTACT US',
-        ctaPath: '/contact'
-      };
-    }
-    if (path === '/shop' || path === '/products') {
-      return {
-        topText: null,
-        line1: 'HEALTH',
-        middleText: null,
-        line2: 'BEYOND PRESCRIPTIONS',
-        ctaText: 'CONTACT US',
-        ctaPath: '/contact'
-      };
-    }
-    if (path === '/rx-terminal') {
-      return {
-        topText: 'YOUR',
-        line1: 'DIGITAL HEALTH',
-        middleText: null,
-        line2: 'PORTAL',
-        ctaText: 'ACCESS TERMINAL',
-        ctaPath: '/rx-terminal'
-      };
-    }
-    if (path === '/protocols') {
-      return {
-        topText: null,
-        line1: 'TRUST BUILT',
-        middleText: 'INTO',
-        line2: 'EVERY PROCESS',
-        ctaText: 'CONTACT US',
-        ctaPath: '/contact'
-      };
-    }
-    if (path === '/faqs' || path.startsWith('/faqs/')) {
-      return {
-        topText: 'ANSWERS',
-        line1: 'FOR MODERN',
-        middleText: null,
-        line2: 'HEALTHCARE ACCESS',
-        ctaText: 'ACCESS TERMINAL',
-        ctaPath: '/rx-terminal'
-      };
-    }
-    // Default / Home Page
-    return {
-      topText: 'MODERN',
-      line1: 'PHARMA CARE',
-      middleText: null,
-      line2: null,
-      ctaText: 'CONTACT US',
-      ctaPath: '/contact'
-    };
+    return pageFooters[path] || pageFooters['default'] || pageFooters['/'];
   };
 
   const { topText, line1, middleText, line2, ctaText, ctaPath } = getFooterContent();
 
-  // Smoothed card position (follows cursor in section-local coords)
   const target  = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
 
-  // Separate states for instant UI updates and debounced heavy 3D model loads
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [renderedIndex, setRenderedIndex] = useState(0);
   const lastIdx = useRef(0);
 
-  // ── Debounce the 3D model swap ──
+  // Debounce the 3D model swaps to keep canvas performance buttery-smooth
   useEffect(() => {
     const handler = setTimeout(() => {
       setRenderedIndex(hoveredIndex);
@@ -171,7 +78,7 @@ export default function Footer() {
     return () => clearTimeout(handler);
   }, [hoveredIndex]);
 
-  // ── Window-level mouse tracking (only when in view) ──
+  // Window-level mouse tracking
   useEffect(() => {
     if (!isInView) return;
     const handleMouseMove = (e) => {
@@ -184,7 +91,7 @@ export default function Footer() {
     };
   }, [isInView]);
 
-  // ── Mouse tracking on the section ──
+  // Section card follow coordinate tracking
   useEffect(() => {
     if (!isInView) return;
     const section = sectionRef.current;
@@ -198,9 +105,8 @@ export default function Footer() {
       target.current.x = x;
       target.current.y = y;
 
-      // Divide width into MODELS.length zones → pick model
       const norm = Math.max(0, Math.min(1, x / rect.width));
-      const idx  = Math.min(MODELS.length - 1, Math.floor(norm * MODELS.length));
+      const idx  = Math.min(modelsList.length - 1, Math.floor(norm * modelsList.length));
       if (idx !== lastIdx.current) {
         lastIdx.current = idx;
         setHoveredIndex(idx);
@@ -209,21 +115,20 @@ export default function Footer() {
 
     section.addEventListener('mousemove', onMove, { passive: true });
     return () => section.removeEventListener('mousemove', onMove);
-  }, [isInView]);
+  }, [isInView, modelsList]);
 
-  // ── RAF loop: lerp card position ──
+  // Translate transform card loop
   useEffect(() => {
     if (!isInView) return;
     let raf;
     const LERP = 0.1;
-    const CARD_W = window.innerWidth * 0.46; // half card width in px
-    const CARD_H = window.innerHeight * 0.60; // half card height in px
+    const CARD_W = window.innerWidth * 0.46;
+    const CARD_H = window.innerHeight * 0.60;
     const loop = () => {
       current.current.x += (target.current.x - current.current.x) * LERP;
       current.current.y += (target.current.y - current.current.y) * LERP;
       if (cardRef.current && sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        // Clamp so card never gets cut off at edges
         const cx = Math.max(CARD_W / 2, Math.min(rect.width  - CARD_W / 2, current.current.x));
         const cy = Math.max(CARD_H / 2, Math.min(rect.height - CARD_H / 2, current.current.y));
         cardRef.current.style.transform =
@@ -235,28 +140,19 @@ export default function Footer() {
     return () => cancelAnimationFrame(raf);
   }, [isInView]);
 
-  const footerLinks = [
-    { title: 'COMPANY',    links: [{ name: 'HOME', path: '/' }, { name: 'ABOUT', path: '/about' }] },
-    { title: 'MARKET',     links: [{ name: 'INVENTORY', path: '/shop' }, { name: 'WELLNESS', path: '/products' }] },
-    { title: 'CLINICAL',   links: [{ name: 'SERVICES', path: '/services' }, { name: 'PROTOCOLS', path: '/protocols' }] },
-    { title: 'ACCESS',     links: [{ name: 'INQUIRIES', path: '/faqs' }, { name: 'RX TERMINAL', path: '/rx-terminal' }] },
-    { title: 'SOCIALS',    links: [{ name: 'INSTAGRAM', path: '#' }, { name: 'LINKEDIN', path: '#' }] },
-  ];
-
   return (
     <footer ref={footerRef} className="bg-black text-white relative overflow-hidden">
       <section
         ref={sectionRef}
         className="relative min-h-screen flex items-center justify-center py-20 px-6 cursor-none"
       >
-        {/* ── Floating 3D Card (follows cursor) ── */}
-        {isInView && (
+        {/* Floating 3D Card */}
+        {isInView && modelsList && modelsList[renderedIndex] && (
           <div
             ref={cardRef}
             className="absolute top-0 left-0 pointer-events-none z-0"
             style={{ width: '46vw', height: '60vh' }}
           >
-            {/* No inner scale wrapper — was causing edge clipping */}
             <div className="w-full h-full">
               <Canvas
                 dpr={[1, 1.5]}
@@ -269,8 +165,7 @@ export default function Footer() {
                 <directionalLight position={[-5, -3, 5]} intensity={0.4} />
                 <pointLight position={[0, 0, 3]} intensity={3} color="#1B6E8C" />
                 <Suspense fallback={null}>
-                  {/* Key on url causes clean remount + fade between models */}
-                  <CardModel key={MODELS[renderedIndex].url} url={MODELS[renderedIndex].url} scale={1.2} />
+                  <CardModel key={modelsList[renderedIndex].url} url={modelsList[renderedIndex].url} scale={1.2} />
                   <Environment preset="warehouse" />
                 </Suspense>
               </Canvas>
@@ -278,7 +173,7 @@ export default function Footer() {
           </div>
         )}
 
-        {/* ── Text Content (above card) ── */}
+        {/* Text Content */}
         <div className="relative z-10 flex flex-col items-center text-center w-full">
           <div className="opacity-50 text-2xs md:text-sm font-black tracking-[0.5em] mb-12 uppercase">
             SAVINCLIFF PHARMACY — 2026
@@ -305,10 +200,12 @@ export default function Footer() {
             )}
           </div>
 
-          {/* Model label — shows which model is active */}
-          <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-white/25 mb-8">
-            {MODELS[hoveredIndex].label}
-          </p>
+          {/* Model label details */}
+          {modelsList && modelsList[hoveredIndex] && (
+            <p className="text-2xs md:text-sm font-black tracking-[0.5em] uppercase text-white/25 mb-8">
+              {modelsList[hoveredIndex].label}
+            </p>
+          )}
 
           <Link
             to={ctaPath || '/contact'}
@@ -320,7 +217,7 @@ export default function Footer() {
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out" />
           </Link>
 
-          {/* Link Grid */}
+          {/* Links Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-16 mt-40 w-full max-w-7xl text-left border-t border-white/5 pt-20">
             {footerLinks.map((group) => (
               <div key={group.title} className="space-y-8">
@@ -343,41 +240,39 @@ export default function Footer() {
           <div className="mt-40 pt-12 border-t border-white/5 w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-8 pb-[10vw] md:pb-[13vw] relative z-10">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-xs md:text-sm font-normal tracking-[0.05em] text-white/40">
-                © 2026 Savincliff Pharmacy & Chronic Care Centre. All rights reserved.
+                {copyright}
               </p>
             </div>
             <div className="text-xs md:text-sm font-normal tracking-[0.15em] text-white/40 uppercase text-center md:text-right">
-              PCN REGISTERED &middot; NAFDAC COMPLIANCE
+              {compliance}
             </div>
           </div>
         </div>
 
-        {/* Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,black_85%)] pointer-events-none z-[5] opacity-70" />
       </section>
 
-      {/* Giant Faint Watermark */}
+      {/* giant faint watermark overlay */}
       <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 select-none pointer-events-none z-[6] w-full text-center">
         <span className="text-[9vw] md:text-[11vw] font-serif font-light text-white/[0.06] lowercase tracking-tight leading-none whitespace-nowrap">
-          savincliff rx
+          {giantWatermark}
         </span>
       </div>
 
-      {/* WhatsApp FAB */}
+      {/* WhatsApp floating button node */}
       <a
-        href="https://wa.me/923251206427"
+        href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[90] group flex items-center gap-3"
       >
-        {/* Hover Label */}
         <div className="bg-black text-white text-2xs md:text-sm font-black tracking-[0.3em] uppercase py-2 px-4 border border-white/20 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 whitespace-nowrap shadow-2xl backdrop-blur-sm">
           WHATSAPP NODE
         </div>
 
         <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center overflow-hidden hover:bg-brand-teal transition-all duration-700 shadow-2xl relative border border-white/10 shrink-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-            <source src="/animations/whatsapp_1.mp4" type="video/mp4" />
+            <source src={whatsappVideo} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-brand-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           <div className="absolute inset-0 border-2 border-white/20 rounded-full group-hover:scale-150 group-hover:opacity-0 transition-all duration-1000" />

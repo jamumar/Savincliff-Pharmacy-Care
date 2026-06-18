@@ -4,17 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '@/components/brand/Logo';
 import { useCart } from '@/lib/CartContext';
 import { useAuth } from '@/lib/AuthContext';
-
-const NAV = [
-  { label: 'HOME', path: '/' },
-  { label: 'ABOUT', path: '/about' },
-  { label: 'INVENTORY', path: '/shop' },
-  { label: 'WELLNESS', path: '/products' },
-  { label: 'SERVICES', path: '/services' },
-  { label: 'PROTOCOLS', path: '/protocols' },
-  { label: 'INQUIRIES', path: '/faqs' },
-  { label: 'RX TERMINAL', path: '/rx-terminal' },
-];
+import useCmsSettings from '@/hooks/useCmsSettings';
+import { DEFAULT_NAVBAR_SETTINGS } from '@/lib/cmsDefaults';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,7 +15,11 @@ export default function Navbar() {
   const { count, setOpen: setCartOpen } = useCart();
   const { user, logout } = useAuth();
 
-  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/shop'].includes(location.pathname) || location.pathname.startsWith('/faqs');
+  const { settings, loading } = useCmsSettings('navbar', DEFAULT_NAVBAR_SETTINGS);
+  const navItems = settings.navItems || DEFAULT_NAVBAR_SETTINGS.navItems;
+  const marqueeText = settings.marqueeText || DEFAULT_NAVBAR_SETTINGS.marqueeText;
+
+  const isDarkHeroPage = ['/', '/register', '/about', '/services', '/shop', '/products'].includes(location.pathname) || location.pathname.startsWith('/faqs');
   const useDark = isLightBg || !isDarkHeroPage;
 
   useEffect(() => {
@@ -42,50 +37,65 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path;
- const mobileTransparent = isDarkHeroPage && !open;
-const mobileUseDark = !isDarkHeroPage;
-const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
+  const mobileTransparent = isDarkHeroPage && !open;
+  const mobileUseDark = !isDarkHeroPage;
+  const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
+
+  const getLinkForPath = (path, defaultLabel) => {
+    const item = navItems.find(n => n.path === path);
+    return item ? { label: item.label, path: item.path } : { label: defaultLabel, path };
+  };
+
+  const homeLink = getLinkForPath('/', 'HOME');
+  const aboutLink = getLinkForPath('/about', 'ABOUT');
+  const inventoryLink = getLinkForPath('/shop', 'INVENTORY');
+  const wellnessLink = getLinkForPath('/products', 'WELLNESS');
+  const servicesLink = getLinkForPath('/services', 'SERVICES');
+  const protocolsLink = getLinkForPath('/protocols', 'PROTOCOLS');
+  const faqsLink = getLinkForPath('/faqs', 'INQUIRIES');
+  const rxLink = getLinkForPath('/rx-terminal', 'RX TERMINAL');
+
   return (
     <>
       {/* Mobile Navbar (Header + Menu) */}
       <div className="lg:hidden">
-     <header
-  className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-500 ${
-    open
-      ? 'bg-black text-white'
-      : mobileUseDark
-        ? 'bg-white text-black border-b border-black/10'
-        : 'bg-transparent text-white border-b border-transparent'
-  }`}
->
-  <div className="flex justify-between items-center px-6 py-5">
-    <Link to="/" onClick={() => setOpen(false)}>
-      <Logo
-        variant={mobileLogoVariant}
-        scrolled={scrolled}
-      />
-    </Link>
+        <header
+          className={`fixed top-0 left-0 w-full z-[100] transition-colors duration-500 ${
+            open
+              ? 'bg-black text-white'
+              : mobileUseDark
+                ? 'bg-white text-black border-b border-black/10'
+                : 'bg-transparent text-white border-b border-transparent'
+          }`}
+        >
+          <div className="flex justify-between items-center px-6 py-5">
+            <Link to="/" onClick={() => setOpen(false)}>
+              <Logo
+                variant={mobileLogoVariant}
+                scrolled={scrolled}
+              />
+            </Link>
 
-    <button
-      className="centered-nav__toggle w-10 h-10 flex flex-col items-center justify-center"
-      onClick={() => setOpen(!open)}
-    >
-      <motion.div
-        animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
-        className={`w-6 h-[1.5px] mb-1.5 transition-colors ${
-          open || mobileTransparent ? 'bg-white' : 'bg-black'
-        }`}
-      />
+            <button
+              className="centered-nav__toggle w-10 h-10 flex flex-col items-center justify-center"
+              onClick={() => setOpen(!open)}
+            >
+              <motion.div
+                animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
+                className={`w-6 h-[1.5px] mb-1.5 transition-colors ${
+                  open || mobileTransparent ? 'bg-white' : 'bg-black'
+                }`}
+              />
 
-      <motion.div
-        animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
-        className={`w-6 h-[1.5px] transition-colors ${
-          open || mobileTransparent ? 'bg-white' : 'bg-black'
-        }`}
-      />
-    </button>
-  </div>
-</header>
+              <motion.div
+                animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
+                className={`w-6 h-[1.5px] transition-colors ${
+                  open || mobileTransparent ? 'bg-white' : 'bg-black'
+                }`}
+              />
+            </button>
+          </div>
+        </header>
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -99,9 +109,9 @@ const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
             >
               <div className="flex-1 overflow-y-auto px-6">
                 <ul className="flex flex-col text-center mt-10">
-                  {NAV.map((item, idx) => (
+                  {navItems.map((item, idx) => (
                     <motion.li
-                      key={item.path}
+                      key={item.path + '-' + idx}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 + idx * 0.05 }}
@@ -119,7 +129,7 @@ const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
                   <motion.li
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + NAV.length * 0.05 }}
+                    transition={{ delay: 0.1 + navItems.length * 0.05 }}
                     className="border-b border-white/10"
                   >
                     {user ? (
@@ -146,7 +156,7 @@ const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
               <div className="bg-[#1B6E8C] text-white py-4 uppercase text-2xs font-black tracking-[0.3em] overflow-hidden whitespace-nowrap">
                 <div className="animate-marquee inline-block">
                   {[...Array(10)].map((_, i) => (
-                    <span key={i} className="mx-8">UPLOAD RX &rarr;</span>
+                    <span key={i} className="mx-8">{marqueeText}</span>
                   ))}
                 </div>
               </div>
@@ -156,172 +166,170 @@ const mobileLogoVariant = open || mobileTransparent ? 'light' : 'dark';
       </div>
 
       {/* Desktop Navbar */}
-     {/* Desktop Navbar */}
-<nav
-  className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${
-    useDark ? 'text-black' : 'text-white'
-  } ${scrolled ? 'py-4' : 'py-8'}`}
->
-  <div className="w-full px-[clamp(28px,3vw,64px)] grid grid-cols-[260px_1fr_260px] items-start">
-    {/* Left Logo */}
-    <Link to="/" className="block w-[230px] xl:w-[250px] -mt-1">
-      <div className="w-full [&_svg]:w-full [&_img]:w-full [&_svg]:h-auto [&_img]:h-auto">
-        <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
-      </div>
-    </Link>
-
-    {/* Desktop Center Links - Hidden on Scroll */}
-    <AnimatePresence>
-      {!scrolled && (
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-center gap-[clamp(48px,6vw,120px)] pt-1"
-        >
-          <div className="flex flex-col gap-3">
-            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
-              [ COMPANY ]
-            </div>
-
-            <Link
-              to="/"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              HOME
-            </Link>
-
-            <Link
-              to="/about"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/about') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              ABOUT
-            </Link>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
-              [ MARKET ]
-            </div>
-
-            <Link
-              to="/shop"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/shop') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              INVENTORY
-            </Link>
-
-            <Link
-              to="/products"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/products') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              WELLNESS
-            </Link>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
-              [ CLINICAL ]
-            </div>
-
-            <Link
-              to="/services"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/services') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              SERVICES
-            </Link>
-
-            <Link
-              to="/protocols"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/protocols') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              PROTOCOLS
-            </Link>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
-              [ ACCESS ]
-            </div>
-
-            <Link
-              to="/faqs"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/faqs') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              INQUIRIES
-            </Link>
-
-            <Link
-              to="/rx-terminal"
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
-            >
-              <span className={`transition-colors duration-500 ${isActive('/rx-terminal') ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
-                -
-              </span>
-              RX TERMINAL
-            </Link>
-
-            <button
-              onClick={() => setCartOpen(true)}
-              className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2 text-left"
-            >
-              <span className="text-current/40">-</span>
-              ORDER [{count}]
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-
-    {/* Right Side Buttons */}
-    <div className="flex items-center justify-end gap-6">
-      {user && (
-        <button
-          onClick={logout}
-          className={`text-2xs md:text-sm font-black uppercase tracking-[0.22em] ${
-            useDark ? 'text-black/50 hover:text-black' : 'text-white/50 hover:text-white'
-          } transition-colors`}
-        >
-          EXIT SESSION
-        </button>
-      )}
-
-      <Link
-        to="/rx-terminal"
-        className={`min-w-[180px] px-8 py-4 text-center text-2xs md:text-sm font-black uppercase tracking-[0.22em] border ${
-          useDark
-            ? 'border-black text-black hover:bg-black hover:text-white'
-            : 'border-white text-white hover:bg-white hover:text-black'
-        } transition-all`}
+      <nav
+        className={`hidden lg:block fixed top-0 left-0 w-full z-[90] transition-all duration-700 ${
+          useDark ? 'text-black' : 'text-white'
+        } ${scrolled ? 'py-4' : 'py-8'}`}
       >
-        UPLOAD RX
-      </Link>
-    </div>
-  </div>
-</nav>
+        <div className="w-full px-[clamp(28px,3vw,64px)] grid grid-cols-[260px_1fr_260px] items-start">
+          {/* Left Logo */}
+          <Link to="/" className="block w-[230px] xl:w-[250px] -mt-1">
+            <div className="w-full [&_svg]:w-full [&_img]:w-full [&_svg]:h-auto [&_img]:h-auto">
+              <Logo variant={useDark ? 'dark' : 'light'} scrolled={scrolled} />
+            </div>
+          </Link>
 
+          {/* Desktop Center Links - Hidden on Scroll */}
+          <AnimatePresence>
+            {!scrolled && (
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex justify-center gap-[clamp(48px,6vw,120px)] pt-1"
+              >
+                <div className="flex flex-col gap-3 text-left">
+                  <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+                    [ COMPANY ]
+                  </div>
+
+                  <Link
+                    to={homeLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(homeLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {homeLink.label}
+                  </Link>
+
+                  <Link
+                    to={aboutLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(aboutLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {aboutLink.label}
+                  </Link>
+                </div>
+
+                <div className="flex flex-col gap-3 text-left">
+                  <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+                    [ MARKET ]
+                  </div>
+
+                  <Link
+                    to={inventoryLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(inventoryLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {inventoryLink.label}
+                  </Link>
+
+                  <Link
+                    to={wellnessLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(wellnessLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {wellnessLink.label}
+                  </Link>
+                </div>
+
+                <div className="flex flex-col gap-3 text-left">
+                  <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+                    [ CLINICAL ]
+                  </div>
+
+                  <Link
+                    to={servicesLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(servicesLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {servicesLink.label}
+                  </Link>
+
+                  <Link
+                    to={protocolsLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(protocolsLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {protocolsLink.label}
+                  </Link>
+                </div>
+
+                <div className="flex flex-col gap-3 text-left">
+                  <div className="text-2xs md:text-sm font-black text-current/40 tracking-[0.22em] uppercase mb-1">
+                    [ ACCESS ]
+                  </div>
+
+                  <Link
+                    to={faqsLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(faqsLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {faqsLink.label}
+                  </Link>
+
+                  <Link
+                    to={rxLink.path}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2"
+                  >
+                    <span className={`transition-colors duration-500 ${isActive(rxLink.path) ? 'text-[#1B6E8C]' : 'text-current/40'}`}>
+                      -
+                    </span>
+                    {rxLink.label}
+                  </Link>
+
+                  <button
+                    onClick={() => setCartOpen(true)}
+                    className="text-2xs md:text-sm font-black tracking-[0.22em] uppercase transition-colors hover:text-[#1B6E8C] flex items-center gap-2 text-left"
+                  >
+                    <span className="text-current/40">-</span>
+                    ORDER [{count}]
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Right Side Buttons */}
+          <div className="flex items-center justify-end gap-6">
+            {user && (
+              <button
+                onClick={logout}
+                className={`text-2xs md:text-sm font-black uppercase tracking-[0.22em] ${
+                  useDark ? 'text-black/50 hover:text-black' : 'text-white/50 hover:text-white'
+                } transition-colors`}
+              >
+                EXIT SESSION
+              </button>
+            )}
+
+            <Link
+              to={rxLink.path}
+              className={`min-w-[180px] px-8 py-4 text-center text-2xs md:text-sm font-black uppercase tracking-[0.22em] border ${
+                useDark
+                  ? 'border-black text-black hover:bg-black hover:text-white'
+                  : 'border-white text-white hover:bg-white hover:text-black'
+              } transition-all`}
+            >
+              {rxLink.label}
+            </Link>
+          </div>
+        </div>
+      </nav>
     </>
   );
 }
