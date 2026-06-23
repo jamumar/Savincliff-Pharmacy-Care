@@ -150,11 +150,21 @@ const SECTION_TEMPLATES = {
   },
   protocols_hero: {
     type: 'protocols_hero',
-    data: { title: 'REGULATION', subtitle: 'CLINICAL COMPLIANCE NODES' }
+    data: {
+      title: 'TRUST BUILT INTO EVERY PROCESS',
+      subtitle: 'Savincliff Protocols define how we verify medications, protect patient information, manage prescriptions, and maintain pharmaceutical standards across every point of care.',
+      btn1Text: 'Upload Script',
+      btn1Link: '/rx-terminal',
+      btn2Text: 'Explore Services',
+      btn2Link: '/services'
+    }
   },
   protocols_intro: {
     type: 'protocols_intro',
-    data: { title: 'THE FRAMEWORK', desc: 'Compliance details here.', sideText: 'Regulatory info here.' }
+    data: {
+      title: 'The Savincliff Standard',
+      desc: 'Every pharmacy interaction depends on trust. Our protocols are designed to support medication safety, sourcing integrity, dispensing accuracy, patient privacy, and consistent pharmaceutical care.'
+    }
   },
   protocols_certifications: {
     type: 'protocols_certifications',
@@ -162,7 +172,72 @@ const SECTION_TEMPLATES = {
   },
   protocols_pillars: {
     type: 'protocols_pillars',
-    data: { title: 'PILLARS', subtitle: 'Pillars subtitle.', commitments: ['Pillar item 1'] }
+    data: {
+      title: 'Core Protocol Pillars',
+      subtitle: 'Our operational standards ensure safety and security at every level.',
+      pillars: [
+        {
+          title: 'Verified Sourcing',
+          body: 'Medications and wellness products are selected through trusted pharmaceutical supply channels to support authenticity and quality.'
+        }
+      ]
+    }
+  },
+  protocols_visual_systems: {
+    type: 'protocols_visual_systems',
+    data: {
+      title: 'Clinical Infrastructure, Digitally Supported',
+      desc: 'Savincliff combines physical pharmacy workflows with digital tools for prescription intake, payment, patient records, refill tracking, and internal inventory control.',
+      blocks: [
+        { name: 'RX Upload' }
+      ]
+    }
+  },
+  protocols_compliance: {
+    type: 'protocols_compliance',
+    data: {
+      title: 'Regulatory Alignment',
+      desc: 'Our operations are structured to align with applicable pharmacy, product safety, data protection, and professional practice expectations in Nigeria.',
+      items: [
+        'PCN-aligned pharmacy operations'
+      ]
+    }
+  },
+  protocols_portal_security: {
+    type: 'protocols_portal_security',
+    data: {
+      title: 'Protected Patient Access',
+      desc: 'The Savincliff patient portal is designed to give patients secure access to prescription history, refill activity, order updates, and selected pharmacy records.',
+      items: [
+        'Secure login'
+      ]
+    }
+  },
+  protocols_timeline: {
+    type: 'protocols_timeline',
+    data: {
+      title: 'From Script to Dispensing',
+      steps: [
+        {
+          number: '01',
+          title: 'Patient uploads prescription',
+          desc: 'Patient submits prescription files through the secure digital portal.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        }
+      ]
+    }
+  },
+  protocols_cta: {
+    type: 'protocols_cta',
+    data: {
+      title: 'Precision. Verification. Care.',
+      subtitle: 'Our protocols exist to make modern pharmacy care safer, clearer, and more reliable for every patient.',
+      btn1Text: 'Upload Script',
+      btn1Link: '/rx-terminal',
+      btn2Text: 'Access Patient Portal',
+      btn2Link: '/rx-terminal'
+    }
   },
   protocols_footer_strip: {
     type: 'protocols_footer_strip',
@@ -255,7 +330,20 @@ export default function Dashboard() {
           // Load Page layout configs
           const pageSnap = await getDoc(doc(db, 'pages', activeTab));
           if (pageSnap.exists() && pageSnap.data().sections) {
-            setSections(pageSnap.data().sections);
+            const merged = pageSnap.data().sections.map(sec => {
+              const template = SECTION_TEMPLATES[sec.type];
+              if (template && template.data) {
+                return {
+                  ...sec,
+                  data: {
+                    ...JSON.parse(JSON.stringify(template.data)),
+                    ...sec.data
+                  }
+                };
+              }
+              return sec;
+            });
+            setSections(merged);
           } else {
             // Uninitialized page -> load local default settings cloned to prevent mutation
             let defaults = [];
@@ -1356,7 +1444,7 @@ export default function Dashboard() {
                         if (activeTab === 'about' && !['marquee', 'cta', 'about_story', 'about_split_sticky', 'about_dispensing_care', 'about_showcase'].includes(key)) return null;
                         if (activeTab === 'services' && !['marquee', 'services_logistics', 'services_capabilities'].includes(key)) return null;
                         if (activeTab === 'wellness' && !['marquee', 'cta', 'wellness_categories', 'wellness_quality'].includes(key)) return null;
-                        if (activeTab === 'protocols' && !['protocols_hero', 'protocols_intro', 'protocols_certifications', 'protocols_pillars', 'protocols_footer_strip'].includes(key)) return null;
+                        if (activeTab === 'protocols' && !['protocols_hero', 'protocols_intro', 'protocols_certifications', 'protocols_pillars', 'protocols_visual_systems', 'protocols_compliance', 'protocols_portal_security', 'protocols_timeline', 'protocols_cta', 'protocols_footer_strip'].includes(key)) return null;
                         if (activeTab === 'contact' && !['contact_hero', 'contact_grid', 'marquee'].includes(key)) return null;
                         if (activeTab === 'rx_terminal' && !['rx_hero', 'rx_guide', 'rx_uploader', 'rx_policy'].includes(key)) return null;
 
@@ -1650,6 +1738,10 @@ export default function Dashboard() {
                                                   <option value="bg-brand-teal">Brand Teal</option>
                                                   <option value="bg-white">White</option>
                                                   <option value="bg-black">Black</option>
+                                                  <option value="bg-gradient-to-br from-[#400e0e] to-[#1a0505]">Burgundy Red Gradient</option>
+                                                  <option value="bg-gradient-to-br from-[#0c2e3a] to-[#041217]">Clinical Teal Gradient</option>
+                                                  <option value="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">Charcoal Dark Gradient</option>
+                                                  <option value="bg-gradient-to-br from-[#0f1f38] to-[#060c17]">Navy Midnight Gradient</option>
                                                 </select>
                                               </div>
                                             );

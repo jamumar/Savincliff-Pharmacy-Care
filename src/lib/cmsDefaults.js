@@ -792,59 +792,184 @@ export const DEFAULT_FAQ_DETAILS = {
 
 export const DEFAULT_PROTOCOLS_SECTIONS = [
   {
-    id: 'hero',
+    id: 'protocols_hero',
     type: 'protocols_hero',
     data: {
-      title: 'REGULATION',
-      subtitle: 'CLINICAL COMPLIANCE NODES - AUDIT 2026'
+      title: 'TRUST BUILT INTO EVERY PROCESS',
+      subtitle: 'Savincliff Protocols define how we verify medications, protect patient information, manage prescriptions, and maintain pharmaceutical standards across every point of care.',
+      btn1Text: 'Upload Script',
+      btn1Link: '/rx-terminal',
+      btn2Text: 'Explore Services',
+      btn2Link: '/services'
     }
   },
   {
-    id: 'intro',
+    id: 'protocols_intro',
     type: 'protocols_intro',
     data: {
-      title: 'THE LEGAL\nFRAMEWORK',
-      desc: 'Compliance is the structural foundation of Savincliff. We dismantle the ambiguity of healthcare regulation to build a platform of primary-source clinical certainty.',
-      sideText: 'Savincliff operates under the full pharmaceutical regulatory framework of the Federal Republic of Nigeria — anchored by PCN and NAFDAC international standards.'
+      title: 'The Savincliff Standard',
+      desc: 'Every pharmacy interaction depends on trust. Our protocols are designed to support medication safety, sourcing integrity, dispensing accuracy, patient privacy, and consistent pharmaceutical care.'
     }
   },
   {
-    id: 'certifications',
-    type: 'protocols_certifications',
-    data: {
-      label: 'Verification Systems',
-      badges: [
-        { id: 'PCN', title: 'PCN REGISTRY', body: 'Savincliff is duly registered with the Pharmacists Council of Nigeria. Every professional node holds a valid, current practicing license.' },
-        { id: 'NDC', title: 'NAFDAC NODE', body: 'Total compliance with the National Agency for Food and Drug Administration. We source exclusively from verified, approved distributors.' },
-        { id: 'GPP', title: 'GPP PROTOCOL', body: 'Absolute adherence to WHO and PCN Good Pharmacy Practice guidelines. Precision dispensing and ethical conduct are standard specifications.' },
-        { id: 'SCI', title: 'CHAIN ARCH', body: 'Our supply chain is a project of traceability. Every pharmaceutical unit is recorded with documented clinical audit trails.' },
-        { id: 'ADR', title: 'PVG TERMINAL', body: 'Integrated pharmacovigilance protocols for monitoring adverse reactions. Safety is an active clinical process, not a static metric.' }
-      ]
-    }
-  },
-  {
-    id: 'pillars',
+    id: 'protocols_pillars',
     type: 'protocols_pillars',
     data: {
-      title: 'EIGHT PILLARS\nOF INTEGRITY',
-      subtitle: 'Our operational protocol is a sequence of eight non-negotiable medical requirements.',
-      commitments: [
-        'PCN Clinical License Validation',
-        'NAFDAC Product Specification Audits',
-        'Thermal Logistics Monitoring',
-        'Encrypted Secure Health Records',
-        'Batch-Level Audit Recalls',
-        'NDPA Data Privacy Compliance',
-        'Mandatory Clinical Re-Training',
-        'Counterfeit Detection Algorithms'
+      title: 'Core Protocol Pillars',
+      subtitle: 'Our operational standards ensure safety and security at every level.',
+      pillars: [
+        {
+          title: 'Verified Sourcing',
+          body: 'Medications and wellness products are selected through trusted pharmaceutical supply channels to support authenticity and quality.'
+        },
+        {
+          title: 'Prescription Review',
+          body: 'Uploaded and in-store prescriptions are reviewed through structured pharmacist-led workflows before dispensing.'
+        },
+        {
+          title: 'Storage Integrity',
+          body: 'Temperature-sensitive products are stored and monitored according to appropriate handling requirements.'
+        },
+        {
+          title: 'Patient Privacy',
+          body: 'Prescription uploads, patient records, and portal activity are protected through secure access controls and privacy-first systems.'
+        },
+        {
+          title: 'Dispensing Accuracy',
+          body: 'Medication preparation and handover follow standardized checks to reduce errors and support safe patient use.'
+        }
       ]
     }
   },
   {
-    id: 'footer_strip',
-    type: 'protocols_footer_strip',
+    id: 'protocols_visual_systems',
+    type: 'protocols_visual_systems',
     data: {
-      nodes: ['PCN', 'NAFDAC', 'GPP', 'WHO', 'ISO', 'NDPA']
+      title: 'Clinical Infrastructure, Digitally Supported',
+      desc: 'Savincliff combines physical pharmacy workflows with digital tools for prescription intake, payment, patient records, refill tracking, and internal inventory control.',
+      blocks: [
+        { name: 'RX Upload' },
+        { name: 'Pharmacist Review' },
+        { name: 'Payment Confirmation' },
+        { name: 'Dispensing' },
+        { name: 'Pickup / Delivery' },
+        { name: 'Patient Record Update' }
+      ]
+    }
+  },
+  {
+    id: 'protocols_compliance',
+    type: 'protocols_compliance',
+    data: {
+      title: 'Regulatory Alignment',
+      desc: 'Our operations are structured to align with applicable pharmacy, product safety, data protection, and professional practice expectations in Nigeria.',
+      items: [
+        'PCN-aligned pharmacy operations',
+        'NAFDAC-conscious product sourcing',
+        'Secure patient data handling',
+        'Controlled medication handling',
+        'Temperature and expiry monitoring',
+        'Staff access controls'
+      ]
+    }
+  },
+  {
+    id: 'protocols_portal_security',
+    type: 'protocols_portal_security',
+    data: {
+      title: 'Protected Patient Access',
+      desc: 'The Savincliff patient portal is designed to give patients secure access to prescription history, refill activity, order updates, and selected pharmacy records.',
+      items: [
+        'Secure login',
+        'Role-based staff access',
+        'Prescription file protection',
+        'Payment verification through Paystack',
+        'Audit trail for staff activity'
+      ]
+    }
+  },
+  {
+    id: 'protocols_timeline',
+    type: 'protocols_timeline',
+    data: {
+      title: 'From Script to Dispensing',
+      steps: [
+        {
+          number: '01',
+          title: 'Patient uploads prescription',
+          desc: 'Patient submits prescription files through the secure digital portal.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '02',
+          title: 'Pharmacy team receives request',
+          desc: 'Intake coordinators receive notification and log files in the portal.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '03',
+          title: 'Pharmacist reviews prescription',
+          desc: 'A licensed clinical pharmacist validates details and dosage requirements.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '04',
+          title: 'Inventory availability is confirmed',
+          desc: 'System checks real-time inventory to confirm product availability.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '05',
+          title: 'Patient receives quote',
+          desc: 'A secure checkout link and invoice are dispatched to the patient.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '06',
+          title: 'Payment is verified',
+          desc: 'Paystack processing secures and validates payment for the order.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '07',
+          title: 'Medication is prepared',
+          desc: 'Dispensing pharmacists carefully compound or package formulations.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '08',
+          title: 'Pickup or delivery is completed',
+          desc: 'The order is dispatched via secure cold-chain or handed over in-store.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        },
+        {
+          number: '09',
+          title: 'Record is updated in patient portal',
+          desc: 'The patient portal logs details of the completed transaction for history.',
+          bgColor: 'bg-gradient-to-br from-[#400e0e] to-[#1a0505]',
+          textColor: 'text-white'
+        }
+      ]
+    }
+  },
+  {
+    id: 'protocols_cta',
+    type: 'protocols_cta',
+    data: {
+      title: 'Precision. Verification. Care.',
+      subtitle: 'Our protocols exist to make modern pharmacy care safer, clearer, and more reliable for every patient.',
+      btn1Text: 'Upload Script',
+      btn1Link: '/rx-terminal',
+      btn2Text: 'Access Patient Portal',
+      btn2Link: '/rx-terminal'
     }
   }
 ];

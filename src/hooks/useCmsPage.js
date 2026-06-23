@@ -18,7 +18,21 @@ export default function useCmsPage(pageId, defaultSections) {
       docRef,
       (docSnap) => {
         if (docSnap.exists() && docSnap.data().sections) {
-          setSections(docSnap.data().sections);
+          const loaded = docSnap.data().sections;
+          const merged = loaded.map(sec => {
+            const fallbackSec = defaultSections.find(d => d.type === sec.type || d.id === sec.id);
+            if (fallbackSec && fallbackSec.data) {
+              return {
+                ...sec,
+                data: {
+                  ...JSON.parse(JSON.stringify(fallbackSec.data)),
+                  ...sec.data
+                }
+              };
+            }
+            return sec;
+          });
+          setSections(merged);
         } else {
           setSections(defaultSections);
         }
